@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +9,8 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
 
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -55,7 +57,7 @@
     
                     <nav class="navigation__nav">
                         <div class="navigation__close-box">
-                            <img src="icons/x.svg" alt="close icon" class="navigation__close">
+                            <img src="{% static 'icons/x.svg' %}" alt="close icon" class="navigation__close">
                         </div>
                         
                         <div class="navigation__list-wrapper">
@@ -90,7 +92,7 @@
 
         <div class="header__content">
             <div class="header__image-box">
-                <img src="img/portfolio_img.jpg" alt="Owner of Portfolio Image" class="header__image">
+                <img src="{% static 'img/portfolio_img.jpg' %}" alt="Owner of Portfolio Image" class="header__image">
             </div>
             <h1 class="heading-primary center-text">Hi, I'm John Doe</h1>
             <div class="heading-primary--sub center-text">Back-End Developer</div>
@@ -116,10 +118,10 @@
                     </div>
 
                     <div class="about__social-icons margin-bottom-4">
-                        <img src="icons/github.svg" alt="Github Logo" class="about__icon">
-                        <img src="icons/linkedin.svg" alt="Linkedin Logo" class="about__icon">
-                        <img src="icons/reddit.svg" alt="Reddit Logo" class="about__icon">
-                        <img src="icons/twitter.svg" alt="Twitter Logo" class="about__icon">
+                        <img src="{% static 'icons/github.svg' %}" alt="Github Logo" class="about__icon">
+                        <img src="{% static 'icons/linkedin.svg' %}" alt="Linkedin Logo" class="about__icon">
+                        <img src="{% static 'icons/reddit.svg' %}" alt="Reddit Logo" class="about__icon">
+                        <img src="{% static 'icons/twitter.svg' %}" alt="Twitter Logo" class="about__icon">
                     </div>
 
                     <a href="javascript:void(0)" class="btn btn--full">My Resume</a>
@@ -152,19 +154,19 @@
             <div class="row project">
                 <div class="project__box">
                     <div class="project__image-box">
-                        <img src="img/project1.jpg" alt="Picture" class="project__image">
+                        <img src="{% static 'img/project1.jpg' %}" alt="Picture" class="project__image">
                     </div>
                 </div>
 
                 <div class="project__box">
                     <div class="project__image-box">
-                        <img src="img/project2.webp" alt="Picture" class="project__image">
+                        <img src="{% static 'img/project2.webp' %}" alt="Picture" class="project__image">
                     </div>
                 </div>
 
                 <div class="project__box">
                     <div class="project__image-box">
-                        <img src="img/project1.jpg" alt="Picture" class="project__image">
+                        <img src="{% static 'img/project1.jpg' %}" alt="Picture" class="project__image">
                     </div>
                 </div>
 
@@ -192,7 +194,7 @@
     <footer class="footer">
 
     </footer>
-    <script src="js/app.js"></script>
+    <script src="{% static 'js/app.js' %}"></script>
 </body>
 
 </html>
