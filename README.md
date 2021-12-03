@@ -13,6 +13,6 @@ Edolor
 ---
 
 ## Lincense & Copyright
-The program is under the <a href="https://github.com/Toluhunter/portfolio/License">Apache 2 license</a>. Please not other third party frameworks may have different linceses
+The program is under the <a href="https://github.com/Toluhunter/portfolio/LICENSE">Apache 2 license</a>. Please not other third party frameworks may have different linceses
 
 Copyright (c) 2021 Toluhunter and edolor. All rights reserved
