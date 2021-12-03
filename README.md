@@ -13,3 +13,4 @@ Edolor
 ---
 
 ## Lincense & Copyright
+Copyright (c) 2021 Toluhunter and edolor. All rights reserved
