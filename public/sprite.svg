@@ -1,0 +1,161 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="light-bulb" viewBox="0 0 317 298">
+        <path d="M133.083 150.915C133.083 146.32 135.895 144.103 138.997 138.807C139.789 137.456 145.631 123.378 145.631 123.378H172.681C172.681 123.378 177.377 136.835 178.267 137.931C182.001 142.541 185.229 145.899 185.229 150.915C185.229 161.456 173.555 170 159.156 170C144.755 170 133.083 161.455 133.083 150.915Z" stroke="white" stroke-width="3.1411" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M159.156 123.851V137.62Z" fill="white"/>
+        <path d="M159.156 123.851V137.62" stroke="white" stroke-width="3.1411" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M149.751 137.62H168.561Z" fill="white"/>
+        <path d="M149.751 137.62H168.561" stroke="white" stroke-width="3.1411" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M146.301 110.509C146.301 106.773 152.053 103.744 159.148 103.744C166.244 103.744 171.995 106.773 171.995 110.509H146.301Z" fill="white" stroke="white" stroke-width="2.66365" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M175.656 2.81404C175.656 6.55025 165.596 7.00014 158.5 7.00014C151.404 7.00014 143.25 6.55034 143.25 2.81412L175.656 2.81404Z" fill="white" stroke="white" stroke-width="2.66365" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M171.775 114.903L146.537 118.904Z" fill="white"/>
+        <path d="M171.775 114.903L146.537 118.904" stroke="white" stroke-width="3.08613" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M155.69 113.646L146.584 115.006Z" fill="white"/>
+        <path d="M155.69 113.646L146.584 115.006" stroke="white" stroke-width="3.1411" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M171.728 118.8L162.622 120.161Z" fill="white"/>
+        <path d="M171.728 118.8L162.622 120.161" stroke="white" stroke-width="3.1411" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        <g filter="url(#filter0_dd_4_218)">
+            <ellipse cx="158.5" cy="147.65" rx="30.5" ry="22.3254" fill="#D9D9D9" fill-opacity="0.01"/>
+        </g>
+        <path d="M159.008 103.011L159.008 7.00003" stroke="#FFFCFC" stroke-width="1.01355"/>
+        <defs>
+            <filter id="filter0_dd_4_218" x="0.293281" y="-2.38213" width="316.413" height="300.064" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                <feOffset/>
+                <feGaussianBlur stdDeviation="9.12191"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"/>
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_4_218"/>
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                <feOffset/>
+                <feGaussianBlur stdDeviation="63.8534"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"/>
+                <feBlend mode="normal" in2="effect1_dropShadow_4_218" result="effect2_dropShadow_4_218"/>
+                <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_4_218" result="shape"/>
+            </filter>
+        </defs>
+    </symbol>
+     <symbol id="logo" viewBox="0 0 58 36"> <!-- New symbol for logo -->
+        <rect x="31.048" y="35.4406" width="32.5455" height="4.49247" rx="2.24624" transform="rotate(-90 31.048 35.4406)" fill="white"/>
+        <rect x="58.0028" y="1.29782" width="34.1428" height="4.49247" rx="2.24624" transform="rotate(90 58.0028 1.29782)" fill="white"/>
+        <rect x="50.2158" y="22.2627" width="13.1779" height="4.49247" rx="2.24624" transform="rotate(90 50.2158 22.2627)" fill="white"/>
+        <rect x="44.0262" y="9.53674e-07" width="12.7786" height="4.49247" rx="2.24624" transform="rotate(90 44.0262 9.53674e-07)" fill="white"/>
+        <rect x="20.2707" y="8.18629" width="20.266" height="4.49247" rx="2.24624" transform="rotate(90 20.2707 8.18629)" fill="white"/>
+        <rect x="12.2366" y="14.8751" width="18.8684" height="4.49247" rx="2.24624" transform="rotate(90 12.2366 14.8751)" fill="white"/>
+        <rect x="28.4523" y="35.4406" width="20.7153" height="4.49247" rx="2.24624" transform="rotate(180 28.4523 35.4406)" fill="white"/>
+        <rect x="23.9789" y="35.4406" width="17.1712" height="4.49247" rx="2.24624" transform="rotate(-90 23.9789 35.4406)" fill="white"/>
+        <path d="M0 2.24624C0 1.00568 1.00567 9.53674e-07 2.24624 9.53674e-07H26.3059C27.5465 9.53674e-07 28.5522 1.00568 28.5522 2.24624C28.5522 3.4868 27.5465 4.49247 26.3059 4.49247H2.24623C1.00567 4.49247 0 3.4868 0 2.24624Z" fill="white"/>
+        <path d="M0 10.4361C0 9.19549 1.00567 8.18982 2.24624 8.18982H15.3133C16.5539 8.18982 17.5596 9.19549 17.5596 10.4361C17.5596 11.6766 16.5539 12.6823 15.3133 12.6823H2.24624C1.00567 12.6823 0 11.6766 0 10.4361Z" fill="white"/>
+        <path d="M2.25019 2.89701C3.49075 2.89701 4.49643 3.90269 4.49643 5.14325L4.49643 7.99294C4.49643 9.2335 3.49075 10.2392 2.25019 10.2392C1.00963 10.2392 0.00395679 9.2335 0.00395679 7.99293L0.00395679 5.14325C0.00395679 3.90268 1.00963 2.89701 2.25019 2.89701Z" fill="white"/>
+        <path d="M10.0117 17.1213C10.0117 18.3619 9.00604 19.3676 7.76548 19.3676H2.24616C1.0056 19.3676 -7.62939e-05 18.3619 -7.62939e-05 17.1213C-7.62939e-05 15.8808 1.0056 14.8751 2.24616 14.8751H5.00582H7.76548C9.00604 14.8751 10.0117 15.8808 10.0117 17.1213Z" fill="white"/>
+        <path d="M43.028 2.24624C43.028 3.4868 42.0223 4.49248 40.7817 4.49248H33.2943C32.0537 4.49248 31.048 3.4868 31.048 2.24624C31.048 1.00568 32.0537 2.86102e-06 33.2943 2.86102e-06H37.038H40.7817C42.0223 2.86102e-06 43.028 1.00568 43.028 2.24624Z" fill="white"/>
+        <path d="M42.3292 33.1944C42.3292 34.4349 41.3235 35.4406 40.083 35.4406H34.4924C33.2518 35.4406 32.2461 34.4349 32.2461 33.1944C32.2461 31.9538 33.2518 30.9481 34.4924 30.9481H37.2877H40.083C41.3235 30.9481 42.3292 31.9538 42.3292 33.1944Z" fill="white"/>
+        <path d="M57.0044 33.1944C57.0044 34.4349 55.9987 35.4406 54.7582 35.4406H49.1675C47.927 35.4406 46.9213 34.4349 46.9213 33.1944C46.9213 31.9538 47.927 30.9481 49.1675 30.9481H51.9628H54.7582C55.9987 30.9481 57.0044 31.9538 57.0044 33.1944Z" fill="white"/>
+        <path d="M50.6152 10.5324C50.6152 11.7729 49.6096 12.7786 48.369 12.7786H44.3757C43.1351 12.7786 42.1295 11.7729 42.1295 10.5324C42.1295 9.29179 43.1351 8.28612 44.3757 8.28612H46.3723H48.369C49.6096 8.28612 50.6152 9.29179 50.6152 10.5324Z" fill="white"/>
+        <path d="M58.0028 2.24624C58.0028 3.4868 56.9971 4.49248 55.7566 4.49248H49.7666C48.526 4.49248 47.5204 3.4868 47.5204 2.24624C47.5204 1.00568 48.526 2.86102e-06 49.7666 2.86102e-06H52.7616H55.7566C56.9971 2.86102e-06 58.0028 1.00568 58.0028 2.24624Z" fill="white"/>
+        <path d="M50.2158 23.9099C50.2158 25.1505 49.2101 26.1562 47.9696 26.1562H40.9813C39.7407 26.1562 38.735 25.1505 38.735 23.9099C38.735 22.6694 39.7407 21.6637 40.9813 21.6637H44.4754H47.9696C49.2101 21.6637 50.2158 22.6694 50.2158 23.9099Z" fill="white"/>
+    </symbol>
+    <symbol id="menu" viewBox="0 0 40 40"> <!-- New symbol for menu -->
+        <path d="M10 20H30" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M10 12H30" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M18 28L30 28" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="menu-close" viewBox="0 0 40 40"> <!-- New symbol for menu-close -->
+        <mask id="mask0_9_574" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="40" height="40">
+            <rect width="40" height="40" fill="#D9D9D9"/>
+        </mask>
+        <g mask="url(#mask0_9_574)">
+            <path d="M11.833 30.5C11.1887 31.1443 10.144 31.1443 9.49967 30.5C8.85534 29.8557 8.85534 28.811 9.49967 28.1667L17.6663 20L9.49967 11.8333C8.85534 11.189 8.85534 10.1443 9.49967 9.5C10.144 8.85567 11.1887 8.85567 11.833 9.5L19.9997 17.6667L28.1663 9.5C28.8107 8.85566 29.8553 8.85567 30.4997 9.5C31.144 10.1443 31.144 11.189 30.4997 11.8333L22.333 20L30.4997 28.1667C31.144 28.811 31.144 29.8557 30.4997 30.5C29.8553 31.1443 28.8107 31.1443 28.1663 30.5L19.9997 22.3333L11.833 30.5Z" fill="white"/>
+        </g>
+    </symbol>
+    <symbol id="mouse-scroll" viewBox="0 0 53 106"> <!-- New symbol for MouseScroll -->
+        <path d="M40 17.93C39.92 9.15001 32.8 2.07001 24 2.07001C15.2 2.07001 8.08 9.15001 8 17.93V29.93C8 38.77 15.16 45.93 24 45.93C32.84 45.93 40 38.77 40 29.93V17.93ZM36 17.93H26V6.25001C31.62 7.19001 35.92 12.05 36 17.93ZM22 6.25001V17.93H12C12.08 12.05 16.38 7.19001 22 6.25001ZM36 29.93C36 36.55 30.62 41.93 24 41.93C17.38 41.93 12 36.55 12 29.93V21.93H36V29.93Z" fill="white"/>
+        <path d="M36 70.82L33.18 68L24 77.16L14.82 68L12 70.82L24 82.82L36 70.82Z" fill="white"/>
+        <path d="M36 84L33.18 81.18L24 90.34L14.82 81.18L12 84L24 96L36 84Z" fill="white"/>
+    </symbol>
+    <symbol id="check-circle" viewBox="0 0 24 25">
+        <path d="M12 2.5C13.3833 2.5 14.6837 2.76244 15.9004 3.28711C17.1169 3.81243 18.1753 4.5249 19.0752 5.4248C19.9751 6.32472 20.6873 7.38309 21.2119 8.59961C21.7372 9.81628 22 11.1167 22 12.5C22 13.8833 21.7372 15.1837 21.2119 16.4004C20.6873 17.6169 19.9751 18.6753 19.0752 19.5752C18.1753 20.4751 17.1169 21.1873 15.9004 21.7119C14.6837 22.2372 13.3833 22.5 12 22.5C10.6167 22.5 9.31628 22.2372 8.09961 21.7119C6.88309 21.1873 5.82472 20.4751 4.9248 19.5752C4.02489 18.6753 3.31274 17.6169 2.78809 16.4004C2.26275 15.1837 2 13.8833 2 12.5C2 11.1167 2.26275 9.81628 2.78809 8.59961C3.31274 7.38309 4.02489 6.32472 4.9248 5.4248C5.82471 4.5249 6.8831 3.81243 8.09961 3.28711C9.31628 2.76244 10.6167 2.5 12 2.5ZM12 4.5C9.76667 4.5 7.8752 5.2752 6.3252 6.8252C4.7752 8.3752 4 10.2667 4 12.5C4 14.7333 4.7752 16.6248 6.3252 18.1748C7.8752 19.7248 9.76667 20.5 12 20.5C14.2333 20.5 16.1248 19.7248 17.6748 18.1748C19.2248 16.6248 20 14.7333 20 12.5C20 10.2667 19.2248 8.3752 17.6748 6.8252C16.1248 5.2752 14.2333 4.5 12 4.5ZM15.8965 9.00391C16.0917 8.80864 16.4083 8.80864 16.6035 9.00391L17.2969 9.69629C17.4919 9.89144 17.4917 10.2081 17.2969 10.4033L10.9531 16.7461C10.7579 16.9413 10.4414 16.9414 10.2461 16.7461L6.70312 13.2031C6.5083 13.0078 6.50802 12.6912 6.70312 12.4961L7.39648 11.8037C7.59175 11.6084 7.90825 11.6084 8.10352 11.8037L10.2461 13.9463C10.4413 14.1415 10.7579 14.1414 10.9531 13.9463L15.8965 9.00391Z" fill="white"/>
+    </symbol>
+        <!-- New symbol for GitHub -->
+    <symbol id="github" viewBox="0 0 24 25">
+        <g clip-path="url(#clip0_25_245)">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9989 0.899902C5.59416 0.899902 0.400002 6.09339 0.400002 12.5003C0.400002 17.6247 3.72344 21.9729 8.33296 23.5074C8.91335 23.6135 9.12483 23.2554 9.12483 22.9477C9.12483 22.6721 9.11487 21.9429 9.10917 20.9751C5.88258 21.6759 5.20179 19.4199 5.20179 19.4199C4.67411 18.0797 3.91359 17.7229 3.91359 17.7229C2.86037 17.0037 3.99335 17.018 3.99335 17.018C5.15765 17.0999 5.77007 18.2137 5.77007 18.2137C6.80477 19.986 8.48536 19.474 9.14621 19.177C9.2516 18.4279 9.55139 17.9165 9.88253 17.6268C7.3068 17.3333 4.59864 16.3386 4.59864 11.8936C4.59864 10.6267 5.05083 9.59201 5.79285 8.78091C5.67322 8.48752 5.27515 7.30824 5.90679 5.71096C5.90679 5.71096 6.88024 5.39904 9.09635 6.89947C10.0214 6.6424 11.0141 6.51422 12.0004 6.50923C12.9859 6.51422 13.9779 6.6424 14.9044 6.89947C17.119 5.39904 18.091 5.71096 18.091 5.71096C18.7242 7.30824 18.3261 8.48752 18.2072 8.78091C18.9506 9.59201 19.3992 10.6267 19.3992 11.8936C19.3992 16.35 16.6867 17.3306 14.1032 17.6175C14.5191 17.9757 14.8901 18.6836 14.8901 19.766C14.8901 21.3162 14.8759 22.5674 14.8759 22.9477C14.8759 23.2581 15.0852 23.6193 15.6735 23.506C20.2794 21.9685 23.6 17.6239 23.6 12.5003C23.6 6.09339 18.4058 0.899902 11.9989 0.899902Z" fill="black"/>
+        </g>
+        <defs>
+            <clipPath id="clip0_25_245">
+                <rect width="24" height="24" fill="white" transform="translate(0 0.5)"/>
+            </clipPath>
+        </defs>
+    </symbol>
+        <!-- New symbol for uparrow -->
+    <symbol id="uparrow" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
+    </symbol>
+    
+    <!-- New symbol for downarrow -->
+    <symbol id="downarrow" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+    </symbol>
+    <symbol id="background-pattern" viewBox="0 0 349 283">
+        <circle cx="2" cy="40" r="2" fill="#ABB2BF"/>
+        <circle cx="16.75" cy="40" r="2" fill="#ABB2BF"/>
+        <circle cx="31.5" cy="40" r="2" fill="#ABB2BF"/>
+        <circle cx="46.25" cy="40" r="2" fill="#ABB2BF"/>
+        <circle cx="61" cy="40" r="2" fill="#ABB2BF"/>
+        <circle cx="2" cy="54.75" r="2" fill="#ABB2BF"/>
+        <circle cx="16.75" cy="54.75" r="2" fill="#ABB2BF"/>
+        <circle cx="31.5" cy="54.75" r="2" fill="#ABB2BF"/>
+        <circle cx="46.25" cy="54.75" r="2" fill="#ABB2BF"/>
+        <circle cx="61" cy="54.75" r="2" fill="#ABB2BF"/>
+        <circle cx="2" cy="69.5" r="2" fill="#ABB2BF"/>
+        <circle cx="16.75" cy="69.5" r="2" fill="#ABB2BF"/>
+        <circle cx="31.5" cy="69.5" r="2" fill="#ABB2BF"/>
+        <circle cx="46.25" cy="69.5" r="2" fill="#ABB2BF"/>
+        <circle cx="61" cy="69.5" r="2" fill="#ABB2BF"/>
+        <circle cx="2" cy="84.25" r="2" fill="#ABB2BF"/>
+        <circle cx="16.75" cy="84.25" r="2" fill="#ABB2BF"/>
+        <circle cx="31.5" cy="84.25" r="2" fill="#ABB2BF"/>
+        <circle cx="46.25" cy="84.25" r="2" fill="#ABB2BF"/>
+        <circle cx="61" cy="84.25" r="2" fill="#ABB2BF"/>
+        <circle cx="2" cy="99" r="2" fill="#ABB2BF"/>
+        <circle cx="16.75" cy="99" r="2" fill="#ABB2BF"/>
+        <circle cx="31.5" cy="99" r="2" fill="#ABB2BF"/>
+        <circle cx="46.25" cy="99" r="2" fill="#ABB2BF"/>
+        <circle cx="61" cy="99" r="2" fill="#ABB2BF"/>
+        <circle cx="179" cy="145" r="2" fill="#ABB2BF"/>
+        <circle cx="193.75" cy="145" r="2" fill="#ABB2BF"/>
+        <circle cx="208.5" cy="145" r="2" fill="#ABB2BF"/>
+        <circle cx="223.25" cy="145" r="2" fill="#ABB2BF"/>
+        <circle cx="238" cy="145" r="2" fill="#ABB2BF"/>
+        <circle cx="179" cy="159.75" r="2" fill="#ABB2BF"/>
+        <circle cx="193.75" cy="159.75" r="2" fill="#ABB2BF"/>
+        <circle cx="208.5" cy="159.75" r="2" fill="#ABB2BF"/>
+        <circle cx="223.25" cy="159.75" r="2" fill="#ABB2BF"/>
+        <circle cx="238" cy="159.75" r="2" fill="#ABB2BF"/>
+        <circle cx="179" cy="174.5" r="2" fill="#ABB2BF"/>
+        <circle cx="193.75" cy="174.5" r="2" fill="#ABB2BF"/>
+        <circle cx="208.5" cy="174.5" r="2" fill="#ABB2BF"/>
+        <circle cx="223.25" cy="174.5" r="2" fill="#ABB2BF"/>
+        <circle cx="238" cy="174.5" r="2" fill="#ABB2BF"/>
+        <circle cx="179" cy="189.25" r="2" fill="#ABB2BF"/>
+        <circle cx="193.75" cy="189.25" r="2" fill="#ABB2BF"/>
+        <circle cx="208.5" cy="189.25" r="2" fill="#ABB2BF"/>
+        <circle cx="223.25" cy="189.25" r="2" fill="#ABB2BF"/>
+        <circle cx="238" cy="189.25" r="2" fill="#ABB2BF"/>
+        <circle cx="179" cy="204" r="2" fill="#ABB2BF"/>
+        <circle cx="193.75" cy="204" r="2" fill="#ABB2BF"/>
+        <circle cx="208.5" cy="204" r="2" fill="#ABB2BF"/>
+        <circle cx="223.25" cy="204" r="2" fill="#ABB2BF"/>
+        <circle cx="238" cy="204" r="2" fill="#ABB2BF"/>
+        <rect x="297.5" y="193.5" width="51" height="51" stroke="#ABB2BF"/>
+        <rect x="227.5" y="0.5" width="85" height="85" stroke="#ABB2BF"/>
+        <mask id="path-53-inside-1_130_371" fill="white">
+            <path d="M128 253.75H71.5V225.5H99.75V197.25H71.5V169H128V253.75Z"/>
+        </mask>
+        <path d="M128 253.75V254.75H129V253.75H128ZM71.5 253.75H70.5V254.75H71.5V253.75ZM71.5 225.5V224.5H70.5V225.5H71.5ZM99.75 225.5V226.5H100.75V225.5H99.75ZM99.75 197.25H100.75V196.25H99.75V197.25ZM71.5 197.25H70.5V198.25H71.5V197.25ZM71.5 169V168H70.5V169H71.5ZM128 169H129V168H128V169ZM128 253.75V252.75H71.5V253.75V254.75H128V253.75ZM71.5 253.75H72.5V225.5H71.5H70.5V253.75H71.5ZM71.5 225.5V226.5H99.75V225.5V224.5H71.5V225.5ZM99.75 225.5H100.75V197.25H99.75H98.75V225.5H99.75ZM99.75 197.25V196.25H71.5V197.25V198.25H99.75V197.25ZM71.5 197.25H72.5V169H71.5H70.5V197.25H71.5ZM71.5 169V170H128V169V168H71.5V169ZM128 169H127V253.75H128H129V169H128Z" fill="#C778DD" mask="url(#path-53-inside-1_130_371)"/>
+        <mask id="path-55-outside-2_130_371" maskUnits="userSpaceOnUse" x="14" y="196.25" width="59" height="87" fill="black">
+            <rect fill="white" x="14" y="196.25" width="59" height="87"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M15 197.25H43.25H71.5V225.5H43.25V253.75H71.5V282H43.25H15V253.75V225.5V197.25Z"/>
+        </mask>
+        <path d="M15 197.25V196.25H14V197.25H15ZM71.5 197.25H72.5V196.25H71.5V197.25ZM71.5 225.5V226.5H72.5V225.5H71.5ZM43.25 225.5V224.5H42.25V225.5H43.25ZM43.25 253.75H42.25V254.75H43.25V253.75ZM71.5 253.75H72.5V252.75H71.5V253.75ZM71.5 282V283H72.5V282H71.5ZM15 282H14V283H15V282ZM43.25 197.25V196.25H15V197.25V198.25H43.25V197.25ZM71.5 197.25V196.25H43.25V197.25V198.25H71.5V197.25ZM71.5 225.5H72.5V197.25H71.5H70.5V225.5H71.5ZM43.25 225.5V226.5H71.5V225.5V224.5H43.25V225.5ZM43.25 253.75H44.25V225.5H43.25H42.25V253.75H43.25ZM43.25 253.75V254.75H71.5V253.75V252.75H43.25V253.75ZM71.5 253.75H70.5V282H71.5H72.5V253.75H71.5ZM71.5 282V281H43.25V282V283H71.5V282ZM15 282V283H43.25V282V281H15V282ZM15 253.75H14V282H15H16V253.75H15ZM15 225.5H14V253.75H15H16V197.25H15Z" fill="#C778DD" mask="url(#path-55-outside-2_130_371)"/>
+    </symbol>
+</svg>
