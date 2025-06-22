@@ -1,39 +1,52 @@
 'use client'
 
 import Icon from "@/components/utilities/shared/icon"
-import { useState } from "react";
-import { useMediaQuery } from 'react-responsive'
-import { motion } from 'framer-motion';
+import { useState, useEffect } from "react";
 
 const NavLinks = ({ className }: { className?: string }) => {
     return (
         <ul className={className}>
-            <li><a href="#" className="text-white py-2 px-4">About</a></li>
-            <li><a href="#" className="text-white py-2 px-4">Blogs</a></li>
-            <li><a href="#" className="text-white py-2 px-4">Projects</a></li>
-            <li><a href="#" className="text-white py-2 px-4">Labs</a></li>
-            <li><a href="#" className="text-white py-2 px-4">Skills</a></li>
-            <li><a href="#" className="text-white py-2 px-4">CV</a></li>
-            <li><a href="#" className="text-white py-2 px-4">Contact</a></li>
+            <ul className={className}>
+                <li><a href="#" className="text-white py-2 px-4 hover:text-[#804F94] transition-colors duration-300">About</a></li>
+                <li><a href="#" className="text-white py-2 px-4 hover:text-[#804F94] transition-colors duration-300">Blogs</a></li>
+                <li><a href="#" className="text-white py-2 px-4 hover:text-[#804F94] transition-colors duration-300">Projects</a></li>
+                <li><a href="#" className="text-white py-2 px-4 hover:text-[#804F94] transition-colors duration-300">Labs</a></li>
+                <li><a href="#" className="text-white py-2 px-4 hover:text-[#804F94] transition-colors duration-300">Skills</a></li>
+                <li><a href="#" className="text-white py-2 px-4 hover:text-[#804F94] transition-colors duration-300">CV</a></li>
+                <li><a href="#" className="text-white py-2 px-4 hover:text-[#804F94] transition-colors duration-300">Contact</a></li>
+            </ul>
         </ul>
     )
 }
 
 export const NavBar = () => {
 
-    const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
-    const isTable = useMediaQuery({ query: '(max-width: 1024px)' })
-    const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' })
-
-
     const [isOpen, setIsOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     }
 
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 0) {
+                setScrolled(true);
+            } else {
+                setScrolled(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
     return (
         <>
-            <nav className="px-5 fixed bg-[rgba(255, 255, 255, 0.47)] top-0 left-0 mx-auto w-full z-100 flex justify-center">
+            <nav className={`px-5 fixed top-0 left-0 mx-auto w-full z-50 flex justify-center transition-all duration-300 ${scrolled ? 'bg-[rgba(17,24,39,0.7)] backdrop-blur-sm' : 'bg-transparent'}`}>
                 <div className="container flex-wrap flex items-center justify-between relative">
                     <Icon name="logo" classes="w-16 h-15" />
                     <Icon
