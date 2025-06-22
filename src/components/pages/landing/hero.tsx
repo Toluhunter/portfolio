@@ -51,7 +51,7 @@ export const Herosection = () => {
         <>
             <section className="w-full relative h-screen flex flex-col pt-25 justify-end items-center overflow-hidden">
                 <Slider />
-                <div className="absolute w-full h-screen z-50">
+                <div className="absolute w-full h-screen z-20">
                     {/* <Leva />
                     <Canvas className="w-full h-screen fixed z-100">
                         <ambientLight color={"white"} intensity={2} />
@@ -84,13 +84,13 @@ export const Herosection = () => {
                         <Image className="hidden 2xl:block w-full h-full object-contain" src="/profile-pic.png" width={501} height={500} alt="Tolulope Fakoya" />
                     </div>
 
-                    <div className="text-xl h-1/3 md:text-2xl lg:text-4xl flex text-left flex-col xl:gap-10 justify-between items-center md:items-start">
+                    <div className="text-xl h-1/3 md:text-2xl lg:text-4xl flex text-left flex-col gap-10 justify-between items-center md:items-start">
 
-                        <p>
+                        <p className="text-white">
                             toluhunter:~<span className="text-callout">$</span> whoami <br />
                             <span className="text-callout">Tolulope Fakoya</span>
                         </p>
-                        <div className="inline">
+                        <div className="inline text-white">
                             toluhunter:~<span className="text-callout">$</span><span className="text-callout"> ./</span>whatido <br />
                             <span className="text-callout">
                                 <Type />
