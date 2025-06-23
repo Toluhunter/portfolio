@@ -46,7 +46,7 @@ export const NavBar = () => {
 
     return (
         <>
-            <nav className={`px-5 fixed top-0 left-0 mx-auto w-full z-50 flex justify-center transition-all duration-300 ${scrolled ? 'bg-[rgba(17,24,39,0.7)] backdrop-blur-sm' : 'bg-transparent'}`}>
+            <nav className={`px-5 fixed top-0 left-0 mx-auto w-full z-50 flex justify-center transition-all duration-300 ${scrolled || isOpen ? 'bg-[rgba(17,24,39,0.7)] backdrop-blur-sm' : 'bg-transparent'}`}>
                 <div className="container flex-wrap flex items-center justify-between relative">
                     <Icon name="logo" classes="w-16 h-15" />
                     <Icon
