@@ -1,6 +1,7 @@
 import Icon from "@/components/utilities/shared/icon"
 import Image from "next/image"
 import { useState } from "react"
+import { ChevronRight, ChevronLeft } from "lucide-react";
 
 export interface Project {
     name: string;
@@ -13,58 +14,58 @@ export interface Project {
 export const ProjectListing = ({ project }: { project: Project }) => {
     const [showTechnologies, setShowTechnologies] = useState(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const images = [
-        "/projects/beembridge.png", // Your original image
-        "https://placehold.co/500x300/007bff/ffffff?text=BeemBridge+Screenshot+1",
-        "https://placehold.co/500x300/8A2BE2/ffffff?text=BeemBridge+Screenshot+2",
-        "https://placehold.co/500x300/DC143C/ffffff?text=BeemBridge+Screenshot+3"
-    ];
+
+    // Using placeholder URLs since local assets are not supported in Canvas
+    const images = project.images.map(img => {
+        // Simple check to use placeholder if it's a local path
+        if (img.startsWith('/')) {
+            // Provide a generic placeholder if original doesn't specify size, or use a default
+            return `https://placehold.co/500x300/CCCCCC/333333.png?text=${project.name}`;
+        }
+        return img;
+    });
+
     const handlePrevClick = () => {
         setCurrentImageIndex((prevIndex) =>
-            prevIndex === 0 ? project.images.length - 1 : prevIndex - 1
+            prevIndex === 0 ? images.length - 1 : prevIndex - 1
         );
     };
 
     const handleNextClick = () => {
         setCurrentImageIndex((prevIndex) =>
-            prevIndex === project.images.length - 1 ? 0 : prevIndex + 1
+            prevIndex === images.length - 1 ? 0 : prevIndex + 1
         );
     };
-    const LeftCarouselArrowIcon = () => (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
-            <path fillRule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
-        </svg>
-    );
 
-    // Right Arrow for Carousel
-    const RightCarouselArrowIcon = () => (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
-            <path fillRule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
-        </svg>
-    );
+    // Left Arrow for Carousel (reusing Lucide icons for consistency)
+    const LeftCarouselArrowIcon = () => <ChevronLeft size={24} color="currentColor" />;
+    // Right Arrow for Carousel (reusing Lucide icons for consistency)
+    const RightCarouselArrowIcon = () => <ChevronRight size={24} color="currentColor" />;
 
 
     return (
-        <div className="flex flex-col gap-10 mt-40 mb-10">
-            <span className="flex gap-5 flex-row mt-10 items-center">
-                <Icon name="check-circle" classes="w-7 h-7" />
+        <div className="flex flex-col gap-10 mt-10 mb-10 px-4 md:px-0"> {/* Added padding for smaller screens */}
+            <span className="flex gap-5 flex-row mt-10 items-center text-gray-400">
+                <Icon name="check-circle" classes="w-7 h-7 text-green-500" /> {/* Added color to check-circle */}
                 <div className="w-[1px] h-5 bg-white" />
                 Finished
             </span>
-            <div className="flex flex-col md:flex-row">
-                <div className="flex flex-col gap-10 max-sm:justify-center max-sm:items-center">
-                    <h1 className="text-white text-6xl my-7">{project.name}</h1>
-                    <p className="w-1/2 md:w-1/3">
+            <div className="flex flex-col md:flex-row md:gap-10 items-center md:items-start"> {/* Added items-center for better alignment on mobile */}
+                <div className="flex flex-col gap-5 text-center md:text-left md:w-1/2"> {/* Added md:w-1/2 for flex distribution */}
+                    <h1 className="text-white text-4xl md:text-6xl my-4">{project.name}</h1> {/* Adjusted text size for responsiveness */}
+                    <p className="w-full text-gray-300 mb-4 md:mb-0"> {/* Ensure description takes full width on mobile */}
                         {project.description}
                     </p>
 
-                    <a href={project.websiteLink} target="_blank" rel="noopener noreferrer">
-                        <button className="bg-callout text-white py-2 px-7 rounded-md w-fit">
-                            VISIT APP WEBSITE
-                        </button>
-                    </a>
+                    {project.websiteLink && (
+                        <a href={project.websiteLink} target="_blank" rel="noopener noreferrer" className="self-center md:self-start">
+                            <button className="bg-callout-custom text-white py-2 px-7 rounded-md w-fit hover:bg-purple-700 transition-colors duration-300"> {/* Changed to bg-callout-custom */}
+                                VISIT APP WEBSITE
+                            </button>
+                        </a>
+                    )}
                     <div
-                        className="flex h-fit items-center text-white cursor-pointer mt-4 text-md hover:text-gray-300 transition-colors duration-200"
+                        className="flex h-fit items-center text-white cursor-pointer mt-4 text-md hover:text-gray-300 transition-colors duration-200 self-center md:self-start"
                         onClick={() => setShowTechnologies(!showTechnologies)}
                     >
                         <span className="mr-5">more info</span>
@@ -73,24 +74,25 @@ export const ProjectListing = ({ project }: { project: Project }) => {
 
                 </div>
 
-                <div className="relative flex items-center justify-center w-full max-w-[500px] mx-auto md:mx-0 mt-10 md:mt-0">
+                <div className="relative flex items-center justify-center w-full max-w-[500px] mx-auto mt-10 md:mt-0 flex-shrink-0">
                     <button
                         onClick={handlePrevClick}
-                        className="absolute left-0 z-10 p-2 bg-black bg-opacity-50 text-white rounded-full ml-2 focus:outline-none hover:bg-opacity-75 transition-colors duration-200"
+                        className="absolute left-2 z-10 p-2 bg-black bg-opacity-50 text-white rounded-full focus:outline-none hover:bg-opacity-75 transition-colors duration-200"
                         aria-label="Previous image"
                     >
                         <LeftCarouselArrowIcon />
                     </button>
-                    <Image
+                    <Image // Changed from Image to img
                         className="border-4 border-white rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300 w-full h-auto object-contain"
                         src={images[currentImageIndex]}
                         alt={`${project.name} screenshot ${currentImageIndex + 1}`}
-                        width={500} // Set explicit width for better layouting, though w-full will scale it
-                        height={300} // Adjust height as needed to maintain aspect ratio with 500 width for placeholder
+                        width={500} // Explicit width
+                        height={300} // Explicit height
+                        onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://placehold.co/500x300/CCCCCC/333333?text=Image+Error'; }} // Fallback
                     />
                     <button
                         onClick={handleNextClick}
-                        className="absolute right-0 z-10 p-2 bg-black bg-opacity-50 text-white rounded-full mr-2 focus:outline-none hover:bg-opacity-75 transition-colors duration-200"
+                        className="absolute right-2 z-10 p-2 bg-black bg-opacity-50 text-white rounded-full focus:outline-none hover:bg-opacity-75 transition-colors duration-200"
                         aria-label="Next image"
                     >
                         <RightCarouselArrowIcon />
@@ -108,7 +110,6 @@ export const ProjectListing = ({ project }: { project: Project }) => {
                     </ul>
                 </div>
             )}
-
         </div>
     )
 }

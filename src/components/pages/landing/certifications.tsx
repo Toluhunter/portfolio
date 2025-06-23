@@ -1,5 +1,6 @@
 import { Title } from "@/components/utilities/shared/title";
 import { CertificationsCarousel } from "@/components/utilities/landingpage/certifications/certifications-carousel";
+import { Certification } from "@/components/utilities/landingpage/certifications/certficiation-card";
 
 const certifications: Certification[] = [
     {
@@ -46,7 +47,7 @@ const certifications: Certification[] = [
 
 export const CertificationsSection = () => {
     return (
-        <section className="relative flex flex-col bg-background items-center">
+        <section className="relative flex flex-col overflow-hidden bg-background items-center">
             <div className="flex flex-col h-screen bg-background container">
                 <Title text="Certifications" />
                 <CertificationsCarousel certifications={certifications} />

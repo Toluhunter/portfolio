@@ -3,6 +3,7 @@ import { ProjectListing } from "@/components/utilities/landingpage/project/proje
 import Icon from "@/components/utilities/shared/icon"
 import { useState } from "react"
 import { Project } from "@/components/utilities/landingpage/project/project-listing-landing"
+import { ChevronRight, ChevronLeft } from "lucide-react";
 
 export const ProjectSection = () => {
     const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
@@ -12,9 +13,9 @@ export const ProjectSection = () => {
             name: "BeemBridge",
             description: "Effortless PC-to-PC File Transfer. Send files directly and seamlessly between your devices. Our app intelligently manages the Wi-Fi and network, so you never fuss with IPs or hotspot settings. Just transfer and go!",
             images: [
-                "/projects/beembridge.png",
-                "https://placehold.co/500x300/007bff/ffffff.png?text=BeemBridge+Screenshot+1",
-                "https://placehold.co/500x300/8A2BE2/ffffff.png?text=BeemBridge+Screenshot+2",
+                "/projects/beembridge.png", // Placeholder for /projects/beembridge.png
+                "https://placehold.co/500x300/007bff/ffffff?text=BeemBridge+Screenshot+1",
+                "https://placehold.co/500x300/8A2BE2/ffffff?text=BeemBridge+Screenshot+2",
             ],
             websiteLink: "#", // Replace with actual link
             technologies: [
@@ -30,9 +31,9 @@ export const ProjectSection = () => {
             name: "Project Alpha",
             description: "A cutting-edge web application designed for seamless task management and team collaboration. Boost your productivity with intuitive features and a clean interface.",
             images: [
-                "https://placehold.co/500x300/FF5733/ffffff.png?text=Alpha+Shot+1",
-                "https://placehold.co/500x300/33FF57/ffffff.png?text=Alpha+Shot+2",
-                "https://placehold.co/500x300/3357FF/ffffff.png?text=Alpha+Shot+3",
+                "https://placehold.co/500x300/FF5733/ffffff?text=Alpha+Shot+1",
+                "https://placehold.co/500x300/33FF57/ffffff?text=Alpha+Shot+2",
+                "https://placehold.co/500x300/3357FF/ffffff?text=Alpha+Shot+3",
             ],
             websiteLink: "#",
             technologies: [
@@ -47,8 +48,8 @@ export const ProjectSection = () => {
             name: "Gaming Hub",
             description: "An immersive platform for discovering, playing, and sharing indie games. Connect with fellow gamers and explore a curated collection of unique titles.",
             images: [
-                "https://placehold.co/500x300/FFBD33/000000.png?text=GamingHub+Preview+1",
-                "https://placehold.co/500x300/33FFBD/000000.png?text=GamingHub+Preview+2",
+                "https://placehold.co/500x300/FFBD33/000000?text=GamingHub+Preview+1",
+                "https://placehold.co/500x300/33FFBD/000000?text=GamingHub+Preview+2",
             ],
             websiteLink: "#",
             technologies: [
@@ -72,27 +73,20 @@ export const ProjectSection = () => {
             prevIndex === projects.length - 1 ? 0 : prevIndex + 1
         );
     };
-    const LeftProjectArrowIcon = () => (
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
-            <path fillRule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
-        </svg>
-    );
 
-    // Right Arrow for Project Carousel
-    const RightProjectArrowIcon = () => (
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
-            <path fillRule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
-        </svg>
-    );
+    // Replaced custom SVG arrow components with Lucide React icons directly
+    const LeftProjectArrowIcon = () => <ChevronLeft size={32} />;
+    const RightProjectArrowIcon = () => <ChevronRight size={32} />;
+
     return (
-        <section className="relative flex flex-col bg-[url('/Project-BG.png')] items-center">
-
-            <div className="flex flex-col container">
-                <Title text="Projects" />
-                <div className="relative flex items-center justify-center w-full">
+        <section className="relative flex flex-col items-center bg-[url('/Project-BG.png')] bg-cover bg-center py-10"> {/* Removed overflow-hidden from section */}
+            <div className="relative z-10 flex flex-col container px-4 md:px-8"> {/* Added padding for small screens */}
+                <Title text="Projects" link="#" /> {/* Assuming you want a link here too */}
+                <div className="relative flex items-center justify-center w-full mt-10"> {/* Added mt-10 for spacing */}
+                    {/* Left Button - positioned absolutely outside the overflow-hidden scrollable area */}
                     <button
                         onClick={handlePrevProjectClick}
-                        className="mr-10 p-3 bg-gray-700 bg-opacity-70 text-white rounded-full ml-4 focus:outline-none hover:bg-opacity-90 transition-all duration-300 ease-in-out shadow-lg"
+                        className="absolute -left-4 sm:-left-8 md:-left-12 z-20 p-3 bg-gray-700 bg-opacity-70 text-white rounded-full focus:outline-none hover:bg-opacity-90 transition-all duration-300 ease-in-out shadow-lg"
                         aria-label="Previous project"
                     >
                         <LeftProjectArrowIcon />
@@ -102,9 +96,10 @@ export const ProjectSection = () => {
                         <ProjectListing project={projects[currentProjectIndex]} />
                     </div>
 
+                    {/* Right Button - positioned absolutely outside the overflow-hidden scrollable area */}
                     <button
                         onClick={handleNextProjectClick}
-                        className="ml-10 p-3 bg-gray-700 bg-opacity-70 text-white rounded-full mr-4 focus:outline-none hover:bg-opacity-90 transition-all duration-300 ease-in-out shadow-lg"
+                        className="absolute -right-4 sm:-right-8 md:-right-12 z-20 p-3 bg-gray-700 bg-opacity-70 text-white rounded-full focus:outline-none hover:bg-opacity-90 transition-all duration-300 ease-in-out shadow-lg"
                         aria-label="Next project"
                     >
                         <RightProjectArrowIcon />
@@ -121,9 +116,7 @@ export const ProjectSection = () => {
                         <span className="ml-3">Check other repositories</span>
                     </a>
                 </div>
-
-
             </div>
         </section>
-    )
-}
+    );
+};

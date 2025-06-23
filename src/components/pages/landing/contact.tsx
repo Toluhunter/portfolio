@@ -3,7 +3,7 @@ import { Title } from '@/components/utilities/shared/title';
 
 export const ContactMeSection = () => {
     return (
-        <section className="relative flex flex-col items-center">
+        <section className="relative flex flex-col items-center overflow-hidden">
             <div className="flex flex-col w-full container mx-auto ">
                 <Title text="Contact Me" />
 
