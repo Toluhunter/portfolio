@@ -1,4 +1,3 @@
-import { Github, Twitter, Linkedin } from 'lucide-react';
 import { Title } from '@/components/utilities/shared/title';
 
 export const ContactMeSection = () => {
@@ -50,25 +49,14 @@ export const ContactMeSection = () => {
                                 placeholder="Your message here..."
                             ></textarea>
                         </div>
-                        <div className="md:col-span-2 flex flex-col items-end space-y-4"> {/* Adjusted for vertical stacking */}
+                        <div className="md:col-span-2 flex flex-col items-center md:items-end space-y-4"> {/* Adjusted for vertical stacking */}
                             <button
                                 type="submit"
                                 className="px-6 py-3 bg-[#804F94] text-white font-semibold rounded-md shadow-md hover:bg-purple-700 transition duration-300 ease-in-out"
                             >
                                 Send Message
                             </button>
-                            {/* Social Media Icons moved here */}
-                            <div className="flex space-x-6 mt-4">
-                                <a href="https://github.com/Toluhunter" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#804F94] transition-colors duration-300">
-                                    <Github size={24} /> {/* Smaller icon size */}
-                                </a>
-                                <a href="https://x.com/tolu_hunter" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#804F94] transition-colors duration-300">
-                                    <Twitter size={24} /> {/* Smaller icon size */}
-                                </a>
-                                <a href="https://www.linkedin.com/in/tolulope-fakoya/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#804F94] transition-colors duration-300">
-                                    <Linkedin size={24} /> {/* Smaller icon size */}
-                                </a>
-                            </div>
+
                         </div>
                     </form>
                 </div>
