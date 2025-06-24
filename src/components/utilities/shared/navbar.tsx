@@ -59,7 +59,7 @@ export const NavBar = () => {
 
 
                     {isOpen &&
-                        <NavLinks className="flex md:hidden flex-col w-full gap-5 items-center font-bold z-100" />
+                        <NavLinks className="flex md:hidden flex-col mt-7 w-full gap-5 items-center font-bold z-100" />
                     }
                 </div>
 

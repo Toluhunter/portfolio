@@ -16,14 +16,7 @@ export const ProjectListing = ({ project }: { project: Project }) => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     // Using placeholder URLs since local assets are not supported in Canvas
-    const images = project.images.map(img => {
-        // Simple check to use placeholder if it's a local path
-        if (img.startsWith('/')) {
-            // Provide a generic placeholder if original doesn't specify size, or use a default
-            return `https://placehold.co/500x300/CCCCCC/333333.png?text=${project.name}`;
-        }
-        return img;
-    });
+    const images = project.images
 
     const handlePrevClick = () => {
         setCurrentImageIndex((prevIndex) =>

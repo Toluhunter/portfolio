@@ -13,9 +13,9 @@ export const ProjectSection = () => {
             name: "BeemBridge",
             description: "Effortless PC-to-PC File Transfer. Send files directly and seamlessly between your devices. Our app intelligently manages the Wi-Fi and network, so you never fuss with IPs or hotspot settings. Just transfer and go!",
             images: [
-                "/projects/beembridge.png", // Placeholder for /projects/beembridge.png
-                "https://placehold.co/500x300/007bff/ffffff?text=BeemBridge+Screenshot+1",
-                "https://placehold.co/500x300/8A2BE2/ffffff?text=BeemBridge+Screenshot+2",
+                "/projects/beembridge.png",
+                "https://placehold.co/500x300/007bff/ffffff.png?text=BeemBridge+Screenshot+1",
+                "https://placehold.co/500x300/8A2BE2/ffffff.png?text=BeemBridge+Screenshot+2",
             ],
             websiteLink: "#", // Replace with actual link
             technologies: [
@@ -31,9 +31,9 @@ export const ProjectSection = () => {
             name: "Project Alpha",
             description: "A cutting-edge web application designed for seamless task management and team collaboration. Boost your productivity with intuitive features and a clean interface.",
             images: [
-                "https://placehold.co/500x300/FF5733/ffffff?text=Alpha+Shot+1",
-                "https://placehold.co/500x300/33FF57/ffffff?text=Alpha+Shot+2",
-                "https://placehold.co/500x300/3357FF/ffffff?text=Alpha+Shot+3",
+                "https://placehold.co/500x300/FF5733/ffffff.png?text=Alpha+Shot+1",
+                "https://placehold.co/500x300/33FF57/ffffff.png?text=Alpha+Shot+2",
+                "https://placehold.co/500x300/3357FF/ffffff.png?text=Alpha+Shot+3",
             ],
             websiteLink: "#",
             technologies: [
@@ -48,8 +48,8 @@ export const ProjectSection = () => {
             name: "Gaming Hub",
             description: "An immersive platform for discovering, playing, and sharing indie games. Connect with fellow gamers and explore a curated collection of unique titles.",
             images: [
-                "https://placehold.co/500x300/FFBD33/000000?text=GamingHub+Preview+1",
-                "https://placehold.co/500x300/33FFBD/000000?text=GamingHub+Preview+2",
+                "https://placehold.co/500x300/FFBD33/000000.png?text=GamingHub+Preview+1",
+                "https://placehold.co/500x300/33FFBD/000000.png?text=GamingHub+Preview+2",
             ],
             websiteLink: "#",
             technologies: [

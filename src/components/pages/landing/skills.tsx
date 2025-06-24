@@ -16,7 +16,7 @@ export const SkillSection = () => {
         { id: 'skill8', name: 'Git', icon: GitBranch }, // Adding Git as a common skill
     ];
     return (
-        <section className="flex flex-col bg-[url(/Skills-BG.png)] items-center h-screen w-full bg-gray-900 overflow-hidden relative">
+        <section className="flex flex-col bg-[url(/Skills-BG.png)] items-center min-h-screen w-full bg-gray-900 overflow-hidden relative">
             <div className="relative w-full h-full container">
                 <Icon name="background-pattern" classes="absolute top-0 left-0 w-full h-full object-cover opacity-10"></Icon>
                 <Title text="Skills" link="#" />

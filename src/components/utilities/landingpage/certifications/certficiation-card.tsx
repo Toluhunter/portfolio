@@ -21,7 +21,7 @@ export const CertificationCard: React.FC<{ cert: Certification }> = ({ cert }) =
                 className="w-24 h-24 rounded-full mb-4 object-cover border-2 border-[#804F94]" // Using direct hex for border-callout
                 onError={(e) => {
                     e.currentTarget.onerror = null; // Prevent infinite loop
-                    e.currentTarget.src = 'https://placehold.co/200x100/CCCCCC/333333?text=Cert'; // Fallback image
+                    e.currentTarget.src = 'https://placehold.co/200x100/CCCCCC/333333.png?text=Cert'; // Fallback image
                 }}
             />
             <h3 className="text-xl md:text-2xl font-semibold text-gray-100 text-center mb-2 leading-tight">{cert.title}</h3> {/* Using text-gray-100 for foreground */}
