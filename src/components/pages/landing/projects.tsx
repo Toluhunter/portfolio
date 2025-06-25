@@ -92,7 +92,7 @@ export const ProjectSection = () => {
                         <LeftProjectArrowIcon />
                     </button>
 
-                    <div className="w-full">
+                    <div className="w-5/6">
                         <ProjectListing project={projects[currentProjectIndex]} />
                     </div>
 

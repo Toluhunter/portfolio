@@ -6,9 +6,13 @@ interface Skill {
 export const SkillItem: React.FC<{ skill: Skill }> = ({ skill }) => {
     const IconComponent = skill.icon;
     return (
-        <div className="flex items-center gap-4 p-4 bg-gray-800 rounded-lg shadow-md border border-gray-700">
-            {IconComponent && <IconComponent size={24} color="#804F94" />} {/* Render the icon with custom color */}
-            <span className="font-bold text-lg text-gray-100">{skill.name}</span>
+        <div className="flex flex-col items-center justify-center p-8 bg-gray-800 rounded-xl shadow-xl border border-gray-700 hover:border-[#804F94] transition-all duration-300 transform hover:scale-105 group">
+            {IconComponent && (
+                <div className="mb-4 text-[#804F94] group-hover:text-white transition-colors duration-300">
+                    <IconComponent size={80} /> {/* Increased icon size significantly */}
+                </div>
+            )}
+            <span className="font-bold text-xl text-gray-100 group-hover:text-white transition-colors duration-300">{skill.name}</span>
         </div>
     );
 };

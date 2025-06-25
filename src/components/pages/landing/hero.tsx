@@ -37,7 +37,11 @@ export const Herosection = () => {
                         </p>
 
                         <button className="px-5 py-2 text-base md:text-xl border-2 border-callout hover:bg-callout hover:text-white">
-                            Contact Me
+                            <a
+                                href="mailto:toluhunterdev@gmail.com"
+                            >
+                                Contact Me
+                            </a>
 
                         </button>
                         <div className="bg-neutral-700 border-2 border-white w-fit md:w-full py-1 px-5 text-sm md:text-lg text-left">
