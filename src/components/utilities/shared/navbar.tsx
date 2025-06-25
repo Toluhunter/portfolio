@@ -8,12 +8,12 @@ const NavLinks = ({ className }: { className?: string }) => {
         <ul className={className}>
             <ul className={className}>
                 <li><a href="#" className="text-white py-2 px-4 hover:text-[#804F94] transition-colors duration-300">About</a></li>
-                <li><a href="#" className="text-white py-2 px-4 hover:text-[#804F94] transition-colors duration-300">Blogs</a></li>
                 <li><a href="#" className="text-white py-2 px-4 hover:text-[#804F94] transition-colors duration-300">Projects</a></li>
+                <li><a href="#" className="text-white py-2 px-4 hover:text-[#804F94] transition-colors duration-300">Blogs</a></li>
                 <li><a href="#" className="text-white py-2 px-4 hover:text-[#804F94] transition-colors duration-300">Labs</a></li>
-                <li><a href="#" className="text-white py-2 px-4 hover:text-[#804F94] transition-colors duration-300">Skills</a></li>
+                <li><a href="#skills" className="text-white py-2 px-4 hover:text-[#804F94] transition-colors duration-300">Skills</a></li>
                 <li><a href="#" className="text-white py-2 px-4 hover:text-[#804F94] transition-colors duration-300">CV</a></li>
-                <li><a href="#" className="text-white py-2 px-4 hover:text-[#804F94] transition-colors duration-300">Contact</a></li>
+                <li><a href="#contact" className="text-white py-2 px-4 hover:text-[#804F94] transition-colors duration-300">Contact</a></li>
             </ul>
         </ul>
     )
