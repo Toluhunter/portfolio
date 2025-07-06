@@ -1,4 +1,4 @@
-import { ArrowRight } from 'lucide-react'
+import { FaArrowRight as ArrowRight } from "react-icons/fa";
 
 export const Title = ({ text, link, hasMore }: { text: string; link?: string, hasMore?: boolean }) => {
     return (

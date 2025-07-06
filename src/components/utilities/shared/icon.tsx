@@ -14,7 +14,7 @@ function Icon(props: IconProps) {
 
     return (
         <svg className={props.classes} preserveAspectRatio="none" width={props.width} height={props.height} style={style ? style : undefined} fill={props.color} onClick={props.onClick}>
-            <use href={`/sprite.svg#${props.name}`} />
+            <use href={`/icons/sprite.svg#${props.name}`} />
         </svg>
     )
 }

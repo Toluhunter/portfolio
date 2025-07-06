@@ -1,4 +1,4 @@
-import { Github, Twitter, Linkedin } from 'lucide-react';
+import { FaGithub as Github, FaTwitter as Twitter, FaLinkedin as Linkedin } from "react-icons/fa";
 
 export const Footer: React.FC = () => {
     return (
