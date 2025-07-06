@@ -1,13 +1,14 @@
 'use client'
 
 import Icon from "@/components/utilities/shared/icon"
+import Link from 'next/link';
 import { useState, useEffect } from "react";
 
 const NavLinks = ({ className }: { className?: string }) => {
     return (
         <ul className={className}>
             <ul className={className}>
-                <li><a href="#" className="text-white py-2 px-4 hover:text-[#804F94] transition-colors duration-300">About</a></li>
+                <li><Link href="/about" className="text-white py-2 px-4 hover:text-[#804F94] transition-colors duration-300">About</Link></li>
                 <li><a href="#" className="text-white py-2 px-4 hover:text-[#804F94] transition-colors duration-300">Projects</a></li>
                 <li><a href="#" className="text-white py-2 px-4 hover:text-[#804F94] transition-colors duration-300">Blogs</a></li>
                 <li><a href="#" className="text-white py-2 px-4 hover:text-[#804F94] transition-colors duration-300">Labs</a></li>
@@ -48,7 +49,9 @@ export const NavBar = () => {
         <>
             <nav className={`px-5 fixed top-0 left-0 mx-auto w-full z-50 flex justify-center transition-all duration-300 ${scrolled || isOpen ? 'bg-[rgba(17,24,39,0.7)] backdrop-blur-sm' : 'bg-transparent'}`}>
                 <div className="container flex-wrap flex items-center justify-between relative">
-                    <Icon name="logo" classes="w-16 h-15" />
+                    <Link href="/">
+                        <Icon name="logo" classes="w-16 h-15" />
+                    </Link>
                     <Icon
                         name="light-bulb"
                         classes="absolute top-0 left-1/2 -translate-x-1/2 w-[160px] md:left-1/9 md:translate-x-0 h-[150px] md:w-[170px] md:h-[160px] lg:w-[210px] lg:h-[190px]"

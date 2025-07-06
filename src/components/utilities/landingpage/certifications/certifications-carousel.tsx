@@ -28,8 +28,8 @@ export const CertificationsCarousel: React.FC<{ certifications: Certification[] 
                 ref={carouselRef}
                 className="flex overflow-x-scroll no-scrollbar snap-x snap-mandatory pb-6"
             >
-                {certifications.map((cert) => (
-                    <CertificationCard key={cert.id} cert={cert} />
+                {certifications.map((cert, id) => (
+                    <CertificationCard key={id} cert={cert} />
                 ))}
             </div>
             <button

@@ -1,7 +1,6 @@
 import Image from "next/image";
 
 export interface Certification {
-    id: string;
     picture: string; // URL for the certification image/logo
     title: string;
     date: string;
@@ -16,9 +15,9 @@ export const CertificationCard: React.FC<{ cert: Certification }> = ({ cert }) =
             <Image
                 src={cert.picture}
                 alt={cert.title}
-                width={100}
+                width={120}
                 height={200}
-                className="w-24 h-24 rounded-full mb-4 object-cover border-2 border-[#804F94]" // Using direct hex for border-callout
+                className="w-24 h-24 rounded-full mb-4 object-cover" // Using direct hex for border-callout
                 onError={(e) => {
                     e.currentTarget.onerror = null; // Prevent infinite loop
                     e.currentTarget.src = 'https://placehold.co/200x100/CCCCCC/333333.png?text=Cert'; // Fallback image
