@@ -13,7 +13,7 @@ export const ContactMeSection = () => {
                     href="mailto:toluhunterdev@gmail.com"
                     className="mt-8 px-8 py-3 border-2 border-callout text-white font-bold text-lg rounded-md shadow-lg hover:bg-callout hover:text-white transition-all duration-300 ease-in-out transform hover:scale-105"
                 >
-                    Let's Talk
+                    Let&apos;s Talk
                 </a>
             </div>
         </section>
