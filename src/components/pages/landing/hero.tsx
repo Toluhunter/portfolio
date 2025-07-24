@@ -59,11 +59,10 @@ export const Herosection = () => {
                             alt="Tolulope Fakoya"
                         />
                     </div>
-                    <Icon name="mouse-scroll" classes="absolute z-50 w-20 h-20 bottom-0 left-1/2 -translate-x-1/2 animate-bounce-scroll" color="white" />
 
                 </div>
-
-
+                <Icon name="mouse-scroll" classes="hidden md:block absolute z-50 w-20 h-20 bottom-0 left-1/2 animate-bounce-scroll" color="white" />
+                <Icon name="scroll" classes="md:hidden absolute z-50 w-20 h-20 bottom-10 left-1/2 animate-bounce-scroll" color="white" />
             </section>
         </>
     )
