@@ -2,7 +2,7 @@ import { FaGithub as Github, FaTwitter as Twitter, FaLinkedin as Linkedin } from
 
 export const Footer: React.FC = () => {
     return (
-        <footer className="w-full bg-gray-900 py-1 mt-20 text-center text-gray-400 text-[10px] md:text-xs border-t border-gray-700">
+        <footer className="w-full bg-gray-900 py-1 text-center text-gray-400 text-[10px] md:text-xs border-t border-gray-700 absolute bottom-0 left-0">
             <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
                 <p>&copy; {new Date().getFullYear()} Tolulope Fakoya (Toluhunter). All rights reserved.</p>
                 <div className="flex space-x-4">

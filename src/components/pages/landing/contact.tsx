@@ -2,64 +2,19 @@ import { Title } from '@/components/utilities/shared/title';
 
 export const ContactMeSection = () => {
     return (
-        <section id="contact" className="relative flex flex-col items-center overflow-hidden">
-            <div className="flex flex-col w-full container mx-auto ">
-                <Title text="Contact Me" />
-
-                <div className="mt-10 p-8 bg-black text-white rounded-lg shadow-xl border border-gray-700 md:flex md:justify-between md:items-start gap-8">
-                    {/* Contact Form */}
-                    <form className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="md:col-span-1">
-                            <label htmlFor="firstName" className="block text-sm font-medium text-gray-300">First Name</label>
-                            <input
-                                type="text"
-                                id="firstName"
-                                name="firstName"
-                                className="mt-1 block w-full p-3 bg-gray-800 border border-gray-600 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-white"
-                                placeholder="John"
-                            />
-                        </div>
-                        <div className="md:col-span-1">
-                            <label htmlFor="lastName" className="block text-sm font-medium text-gray-300">Last Name</label>
-                            <input
-                                type="text"
-                                id="lastName"
-                                name="lastName"
-                                className="mt-1 block w-full p-3 bg-gray-800 border border-gray-600 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-white"
-                                placeholder="Doe"
-                            />
-                        </div>
-                        <div className="md:col-span-2">
-                            <label htmlFor="email" className="block text-sm font-medium text-gray-300">Email</label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                className="mt-1 block w-full p-3 bg-gray-800 border border-gray-600 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-white"
-                                placeholder="john.doe@example.com"
-                            />
-                        </div>
-                        <div className="md:col-span-2">
-                            <label htmlFor="message" className="block text-sm font-medium text-gray-300">Message</label>
-                            <textarea
-                                id="message"
-                                name="message"
-                                rows={6}
-                                className="mt-1 block w-full p-3 bg-gray-800 border border-gray-600 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-white"
-                                placeholder="Your message here..."
-                            ></textarea>
-                        </div>
-                        <div className="md:col-span-2 flex flex-col items-center md:items-end space-y-4"> {/* Adjusted for vertical stacking */}
-                            <button
-                                type="submit"
-                                className="px-6 py-3 bg-[#804F94] text-white font-semibold rounded-md shadow-md hover:bg-purple-700 transition duration-300 ease-in-out"
-                            >
-                                Send Message
-                            </button>
-
-                        </div>
-                    </form>
-                </div>
+        <section id="contact" className="relative flex flex-col items-center overflow-hidden py-20">
+            <div className="flex flex-col w-full container mx-auto items-center text-center px-4">
+                <Title text="Get In Touch" />
+                <p className="mt-8 text-lg md:text-xl text-gray-300 max-w-2xl">
+                    I&apos;m currently looking for new opportunities, and my inbox is always open.
+                    Whether you have a question or just want to say hi, I&apos;ll try my best to get back to you!
+                </p>
+                <a
+                    href="mailto:toluhunterdev@gmail.com"
+                    className="mt-8 px-8 py-3 border-2 border-callout text-white font-bold text-lg rounded-md shadow-lg hover:bg-callout hover:text-white transition-all duration-300 ease-in-out transform hover:scale-105"
+                >
+                    Let's Talk
+                </a>
             </div>
         </section>
     );

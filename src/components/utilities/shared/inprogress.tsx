@@ -5,7 +5,7 @@ export const InProgress: React.FC = () => {
     return (
         // Main container for the entire page, centered vertically and horizontally
         // Changed background gradient to a more subdued, professional look
-        <div className="min-h-screen relative flex items-center pt-25 justify-center bg-background p-4 font-inter">
+        <div className="min-h-screen relative flex items-center justify-center bg-background">
             {/* Card-like container for the content, with rounded corners and shadow */}
             <div className="bg-white p-8 rounded-3xl shadow-2xl text-center max-w-md w-full">
                 {/* Title text "Coming Soon" for a more professional tone */}

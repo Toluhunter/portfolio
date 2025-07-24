@@ -6,6 +6,7 @@ import { CertificationsSection } from "@/components/pages/landing/certifications
 import { SkillSection } from "@/components/pages/landing/skills";
 import { ContactMeSection } from "@/components/pages/landing/contact";
 import { Footer } from "@/components/pages/landing/footer";
+import { BuyMeACoffee } from "@/components/utilities/shared/buymecoffee";
 
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
       <CertificationsSection />
       <SkillSection />
       <ContactMeSection />
+      <BuyMeACoffee />
       <Footer />
     </>
   );

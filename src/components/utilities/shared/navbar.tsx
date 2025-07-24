@@ -9,12 +9,12 @@ const NavLinks = ({ className }: { className?: string }) => {
         <ul className={className}>
             <ul className={className}>
                 <li><Link href="/about" className="text-white py-2 px-4 hover:text-[#804F94] transition-colors duration-300">About</Link></li>
-                <li><a href="#" className="text-white py-2 px-4 hover:text-[#804F94] transition-colors duration-300">Projects</a></li>
-                <li><a href="#" className="text-white py-2 px-4 hover:text-[#804F94] transition-colors duration-300">Blogs</a></li>
-                <li><a href="#" className="text-white py-2 px-4 hover:text-[#804F94] transition-colors duration-300">Labs</a></li>
-                <li><a href="#skills" className="text-white py-2 px-4 hover:text-[#804F94] transition-colors duration-300">Skills</a></li>
-                <li><a href="#" className="text-white py-2 px-4 hover:text-[#804F94] transition-colors duration-300">CV</a></li>
-                <li><a href="#contact" className="text-white py-2 px-4 hover:text-[#804F94] transition-colors duration-300">Contact</a></li>
+                <li><Link href="/projects" className="text-white py-2 px-4 hover:text-[#804F94] transition-colors duration-300">Projects</Link></li>
+                <li><Link href="/blogs" className="text-white py-2 px-4 hover:text-[#804F94] transition-colors duration-300">Blogs</Link></li>
+                <li><Link href="/labs" className="text-white py-2 px-4 hover:text-[#804F94] transition-colors duration-300">Labs</Link></li>
+                <li><Link href="/#skills" className="text-white py-2 px-4 hover:text-[#804F94] transition-colors duration-300">Skills</Link></li>
+                <li><Link href="/cv" className="text-white py-2 px-4 hover:text-[#804F94] transition-colors duration-300">CV</Link></li>
+                <li><Link href="/#contact" className="text-white py-2 px-4 hover:text-[#804F94] transition-colors duration-300">Contact</Link></li>
             </ul>
         </ul>
     )
@@ -37,6 +37,8 @@ export const NavBar = () => {
                 setScrolled(false);
             }
         };
+
+        handleScroll(); // Check scroll position on initial load
 
         window.addEventListener('scroll', handleScroll);
 
