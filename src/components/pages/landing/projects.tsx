@@ -15,7 +15,7 @@ export const ProjectSection = () => {
             description: "Effortless PC-to-PC File Transfer. Send files directly and seamlessly between your devices. Our app intelligently manages the Wi-Fi and network, so you never fuss with IPs or hotspot settings. Just transfer and go!",
             status: "In Progress",
             images: [
-                "https://assets.toluhunter.com/projects/beembridge.webp",
+                "https://assets.toluhunter.com/projects/beembridge.svg",
             ],
             websiteLink: "#", // Replace with actual link
             technologies: [
