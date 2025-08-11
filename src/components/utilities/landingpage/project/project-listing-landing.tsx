@@ -56,27 +56,27 @@ export const ProjectListing = ({ project }: { project: Project }) => {
 
     return (
         <div className="flex flex-col gap-10 mt-10 mb-10 px-4 md:px-0"> {/* Added padding for smaller screens */}
-            <span className="flex gap-5 flex-row mt-10 items-center text-gray-400">
-                <Icon name="check-circle" classes="w-7 h-7 text-green-500" /> {/* Added color to check-circle */}
-                <div className="w-[1px] h-5 bg-white" />
+            <span className="flex gap-5 flex-row mt-10 items-center text-foreground">
+                <Icon name="check-circle" classes="w-7 h-7 text-callout" /> {/* Added color to check-circle */}
+                <div className="w-[1px] h-5 bg-foreground" />
                 {project.status}
             </span>
             <div className="flex flex-col lg:flex-row lg:gap-10 items-center lg:items-start"> {/* Added items-center for better alignment on mobile */}
                 <div className="flex flex-col gap-5 text-center md:text-left lg:w-1/2"> {/* Added md:w-1/2 for flex distribution */}
-                    <h1 className="text-white text-4xl lg:text-6xl my-4">{project.name}</h1> {/* Adjusted text size for responsiveness */}
-                    <p className="w-full text-gray-300 mb-4 md:mb-0"> {/* Ensure description takes full width on mobile */}
+                    <h1 className="text-foreground text-4xl lg:text-6xl my-4">{project.name}</h1> {/* Adjusted text size for responsiveness */}
+                    <p className="w-full text-foreground mb-4 md:mb-0"> {/* Ensure description takes full width on mobile */}
                         {project.description}
                     </p>
 
                     {project.websiteLink && (
                         <a href={project.websiteLink} target="_blank" rel="noopener noreferrer" className="self-center lg:self-start">
-                            <button className="bg-callout-custom text-white py-2 px-7 rounded-md w-fit hover:bg-purple-700 transition-colors duration-300 border-2 border-callout-custom"> {/* Changed to bg-callout-custom */}
+                            <button className="bg-callout text-foreground py-2 px-7 rounded-md w-fit hover:bg-callout transition-colors duration-300 border-2 border-callout"> {/* Changed to bg-callout-custom */}
                                 VISIT APP WEBSITE
                             </button>
                         </a>
                     )}
                     <div
-                        className="flex h-fit items-center text-white cursor-pointer mt-4 text-md hover:text-gray-300 transition-colors duration-200 self-center lg:self-start"
+                        className="flex h-fit items-center text-foreground cursor-pointer mt-4 text-md hover:text-foreground transition-colors duration-200 self-center lg:self-start"
                         onClick={() => setShowTechnologies(!showTechnologies)}
                     >
                         <span className="mr-5">more info</span>
@@ -85,8 +85,8 @@ export const ProjectListing = ({ project }: { project: Project }) => {
 
                 </div>
                 {isMobile && showTechnologies && project.technologies && project.technologies.length > 0 && (
-                    <div className="w-full mt-4 p-5 bg-gray-800 rounded-lg text-white shadow-xl animate-fade-in">
-                        <h3 className="font-bold text-lg mb-3 border-b border-gray-700 pb-2">Technologies Used:</h3>
+                    <div className="w-full mt-4 p-5 bg-background rounded-lg text-foreground shadow-xl animate-fade-in">
+                        <h3 className="font-bold text-lg mb-3 border-b border-foreground pb-2">Technologies Used:</h3>
                         <ul className="list-disc list-inside space-y-1">
                             {project.technologies.map((tech, index) => (
                                 <li key={index}>{tech}</li>
@@ -99,14 +99,14 @@ export const ProjectListing = ({ project }: { project: Project }) => {
                     {currentImageIndex > 0 && // Show previous button only if there are images to show
                         <button
                             onClick={handlePrevClick}
-                            className="absolute left-2 z-10 p-2 bg-black bg-opacity-50 text-white rounded-full focus:outline-none hover:bg-opacity-75 transition-colors duration-200"
+                            className="absolute left-2 z-10 p-2 bg-background bg-opacity-50 text-foreground rounded-full focus:outline-none hover:bg-opacity-75 transition-colors duration-200"
                             aria-label="Previous image"
                         >
                             <LeftCarouselArrowIcon />
                         </button>
                     }
                     <Image
-                        className="border-4 border-white rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300 w-full h-auto object-contain"
+                        className="border-4 border-foreground rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300 w-full h-auto object-contain"
                         src={images[currentImageIndex]}
                         alt={`${project.name} screenshot ${currentImageIndex + 1}`}
                         width={400} // Explicit width
@@ -116,7 +116,7 @@ export const ProjectListing = ({ project }: { project: Project }) => {
                     {currentImageIndex < images.length - 1 && // Show next button only if there are more images to show
                         <button
                             onClick={handleNextClick}
-                            className="absolute right-2 z-10 p-2 bg-black bg-opacity-50 text-white rounded-full focus:outline-none hover:bg-opacity-75 transition-colors duration-200"
+                            className="absolute right-2 z-10 p-2 bg-background bg-opacity-50 text-foreground rounded-full focus:outline-none hover:bg-opacity-75 transition-colors duration-200"
                             aria-label="Next image"
                         >
                             <RightCarouselArrowIcon />
@@ -126,8 +126,8 @@ export const ProjectListing = ({ project }: { project: Project }) => {
 
             </div>
             {!isMobile && showTechnologies && project.technologies && project.technologies.length > 0 && (
-                <div className="w-full mt-4 p-5 bg-gray-800 rounded-lg text-white shadow-xl animate-fade-in">
-                    <h3 className="font-bold text-lg mb-3 border-b border-gray-700 pb-2">Technologies Used:</h3>
+                <div className="w-full mt-4 p-5 bg-background rounded-lg text-foreground shadow-xl animate-fade-in">
+                    <h3 className="font-bold text-lg mb-3 border-b border-foreground pb-2">Technologies Used:</h3>
                     <ul className="list-disc list-inside space-y-1">
                         {project.technologies.map((tech, index) => (
                             <li key={index}>{tech}</li>

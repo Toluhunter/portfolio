@@ -47,7 +47,7 @@ export const ProjectSection = () => {
 
     return (
         <section className="relative flex overflow-hidden flex-col items-center bg-[url('https://assets.toluhunter.com/landing/backgrounds/project.webp')] bg-cover bg-center py-10"> {/* Removed overflow-hidden from section */}
-            <div className="relative flex flex-col container bg-background px-4 md:px-8"> {/* Added padding for small screens */}
+            <div className="relative flex flex-col container px-4 md:px-8"> {/* Added padding for small screens */}
                 <Title text="Projects" link="#" /> {/* Assuming you want a link here too */}
                 <div className="relative flex items-center justify-center w-full mt-10"> {/* Added mt-10 for spacing */}
                     {/* Left Button - positioned absolutely outside the overflow-hidden scrollable area */}
@@ -81,7 +81,7 @@ export const ProjectSection = () => {
                         href="https://github.com/Toluhunter"
                         target="_blank" // Opens the link in a new tab
                         rel="noopener noreferrer" // Recommended for security when using target="_blank"
-                        className="flex items-center justify-center bg-white text-black py-3 px-8 rounded-lg shadow-lg hover:bg-gray-200 transition-colors duration-300 ease-in-out font-bold text-lg"
+                        className="flex items-center justify-center bg-foreground text-background py-3 px-8 rounded-lg shadow-lg hover:text-foreground hover:bg-background transition-colors duration-300 ease-in-out font-bold text-lg"
                     >
                         <Icon name="github" classes="w-6 h-6" />
                         <span className="ml-3">Check other repositories</span>

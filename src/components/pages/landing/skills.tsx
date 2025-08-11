@@ -32,7 +32,6 @@ export const SkillSection = () => {
         <section
             id="skills"
             className="flex flex-col items-center min-h-screen w-full overflow-hidden relative py-20"
-            style={{ background: 'var(--background)' }} // Set background using the CSS variable
         >
             <div className="relative w-full h-full container mx-auto px-4">
                 {/* Background pattern icon. If you want this to show over the gradient, ensure its opacity is low enough. */}
@@ -43,17 +42,17 @@ export const SkillSection = () => {
                     {skillsData.map((skill) => (
                         <div
                             key={skill.id}
-                            className="flex flex-col items-center justify-center p-8 bg-gray-800 rounded-xl shadow-xl border border-gray-700 hover:border-[#804F94] transition-all duration-300 transform hover:scale-105 group"
+                            className="flex flex-col items-center justify-center p-8 bg-background rounded-xl shadow-xl border border-gray-700 hover:border-callout transition-all duration-300 transform hover:scale-105 group"
                         >
                             {skill.icon && (
-                                <div className="mb-4 text-[#804F94] group-hover:text-white transition-colors duration-300">
+                                <div className="mb-4 text-callout group-hover:text-white transition-colors duration-300">
 
                                     <skill.icon size={80} />
 
 
                                 </div>
                             )}
-                            <span className="font-bold text-xl text-gray-100 group-hover:text-white transition-colors duration-300">{skill.name}</span>
+                            <span className="font-bold text-xl text-foreground group-hover:text-white transition-colors duration-300">{skill.name}</span>
                         </div>
                     ))}
                 </div>

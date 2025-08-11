@@ -3,43 +3,45 @@
 
 
 :root {
-  --background: linear-gradient(135deg, #26283D, #0C0D1A);
-  --foreground: #171717;
-  --calcout: #804F94;
+  --background-light: #E0E0E0;
+  --foreground-light: #171717;
+  --callout-light: #804F94;
+  --test: #804F94;
+
+  --background-dark: #0C0D1A;
+  --foreground-dark: #ededed;
+  --callout-dark: #804F94;
+
+  --background: var(--background-dark);
+  --foreground: var(--foreground-dark);
+  --callout: var(--callout-dark);
+}
+
+
+body.dark {
+  --background: var(--background-dark);
+  --foreground: var(--foreground-dark);
+  --callout: var(--callout-dark);
+}
+
+body:not(.dark) {
+  --background: var(--background-light);
+  --foreground: var(--foreground-light);
+  --callout: var(--callout-light);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-callout: var(--calcout);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-callout: var(--callout);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: linear-gradient(180deg, #26283D 1%, #0C0D1A);
-    --foreground: #ededed;
-  }
-}
 
-.squares-canvas {
-  width: 100%;
-  height: 100%;
-  border: none;
-  display: block;
-}
-
-.font-fira-code {
-  font-family: 'Fira Code', monospace;
-}
 
 body {
   background: var(--background);
+
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-  padding: 0;
-  margin: 0;
 }
 
 @keyframes fadeIn {

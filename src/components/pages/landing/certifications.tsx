@@ -45,7 +45,7 @@ export const CertificationsSection = () => {
     return (
         <section className="relative flex min-h-screen flex-col overflow-hidden bg-[url('https://assets.toluhunter.com/landing/backgrounds/certifications.webp')] bg-cover bg-center items-center">
 
-            <div className="flex flex-col h-screen bg-background container">
+            <div className="flex flex-col h-screen container">
                 <Title text="Certifications" />
                 <CertificationsCarousel certifications={certifications} />
 

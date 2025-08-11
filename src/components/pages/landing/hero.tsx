@@ -21,18 +21,18 @@ export const Herosection = () => {
 
                     <div className="text-xl h-1/3 md:text-2xl lg:text-4xl flex text-left flex-col gap-10 justify-between items-center md:items-start">
 
-                        <p className="text-white">
+                        <p>
                             toluhunter:~<span className="text-callout">$</span> whoami <br />
                             <span className="text-callout">Tolulope Fakoya</span>
                         </p>
-                        <div className="inline text-white">
+                        <div className="inline">
                             toluhunter:~<span className="text-callout">$</span><span className="text-callout"> ./</span>whatido <br />
                             <span className="text-callout">
                                 <Type />
 
                             </span>
                         </div>
-                        <p className="text-sm hidden md:block md:text-lg md:w-100 text-center md:text-left text-[#ABB2BF] font-fira-code">
+                        <p className="text-sm hidden md:block md:text-lg md:w-100 text-center md:text-left text-foreground font-fira-code">
                             <i>He builds secure, scalable systems where cloud engineering meets innovation.</i>
                         </p>
 
@@ -61,8 +61,8 @@ export const Herosection = () => {
                     </div>
 
                 </div>
-                <Icon name="mouse-scroll" classes="hidden md:block absolute z-50 w-20 h-20 bottom-0 left-1/2 animate-bounce-scroll" color="white" />
-                <Icon name="scroll" classes="md:hidden absolute z-50 w-20 h-20 bottom-10 left-1/2 animate-bounce-scroll" color="white" />
+                <Icon name="mouse-scroll" classes="hidden md:block absolute z-50 w-20 h-20 bottom-0 left-1/2 animate-bounce-scroll" color="var(--foreground)" />
+                <Icon name="scroll" classes="md:hidden absolute z-50 w-20 h-20 bottom-10 left-1/2 animate-bounce-scroll" color="var(--foreground)" />
             </section>
         </>
     )

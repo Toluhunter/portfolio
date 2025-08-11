@@ -173,7 +173,6 @@ export default function Home() {
                 fontFamily: 'Arial, Helvetica, sans-serif'
             }}>
 
-                <NavBar />
 
                 <main className="pt-24 pb-16 px-4 md:px-8 lg:px-16 container mx-auto relative main-content-pattern">
                     <Title text="My Projects" hasMore={false} />

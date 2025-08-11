@@ -1,5 +1,6 @@
 import "./globals.css";
 import type { Metadata } from 'next';
+import ThemeWrapper from '@/components/utilities/shared/ThemeWrapper';
 
 export const metadata: Metadata = {
   title: 'Tolulope Fakoya - Portfolio',
@@ -25,8 +26,9 @@ export default function RootLayout({
       <body
         className="p-0 m-0 relative"
       >
-
-        {children}
+        <ThemeWrapper>
+          {children}
+        </ThemeWrapper>
       </body>
     </html>
   );
