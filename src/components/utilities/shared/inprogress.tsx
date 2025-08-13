@@ -15,12 +15,12 @@ export const InProgress: React.FC = () => {
 
                 {/* Avatar image - using a more neutral placeholder for a mature audience */}
                 <Image
-                    src="https://placehold.co/200x200/3B82F6/ffffff.png?text=Site+Developer" // Neutral blue background with white text
+                    src="https://assets.toluhunter.com/utilities/inprogress.png" // Neutral blue background with white text
                     alt="Professional avatar"
                     height={200}
                     width={200}
                     // Border color changed to a more professional blue
-                    className="w-48 h-48 rounded-full mx-auto mb-8 border-4 border-callout shadow-lg object-cover"
+                    className="w-48 h-48 rounded-full mx-auto mb-8 border-callout shadow-lg object-cover"
                     // Fallback in case the image fails to load
                     onError={(e) => {
                         e.currentTarget.src = "https://placehold.co/200x200/cccccc/333333?text=Avatar+Error";
