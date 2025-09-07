@@ -3,7 +3,7 @@ import Link from 'next/link';
 export const AboutSection = () => {
 
   return (
-    <section className="min-h-full pt-25 w-full container mx-auto flex flex-col items-center overflow-hidden">
+    <section className="min-h-screen pt-25 w-full container mx-auto flex flex-col items-center overflow-hidden">
       <h1 className="flex w-full justify-center font-bold text-6xl">About Me</h1>
       <div className="flex flex-col lg:flex-row items-center justify-center w-full gap-5 pt-10 px-8 border border-blue-500">
 
