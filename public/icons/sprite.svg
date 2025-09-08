@@ -15,42 +15,28 @@
         <path d="M171.728 118.8L162.622 120.161" stroke="white" stroke-width="3.1411" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M159.008 103.011L159.008 7.00003" stroke="#FFFCFC" stroke-width="1.01355"/>
     </symbol>
-
     <symbol id="light-bulb-on" viewBox="0 0 317 298">
-    <g filter="url(#glow)">
-        <circle cx="158.5" cy="147.65" r="30.5" fill="white" />
-    </g>
-
-    <use href="#light-bulb" />
-
-    <defs>
-        <filter id="glow">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="50" />
-        </filter>
-    </defs>
-</symbol>
-    <!-- <symbol id="light-bulb-on" viewBox="0 0 317 298"> -->
-    <!--     <use href="#light-bulb" /> -->
-    <!--     <g filter="url(#filter0_dd_4_218)"> -->
-    <!--         <ellipse cx="158.5" cy="147.65" rx="30.5" ry="22.3254" fill="#D9D9D9" fill-opacity="0.01"/> -->
-    <!--     </g> -->
-    <!--     <defs> -->
-    <!--         <filter id="filter0_dd_4_218" x="0.293281" y="-2.38213" width="316.413" height="300.064" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"> -->
-    <!--             <feFlood flood-opacity="0" result="BackgroundImageFix"/> -->
-    <!--             <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/> -->
-    <!--             <feOffset/> -->
-    <!--             <feGaussianBlur stdDeviation="9.12191"/> -->
-    <!--             <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"/> -->
-    <!--             <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_4_218"/> -->
-    <!--             <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/> -->
-    <!--             <feOffset/> -->
-    <!--             <feGaussianBlur stdDeviation="63.8534"/> -->
-    <!--             <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"/> -->
-    <!--             <feBlend mode="normal" in2="effect1_dropShadow_4_218" result="effect2_dropShadow_4_218"/> -->
-    <!--             <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_4_218" result="shape"/> -->
-    <!--         </filter> -->
-    <!--     </defs> -->
-    <!-- </symbol> -->
+        <use href="#light-bulb" />
+        <g filter="url(#filter0_dd_4_218)">
+            <ellipse cx="158.5" cy="147.65" rx="30.5" ry="22.3254" fill="#D9D9D9" fill-opacity="0.01"/>
+        </g>
+        <defs>
+            <filter id="filter0_dd_4_218" x="0.293281" y="-2.38213" width="316.413" height="300.064" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                <feOffset/>
+                <feGaussianBlur stdDeviation="9.12191"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"/>
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_4_218"/>
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                <feOffset/>
+                <feGaussianBlur stdDeviation="63.8534"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"/>
+                <feBlend mode="normal" in2="effect1_dropShadow_4_218" result="effect2_dropShadow_4_218"/>
+                <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_4_218" result="shape"/>
+            </filter>
+        </defs>
+    </symbol>
      <symbol id="logo" viewBox="0 0 58 36"> <!-- New symbol for logo -->
         <rect x="31.048" y="35.4406" width="32.5455" height="4.49247" rx="2.24624" transform="rotate(-90 31.048 35.4406)" fill="white"/>
         <rect x="58.0028" y="1.29782" width="34.1428" height="4.49247" rx="2.24624" transform="rotate(90 58.0028 1.29782)" fill="white"/>
