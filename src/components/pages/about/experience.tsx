@@ -26,34 +26,59 @@ const experiences: Experience[] = [
             strategies for existing infrastructure to AWS, reducing operational costs
             by 25% on average and improving system reliability.
             `,
-            "Mentored junior developers and conducted code reviews.",
+            `
+            Integrated traditional AI workflows with AWS services such as AWS
+            Lambda, Amazon RDS, and Amazon S3, enabling seamless data
+            preprocessing, model training, and inference pipelines that reduced
+            processing times by 25%
+            `,
         ],
-        logo: "/logo-black.svg", // Example: /path/to/your/logo.svg
+        logo: "/vontech-logo.svg",
     },
     {
         company: "Tech Solutions",
         role: "Software Engineer",
-        duration: "Jun 2018 - Dec 2019",
+        duration: "Oct 2023 - Oct 2024",
         description: [
-            "Developed and maintained features for a SaaS application.",
-            "Worked with a team of 5 engineers in an agile environment.",
-            "Contributed to the migration of a legacy system to a modern tech stack.",
+            `
+            Implemented robust CI/CD pipelines using Jenkins and AWS
+            CodePipeline, leading to a 60% decrease in deployment times and a 30%
+            increase in deployment frequency.
+            `,
+            `
+            Automated routine tasks and workflows with Terraform and AWS
+            Lambda, reducing manual intervention by 80%.
+            `,
+            `
+            Analyzed and optimized cloud spending, employing Reserved Instances
+            and Spot Instances to achieve a 25% cost saving on AWS bills.
+            `,
+            `
+            Employed serverless architecture to architect and deploy scalable, cost-
+            efficient solutions for clients, resulting in a 40% decrease in
+            infrastructure expenses.
+            `,
+            `
+            Implemented Large Language Model (LLM) agents to streamline in-house
+            operations, improving infrastructure development speed by 40% through
+            automation and advanced generative capabilities.
+            `
         ],
-        logo: "/logo.svg", // Example: /path/to/your/logo.svg
+        logo: "/datamellon-logo.svg", // Example: /path/to/your/logo.svg
     },
 ];
 
 // The new ExperienceCard component
 const ExperienceCard = ({ experience }: { experience: Experience }) => {
     return (
-        <div className="flex items-start p-6 mb-8 bg-white rounded-lg shadow-md transition-transform transform hover:scale-105">
+        <div className="flex items-start p-6 mb-8 not-dark:bg-white rounded-lg shadow-md transition-transform transform hover:scale-105">
             <div className="flex-shrink-0 mr-6">
                 <Image
                     src={experience.logo}
                     alt={`${experience.company} logo`}
                     width={64}
                     height={64}
-                    className="rounded-full object-contain"
+                    className=" object-contain"
                 />
             </div>
             <div className="w-full">

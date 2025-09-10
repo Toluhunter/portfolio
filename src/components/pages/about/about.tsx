@@ -30,7 +30,7 @@ export const AboutSection = () => {
     <section className="min-h-screen pt-25 w-full container mx-auto flex flex-col items-center px-8 pb-10">
       <h1 className="flex w-full justify-center font-bold text-6xl">About Me</h1>
 
-      <div className="flex flex-col lg:flex-row gap-5">
+      <div className="flex flex-col justify-center items-center lg:flex-row gap-5">
 
         {/* Experience Section - Always Visible */}
         <div className="w-full pt-10">
