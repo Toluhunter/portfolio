@@ -49,7 +49,7 @@ export const AboutSection = () => {
         </div>
       </div>
 
-      <div id="blog-detail" className="flex flex-col lg:flex-row mx-auto w-full gap-8 pt-10 border border-blue-500 p-5 rounded-lg">
+      <div id="blog-detail" className="flex flex-col lg:flex-row mx-auto w-full gap-8 pt-10 mt-10 border border-blue-500 p-5 rounded-lg">
 
         {/* Sidebar / Horizontal Bar */}
         <div className="w-full lg:w-auto">
