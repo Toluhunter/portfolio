@@ -17,6 +17,75 @@
   --callout: var(--callout-dark);
 }
 
+/* Responsive base font sizes */
+html {
+  font-size: 14px;
+  /* Base font size for mobile */
+}
+
+@media (min-width: 640px) {
+
+  /* sm */
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 768px) {
+
+  /* md */
+  html {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+
+  /* lg */
+  html {
+    font-size: 17px;
+  }
+}
+
+@media (min-width: 1280px) {
+
+  /* xl */
+  html {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 1536px) {
+
+  /* 2xl */
+  html {
+    font-size: 19px;
+  }
+}
+
+@media (min-width: 1920px) {
+
+  /* 3xl */
+  html {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 2560px) {
+
+  /* 4xl */
+  html {
+    font-size: 22px;
+  }
+}
+
+@media (min-width: 3840px) {
+
+  /* 5xl (4K) */
+  html {
+    font-size: 24px;
+  }
+}
 
 body.dark {
   --background: var(--background-dark);

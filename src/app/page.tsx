@@ -4,6 +4,7 @@ import { Herosection } from "@/components/pages/landing/hero";
 import { ProjectSection } from "@/components/pages/landing/projects";
 import { CertificationsSection } from "@/components/pages/landing/certifications";
 import { SkillSection } from "@/components/pages/landing/skills";
+import { ServicesSection } from "@/components/pages/landing/services";
 import { ContactMeSection } from "@/components/pages/landing/contact";
 import { Footer } from "@/components/pages/landing/footer";
 import { BuyMeACoffee } from "@/components/utilities/shared/buymecoffee";
@@ -16,6 +17,7 @@ export default function Home() {
       <Herosection />
       <ProjectSection />
       <CertificationsSection />
+      <ServicesSection />
       <SkillSection />
       <ContactMeSection />
       <BuyMeACoffee />

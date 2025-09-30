@@ -1,6 +1,7 @@
 "use client";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import Link from 'next/link';
+import Image from "next/image";
 import ExperienceSection from "./experience";
 import EducationSection from "./education";
 import SkillsSection from "./skills";
@@ -44,21 +45,31 @@ export const AboutSection = () => {
         </div>
 
         {/* Video/3D Model Placeholder */}
-        <div className="flex w-1/2 h-[500px] bg-gray-200 dark:bg-gray-800 mt-10 rounded-lg">
+        <div className="flex w-1/2 h-[500px] bg-gray-200 dark:bg-gray-800 mt-10 rounded-lg overflow-hidden">
           {/* Placeholder for future content like a 3D model or image */}
+          <Image
+            src={"https://assets.toluhunter.com/about/pic.webp"}
+            alt="Me"
+            // layout="fill"
+            width={500}
+            height={500}
+            // objectFit="cover"
+            className={`rounded-lg object-cover w-full h-full transition-opacity duration-500`}
+
+          />
         </div>
       </div>
 
-      <div id="blog-detail" className="flex flex-col lg:flex-row mx-auto w-full gap-8 pt-10 mt-10 border border-blue-500 p-5 rounded-lg">
+      <div id="blog-detail" className="flex flex-col lg:flex-row mx-auto w-full gap-8 pt-10 mt-10 p-5 rounded-lg">
 
         {/* Sidebar / Horizontal Bar */}
-        <div className="w-full lg:w-auto">
-          <div className="grid grid-cols-2 lg:grid-cols-1 gap-12">
+        <div className="w-full lg:w-auto sticky self-start top-0 lg:top-30">
+          <div className="grid grid-cols-2 lg:grid-cols-1 gap-5 lg:gap-12">
             {sections.map((section) => (
               <button
                 key={section}
                 onClick={() => setActiveSection(section)}
-                className={`p-2 px-4 text-center rounded-lg border border-callout text-lg text-foreground transition-colors duration-300 ${activeSection === section
+                className={`p-4 px-2 text-center rounded-lg border border-callout text-lg text-foreground transition-colors duration-300 ${activeSection === section
                   ? 'bg-callout text-white'
                   : 'bg-transparent hover:bg-callout/20'
                   }`}

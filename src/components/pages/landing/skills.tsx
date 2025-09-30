@@ -31,13 +31,13 @@ export const SkillSection = () => {
     return (
         <section
             id="skills"
-            className="flex flex-col items-center min-h-screen w-full overflow-hidden relative py-20"
+            className="flex flex-col items-center min-h-[1080px] w-full overflow-hidden relative py-20"
         >
             <div className="relative w-full h-full container mx-auto px-4">
                 {/* Background pattern icon. If you want this to show over the gradient, ensure its opacity is low enough. */}
                 <Icon name="background-pattern" classes="absolute top-0 left-0 w-full h-full object-cover opacity-10 pointer-events-none"></Icon>
-                <Title text="Skills" hasMore={true} link="#all-skills" />
-                <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 w-full max-w-6xl mx-auto">
+                <Title text="Skills" link="#all-skills" />
+                <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-6xl mx-auto">
 
                     {skillsData.map((skill) => (
                         <div

@@ -1,3 +1,4 @@
+'use client';
 import Icon from "@/components/utilities/shared/icon"
 import Image from "next/image"
 import { useState, useEffect } from "react"
@@ -16,6 +17,7 @@ export const ProjectListing = ({ project }: { project: Project }) => {
     const [showTechnologies, setShowTechnologies] = useState(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isMobile, setIsMobile] = useState(false);
+    const [isImageLoading, setIsImageLoading] = useState(true);
 
     // Using placeholder URLs since local assets are not supported in Canvas
     const images = project.images
@@ -23,7 +25,6 @@ export const ProjectListing = ({ project }: { project: Project }) => {
         // Function to check window width
         const handleResize = () => {
             setIsMobile(window.innerWidth < 1024);
-            console.log(window.innerWidth);
         };
 
         // Set initial value
@@ -37,12 +38,14 @@ export const ProjectListing = ({ project }: { project: Project }) => {
     }, []);
 
     const handlePrevClick = () => {
+        setIsImageLoading(true);
         setCurrentImageIndex((prevIndex) =>
             prevIndex === 0 ? images.length - 1 : prevIndex - 1
         );
     };
 
     const handleNextClick = () => {
+        setIsImageLoading(true);
         setCurrentImageIndex((prevIndex) =>
             prevIndex === images.length - 1 ? 0 : prevIndex + 1
         );
@@ -96,6 +99,9 @@ export const ProjectListing = ({ project }: { project: Project }) => {
                 )}
 
                 <div className="relative flex items-center justify-center w-3/4 max-w-[500px] mx-auto mt-10 md:mt-0 flex-shrink-0">
+                    {isImageLoading && (
+                        <div className="absolute inset-0 bg-gray-700 rounded-xl animate-pulse"></div>
+                    )}
                     {currentImageIndex > 0 && // Show previous button only if there are images to show
                         <button
                             onClick={handlePrevClick}
@@ -106,12 +112,13 @@ export const ProjectListing = ({ project }: { project: Project }) => {
                         </button>
                     }
                     <Image
-                        className="border-4 border-foreground rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300 w-full h-auto object-contain"
+                        className={`border-4 border-foreground rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300 w-full h-auto object-contain transition-opacity duration-300 ${isImageLoading ? 'opacity-0' : 'opacity-100'}`}
                         src={images[currentImageIndex]}
                         alt={`${project.name} screenshot ${currentImageIndex + 1}`}
                         width={400} // Explicit width
                         height={300} // Explicit height
-                        onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://placehold.co/500x300/CCCCCC/333333?text=Image+Error'; }} // Fallback
+                        onLoadingComplete={() => setIsImageLoading(false)}
+                        onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://placehold.co/500x300/CCCCCC/333333?text=Image+Error'; setIsImageLoading(false);}} // Fallback
                     />
                     {currentImageIndex < images.length - 1 && // Show next button only if there are more images to show
                         <button

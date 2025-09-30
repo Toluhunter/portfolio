@@ -33,11 +33,11 @@ const experiences: Experience[] = [
             processing times by 25%
             `,
         ],
-        logo: "/vontech-logo.svg",
+        logo: "/experience/vontech-logo.svg",
     },
     {
-        company: "Tech Solutions",
-        role: "Software Engineer",
+        company: "Datamellon",
+        role: "DevOps Engineer",
         duration: "Oct 2023 - Oct 2024",
         description: [
             `
@@ -64,20 +64,44 @@ const experiences: Experience[] = [
             automation and advanced generative capabilities.
             `
         ],
-        logo: "/datamellon-logo.svg", // Example: /path/to/your/logo.svg
+        logo: "/experience/datamellon-logo.svg",
+    },
+    {
+        company: "Azul Nigeria",
+        role: "System Administrator",
+        duration: "Jan 2021 - Jun 2023",
+        description: [
+            `
+            Managed network infrastructure, including switches, routers, and
+            firewalls, resulting in a 25% increase in network reliability and speed
+            `,
+            `
+            Led incident response efforts for critical system failures, achieving a
+            mean time to resolution (MTTR) of less than 1 hour.
+            `,
+            `
+            Developed scripts using PowerShell and Bash to automate routine tasks,
+            reducing manual workload by 60%.
+            `,
+            `
+            Set up and maintained monitoring tools (e.g., Nagios, Zabbix) to track
+            system health and performance, leading to a 50% reduction in downtime.
+            `,
+        ],
+        logo: "https://assets.toluhunter.com/about/azul.png", // Example: /path/to/your/logo.svg
     },
 ];
 
 // The new ExperienceCard component
 const ExperienceCard = ({ experience }: { experience: Experience }) => {
     return (
-        <div className="flex items-start p-6 mb-8 not-dark:bg-white rounded-lg shadow-md transition-transform transform hover:scale-105">
-            <div className="flex-shrink-0 mr-6">
+        <div className="flex flex-col md:flex-row gap-5 md:gap-0 items-start mb-8 not-dark:bg-white rounded-lg shadow-md transition-transform transform hover:scale-105">
+            <div className="mr-6">
                 <Image
                     src={experience.logo}
                     alt={`${experience.company} logo`}
-                    width={64}
-                    height={64}
+                    width={128}
+                    height={128}
                     className=" object-contain"
                 />
             </div>
@@ -97,7 +121,7 @@ const ExperienceCard = ({ experience }: { experience: Experience }) => {
 
 const ExperienceSection = () => {
     return (
-        <section className="py-12">
+        <section className="py-5">
             <h1 className="text-center font-bold text-4xl mb-10 text-foreground">My Experience</h1>
             <div className="max-w-4xl mx-auto px-4 text-foreground">
                 {experiences.map((exp, index) => (

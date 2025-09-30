@@ -18,7 +18,7 @@ const educations: Education[] = [
         duration: "2025 - 2027 (Expected)",
         description: [
         ],
-        logo: "/ontariotech-logo.svg", // Replace with actual logo path
+        logo: "/school/ontariotech-logo.svg", // Replace with actual logo path
     },
     {
         institution: "Babcock University",
@@ -26,15 +26,15 @@ const educations: Education[] = [
         duration: "2019 - 2023",
         description: [
         ],
-        logo: "/babcock-logo.svg", // Replace with actual logo path
+        logo: "/school/babcock-logo.svg", // Replace with actual logo path
     },
 ];
 
 // The EducationCard component
 const EducationCard = ({ education }: { education: Education }) => {
     return (
-        <div className="flex items-start p-6 mb-8 not-dark:bg-white rounded-lg shadow-md transition-transform transform hover:scale-105">
-            <div className="flex-shrink-0 mr-6">
+        <div className="flex lg:flex-row flex-col gap-5 md:gap-0 items-start mb-8 not-dark:bg-white rounded-lg shadow-md transition-transform transform hover:scale-105">
+            <div className="mr-6">
                 <Image
                     src={education.logo}
                     alt={`${education.institution} logo`}
