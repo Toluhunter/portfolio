@@ -2,6 +2,8 @@
 
 import Icon from "@/components/utilities/shared/icon"
 import Link from 'next/link';
+import useSound from "use-sound";
+import { useAudio } from "./audio";
 import { useState, useEffect } from "react";
 
 const NavLinks = ({ className }: { className?: string }) => {
@@ -27,6 +29,8 @@ export const NavBar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const { isLightOn, toggleLight } = useLightbulb();
+    const { isSoundOn } = useAudio();
+    const [play] = useSound("https://assets.toluhunter.com/sounds/light-switch.mp3", { volume: 1, soundEnabled: isSoundOn });
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -60,7 +64,7 @@ export const NavBar = () => {
                     <Icon
                         name={isLightOn ? 'light-bulb-on' : 'light-bulb'}
                         classes="absolute top-0 left-1/2 -translate-x-1/2 w-[160px] md:left-1/9 md:translate-x-0 h-[150px] md:w-[170px] md:h-[160px] lg:w-[210px] lg:h-[190px]"
-                        onClick={toggleLight}
+                        onClick={() => { toggleLight(); play() }}
                     />
                     <NavLinks className="hidden md:flex md:flex-row lg:gap-10 font-bold" />
 

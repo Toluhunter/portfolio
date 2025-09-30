@@ -1,6 +1,12 @@
 import { SiBuymeacoffee as BuyMeACoffeeIcon } from "react-icons/si";
+import useSound from "use-sound";
+import { useAudio } from './audio';
 
 export const BuyMeACoffee = () => {
+    const { isSoundOn } = useAudio();
+    const [coinshakeplay] = useSound("https://assets.toluhunter.com/sounds/coinshake.mp3", { volume: 0.5, soundEnabled: isSoundOn });
+    const [play, { stop }] = useSound("/spare-change.mp3", { volume: 1, soundEnabled: isSoundOn });
+
     return (
         <div className="fixed bottom-10 right-10 z-50">
             <button
@@ -16,6 +22,10 @@ export const BuyMeACoffee = () => {
             group
           "
                 aria-label="Buy me a coffee"
+                onMouseEnter={() => { coinshakeplay(); play() }}
+                onTouchStart={() => play()}
+                onMouseLeave={() => stop()}
+                onTouchEnd={() => stop()}
             >
                 {/* Coffee icon using inline SVG for simplicity and customization */}
                 <a

@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from 'next';
 import ThemeWrapper from '@/components/utilities/shared/ThemeWrapper';
+import { AudioProvider } from "@/components/utilities/shared/audio";
 
 export const metadata: Metadata = {
   title: 'Tolulope Fakoya - Portfolio',
@@ -21,14 +22,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
       <body
         className="p-0 m-0 relative"
       >
-        <ThemeWrapper>
-          {children}
-        </ThemeWrapper>
+        <AudioProvider>
+          <ThemeWrapper>
+            {children}
+          </ThemeWrapper>
+        </AudioProvider>
       </body>
     </html>
   );

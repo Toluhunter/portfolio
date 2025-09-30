@@ -4,6 +4,7 @@ export interface Certification {
     picture: string; // URL for the certification image/logo
     title: string;
     date: string;
+    expiring: string;
     institution: string;
     verifyLink: string; // URL to verify the certification
 }
@@ -24,8 +25,10 @@ export const CertificationCard: React.FC<{ cert: Certification }> = ({ cert }) =
                 }}
             />
             <h3 className="text-xl md:text-2xl font-semibold text-foreground text-center mb-2 leading-tight">{cert.title}</h3> {/* Using text-gray-100 for foreground */}
-            <p className="text-sm md:text-base text-foreground text-center mb-1">{cert.institution}</p>
-            <p className="text-sm md:text-base text-foreground text-center mb-4">{cert.date}</p>
+            <p className="text-sm md:text-base text-foreground text-center mb-4">{cert.institution}</p>
+
+            <p className="text-sm md:text-base text-foreground text-center">Date Issued: {cert.date}</p>
+            <p className="text-sm md:text-base text-foreground text-center mb-4">Date Expiring: {cert.expiring}</p>
             <a
                 href={cert.verifyLink}
                 target="_blank"
