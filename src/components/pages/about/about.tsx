@@ -6,11 +6,13 @@ import ExperienceSection from "./experience";
 import EducationSection from "./education";
 import SkillsSection from "./skills";
 import HobbiesSection from "./hobbies";
+import AboutServicesSection from "./services";
+import AboutCertificationsSection from "./certifications";
 import { useState } from 'react';
 
 export const AboutSection = () => {
   const [activeSection, setActiveSection] = useState('Experience');
-  const sections = ['Experience', 'Education', 'Skills', 'Hobbies'];
+  const sections = ['Experience', 'Education', 'Skills', 'Hobbies', 'Services', 'Certifications'];
 
   const renderContent = () => {
     switch (activeSection) {
@@ -22,6 +24,10 @@ export const AboutSection = () => {
         return <SkillsSection />;
       case 'Hobbies':
         return <HobbiesSection />;
+      case 'Services':
+        return <AboutServicesSection />;
+      case 'Certifications':
+        return <AboutCertificationsSection />;
       default:
         return null;
     }
@@ -38,9 +44,13 @@ export const AboutSection = () => {
           <p className="text-md md:text-xl text-foreground w-full">
             Heya, yup that’s me 👀. I’m Tolulope Fakoya a cloud engineer with 3+ years of experience building and designing cloud setups (AWS is my main playground, but I’ve explored others too). I also work as a freelance full-stack developer and spend part of my free time geeking out as a pentester. This site itself runs on some of the same tech I enjoy working with. At the end of the day, I just love taking an idea and making it real because like the quote says, “Engineers turn ideas into reality.” That’s exactly what I aim to do.
           </p>
-          <div className="flex flex-col md:flex-row gap-5 items-center mt-10">
-            <FaGithub /> <Link href="https://github.com/toluhunter" target="_blank"><span className="text-lg text-foreground">Github</span></Link>
-            <FaLinkedin /> <Link href="https://www.linkedin.com/in/tolulope-fakoya/" target="_blank"> <span className="text-lg text-foreground">linkedin</span></Link>
+          <div className="flex flex-row gap-5 items-center mt-10">
+            <div className="flex gap-5 flex-row items-center">
+              <FaGithub /> <Link href="https://github.com/toluhunter" target="_blank"><span className="text-lg text-foreground">Github</span></Link>
+            </div>
+            <div className="flex gap-5 flex-row items-center">
+              <FaLinkedin /> <Link href="https://www.linkedin.com/in/tolulope-fakoya/" target="_blank"> <span className="text-lg text-foreground">linkedin</span></Link>
+            </div>
           </div>
         </div>
 
@@ -63,7 +73,7 @@ export const AboutSection = () => {
       <div id="blog-detail" className="flex flex-col lg:flex-row mx-auto w-full gap-8 pt-10 mt-10 p-5 rounded-lg">
 
         {/* Sidebar / Horizontal Bar */}
-        <div className="w-full lg:w-auto sticky self-start top-0 lg:top-30">
+        <div className="w-full lg:w-auto lg:sticky self-start top-0 lg:top-30">
           <div className="grid grid-cols-2 lg:grid-cols-1 gap-5 lg:gap-12">
             {sections.map((section) => (
               <button

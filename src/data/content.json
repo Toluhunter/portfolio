@@ -1,0 +1,88 @@
+{
+    "services": [
+        {
+            "id": "service1",
+            "name": "Cloud Consultation",
+            "description": "Expert guidance to help you navigate the complexities of the cloud and develop a strategy that aligns with your business goals.",
+            "imageUrl": "https://assets.toluhunter.com/services/cloud-consultation.jpg"
+        },
+        {
+            "id": "service2",
+            "name": "Cost Optimization of AWS",
+            "description": "Analyze your AWS infrastructure to identify savings opportunities and implement strategies to reduce your cloud spending.",
+            "imageUrl": "https://assets.toluhunter.com/services/cost-optimization.jpg"
+        },
+        {
+            "id": "service3",
+            "name": "Solution Architecture",
+            "description": "Design and build scalable, reliable, and secure solutions on the cloud that meet your specific business needs.",
+            "imageUrl": "https://assets.toluhunter.com/services/solution-architecture.jpg"
+        },
+        {
+            "id": "service4",
+            "name": "Cloud Migration",
+            "description": "Seamlessly migrate your applications and data to the cloud with minimal downtime and disruption.",
+            "imageUrl": "https://assets.toluhunter.com/services/cloud-migration.jpg"
+        },
+        {
+            "id": "service5",
+            "name": "Full Stack Development",
+            "description": "End-to-end development of web applications, from front-end user interfaces to back-end services and databases.",
+            "imageUrl": "https://assets.toluhunter.com/services/full-stack-development.jpg"
+        },
+        {
+            "id": "service6",
+            "name": "Infrastructure Management",
+            "description": "Proactive management and monitoring of your cloud infrastructure to ensure optimal performance, security, and reliability.",
+            "imageUrl": "https://assets.toluhunter.com/services/infrastructure-management.jpg"
+        },
+        {
+            "id": "service7",
+            "name": "AI/ML Consultation",
+            "description": "Leverage the power of artificial intelligence and machine learning to build intelligent applications and gain insights from your data.",
+            "imageUrl": "https://assets.toluhunter.com/services/ai-consultation.jpg"
+        }
+    ],
+    "certifications": [
+        {
+            "picture": "https://assets.toluhunter.com/certifications/comptia-security-ce-certification.webp",
+            "title": "CompTIA Security+ ce Certification",
+            "date": "August 16, 2024",
+            "expiring": "August 16, 2027",
+            "institution": "CompTIA",
+            "verifyLink": "https://www.credly.com/badges/b41ec3b7-e89b-425a-9a27-1acab75c06f5"
+        },
+        {
+            "picture": "https://assets.toluhunter.com/certifications/aws-certified-devops-engineer-professional.webp",
+            "title": "AWS Certified DevOps Engineer – Professional",
+            "date": "June 05, 2024",
+            "expiring": "June 05, 2027",
+            "institution": "Amazon Web Services (AWS)",
+            "verifyLink": "https://www.credly.com/badges/903530ff-d305-4c6f-8edf-7c459cea45fc"
+        },
+        {
+            "picture": "https://assets.toluhunter.com/certifications/aws-certified-machine-learning-specialty.webp",
+            "title": "AWS Certified Machine Learning – Specialty",
+            "date": "March 01, 2025",
+            "expiring": "March 01, 2028",
+            "institution": "Amazon Web Services (AWS)",
+            "verifyLink": "https://www.credly.com/badges/51d36c94-97ce-4d4c-b286-f98a769f2e71"
+        },
+        {
+            "picture": "https://assets.toluhunter.com/certifications/aws-certified-solutions-architect-associate.webp",
+            "title": "AWS Certified Solutions Architect - Associate",
+            "date": "February 07, 2024",
+            "expiring": "February 07, 2027",
+            "institution": "Amazon Web Services (AWS)",
+            "verifyLink": "https://www.credly.com/badges/07e8216c-1aa2-4d75-847a-c5442d73462e"
+        },
+        {
+            "picture": "https://assets.toluhunter.com/certifications/certified-in-cybersecurity-cc.webp",
+            "title": "Certified in Cybersecurity (CC)",
+            "date": "December 31, 2023",
+            "institution": "ISC2",
+            "expiring": "December 31, 2026",
+            "verifyLink": "https://www.credly.com/badges/89c54739-c2c5-4fc0-8bcc-832192d9191d/public_url"
+        }
+    ]
+}
