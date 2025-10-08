@@ -7,22 +7,26 @@ import {
     DiPython,
     DiGit,
 } from "react-icons/di";
-import { FaAws, FaDocker, FaBrain, FaInfinity } from "react-icons/fa";
-import { SiGooglecloud, SiTypescript, SiNextdotjs } from "react-icons/si";
+import { FaAws, FaDocker, FaInfinity, } from "react-icons/fa";
+import { SiGooglecloud, SiTypescript, SiNextdotjs, SiTensorflow, SiScikitlearn, SiNumpy, SiKeras, SiPandas } from "react-icons/si";
 
 export const skillsData = [
     { id: 'skill1', name: 'AWS', icon: FaAws },
     { id: 'skill2', name: 'GCP', icon: SiGooglecloud },
     { id: 'skill3', name: 'Docker', icon: FaDocker },
-    { id: 'skill4', name: 'Machine Learning', icon: FaBrain },
+    { id: 'skill13', name: 'TensorFlow', icon: SiTensorflow },
+    { id: 'skill14', name: 'Scikit-Learn', icon: SiScikitlearn },
     { id: 'skill5', name: 'Next.js', icon: SiNextdotjs },
     { id: 'skill6', name: 'Node.js', icon: DiNodejs },
     { id: 'skill7', name: 'Python', icon: DiPython },
     { id: 'skill8', name: 'Git', icon: DiGit },
     { id: 'skill9', name: 'React', icon: DiReact }, // Reusing Webhook for React
+    { id: 'skill17', name: 'Pandas', icon: SiPandas },
     { id: 'skill10', name: 'JavaScript', icon: DiJavascript1 },
     { id: 'skill11', name: 'TypeScript', icon: SiTypescript },
     { id: 'skill12', name: 'CI/CD', icon: FaInfinity }, // Reusing GitBranch for CI/CD
+    { id: 'skill15', name: 'NumPy', icon: SiNumpy },
+    { id: 'skill16', name: 'Keras', icon: SiKeras },
 ];
 
 export const SkillSection = () => {

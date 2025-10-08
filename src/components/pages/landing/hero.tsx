@@ -3,29 +3,42 @@ import Image from "next/image";
 import Icon from "@/components/utilities/shared/icon";
 import Slider from "@/components/utilities/landingpage/hero/slider";
 import Type from "@/components/utilities/landingpage/hero/type";
+import { useState } from "react";
 
 
 export const Herosection = () => {
+    const [imageLoaded, setImageLoaded] = useState(false);
 
     return (
 
         <>
-            <section className="w-full flex relative items-center h-screen max-h-[1600px] flex flex-col pt-25 overflow-hidden">
+            <section className="w-full flex relative items-center max-md:min-h-screen lg:h-screen max-h-[1600px] flex flex-col pt-25 overflow-hidden">
                 <Slider />
 
                 <div className="flex h-full flex-col md:flex-row md:gap-5 xl:gap-60 container md:justify-center z-20">
                     <div className="md:hidden flex justify-center items-end relative" id="mobile-profile-pic">
-                        <Image
-                            className="relative"
-                            src="https://assets.toluhunter.com/about/profile/pic.webp"
-                            width={270}
-                            height={270}
-                            alt="Tolulope Fakoya"
-                        />
+                        <div className="relative w-[270px] h-[270px]">
+                            {!imageLoaded && (
+                                <div className="absolute inset-0 bg-gray-300 dark:bg-gray-700 animate-pulse rounded-lg"></div>
+                            )}
+                            <Image
+                                className="relative"
+                                src="https://assets.toluhunter.com/about/profile/pic.webp"
+                                width={270}
+                                height={270}
+                                alt="Tolulope Fakoya"
+                                onLoad={() => setImageLoaded(true)}
+                            />
+                        </div>
                     </div>
                     <div id="profile-pic" className="hidden md:flex w-[34.75rem] flex">
-                        {/* <Image className="hidden md:max-2xl:block relative" src="/about/me2.png" width={400} height={300} alt="Tolulope Fakoya" /> */}
-                        <Image id="full-screen-image" className="rounded-lg w-full h-full object-contain relative" src="https://assets.toluhunter.com/about/profile/pic.webp" width={500} height={400} alt="Tolulope Fakoya" />
+                        <div className="relative w-full h-full">
+                            {!imageLoaded && (
+                                <div className="absolute inset-0 bg-gray-300 dark:bg-gray-700 animate-pulse rounded-lg"></div>
+                            )}
+                            {/* <Image className="hidden md:max-2xl:block relative" src="/about/me2.png" width={400} height={300} alt="Tolulope Fakoya" /> */}
+                            <Image id="full-screen-image" className="rounded-lg w-full h-full object-contain relative" src="https://assets.toluhunter.com/about/profile/pic.webp" width={500} height={400} alt="Tolulope Fakoya" onLoadingComplete={() => setImageLoaded(true)} />
+                        </div>
                     </div>
 
                     <div className="text-xl h-1/3 md:text-2xl lg:text-4xl xl:text-5xl 4xl:text-6xl flex text-left flex flex-col gap-10 justify-between items-center md:items-start">
