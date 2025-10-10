@@ -64,7 +64,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
                     </button>
                 )}
                 <Image
-                    className="w-1/2 h-full object-cover rounded-lg shadow-lg"
+                    className="w-full md:w-1/2 h-full object-contain rounded-lg shadow-lg"
                     src={project.images[currentImageIndex] || placeholderImage}
                     alt={`${project.name} screenshot ${currentImageIndex + 1}`}
                     width={200}
@@ -91,11 +91,13 @@ const ProjectCard = ({ project }: { project: Project }) => {
 
             {/* Website Link Button - Adjusted width and alignment */}
             {project.websiteLink && (
-                <a href={project.websiteLink} target="_blank" rel="noopener noreferrer" className="self-end w-fit"> {/* Changed self-center to self-end and w-full to w-fit */}
-                    <button className="bg-callout-custom text-white py-2 px-7 rounded-md hover:bg-purple-700 transition-colors duration-300 border-2 border-callout-custom font-bold">
-                        VISIT APP WEBSITE
-                    </button>
-                </a>
+                <div className="w-full flex justify-center lg:justify-end mt-2 mr-5">
+                    <a href={project.websiteLink} target="_blank" rel="noopener noreferrer" className="self-end w-fit"> {/* Changed self-center to self-end and w-full to w-fit */}
+                        <button className="bg-callout-custom text-white py-2 px-7 rounded-md hover:bg-purple-700 transition-colors duration-300 border-2 border-callout-custom font-bold">
+                            VISIT APP WEBSITE
+                        </button>
+                    </a>
+                </div>
             )}
 
             {/* More Info / Technologies Toggle */}
