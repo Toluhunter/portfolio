@@ -42,7 +42,7 @@ export const AboutSection = () => {
         {/* Experience Section - Always Visible */}
         <div className="w-full pt-10">
           <p className="text-md md:text-xl text-foreground w-full">
-            Heya, yup that’s me 👀. I’m Tolulope Fakoya a cloud engineer with 3+ years of experience building and designing cloud setups (AWS is my main playground, but I’ve explored others too). I also work as a freelance full-stack developer and spend part of my free time geeking out as a pentester. This site itself runs on some of the same tech I enjoy working with. At the end of the day, I just love taking an idea and making it real because like the quote says, “Engineers turn ideas into reality.” That’s exactly what I aim to do.
+            I’m Tolulope Fakoya a cloud engineer with 3+ years of experience building and designing cloud setups (AWS is my main playground, but I’ve explored others too). I also work as a freelance full-stack developer and spend part of my free time geeking out as a pentester. This site itself runs on some of the same tech I enjoy working with. At the end of the day, I just love taking an idea and making it real because like the quote says, “Engineers turn ideas into reality.” That’s exactly what I aim to do.
           </p>
           <div className="flex flex-row gap-5 items-center mt-10">
             <div className="flex gap-5 flex-row items-center">

@@ -38,10 +38,10 @@ const ProjectCard = ({ project }: { project: Project }) => {
 
     return (
         // Added group class for group-hover effects, subtle scale, and border on hover
-        <div className="group flex flex-col gap-5 p-6 rounded-xl shadow-2xl animate-fade-in h-full
+        <div className="group flex flex-col gap-5 p-6 rounded-lg animate-fade-in h-full
                         transition-all duration-300 ease-in-out transform hover:scale-[1.01]
-                        border-2 border-gray-700 group-hover:border-callout-custom relative z-10
-                        bg-gray-900">
+                         group-hover:border-callout-custom relative z-10
+                        ">
             {/* Project Status */}
             <span className="flex gap-3 items-center text-gray-400 text-sm">
                 <Icon name="check-circle" classes="w-5 h-5 text-green-500" />
@@ -50,17 +50,10 @@ const ProjectCard = ({ project }: { project: Project }) => {
             </span>
 
             {/* Project Name and Description */}
-            <div className="flex flex-col gap-3 text-center lg:text-left">
-                <h3 className="text-white text-3xl font-bold font-fira-code">{project.name}</h3>
-                <div
-                    className="text-gray-300 text-base flex-grow [&>h2]:text-2xl [&>h2]:font-bold [&>h2]:mb-4 [&>p]:mb-3 [&>ul]:list-disc [&>ul]:list-inside [&>ul]:pl-4 [&>ul]:mb-3"
-                    dangerouslySetInnerHTML={{ __html: project.description }}
-                />
-            </div>
-
+            <h3 className="text-white text-3xl font-bold font-fira-code">{project.name}</h3>
             {/* Image Carousel - Increased min-height for prominence */}
             <div className="relative flex items-center justify-center w-full min-h-[300px] md:min-h-[400px] rounded-lg overflow-hidden
-                        bg-gray-900">
+                    ">
                 {project.images.length > 0 && (
                     <button
                         onClick={handlePrevClick}
@@ -71,10 +64,10 @@ const ProjectCard = ({ project }: { project: Project }) => {
                     </button>
                 )}
                 <Image
-                    className="w-full h-full object-contain rounded-lg shadow-lg"
+                    className="w-1/2 h-full object-cover rounded-lg shadow-lg"
                     src={project.images[currentImageIndex] || placeholderImage}
                     alt={`${project.name} screenshot ${currentImageIndex + 1}`}
-                    width={400}
+                    width={200}
                     height={200}
                     onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = placeholderImage; }}
                 />
@@ -88,6 +81,13 @@ const ProjectCard = ({ project }: { project: Project }) => {
                     </button>
                 )}
             </div>
+            <div className="flex flex-col gap-3 text-center lg:text-left">
+                <div
+                    className="text-gray-300 text-base flex-grow [&>h2]:text-2xl [&>h2]:font-bold [&>h2]:mb-4 [&>p]:mb-3 [&>ul]:list-disc [&>ul]:list-inside [&>ul]:pl-4 [&>ul]:mb-3"
+                    dangerouslySetInnerHTML={{ __html: project.description }}
+                />
+            </div>
+
 
             {/* Website Link Button - Adjusted width and alignment */}
             {project.websiteLink && (
