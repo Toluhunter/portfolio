@@ -46,7 +46,7 @@ export const ProjectSection = () => {
     const RightProjectArrowIcon = () => <ChevronRight size={32} />;
 
     return (
-        <section className="relative flex overflow-hidden flex-col items-center max-md:min-h-screen lg:h-screen lg:max-h-[1600px] bg-[url('https://assets.toluhunter.com/landing/backgrounds/project.webp')] bg-cover bg-center py-10"> {/* Removed overflow-hidden from section */}
+        <section className="relative flex overflow-hidden flex-col items-center bg-[url('https://assets.toluhunter.com/landing/backgrounds/project.webp')] bg-cover bg-center py-10"> {/* Removed overflow-hidden from section */}
             <div className="relative flex flex-col container px-4 md:px-8"> {/* Added padding for small screens */}
                 <Title text="Projects" link="/projects" hasMore={true} /> {/* Assuming you want a link here too */}
                 <div className="relative flex items-center justify-center w-full mt-10"> {/* Added mt-10 for spacing */}

@@ -1,10 +1,10 @@
-import { Title } from '@/components/utilities/shared/title';
-
 export const ContactMeSection = () => {
     return (
         <section id="contact" className="relative flex flex-col items-center overflow-hidden py-20">
             <div className="flex flex-col w-full container mx-auto items-center text-center px-4">
-                <Title text="Get In Touch" />
+                <div className="flex w-full text-xl md:text-4xl px-5 gap-5 mt-10 flex-row items-center justify-center text-foreground"> {/* Using text-gray-100 for foreground */}
+                    <span className="whitespace-nowrap"><span className="text-callout">#</span>Get In Touch</span> {/* Using custom class for callout, added whitespace-nowrap */}
+                </div>
                 <p className="mt-8 text-lg md:text-xl text-foreground max-w-2xl">
                     I&apos;m currently looking for new opportunities, and my inbox is always open.
                     Whether you have a question or just want to say hi, I&apos;ll try my best to get back to you!
@@ -16,6 +16,6 @@ export const ContactMeSection = () => {
                     Let&apos;s Talk
                 </a>
             </div>
-        </section>
+        </section >
     );
 };

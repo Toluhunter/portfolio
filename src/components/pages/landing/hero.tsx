@@ -12,7 +12,7 @@ export const Herosection = () => {
     return (
 
         <>
-            <section className="w-full flex relative items-center max-md:min-h-screen lg:h-screen max-h-[1600px] flex flex-col pt-25 overflow-hidden">
+            <section className="w-full flex relative items-center max-lg:min-h-screen lg:h-screen max-h-[1600px] flex flex-col pt-25 overflow-hidden">
                 <Slider />
 
                 <div className="flex h-full flex-col md:flex-row md:gap-5 xl:gap-60 container md:justify-center z-20">
