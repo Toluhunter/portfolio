@@ -17,7 +17,7 @@ export const ProjectSection = () => {
             images: [
                 "https://assets.toluhunter.com/projects/beembridge.svg",
             ],
-            websiteLink: "#", // Replace with actual link
+            websiteLink: "https://www.beembridge.com", // Replace with actual link
             technologies: [
                 "React.js: Frontend UI",
                 "Node.js: Backend services",

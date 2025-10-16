@@ -152,10 +152,8 @@ export default function Home() {
             status: "In Progress",
             images: [
                 "https://assets.toluhunter.com/projects/beembridge.svg",
-                "https://placehold.co/800x500/FF0000/FFFFFF.png?text=BeemBridge+Screenshot+2",
-                "https://placehold.co/800x500/00FF00/000000.png?text=BeemBridge+Screenshot+3"
             ],
-            websiteLink: "#",
+            websiteLink: "https://www.beembridge.com", // Replace with actual link
             technologies: [
                 "React.js: Frontend UI",
                 "Node.js: Backend services",
