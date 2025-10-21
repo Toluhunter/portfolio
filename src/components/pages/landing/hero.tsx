@@ -12,18 +12,18 @@ export const Herosection = () => {
     return (
 
         <>
-            <section className="w-full flex relative items-center max-lg:min-h-screen lg:h-screen max-h-[1600px] flex flex-col pt-25 overflow-hidden">
+            <section className="w-full flex relative items-center 2xl:h-screen max-h-[1600px] flex flex-col pt-25 overflow-hidden">
                 <Slider />
 
-                <div className="flex h-full flex-col md:flex-row md:gap-5 xl:gap-60 container md:justify-center z-20">
-                    <div className="md:hidden flex justify-center items-end relative" id="mobile-profile-pic">
-                        <div className="relative w-[270px] h-[270px]">
+                <div className="flex h-full flex-col md:flex-row md:gap-5 xl:gap-60 container md:justify-center z-20 ">
+                    <div className="md:hidden flex justify-center items-end relative pb-10" id="mobile-profile-pic">
+                        <div className="relative">
                             {!imageLoaded && (
                                 <div className="absolute inset-0 bg-gray-300 dark:bg-gray-700 animate-pulse rounded-lg"></div>
                             )}
                             <Image
-                                className="relative"
-                                src="https://assets.toluhunter.com/about/profile/pic.webp"
+                                className="relative object-contain"
+                                src="https://assets.toluhunter.com/landing/profilePic.png"
                                 width={270}
                                 height={270}
                                 alt="Tolulope Fakoya"
@@ -37,7 +37,7 @@ export const Herosection = () => {
                                 <div className="absolute inset-0 bg-gray-300 dark:bg-gray-700 animate-pulse rounded-lg"></div>
                             )}
                             {/* <Image className="hidden md:max-2xl:block relative" src="/about/me2.png" width={400} height={300} alt="Tolulope Fakoya" /> */}
-                            <Image id="full-screen-image" className="rounded-lg w-full h-full object-contain relative" src="https://assets.toluhunter.com/about/profile/pic.webp" width={500} height={400} alt="Tolulope Fakoya" onLoadingComplete={() => setImageLoaded(true)} />
+                            <Image id="full-screen-image" className="rounded-lg h-3/4 object-contain relative" src="https://assets.toluhunter.com/landing/profilePic.png" width={500} height={400} alt="Tolulope Fakoya" onLoadingComplete={() => setImageLoaded(true)} />
                         </div>
                     </div>
 
@@ -75,6 +75,7 @@ export const Herosection = () => {
 
 
                 </div>
+                <div className="h-20"></div>
                 <Icon name="mouse-scroll" classes="hidden md:block absolute z-50 w-20 h-20 bottom-0 left-1/2 animate-bounce-scroll" color="var(--foreground)" />
                 <Icon name="scroll" classes="md:hidden absolute z-50 w-20 h-20 bottom-0 left-1/2 animate-bounce-scroll" color="var(--foreground)" />
             </section>

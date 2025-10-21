@@ -1,8 +1,14 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { CertificationCard, Certification } from "./certficiation-card";
 
 export const CertificationsCarousel: React.FC<{ certifications: Certification[] }> = ({ certifications }) => {
     const carouselRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (carouselRef.current && window.innerWidth < 768) { // md breakpoint
+            carouselRef.current.scrollBy({ left: 350, behavior: 'auto' }); // use auto for initial scroll
+        }
+    }, []);
 
     const scroll = (direction: 'left' | 'right') => {
         if (carouselRef.current) {
