@@ -33,7 +33,7 @@ const educations: Education[] = [
 // The EducationCard component
 const EducationCard = ({ education }: { education: Education }) => {
     return (
-        <div className="flex lg:flex-row flex-col gap-5 md:gap-0 items-start mb-8 not-dark:bg-white rounded-lg shadow-md transition-transform transform hover:scale-105">
+        <div className="flex lg:flex-row flex-col gap-5 md:gap-0 items-start mb-8 rounded-lg shadow-md transition-transform transform hover:scale-105">
             <div className="mr-6">
                 <Image
                     src={education.logo}
