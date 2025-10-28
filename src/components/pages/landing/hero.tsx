@@ -17,7 +17,7 @@ export const Herosection = () => {
 
                 <div className="flex h-full flex-col md:flex-row md:gap-5 xl:gap-60 container md:justify-center z-20 ">
                     <div className="md:hidden flex justify-center items-end relative pb-10" id="mobile-profile-pic">
-                        <div className="relative">
+                        <div className="border border-callout object-cover rounded-lg">
                             {!imageLoaded && (
                                 <div className="absolute inset-0 bg-gray-300 dark:bg-gray-700 animate-pulse rounded-lg"></div>
                             )}
@@ -32,12 +32,12 @@ export const Herosection = () => {
                         </div>
                     </div>
                     <div id="profile-pic" className="hidden md:flex w-[34.75rem] flex">
-                        <div className="relative w-full h-full">
+                        <div className="flex justify-center items-center w-full h-full">
                             {!imageLoaded && (
                                 <div className="absolute inset-0 bg-gray-300 dark:bg-gray-700 animate-pulse rounded-lg"></div>
                             )}
                             {/* <Image className="hidden md:max-2xl:block relative" src="/about/me2.png" width={400} height={300} alt="Tolulope Fakoya" /> */}
-                            <Image id="full-screen-image" className="rounded-lg h-3/4 object-contain relative" src="https://assets.toluhunter.com/landing/profilePic.png" width={500} height={400} alt="Tolulope Fakoya" onLoadingComplete={() => setImageLoaded(true)} />
+                            <Image id="full-screen-image" className="border border-callout object-top h-3/4 rounded-lg object-cover relative" src="https://assets.toluhunter.com/landing/profilePic.png" width={500} height={400} alt="Tolulope Fakoya" onLoadingComplete={() => setImageLoaded(true)} />
                         </div>
                     </div>
 

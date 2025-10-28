@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from 'next';
 import ThemeWrapper from '@/components/utilities/shared/ThemeWrapper';
 import { AudioProvider } from "@/components/utilities/shared/audio";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: 'Tolulope Fakoya - Portfolio',
@@ -25,6 +26,19 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-6WMS15MTQ9"></Script>
+        <Script id="google-analytics">
+          {`window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-6WMS15MTQ9');`}
+        </Script>
+
+
+      </head>
       <body
         className="p-0 m-0 relative"
       >
