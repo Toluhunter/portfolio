@@ -4,6 +4,8 @@ import ThemeWrapper from '@/components/utilities/shared/ThemeWrapper';
 import { AudioProvider } from "@/components/utilities/shared/audio";
 import Script from "next/script";
 
+import { Toaster } from 'react-hot-toast';
+
 export const metadata: Metadata = {
   title: 'Tolulope Fakoya - Portfolio',
   description: 'Welcome to my portfolio! Explore my projects, skills, and experiences in software development.',
@@ -44,6 +46,7 @@ export default function RootLayout({
       >
         <AudioProvider>
           <ThemeWrapper>
+            <Toaster />
             {children}
           </ThemeWrapper>
         </AudioProvider>
