@@ -22,7 +22,6 @@ interface CodeBlockWrapperProps {
 
 const CodeBlockWrapper = ({ children, ...props }: CodeBlockWrapperProps) => {
     const [isCopied, setIsCopied] = useState(false);
-    const codeRef = useRef<HTMLElement>(null);
     const codeElement = React.Children.only(children);
     const language = codeElement.props.className?.replace(/language-/, '') || 'text';
     const codeContent = codeElement.props.children;
