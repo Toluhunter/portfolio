@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next';
 import blogs from '@/data/blogs.json';
- 
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
 
@@ -8,35 +8,35 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `https://toluhunter.com${blog.link}`,
     lastModified,
   }));
-  
+
   return [
     {
-      url: 'https://toluhunter.com',
+      url: 'https://www.toluhunter.com',
       lastModified,
     },
     {
-      url: 'https://toluhunter.com/about',
+      url: 'https://www.toluhunter.com/about',
       lastModified,
     },
     {
-      url: 'https://toluhunter.com/blogs',
+      url: 'https://www.toluhunter.com/blogs',
       lastModified,
     },
     {
-        url: 'https://toluhunter.com/cv',
-        lastModified,
+      url: 'https://www.toluhunter.com/cv',
+      lastModified,
     },
     {
-        url: 'https://toluhunter.com/labs',
-        lastModified,
+      url: 'https://www.toluhunter.com/labs',
+      lastModified,
     },
     {
-        url: 'https://toluhunter.com/projects',
-        lastModified,
+      url: 'https://www.toluhunter.com/projects',
+      lastModified,
     },
     {
-        url: 'https://toluhunter.com/services',
-        lastModified,
+      url: 'https://www.toluhunter.com/services',
+      lastModified,
     },
     ...blogRoutes,
   ]
