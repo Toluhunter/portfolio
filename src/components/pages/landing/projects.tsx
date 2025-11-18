@@ -2,32 +2,14 @@ import { Title } from "@/components/utilities/shared/title"
 import { ProjectListing } from "@/components/utilities/landingpage/project/project-listing-landing"
 import Icon from "@/components/utilities/shared/icon"
 import { useState } from "react"
-import { Project } from "@/components/utilities/landingpage/project/project-listing-landing"
+// import { Project } from "@/components/utilities/landingpage/project/project-listing-landing"
+import projects from "@/data/projects.json";
 import { FaChevronLeft as ChevronLeft, FaChevronRight as ChevronRight } from "react-icons/fa";
 
 
 export const ProjectSection = () => {
     const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
 
-    const projects: Project[] = [ // Applied Project interface to the array
-        {
-            name: "BeemBridge",
-            description: "Effortless PC-to-PC File Transfer. Send files directly and seamlessly between your devices. Our app intelligently manages the Wi-Fi and network, so you never fuss with IPs or hotspot settings. Just transfer and go!",
-            status: "In Progress",
-            images: [
-                "https://assets.toluhunter.com/projects/beembridge.svg",
-            ],
-            websiteLink: "https://www.beembridge.com", // Replace with actual link
-            technologies: [
-                "React.js: Frontend UI",
-                "Node.js: Backend services",
-                "Electron: Desktop application framework",
-                "TCP & UDP Socket: Peer-to-peer communication",
-                "Tailwind CSS: Styling and responsiveness",
-            ]
-        },
-
-    ];
 
     const handlePrevProjectClick = () => {
         setCurrentProjectIndex((prevIndex) =>

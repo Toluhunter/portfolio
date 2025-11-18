@@ -11,6 +11,8 @@ export interface Project {
     images: string[];
     websiteLink?: string; // Optional, as it might not always be present
     technologies?: string[]; // Optional, as it might not always be present
+    subtitle: string;
+    roles?: string[]; // Added roles field
 }
 
 export const ProjectListing = ({ project }: { project: Project }) => {
@@ -67,6 +69,7 @@ export const ProjectListing = ({ project }: { project: Project }) => {
             <div className="flex flex-col lg:flex-row lg:gap-10 items-center lg:items-start"> {/* Added items-center for better alignment on mobile */}
                 <div className="flex flex-col gap-5 text-center md:text-left lg:w-1/2"> {/* Added md:w-1/2 for flex distribution */}
                     <h1 className="text-foreground text-4xl lg:text-6xl my-4">{project.name}</h1> {/* Adjusted text size for responsiveness */}
+                    <h2 className="text-2xl font-semibold text-gray-400 -mt-4 mb-4">{project.subtitle}</h2>
                     <p className="w-full text-foreground mb-4 md:mb-0"> {/* Ensure description takes full width on mobile */}
                         {project.description}
                     </p>

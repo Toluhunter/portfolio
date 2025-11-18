@@ -8,6 +8,8 @@ import Icon from "@/components/utilities/shared/icon";
 import { FaChevronLeft as ChevronLeft, FaChevronRight as ChevronRight } from "react-icons/fa";
 import Image from "next/image";
 
+import projects from '@/data/projects.json';
+
 export interface Project {
     name: string;
     status: string;
@@ -15,6 +17,8 @@ export interface Project {
     images: string[];
     websiteLink?: string;
     technologies?: string[];
+    subtitle: string;
+    roles?: string[]; // Added roles field
 }
 
 // ProjectCard Component
@@ -83,11 +87,24 @@ const ProjectCard = ({ project }: { project: Project }) => {
             </div>
             <div className="flex flex-col gap-3 text-center lg:text-left">
                 <div
-                    className="text-gray-300 text-base flex-grow [&>h2]:text-2xl [&>h2]:font-bold [&>h2]:mb-4 [&>p]:mb-3 [&>ul]:list-disc [&>ul]:list-inside [&>ul]:pl-4 [&>ul]:mb-3"
-                    dangerouslySetInnerHTML={{ __html: project.description }}
-                />
+                    className="text-gray-300 text-base flex-grow"
+                >
+                    <h2 className='text-2xl font-bold mb-4'>{project.subtitle}</h2>
+                    <p className='mb-3'>{project.description}</p>
+                </div>
             </div>
 
+            {/* Roles Section - Always visible */}
+            {project.roles && project.roles.length > 0 && (
+                <div className="flex flex-col gap-3 text-center lg:text-left mt-4">
+                    <h4 className="text-xl font-bold text-gray-200">Roles</h4>
+                    <ul className="list-disc list-inside space-y-1 text-sm text-gray-300">
+                        {project.roles.map((role, index) => (
+                            <li key={index}>{role}</li>
+                        ))}
+                    </ul>
+                </div>
+            )}
 
             {/* Website Link Button - Adjusted width and alignment */}
             {project.websiteLink && (
@@ -125,44 +142,12 @@ const ProjectCard = ({ project }: { project: Project }) => {
                     )}
                 </>
             )}
+
         </div>
     );
 };
 
 export default function Home() {
-    const projects: Project[] = [
-        {
-            name: "BeemBridge",
-            description: `
-            <h2>Redefining Seamless File Transfer</h2>
-
-    <p><strong>Tired of the tangled mess of cables, the agonizing wait of slow transfers, or the constant fear of corrupted drives?</strong> Imagine a world where sharing files between your PCs is as intuitive as a thought. Welcome to <strong>BeemBridge</strong>, your ultimate solution for <strong>effortless, lightning-fast, and secure PC-to-PC file transfer.</strong></p>
-
-    <p>BeemBridge liberates you from the archaic frustrations of traditional file sharing. Forget the endless search for a flash drive, the clunky setup of hotspot settings, or the precarious dance with shaky cables and unreliable ports. Built as a robust <strong>Electron.js desktop application</strong>, BeemBridge intelligently handles the complexities of your Wi-Fi and network connections. This means:</p>
-
-    <ul>
-        <li><strong>No more fussing with IP addresses or network configurations.</strong> BeemBridge just works, automatically detecting and connecting your devices on the same network.</li>
-        <li><strong>Blazing-fast transfers that leave HTTP and physical media in the dust.</strong> Experience speeds that make large media files and extensive project folders move in a blink.</li>
-        <li><strong>Unwavering reliability:</strong> Bid farewell to the anxiety of corrupted storage media or the physical vulnerabilities of USB drives. Your data flows directly and securely.</li>
-        <li><strong>Pure convenience:</strong> No adapters, no external hardware, no software quirks, just a smooth, direct, and hassle-free transfer experience.</li>
-    </ul>
-
-    <p><strong>BeemBridge isn't just an app; it's a paradigm shift in how you move data.</strong> Simply launch, select, and transfer. It's that simple, and that revolutionary. Get ready to just transfer and go!</p>
-            `,
-            status: "In Progress",
-            images: [
-                "https://assets.toluhunter.com/projects/beembridge.svg",
-            ],
-            websiteLink: "https://www.beembridge.com", // Replace with actual link
-            technologies: [
-                "React.js: Frontend UI",
-                "Node.js: Backend services",
-                "Electron: Desktop application framework",
-                "TCP & UDP Socket: Peer-to-peer communication",
-                "Tailwind CSS: Styling and responsiveness",
-            ]
-        },
-    ];
     return (
         <>
             <NavBar />
