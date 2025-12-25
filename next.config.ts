@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 import createMDX from '@next/mdx';
+// Use module name strings for plugins so options remain serializable
 
 const nextConfig: NextConfig = {
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
@@ -29,7 +30,17 @@ const withMDX = createMDX({
   extension: /\.mdx?$/,
   options: {
     remarkPlugins: [["remark-gfm", { strict: true, throwOnError: true }]],
-    rehypePlugins: [],
+    rehypePlugins: [
+      'rehype-slug',
+      [
+        'rehype-autolink-headings',
+        {
+          behavior: 'append'
+        }
+      ],
+      '@stefanprobst/rehype-extract-toc',
+      '@stefanprobst/rehype-extract-toc/mdx',
+    ],
   },
 });
 

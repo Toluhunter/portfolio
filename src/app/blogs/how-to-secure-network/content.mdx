@@ -5,6 +5,7 @@ import { BuyMeACoffee } from "@/components/utilities/shared/buymecoffee";
 
 <NavBar/>
 # Provisioning and Securing Your Home Lab and Startup Sandbox Network 
+![Hero Image](/hero.png)
 _VPNs, Tailscale, WireGuard, and Cloudflare_
 
 For you to have clicked on this article, I’ll assume one of two things:
@@ -543,14 +544,188 @@ From here, we can start talking about exposing specific services safely rather t
 
 ## Exposing Internal Services Safely with Cloudflare Tunnels
 
-## What This Setup Protects Against And What It Doesn’t
+So far, everything we have done keeps services private and accessible only through your isolated network or VPN. Sometimes though, you want a service to be reachable by anyone on the internet without opening ports or punching holes in your firewall.
 
-## Preparing for Zero Trust (Without Implementing It Yet)
+This is where **Cloudflare Tunnels** come in.
 
-## Conclusion: Practical Security Beats Perfect Security
+The idea is similar to what we did with Tailscale:
+- Your service makes an outbound connection
+- Cloudflare keeps that connection alive
+- Requests come in through Cloudflare, not directly to your network
 
+No port forwarding. No public IP. No router configuration.
 
-Ending statement, I have given you knowledge but in return I have taken something from you. Your excuses, no more is cloud cost an issue or complexity, it may not be perfect but it's a start build and have fun
+We are using Cloudflare because it supports both:
+- Users who already own a domain on Cloudflare
+- Users who just want a quick, random URL for testing
+
+---
+
+### Our Example Service: Nginx
+
+To keep things simple, we will expose a basic web service using Nginx with its default configuration.
+
+For this article, I will use the same Raspberry Pi that is already running Tailscale. You can do the same, or use:
+- Any device inside your isolated network
+- Any service you want to expose
+
+On most Linux distributions, Nginx is available in the default repositories.
+
+If you are on a Debian or Ubuntu-based system, install Nginx with:
+
+```sh
+apt install nginx
+```
+If you already have Nginx installed, as I do on my NAS, you can skip this step.
+
+[IMAGE PLACEHOLDER: Nginx Default Welcome Page]
+
+### Method 1: No Cloudflare Account or Domain
+
+This method is useful for:
+
+- Testing
+- Temporary demos
+- Users without a domain
+- Users who do not want to manage DNS
+
+The tradeoff is that you receive a random URL, which is not ideal for long-term use.
+
+#### Install cloudflared
+
+Install cloudflared using the official documentation:
+[https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/downloads/](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/downloads/)
+
+[IMAGE PLACEHOLDER: Cloudflared Download Page]
+
+#### Start a Quick Tunnel
+
+Once installed, run the command below. Change the port if your service is running on a different one.
+
+```sh
+cloudflared tunnel --url http://localhost:80
+```
+
+Cloudflared will output a public URL that you can open from anywhere to reach your service.
+
+At this point:
+
+- No inbound ports are exposed
+- Your router configuration remains unchanged
+- The service is reachable only through Cloudflare
+
+[IMAGE PLACEHOLDER: Cloudflared Tunnel Output Showing URL]
+
+### Method 2: Using Your Own Domain on Cloudflare
+
+This is the recommended approach for anything beyond testing.
+#### Create a Cloudflare Account
+
+If you do not already have an account, sign up here:
+[https://www.cloudflare.com/](https://www.cloudflare.com/)
+
+Once logged in, navigate to Zero Trust.
+
+[IMAGE PLACEHOLDER: Cloudflare Signup Page]
+
+#### Create a Tunnel Connector
+
+Inside the Zero Trust dashboard:
+
+1. Go to Networks
+2. Select Connectors
+
+[IMAGE PLACEHOLDER: Zero Trust Connectors Page]
+
+Choose cloudflared as the connector type.
+
+[IMAGE PLACEHOLDER: Cloudflared Connector Selection]
+
+Give your tunnel a name.
+
+Cloudflare will then display installation instructions for your operating system. Select the correct OS for your target device and follow the steps to install and register the tunnel.
+
+Once completed, the connector becomes active.
+
+[IMAGE PLACEHOLDER: Cloudflared Installation Instructions]
+
+#### Route Traffic Through the Tunnel
+
+Next, configure the tunnel routing:
+
+- Enter a subdomain
+- Select a valid domain from your Cloudflare account
+- Choose the protocol
+
+Since this example uses the default Nginx configuration, `http` is sufficient. For long-term deployments, 
+you should configure SSL and use `https`. That is outside the scope of this article.
+
+Set the service address to:
+```sh
+localhost:80
+```
+
+Once saved, the service is now exposed through your custom domain.
+
+[IMAGE PLACEHOLDER: Tunnel Route Configuration Screen]
+
+#### Taking the Service Down
+
+To stop exposing the service:
+
+1. Go back to the Zero Trust dashboard
+2. Under Connectors, delete the tunnel
+
+To ensure the service is fully removed from the host, uninstall the cloudflared service:
+```sh
+sudo cloudflared service uninstall
+```
+
+[IMAGE PLACEHOLDER: Removing Tunnel and Cloudflared Service]
+
+#### What You Have Achieved
+
+With Cloudflare Tunnels:
+
+- No inbound ports are opened
+- Your internal network remains isolated
+- Services are exposed selectively
+- Exposure can be enabled or disabled instantly
+
+Combined with VPN-based access for internal services, this gives you a clean and secure way to publish only what you intend to share with the internet.
+
+## Conclusion
+
+You’ve now walked through a practical, modern way to secure and expose services in your home lab or startup network without relying on risky port forwarding or a traditional VPN that assumes trust once you are inside a perimeter. What you have built:
+
+- Strong network isolation with a dedicated router creating a separate, protected segment for your critical devices and services
+- Secure remote access using Tailscale that works regardless of upstream network constraints like CGNAT or lack of router control, allowing authenticated devices to connect privately
+- Controlled public exposure of specific services using Cloudflare Tunnels, giving you a way to safely reach selected applications from the internet without opening firewall ports or exposing your home IP
+
+Your network now:
+- Forces identity at entry for remote connections
+- Keeps internal devices unreachable from untrusted networks
+- Lets you expose only what you explicitly choose
+
+This setup dramatically reduces your attack surface compared with a flat network where every device can see every other device, or a naive VPN setup where once connected everything is implicitly trusted. It also does not require advanced or expensive hardware and works in the real world given typical residential and shared internet constraints.
+
+It is equally important to be clear about what this setup does not protect against:
+
+- It does not enforce identity verification for every internal service request. Devices inside your isolated network can still communicate with each other by default, and services must still implement their own authentication and authorization.
+- It is not a full Zero Trust architecture. True Zero Trust requires per-request verification, microsegmentation, strict least privilege policies, and continuous enforcement, which are outside the scope of this article.
+- Exposing services through Cloudflare Tunnels does not automatically secure the application itself. Weak credentials, vulnerable code, or misconfigured services can still be exploited if not properly hardened.
+- If a trusted device connected through Tailscale or a service exposed via Cloudflare is compromised, an attacker may gain access within the allowed scope of that device or service unless credentials are properly managed and revoked.
+
+Despite these limitations, this approach represents a strong, modern, and pragmatic security model. It significantly improves security over traditional perimeter-only designs while remaining accessible to home labs and early stage startups.
+
+You now have:
+- A private, isolated internal network
+- Reliable remote access that works anywhere
+- Safe, controlled exposure of public services
+
+As your environment grows, you can evolve this foundation with tighter access controls, identity-aware policies, and deeper segmentation. For now, this setup strikes a practical balance between security, cost, and operational simplicity without pretending to solve threats it is not designed to address.
+
+Here's an ending statement for you, I have given you knowledge, but in return I have taken something from you. Your excuses, no more is cloud complexity & cost an issue, it may not be perfect but it's a start. Build and have fun
 
 <BuyMeACoffee/>
 <Footer/>

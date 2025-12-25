@@ -98,12 +98,36 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
             <div className="container mx-auto max-w-4xl px-4 py-8">{children}</div>
         ),
         // Allows customizing built-in components, e.g. to add styling.
-        h1: ({ children }) => <h1 className="mt-15 scroll-m-20 text-4xl font-bold tracking-tight text-[var(--foreground)]">{children}</h1>,
-        h2: ({ children }) => <h2 className="mt-10 scroll-m-20 border-b border-b-slate-200 pb-2 text-3xl font-semibold tracking-tight text-[var(--foreground)] first:mt-0 dark:border-b-slate-700">{children}</h2>,
-        h3: ({ children }) => <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight text-[var(--foreground)]">{children}</h3>,
-        h4: ({ children }) => <h4 className="mt-8 scroll-m-20 text-xl font-semibold tracking-tight text-[var(--foreground)]">{children}</h4>,
-        h5: ({ children }) => <h5 className="mt-8 scroll-m-20 text-lg font-semibold tracking-tight text-[var(--foreground)]">{children}</h5>,
-        h6: ({ children }) => <h6 className="mt-8 scroll-m-20 text-base font-semibold tracking-tight text-[var(--foreground)]">{children}</h6>,
+        h1: ({ children, ...props }) => (
+            <h1 {...props} className="mt-15 scroll-m-20 text-4xl font-bold tracking-tight text-[var(--foreground)]">
+                {children}
+            </h1>
+        ),
+        h2: ({ children, ...props }) => (
+            <h2 {...props} className="mt-10 scroll-m-20 border-b border-b-slate-200 pb-2 text-3xl font-semibold tracking-tight text-[var(--foreground)] first:mt-0 dark:border-b-slate-700">
+                {children}
+            </h2>
+        ),
+        h3: ({ children, ...props }) => (
+            <h3 {...props} className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight text-[var(--foreground)]">
+                {children}
+            </h3>
+        ),
+        h4: ({ children, ...props }) => (
+            <h4 {...props} className="mt-8 scroll-m-20 text-xl font-semibold tracking-tight text-[var(--foreground)]">
+                {children}
+            </h4>
+        ),
+        h5: ({ children, ...props }) => (
+            <h5 {...props} className="mt-8 scroll-m-20 text-lg font-semibold tracking-tight text-[var(--foreground)]">
+                {children}
+            </h5>
+        ),
+        h6: ({ children, ...props }) => (
+            <h6 {...props} className="mt-8 scroll-m-20 text-base font-semibold tracking-tight text-[var(--foreground)]">
+                {children}
+            </h6>
+        ),
         a: ({ children, href }) => <a href={href} target="_blank" rel="noopener noreferrer" className="font-medium text-[var(--callout)] underline underline-offset-4">{children}</a>,
         p: ({ children }) => <p className="leading-7 text-[var(--foreground)] [&:not(:first-child)]:mt-6">{children}</p>,
         ul: ({ children }) => <ul className="my-6 ml-6 list-disc text-[var(--foreground)]">{children}</ul>,
