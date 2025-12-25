@@ -10,11 +10,9 @@ const Type = () => {
     const [typingSpeed, setTypingSpeed] = useState(150); // Base typing speed
 
     const professions = React.useMemo(() => [
-        "Cloud Engineer",
-        "Freelancer",
+        "AI & Cloud Engineer",
+        "DevOps & MLOps Engineer",
         "Bug Bounty Hunter",
-        "DevOps Engineer",
-        "AI/ML Engineer",
     ], []);
 
     // Helper function to generate a random glitched character
