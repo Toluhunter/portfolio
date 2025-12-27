@@ -5,7 +5,7 @@ import { BuyMeACoffee } from "@/components/utilities/shared/buymecoffee";
 
 <NavBar/>
 # Provisioning and Securing Your Home Lab and Startup Sandbox Network 
-![Hero Image](/provisioning-securing-home-lab-startup-sandbox-network/hero.png)
+![Hero Image](https://assets.toluhunter.com/blogs/provisioning-securing-home-lab-startup-sandbox-network/hero.png)
 _VPNs, Tailscale, WireGuard, and Cloudflare_
 
 You’ve built the perfect local environment or just got a new powerful desktop, but now you’re wondering how much more value can you get out of it.
@@ -18,7 +18,7 @@ This article will show you how to solve that exact problem with practical, low�
 
 ## What This Article Will (and Won’t) Do
 
-![Image](/provisioning-securing-home-lab-startup-sandbox-network/dos-dont_4_3.png)
+![Image](https://assets.toluhunter.com/blogs/provisioning-securing-home-lab-startup-sandbox-network/dos-dont_4_3.png)
 
 This article will walk you through:
 
@@ -63,7 +63,7 @@ For now, let’s build something secure, practical, and actually usable.
 
 ## Why You Should Care About Owning Your Network ?
 
-![Secure Network](/provisioning-securing-home-lab-startup-sandbox-network/why-secure-network.png)
+![Secure Network](https://assets.toluhunter.com/blogs/provisioning-securing-home-lab-startup-sandbox-network/why-secure-network.png)
 
 ### 1. Security
 The first and most obvious reason is security.
@@ -129,7 +129,7 @@ This is where theory meets reality, and where you go from “I read about this�
 
 ## Security Philosophy: This Is Not Zero Trust (And That’s Okay)
 
-![Security Philosophy](/provisioning-securing-home-lab-startup-sandbox-network/security-philosophy.png)
+![Security Philosophy](https://assets.toluhunter.com/blogs/provisioning-securing-home-lab-startup-sandbox-network/security-philosophy.png)
 
 Before we go any further, let’s clear something up.
 What you’re about to build is not a full Zero Trust network. And that’s not a failure. It’s a conscious, pragmatic choice.
@@ -214,7 +214,7 @@ Security that no one understands or maintains is just theater.
 
 ## Network Isolation and Blast Radius Reduction
 
-![Network Isolation Image](/provisioning-securing-home-lab-startup-sandbox-network/network-isolation.png)
+![Network Isolation Image](https://assets.toluhunter.com/blogs/provisioning-securing-home-lab-startup-sandbox-network/network-isolation.png)
 
 let’s talk about what **network isolation** actually means in practice.
 
@@ -266,7 +266,7 @@ For this article, I will be using the **[GL.iNet GL-SFT1200 (Opal) Secure Travel
 
 will work just fine.
 
-{/* ![Router Image](/provisioning-securing-home-lab-startup-sandbox-network/glinet_cropped.jpg) */}
+{/* ![Router Image](https://assets.toluhunter.com/blogs/provisioning-securing-home-lab-startup-sandbox-network/glinet_cropped.jpg) */}
 
 ---
 
@@ -296,10 +296,10 @@ Here, you will:
 
 This grants **internet access** to your new isolated network without giving your home network access back in.
 
-![WiFi Repeater Configuration Screen](/provisioning-securing-home-lab-startup-sandbox-network/wifi-repeater.png)
+![WiFi Repeater Configuration Screen](https://assets.toluhunter.com/blogs/provisioning-securing-home-lab-startup-sandbox-network/wifi-repeater.png)
 
 At this point, your setup looks something like this:
-![WiFi Repeater Configuration Screen](/provisioning-securing-home-lab-startup-sandbox-network/isolated-topology.png)
+![WiFi Repeater Configuration Screen](https://assets.toluhunter.com/blogs/provisioning-securing-home-lab-startup-sandbox-network/isolated-topology.png)
 
 
 Traffic can flow outward, but not inward.
@@ -312,7 +312,7 @@ Next, we need to confirm how your router is seen by the upstream network.
 
 In the repeater or internet status section, note the **IP address** assigned to your router.
 
-![Router IP](/provisioning-securing-home-lab-startup-sandbox-network/router-ip.png)
+![Router IP](https://assets.toluhunter.com/blogs/provisioning-securing-home-lab-startup-sandbox-network/router-ip.png)
 
 This address tells you which network your router is connected to and helps avoid address conflicts in the next step.
 
@@ -342,7 +342,7 @@ Once configured, the router becomes a hard boundary.
 
 Devices on your home network cannot initiate connections into your isolated network. Your router acts as a firewall, blocking unsolicited inbound traffic by default.
 
-![LAN configuration](/provisioning-securing-home-lab-startup-sandbox-network/lan-network.png)
+![LAN configuration](https://assets.toluhunter.com/blogs/provisioning-securing-home-lab-startup-sandbox-network/lan-network.png)
 
 ---
 
@@ -361,7 +361,7 @@ Next, we will layer secure remote access on top of this isolation without punchi
 
 ## Secure Remote Access with Tailscale
 
-![Secure Remote Access Tailscale Image](/provisioning-securing-home-lab-startup-sandbox-network/secure-with-tailscale.png)
+![Secure Remote Access Tailscale Image](https://assets.toluhunter.com/blogs/provisioning-securing-home-lab-startup-sandbox-network/secure-with-tailscale.png)
 
 This is where things start to get a bit more technical, but also where the setup becomes really powerful.
 
@@ -387,7 +387,7 @@ Some ISPs use **Carrier Grade Network Address Translation**. This means:
 
 In this setup, even if you configure port forwarding on your router, inbound traffic never reaches you. The ISP routers upstream will drop it before it gets anywhere close to your network.
 
-![CGNAT Diagram](/provisioning-securing-home-lab-startup-sandbox-network/CGNAT.png)
+![CGNAT Diagram](https://assets.toluhunter.com/blogs/provisioning-securing-home-lab-startup-sandbox-network/CGNAT.png)
 
 #### Situation B: No Access to the Upstream Router
 
@@ -400,7 +400,7 @@ Even if you enable port forwarding on your isolated router, traffic will still b
 
 In the worst-case scenario, **both** CGNAT and lack of router access apply.
 
-![No Router Admin Access Diagram](/provisioning-securing-home-lab-startup-sandbox-network/no-upstream-router-admin-access.png)
+![No Router Admin Access Diagram](https://assets.toluhunter.com/blogs/provisioning-securing-home-lab-startup-sandbox-network/no-upstream-router-admin-access.png)
 
 ---
 
@@ -445,7 +445,7 @@ https://tailscale.com/
 
 Once logged in, you will see a page showing **waiting for devices**.
 
-![Tailscale Admin Console Waiting for Devices](/provisioning-securing-home-lab-startup-sandbox-network/awaiting-devices.png)
+![Tailscale Admin Console Waiting for Devices](https://assets.toluhunter.com/blogs/provisioning-securing-home-lab-startup-sandbox-network/awaiting-devices.png)
 
 ---
 
@@ -532,7 +532,7 @@ You will see the new device appear with advertised routes. Edit the device setti
 
 Once approved, those routes become reachable through Tailscale.
 
-![Approving Subnet Routes in Tailscale](/provisioning-securing-home-lab-startup-sandbox-network/approving-routes.png)
+![Approving Subnet Routes in Tailscale](https://assets.toluhunter.com/blogs/provisioning-securing-home-lab-startup-sandbox-network/approving-routes.png)
 
 ---
 
@@ -588,8 +588,6 @@ apt install nginx
 ```
 If you already have Nginx installed, as I do on my NAS, you can skip this step.
 
-[IMAGE PLACEHOLDER: Nginx Default Welcome Page]
-
 ### Method 1: No Cloudflare Account or Domain
 
 This method is useful for:
@@ -606,7 +604,6 @@ The tradeoff is that you receive a random URL, which is not ideal for long-term 
 Install cloudflared using the official documentation:
 [https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/downloads/](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/downloads/)
 
-[IMAGE PLACEHOLDER: Cloudflared Download Page]
 
 #### Start a Quick Tunnel
 
@@ -624,8 +621,6 @@ At this point:
 - Your router configuration remains unchanged
 - The service is reachable only through Cloudflare
 
-[IMAGE PLACEHOLDER: Cloudflared Tunnel Output Showing URL]
-
 ### Method 2: Using Your Own Domain on Cloudflare
 
 This is the recommended approach for anything beyond testing.
@@ -636,7 +631,7 @@ If you do not already have an account, sign up here:
 
 Once logged in, navigate to Zero Trust.
 
-[IMAGE PLACEHOLDER: Cloudflare Signup Page]
+![Cloudflare Dashboard Page](https://assets.toluhunter.com/blogs/provisioning-securing-home-lab-startup-sandbox-network/cloudflare-dashboard.png)
 
 #### Create a Tunnel Connector
 
@@ -645,20 +640,19 @@ Inside the Zero Trust dashboard:
 1. Go to Networks
 2. Select Connectors
 
-[IMAGE PLACEHOLDER: Zero Trust Connectors Page]
+![Zero Trust Connectors Page](https://assets.toluhunter.com/blogs/provisioning-securing-home-lab-startup-sandbox-network/zero-trust.png)
 
 Choose cloudflared as the connector type.
 
-[IMAGE PLACEHOLDER: Cloudflared Connector Selection]
+![Cloudflared Connector Selection](https://assets.toluhunter.com/blogs/provisioning-securing-home-lab-startup-sandbox-network/connector-type.png)
 
 Give your tunnel a name.
 
 Cloudflare will then display installation instructions for your operating system. Select the correct OS for your target device and follow the steps to install and register the tunnel.
 
-Once completed, the connector becomes active.
+Once completed, the connector becomes active then you can proceed to the next step.
 
-[IMAGE PLACEHOLDER: Cloudflared Installation Instructions]
-
+![Active Connetor](https://assets.toluhunter.com/blogs/provisioning-securing-home-lab-startup-sandbox-network/active-connector.png)
 #### Route Traffic Through the Tunnel
 
 Next, configure the tunnel routing:
@@ -677,7 +671,7 @@ localhost:80
 
 Once saved, the service is now exposed through your custom domain.
 
-[IMAGE PLACEHOLDER: Tunnel Route Configuration Screen]
+![Tunnel Route Configuration Screen](https://assets.toluhunter.com/blogs/provisioning-securing-home-lab-startup-sandbox-network/route-configure.png)
 
 #### Taking the Service Down
 
@@ -691,7 +685,7 @@ To ensure the service is fully removed from the host, uninstall the cloudflared 
 sudo cloudflared service uninstall
 ```
 
-[IMAGE PLACEHOLDER: Removing Tunnel and Cloudflared Service]
+![Removing Tunnel and Cloudflared Service](https://assets.toluhunter.com/blogs/provisioning-securing-home-lab-startup-sandbox-network/delete-connector.png)
 
 #### What You Have Achieved
 
