@@ -5,15 +5,20 @@ import { BuyMeACoffee } from "@/components/utilities/shared/buymecoffee";
 
 <NavBar/>
 # Provisioning and Securing Your Home Lab and Startup Sandbox Network 
-![Hero Image](/hero.png)
+![Hero Image](/provisioning-securing-home-lab-startup-sandbox-network/hero.png)
 _VPNs, Tailscale, WireGuard, and Cloudflare_
 
-For you to have clicked on this article, I’ll assume one of two things:
-you either already understand why networks matter or you’re just curious.
+You’ve built the perfect local environment or just got a new powerful desktop, but now you’re wondering how much more value can you get out of it.
 
-Either way, welcome. Let’s get a little nerdy.
+Maybe you are a freelance developer who runs demos from a homelab or desktop but can’t accept inbound connections because their ISP blocks or NATs inbound traffic,
+ or a bootstrapped startup trying to escape the "cloud bill shock" of running 24/7 dev environments on AWS, but you're terrified of the security risks that come with hosting on-prem.
+
+The challenge is the same: You need **reliable remote access, but you can’t afford to expose your entire network to the open internet.**
+This article will show you how to solve that exact problem with practical, low‑cost patterns you can apply immediately.
 
 ## What This Article Will (and Won’t) Do
+
+![Image](/provisioning-securing-home-lab-startup-sandbox-network/dos-dont_4_3.png)
 
 This article will walk you through:
 
@@ -57,6 +62,8 @@ For now, let’s build something secure, practical, and actually usable.
 
 
 ## Why You Should Care About Owning Your Network ?
+
+![Secure Network](/provisioning-securing-home-lab-startup-sandbox-network/why-secure-network.png)
 
 ### 1. Security
 The first and most obvious reason is security.
@@ -121,6 +128,8 @@ This is where theory meets reality, and where you go from “I read about this�
 
 
 ## Security Philosophy: This Is Not Zero Trust (And That’s Okay)
+
+![Security Philosophy](/provisioning-securing-home-lab-startup-sandbox-network/security-philosophy.png)
 
 Before we go any further, let’s clear something up.
 What you’re about to build is not a full Zero Trust network. And that’s not a failure. It’s a conscious, pragmatic choice.
@@ -205,6 +214,8 @@ Security that no one understands or maintains is just theater.
 
 ## Network Isolation and Blast Radius Reduction
 
+![Network Isolation Image](/provisioning-securing-home-lab-startup-sandbox-network/network-isolation.png)
+
 let’s talk about what **network isolation** actually means in practice.
 
 At its core, network isolation is about **containing damage**. If something goes wrong, whether that’s a misconfigured service,
@@ -255,7 +266,7 @@ For this article, I will be using the **[GL.iNet GL-SFT1200 (Opal) Secure Travel
 
 will work just fine.
 
-{/* ![Router Image](/glinet_cropped.jpg) */}
+{/* ![Router Image](/provisioning-securing-home-lab-startup-sandbox-network/glinet_cropped.jpg) */}
 
 ---
 
@@ -269,8 +280,6 @@ Once it boots, it will broadcast a WiFi access point using default credentials. 
 - The instruction manual
 
 Connect to this access point from your laptop or phone.
-
-[IMAGE PLACEHOLDER: Default Router WiFi SSID]
 
 ---
 
@@ -287,11 +296,10 @@ Here, you will:
 
 This grants **internet access** to your new isolated network without giving your home network access back in.
 
-[IMAGE PLACEHOLDER: WiFi Repeater Configuration Screen]
+![WiFi Repeater Configuration Screen](/provisioning-securing-home-lab-startup-sandbox-network/wifi-repeater.png)
 
-At this point, your setup looks like this:
-
-[IMAGE PLACEHOLDER: Wifi Setup]
+At this point, your setup looks something like this:
+![WiFi Repeater Configuration Screen](/provisioning-securing-home-lab-startup-sandbox-network/isolated-topology.png)
 
 
 Traffic can flow outward, but not inward.
@@ -302,9 +310,9 @@ Traffic can flow outward, but not inward.
 
 Next, we need to confirm how your router is seen by the upstream network.
 
-In the repeater or internet status section, note the **WAN IP address** assigned to your router.
+In the repeater or internet status section, note the **IP address** assigned to your router.
 
-[IMAGE PLACEHOLDER: Router WAN IP Address Screen]
+![Router IP](/provisioning-securing-home-lab-startup-sandbox-network/router-ip.png)
 
 This address tells you which network your router is connected to and helps avoid address conflicts in the next step.
 
@@ -334,7 +342,7 @@ Once configured, the router becomes a hard boundary.
 
 Devices on your home network cannot initiate connections into your isolated network. Your router acts as a firewall, blocking unsolicited inbound traffic by default.
 
-[IMAGE PLACEHOLDER: LAN IP Configuration Screen]
+![LAN configuration](/provisioning-securing-home-lab-startup-sandbox-network/lan-network.png)
 
 ---
 
@@ -352,6 +360,8 @@ This is the foundation everything else in this article will build on.
 Next, we will layer secure remote access on top of this isolation without punching holes in the network.
 
 ## Secure Remote Access with Tailscale
+
+![Secure Remote Access Tailscale Image](/provisioning-securing-home-lab-startup-sandbox-network/secure-with-tailscale.png)
 
 This is where things start to get a bit more technical, but also where the setup becomes really powerful.
 
@@ -377,7 +387,7 @@ Some ISPs use **Carrier Grade Network Address Translation**. This means:
 
 In this setup, even if you configure port forwarding on your router, inbound traffic never reaches you. The ISP routers upstream will drop it before it gets anywhere close to your network.
 
-[IMAGE PLACEHOLDER: CGNAT Diagram]
+![CGNAT Diagram](/provisioning-securing-home-lab-startup-sandbox-network/CGNAT.png)
 
 #### Situation B: No Access to the Upstream Router
 
@@ -390,7 +400,7 @@ Even if you enable port forwarding on your isolated router, traffic will still b
 
 In the worst-case scenario, **both** CGNAT and lack of router access apply.
 
-[IMAGE PLACEHOLDER: No Router Admin Access Diagram]
+![No Router Admin Access Diagram](/provisioning-securing-home-lab-startup-sandbox-network/no-upstream-router-admin-access.png)
 
 ---
 
@@ -435,7 +445,7 @@ https://tailscale.com/
 
 Once logged in, you will see a page showing **waiting for devices**.
 
-[IMAGE PLACEHOLDER: Tailscale Admin Console Waiting for Devices]
+![Tailscale Admin Console Waiting for Devices](/provisioning-securing-home-lab-startup-sandbox-network/awaiting-devices.png)
 
 ---
 
@@ -522,7 +532,7 @@ You will see the new device appear with advertised routes. Edit the device setti
 
 Once approved, those routes become reachable through Tailscale.
 
-[IMAGE PLACEHOLDER: Approving Subnet Routes in Tailscale]
+![Approving Subnet Routes in Tailscale](/provisioning-securing-home-lab-startup-sandbox-network/approving-routes.png)
 
 ---
 
