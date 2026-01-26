@@ -23,17 +23,24 @@ export const SafeImage: React.FC<SafeImageProps> = ({ src, fallbackSrc = "/favic
         let isMounted = true;
         const controller = new AbortController();
         const signal = controller.signal;
+        let createdUrl: string | null = null;
 
-        const fetchImage = async () => {
+        const processSrc = async () => {
             try {
-                const response = await fetch(src, { signal, referrerPolicy: 'no-referrer' });
-                if (!response.ok) {
-                    throw new Error('Image fetch failed');
-                }
-                const blob = await response.blob();
-                if (isMounted) {
-                    const url = URL.createObjectURL(blob);
-                    setObjectUrl(url);
+                if (typeof src === 'string') {
+                    const response = await fetch(src, { signal, referrerPolicy: 'no-referrer' });
+                    if (!response.ok) {
+                        throw new Error('Image fetch failed');
+                    }
+                    const blob = await response.blob();
+                    if (isMounted) {
+                        createdUrl = URL.createObjectURL(blob);
+                        setObjectUrl(createdUrl);
+                    }
+                } else {
+                    // Assuming src is a Blob
+                    createdUrl = URL.createObjectURL(src);
+                    setObjectUrl(createdUrl);
                 }
             } catch (err) {
                 if ((err as Error).name !== 'AbortError') {
@@ -49,13 +56,13 @@ export const SafeImage: React.FC<SafeImageProps> = ({ src, fallbackSrc = "/favic
             }
         };
 
-        fetchImage();
+        processSrc();
 
         return () => {
             isMounted = false;
             controller.abort();
-            if (objectUrl) {
-                URL.revokeObjectURL(objectUrl);
+            if (createdUrl) {
+                URL.revokeObjectURL(createdUrl);
             }
         };
     }, [src]);
