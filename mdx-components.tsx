@@ -41,7 +41,7 @@ const CodeBlockWrapper = ({ children, ...props }: CodeBlockWrapperProps) => {
 
     return (
         <div className="relative my-6">
-            <div className="rounded-lg overflow-hidden">
+            <div className="rounded-lg overflow-x-auto">
                 <div className="flex items-center px-4 py-2 bg-gray-800 text-gray-400 text-xs font-mono rounded-t-lg">
                     <span className="h-3 w-3 bg-red-500 rounded-full mr-1"></span>
                     <span className="h-3 w-3 bg-yellow-400 rounded-full mr-1"></span>
@@ -95,7 +95,7 @@ const CodeBlockWrapper = ({ children, ...props }: CodeBlockWrapperProps) => {
 export function useMDXComponents(components: MDXComponents): MDXComponents {
     return {
         wrapper: ({ children }) => (
-            <div className="container mx-auto max-w-4xl px-4 py-8">{children}</div>
+            <div className="container overflow-x-hidden max-w-sm md:max-w-4xl mx-auto px-4 py-8">{children}</div>
         ),
         // Allows customizing built-in components, e.g. to add styling.
         h1: ({ children, ...props }) => (
@@ -147,7 +147,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
             </span>
         ),
         hr: () => <hr className="my-4 border-slate-200 dark:border-slate-700 md:my-8" />,
-        table: ({ children }) => <div className="my-6 w-full overflow-y-auto"><table className="w-full">{children}</table></div>,
+        table: ({ children }) => <div className="my-6 w-full overflow-x-auto max-w-full"><table className="w-full">{children}</table></div>,
         tr: ({ children }) => <tr className="m-0 border-t border-slate-300 p-0 even:bg-slate-100 dark:border-slate-700 dark:even:bg-slate-800">{children}</tr>,
         th: ({ children }) => <th className="border border-slate-200 px-4 py-2 text-left font-bold dark:border-slate-700 [&[align=center]]:text-center [&[align=right]]:text-right">{children}</th>,
         td: ({ children }) => <td className="border border-slate-200 px-4 py-2 text-left dark:border-slate-700 [&[align=center]]:text-center [&[align=right]]:text-right">{children}</td>,

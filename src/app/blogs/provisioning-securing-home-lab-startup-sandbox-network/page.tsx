@@ -8,6 +8,7 @@ import { Footer } from "@/components/pages/landing/footer";
 import { BuyMeACoffee } from "@/components/utilities/shared/buymecoffee";
 import { TOC } from "@/components/utilities/shared/toc";
 
+
 export default function MDXPage({
     children,
 }: {

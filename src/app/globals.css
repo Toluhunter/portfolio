@@ -12,9 +12,6 @@
   --foreground-dark: #ededed;
   --callout-dark: #804F94;
 
-  --background: var(--background-dark);
-  --foreground: var(--foreground-dark);
-  --callout: var(--callout-dark);
 }
 
 /* Responsive base font sizes */

@@ -2,6 +2,7 @@ import YouTube from '@/components/utilities/markdown/Youtube';
 import { NavBar } from "@/components/utilities/shared/navbar";
 import { Footer } from "@/components/pages/landing/footer";
 import { BuyMeACoffee } from "@/components/utilities/shared/buymecoffee";
+import { AuthProvider } from "@/components/utilities/shared/AuthContext";
 
 <NavBar/>
 
@@ -189,6 +190,10 @@ Because you cannot move the system-wide directory, the commands to move and link
 
 And that's it! You've successfully moved your apps and personal files to the SD card, freeing up valuable space on your internal drive while keeping everything perfectly functional in Desktop Mode. If you ever want to reverse the process, simply delete the symlink and move the folder back to its original location.
 <div className="mb-8"/>
+
+<AuthProvider>
+    <CommentSection/>
+</AuthProvider>
 
 <BuyMeACoffee/>
 <Footer/>
