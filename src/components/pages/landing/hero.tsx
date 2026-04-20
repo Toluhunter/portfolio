@@ -54,7 +54,7 @@ export const Herosection = () => {
                             </a>
 
                         </button>
-                        <div className="bg-background text-foreground border-2 border-white w-1/2 md:w-full py-1 px-5 text-sm md:text-lg text-center">
+                        <div className="bg-background text-foreground border-2 border-white w-full py-1 px-5 text-sm md:text-lg text-center">
                             <div className="bg-callout w-3 h-3 inline-block"></div> Currently Working on BeemBridge
                         </div>
 
