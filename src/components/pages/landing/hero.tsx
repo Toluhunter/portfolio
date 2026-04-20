@@ -12,49 +12,37 @@ export const Herosection = () => {
     return (
 
         <>
-            <section className="w-full flex relative items-center 2xl:h-screen max-h-[1600px] flex flex-col pt-25 overflow-hidden">
+            <section className="relative w-full flex flex-col items-stretch pt-25 overflow-hidden 2xl:h-screen max-h-[1600px]">
                 <Slider />
 
-                <div className="flex h-full flex-col md:flex-row md:gap-5 xl:gap-60 container md:justify-center z-20 ">
-                    <div className="md:hidden flex justify-center items-end relative pb-10" id="mobile-profile-pic">
-                        <div className="border border-callout object-cover rounded-lg">
-                            {!imageLoaded && (
-                                <div className="absolute inset-0 bg-gray-300 dark:bg-gray-700 animate-pulse rounded-lg"></div>
-                            )}
-                            <Image
-                                className="relative object-contain"
-                                src="https://assets.toluhunter.com/landing/profilePic.png"
-                                width={270}
-                                height={270}
-                                alt="Tolulope Fakoya"
-                                onLoad={() => setImageLoaded(true)}
-                            />
-                        </div>
-                    </div>
-                    <div id="profile-pic" className="hidden md:flex w-[34.75rem] flex">
-                        <div className="flex justify-center items-center w-full h-full">
-                            {!imageLoaded && (
-                                <div className="absolute inset-0 bg-gray-300 dark:bg-gray-700 animate-pulse rounded-lg"></div>
-                            )}
-                            {/* <Image className="hidden md:max-2xl:block relative" src="/about/me2.png" width={400} height={300} alt="Tolulope Fakoya" /> */}
-                            <Image id="full-screen-image" className="border border-callout object-top h-3/4 rounded-lg object-cover relative" src="https://assets.toluhunter.com/landing/profilePic.png" width={500} height={400} alt="Tolulope Fakoya" onLoadingComplete={() => setImageLoaded(true)} />
-                        </div>
+                <div className="container flex flex-col md:flex-row md:gap-10 xl:gap-20 md:items-center md:justify-center z-20">
+                    <div className="flex justify-center items-center py-8 md:py-0 md:w-[34.75rem] relative">
+                        {!imageLoaded && (
+                            <div className="absolute inset-0 bg-gray-300 dark:bg-gray-700 animate-pulse rounded-lg" />
+                        )}
+                        <Image
+                            className="border border-callout rounded-lg object-cover object-top w-[270px] md:w-[500px] md:h-[400px]"
+                            src="https://assets.toluhunter.com/landing/profilePic.png"
+                            width={500}
+                            height={400}
+                            alt="Tolulope Fakoya"
+                            onLoad={() => setImageLoaded(true)}
+                        />
                     </div>
 
-                    <div className="text-xl h-1/3 md:text-2xl lg:text-4xl xl:text-5xl 4xl:text-6xl flex text-left flex flex-col gap-10 justify-between items-center md:items-start">
+                    <div className="flex flex-col gap-8 items-center md:items-start text-center md:text-left md:max-w-[28rem] xl:max-w-[36rem] text-xl md:text-2xl lg:text-4xl xl:text-5xl">
 
                         <p>
                             toluhunter:~<span className="text-callout">$</span> whoami <br />
                             <span className="text-callout">Tolulope Fakoya</span>
                         </p>
-                        <div className="inline">
+                        <div className="w-full">
                             toluhunter:~<span className="text-callout">$</span><span className="text-callout"> ./</span>whatido <br />
-                            <span className="text-callout">
+                            <div className="text-callout">
                                 <Type />
-
-                            </span>
+                            </div>
                         </div>
-                        <p className="text-sm hidden md:block md:text-lg md:w-100 text-center md:text-left text-foreground font-fira-code">
+                        <p className="text-sm md:text-lg text-foreground font-fira-code">
                             <i>He builds secure, scalable systems where cloud engineering meets innovation.</i>
                         </p>
 
