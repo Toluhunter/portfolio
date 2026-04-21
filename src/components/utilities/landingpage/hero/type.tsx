@@ -106,7 +106,7 @@ const Type = () => {
         // Conditionally apply 'invisible' class when text is empty.
         // Render a non-breaking space (\u00A0) if displayContent is empty,
         // ensuring the element always occupies space.
-        <span className={`min-h-[1.5em] block break-words ${text.length === 0 ? 'invisible' : ''}`}>
+        <span className={`min-h-[2.5em] block break-words ${text.length === 0 ? 'invisible' : ''}`}>
             {displayContent || '\u00A0'} {/* Render non-breaking space if displayContent is empty */}
         </span>
     );
