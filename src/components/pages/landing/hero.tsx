@@ -2,11 +2,45 @@
 import Icon from "@/components/utilities/shared/icon";
 import Slider from "@/components/utilities/landingpage/hero/slider";
 import Type from "@/components/utilities/landingpage/hero/type";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import { useAudio } from "@/components/utilities/shared/audio";
 
 
 export const Herosection = () => {
     const [videoLoaded, setVideoLoaded] = useState(false);
+    const videoRef = useRef<HTMLVideoElement>(null);
+    const { isSoundOn, toggleSound } = useAudio();
+
+    useEffect(() => {
+        const video = videoRef.current;
+        if (!video) return;
+        if (video.readyState >= 2) {
+            setVideoLoaded(true);
+            return;
+        }
+        const handler = () => setVideoLoaded(true);
+        video.addEventListener('loadeddata', handler);
+        return () => video.removeEventListener('loadeddata', handler);
+    }, []);
+
+    // AudioContext → video: keep video muted state in sync with the global sound toggle
+    useEffect(() => {
+        const video = videoRef.current;
+        if (!video) return;
+        video.muted = !isSoundOn;
+    }, [isSoundOn]);
+
+    // video → AudioContext: if the user mutes/unmutes via native controls, update the global button
+    useEffect(() => {
+        const video = videoRef.current;
+        if (!video) return;
+        const handleVolumeChange = () => {
+            if (video.muted === !isSoundOn) return;
+            toggleSound();
+        };
+        video.addEventListener('volumechange', handleVolumeChange);
+        return () => video.removeEventListener('volumechange', handleVolumeChange);
+    }, [isSoundOn, toggleSound]);
 
     return (
 
@@ -22,20 +56,22 @@ export const Herosection = () => {
                 </div>
 
                 <div id="content-container" className="container mx-auto flex flex-col md:flex-row md:gap-10 xl:gap-20 md:items-center md:justify-center z-20">
-                    <div id="image-column" className="flex justify-center items-center py-8 md:py-0 md:w-[34.75rem] relative">
+                    <div id="video-column" className="flex justify-center items-center py-8 md:py-0 md:w-[34.75rem] relative">
                         {!videoLoaded && (
                             <div className="absolute inset-0 bg-gray-300 dark:bg-gray-700 animate-pulse rounded-lg" />
                         )}
                         <video
-                            className="border border-callout rounded-lg object-cover w-full aspect-video md:w-[500px]"
-                            src="https://assets.toluhunter.com/landing/intro-video.mp4"
+                            ref={videoRef}
+                            className="border border-callout rounded-lg object-cover w-full aspect-video"
                             poster="https://assets.toluhunter.com/landing/profilePic.png"
                             autoPlay
                             muted
                             loop
                             playsInline
-                            onLoadedData={() => setVideoLoaded(true)}
-                        />
+                            controls
+                        >
+                            <source src="https://assets.toluhunter.com/landing/intro-video-web.mp4" type="video/mp4" />
+                        </video>
                     </div>
 
                     <div id="content-column" className="flex flex-col gap-8 items-center md:items-start text-center md:text-left md:max-w-[28rem] xl:max-w-[36rem] text-xl md:text-2xl lg:text-4xl xl:text-5xl">
