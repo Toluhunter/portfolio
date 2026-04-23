@@ -55,7 +55,7 @@ export const Herosection = () => {
                     </span>Currently Working on BeemBridge
                 </div>
 
-                <div id="content-container" className="container mx-auto flex flex-col md:flex-row md:gap-10 xl:gap-20 md:items-center md:justify-center z-20">
+                <div id="content-container" className="container mx-auto flex flex-col md:flex-row md:gap-10 xl:gap-20 md:items-center md:justify-center px-5 md:px-0 z-20">
                     <div id="video-column" className="flex justify-center items-center py-8 md:py-0 md:w-[34.75rem] relative">
                         {!videoLoaded && (
                             <div className="absolute inset-0 bg-gray-300 dark:bg-gray-700 animate-pulse rounded-lg" />
@@ -74,7 +74,7 @@ export const Herosection = () => {
                         </video>
                     </div>
 
-                    <div id="content-column" className="flex flex-col gap-8 items-center md:items-start text-center md:text-left md:max-w-[28rem] xl:max-w-[36rem] text-xl md:text-2xl lg:text-4xl xl:text-5xl">
+                    <div id="content-column" className="flex flex-col gap-8 items-start text-left md:max-w-[28rem] xl:max-w-[36rem] text-3xl lg:text-4xl xl:text-5xl">
 
                         <p id="whoami-line">
                             toluhunter:~<span className="text-callout">$</span> whoami <br />
