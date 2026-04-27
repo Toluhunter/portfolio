@@ -16,7 +16,7 @@ const NavLinks = ({ className }: { className?: string }) => {
             <li><Link href="/blogs" className="py-2 px-4 hover:text-[var(--calcout-dark)] transition-colors duration-300">Blogs</Link></li>
             <li><Link href="/labs" className="py-2 px-4 hover:text-[var(--calcout-dark)] transition-colors duration-300">Labs</Link></li>
             <li><Link href="/cv" className="py-2 px-4 hover:text-[var(--calcout-dark)] transition-colors duration-300">CV</Link></li>
-            <li><Link href="/#contact" className="py-2 px-4 hover:text-[var(--calcout-dark)] transition-colors duration-300">Contact</Link></li>
+            <li><Link href="/book" className="py-2 px-4 border-2 border-callout rounded-md hover:bg-callout hover:text-white transition-colors duration-300">Book a Call</Link></li>
         </ul>
     )
 }

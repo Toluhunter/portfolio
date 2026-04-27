@@ -4,6 +4,7 @@ import Slider from "@/components/utilities/landingpage/hero/slider";
 import Type from "@/components/utilities/landingpage/hero/type";
 import { useState, useEffect, useRef } from "react";
 import { useAudio } from "@/components/utilities/shared/audio";
+import Link from "next/link";
 
 
 export const Herosection = () => {
@@ -86,18 +87,18 @@ export const Herosection = () => {
                                 <Type />
                             </div>
                         </div>
-                        <p id="tagline" className="text-sm md:text-lg text-foreground font-fira-code">
-                            <i>He builds secure, scalable systems where cloud engineering meets innovation.</i>
-                        </p>
+                        <div id="tagline" className="flex flex-col gap-3">
+                            <p className="text-sm md:text-lg text-foreground font-fira-code">
+                                <i>Behind every unexpected outage, overpriced bill, or security incident is infrastructure that wasn't built to last.</i>
+                            </p>
+                            <p className="text-sm md:text-lg text-foreground/60 font-fira-code">
+                                <i>It doesn't have to be this way, and if you're planning something new, it doesn't have to start that way either.</i>
+                            </p>
+                        </div>
 
-                        <button id="contact-button" className="px-5 py-2 text-base md:text-xl border-2 border-callout hover:bg-callout hover:text-white">
-                            <a
-                                href="mailto:toluhunterdev@gmail.com"
-                            >
-                                Contact Me
-                            </a>
-
-                        </button>
+                        <Link href="/book" className="px-5 py-2 text-base md:text-xl border-2 border-callout rounded-md hover:bg-callout hover:text-white transition-colors duration-300">
+                            Book A Free Meeting
+                        </Link>
 
 
                     </div>
