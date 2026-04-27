@@ -29,7 +29,7 @@ function Slider() {
         // This ensures it acts as a background that other elements can overlap.
         <div className="absolute inset-0 w-full h-full overflow-hidden">
             {/* Dark overlay for visual effect */}
-            <div className="absolute inset-0 bg-background opacity-90 md:opacity-70 z-10"></div>
+            <div className="absolute inset-0 bg-background opacity-90 md:opacity-84 z-10"></div>
             {/* Another dark overlay, slightly lighter */}
             <div className="absolute inset-0 bg-background opacity-40 z-0"></div>
 
