@@ -1,4 +1,4 @@
-# Tolulope Fakoya (Hunter) — Portfolio
+# Tolulope Fakoya (Hunter) - Portfolio
 
 **Live site:** [toluhunter.com](https://toluhunter.com)
 
