@@ -96,10 +96,22 @@ body:not(.dark) {
   --callout: var(--callout-light);
 }
 
+@keyframes nudge-right {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(6px); }
+}
+
+@keyframes nudge-left {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-6px); }
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-callout: var(--callout);
+  --animate-nudge-right: nudge-right 1.2s ease-in-out infinite;
+  --animate-nudge-left: nudge-left 1.2s ease-in-out infinite;
 }
 
 
