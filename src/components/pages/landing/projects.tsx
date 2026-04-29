@@ -28,10 +28,10 @@ export const ProjectSection = () => {
     const RightProjectArrowIcon = () => <ChevronRight size={32} />;
 
     return (
-        <section className="relative flex overflow-hidden flex-col items-center bg-[url('https://assets.toluhunter.com/landing/backgrounds/project.webp')] bg-cover bg-center py-10"> {/* Removed overflow-hidden from section */}
+        <section className="relative flex flex-col items-center bg-[url('https://assets.toluhunter.com/landing/backgrounds/project.webp')] bg-cover bg-center py-5 min-h-screen"> {/* Removed overflow-hidden from section */}
             <div className="relative flex flex-col container px-4 md:px-8"> {/* Added padding for small screens */}
                 <Title text="Projects" link="/projects" hasMore={true} /> {/* Assuming you want a link here too */}
-                <div className="relative flex items-center justify-center w-full mt-10"> {/* Added mt-10 for spacing */}
+                <div className="relative flex items-center justify-center w-full">
                     {/* Left Button - positioned absolutely outside the overflow-hidden scrollable area */}
                     {currentProjectIndex > 0 &&
                         <button
@@ -43,7 +43,7 @@ export const ProjectSection = () => {
                         </button>
                     }
 
-                    <div className="w-5/6">
+                    <div className="w-5/6 h-[740px] lg:h-[500px] overflow-y-auto no-scrollbar">
                         <ProjectListing project={projects[currentProjectIndex]} />
                     </div>
 

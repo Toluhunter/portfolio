@@ -60,8 +60,8 @@ export const ProjectListing = ({ project }: { project: Project }) => {
 
 
     return (
-        <div className="flex flex-col gap-10 mt-10 mb-10 px-4 md:px-0"> {/* Added padding for smaller screens */}
-            <span className="flex gap-5 flex-row mt-10 items-center text-foreground">
+        <div className="flex flex-col gap-10 px-4 md:px-0">
+            <span className="flex gap-5 flex-row items-center text-foreground">
                 <Icon name="check-circle" classes="w-7 h-7 text-callout" /> {/* Added color to check-circle */}
                 <div className="w-[1px] h-5 bg-foreground" />
                 {project.status}
