@@ -28,32 +28,28 @@ export const ProjectSection = () => {
 
                 <div className="flex flex-col flex-1 justify-center gap-4">
 
-                    <div id="project-carousel" className="relative flex items-center justify-center w-full">
-                        {/* Desktop-only: absolute left arrow with nudge */}
-                        {currentProjectIndex > 0 &&
-                            <button
-                                onClick={handlePrevProjectClick}
-                                className="hidden lg:flex absolute -left-12 z-20 text-foreground focus:outline-none cursor-pointer"
-                                aria-label="Previous project"
-                            >
-                                <MdOutlineKeyboardArrowLeft size={48} className="animate-nudge-left" />
-                            </button>
-                        }
+                    <div id="project-carousel" className="flex items-center w-full gap-4 xl:gap-8 2xl:gap-10">
+                        <button
+                            onClick={handlePrevProjectClick}
+                            className={`hidden lg:flex flex-shrink-0 text-foreground focus:outline-none cursor-pointer ${currentProjectIndex === 0 ? 'invisible' : ''}`}
+                            aria-label="Previous project"
+                            disabled={currentProjectIndex === 0}
+                        >
+                            <MdOutlineKeyboardArrowLeft size={48} className="animate-nudge-left" />
+                        </button>
 
-                        <div id="project-card" className="w-full lg:w-5/6 lg:min-h-[33rem]">
+                        <div id="project-card" className="flex-1 lg:min-h-[33rem]">
                             <ProjectListing project={projects[currentProjectIndex]} />
                         </div>
 
-                        {/* Desktop-only: absolute right arrow with nudge */}
-                        {currentProjectIndex < projects.length - 1 &&
-                            <button
-                                onClick={handleNextProjectClick}
-                                className="hidden lg:flex absolute -right-12 z-20 text-foreground focus:outline-none cursor-pointer"
-                                aria-label="Next project"
-                            >
-                                <MdOutlineKeyboardArrowRight size={48} className="animate-nudge-right" />
-                            </button>
-                        }
+                        <button
+                            onClick={handleNextProjectClick}
+                            className={`hidden lg:flex flex-shrink-0 text-foreground focus:outline-none cursor-pointer ${currentProjectIndex === projects.length - 1 ? 'invisible' : ''}`}
+                            aria-label="Next project"
+                            disabled={currentProjectIndex === projects.length - 1}
+                        >
+                            <MdOutlineKeyboardArrowRight size={48} className="animate-nudge-right" />
+                        </button>
                     </div>
 
                     {/* Mobile-only: prev / counter / next row, no nudge, no background */}
