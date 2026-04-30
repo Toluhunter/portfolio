@@ -22,6 +22,10 @@ export const ProjectListing = ({ project }: { project: Project }) => {
     const images = project.images;
 
     useEffect(() => {
+        setCurrentImageIndex(0);
+    }, [project]);
+
+    useEffect(() => {
         if (images.length <= 1 || isHovered) return;
         const interval = setInterval(() => {
             setCurrentImageIndex(prev => (prev + 1) % images.length);
@@ -31,7 +35,7 @@ export const ProjectListing = ({ project }: { project: Project }) => {
 
     const visitButton = project.websiteLink && (
         <a href={project.websiteLink} target="_blank" rel="noopener noreferrer" className="self-start">
-            <button className="bg-callout text-foreground py-2 px-7 rounded-md w-fit hover:bg-callout transition-colors duration-300 border-2 border-callout">
+            <button className="bg-callout text-foreground py-2 px-7 rounded-md w-fit hover:bg-callout transition-colors duration-300 border-2 border-callout cursor-pointer">
                 VISIT APP WEBSITE
             </button>
         </a>
@@ -61,8 +65,8 @@ export const ProjectListing = ({ project }: { project: Project }) => {
     );
 
     return (
-        <div className="flex flex-col gap-10 px-4 md:px-0">
-            <span className="flex gap-5 flex-row items-center text-foreground">
+        <div id="project-listing" className="flex flex-col gap-10 px-4 md:px-0">
+            <span id="project-status" className="flex gap-5 flex-row items-center text-foreground">
                 <Icon name="check-circle" classes="w-7 h-7 text-callout" />
                 <div className="w-[1px] h-5 bg-foreground" />
                 {project.status}
@@ -77,7 +81,7 @@ export const ProjectListing = ({ project }: { project: Project }) => {
                 </div>
 
                 {/* DESKTOP: full left column with all text content */}
-                <div className="hidden lg:flex flex-col gap-5 text-left lg:w-1/2">
+                <div id="project-info" className="hidden lg:flex flex-col gap-5 text-left lg:w-1/2">
                     <h1 className="text-foreground text-6xl my-4">{project.name}</h1>
                     <h2 className="text-2xl font-semibold text-gray-400 -mt-4 mb-4">{project.subtitle}</h2>
                     <p className="w-full text-foreground mb-4">{project.description}</p>
@@ -87,6 +91,7 @@ export const ProjectListing = ({ project }: { project: Project }) => {
 
                 {/* Image carousel: second on mobile, right column on desktop */}
                 <div
+                    id="project-image-carousel"
                     className="w-3/4 max-w-[500px] mx-auto mt-8 lg:mt-0 flex-shrink-0"
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
@@ -113,7 +118,7 @@ export const ProjectListing = ({ project }: { project: Project }) => {
                                 <button
                                     key={index}
                                     onClick={() => setCurrentImageIndex(index)}
-                                    className={`rounded-full transition-all duration-300 ${
+                                    className={`rounded-full transition-all duration-300 cursor-pointer ${
                                         index === currentImageIndex
                                             ? 'bg-foreground w-4 h-2'
                                             : 'bg-gray-500 w-2 h-2 hover:bg-gray-300'
@@ -126,7 +131,7 @@ export const ProjectListing = ({ project }: { project: Project }) => {
                 </div>
 
                 {/* MOBILE: description, buttons, more info toggle, and dropdown appear after the image */}
-                <div className="lg:hidden flex flex-col gap-5 text-left w-full mt-6">
+                <div id="project-info-mobile" className="lg:hidden flex flex-col gap-5 text-left w-full mt-6">
                     <p className="w-full text-foreground">{project.description}</p>
                     {visitButton}
                     {moreInfoToggle}
@@ -136,7 +141,7 @@ export const ProjectListing = ({ project }: { project: Project }) => {
             </div>
 
             {/* DESKTOP: technologies dropdown sits below the two-column row */}
-            <div className="hidden lg:block">
+            <div id="project-technologies" className="hidden lg:block">
                 {technologiesList}
             </div>
         </div>
