@@ -110,14 +110,14 @@ export default function CommentSection({ articleId, initialComments = [] }: Prop
                     <div className="flex items-center justify-end gap-2">
                         <button
                             onClick={logout}
-                            className="px-3 py-1 rounded border text-sm"
+                            className="px-3 py-1 rounded border text-sm cursor-pointer"
                         >
                             Cancel
                         </button>
                         <button
                             onClick={handleSubmit}
                             disabled={saving || !text.trim()}
-                            className="px-4 py-2 bg-blue-600 text-white rounded disabled:opacity-60 text-sm"
+                            className="px-4 py-2 bg-blue-600 text-white rounded disabled:opacity-60 text-sm cursor-pointer"
                         >
                             {saving ? "Posting…" : "Post comment"}
                         </button>

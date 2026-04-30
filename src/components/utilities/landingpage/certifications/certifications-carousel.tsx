@@ -23,7 +23,7 @@ export const CertificationsCarousel: React.FC<{ certifications: Certification[] 
             {/* Navigation Buttons */}
             <button
                 onClick={() => scroll('left')}
-                className="bg-background bg-opacity-70 text-foreground p-3 rounded-full shadow-lg hover:bg-opacity-100 transition duration-300 z-10 hidden md:block"
+                className="bg-background bg-opacity-70 text-foreground p-3 rounded-full shadow-lg hover:bg-opacity-100 transition duration-300 z-10 hidden md:block cursor-pointer"
                 aria-label="Scroll left"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -40,7 +40,7 @@ export const CertificationsCarousel: React.FC<{ certifications: Certification[] 
             </div>
             <button
                 onClick={() => scroll('right')}
-                className="bg-background bg-opacity-70 text-foreground p-3 rounded-full shadow-lg hover:bg-opacity-100 transition duration-300 z-10 hidden md:block"
+                className="bg-background bg-opacity-70 text-foreground p-3 rounded-full shadow-lg hover:bg-opacity-100 transition duration-300 z-10 hidden md:block cursor-pointer"
                 aria-label="Scroll right"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

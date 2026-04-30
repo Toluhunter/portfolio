@@ -86,11 +86,11 @@ const AudioToggleButton = () => {
         <button
             onClick={toggleSound}
             className={`
-        fixed bottom-10 left-10 z-50 
-        p-3 rounded-full 
-        text-white transition-colors duration-200 
+        fixed bottom-10 left-10 z-50
+        p-3 rounded-full
+        text-white transition-colors duration-200
         ${isSoundOn ? 'bg-green-600 hover:bg-green-700' : 'bg-gray-700 hover:bg-gray-800'}
-        focus:outline-none focus:ring-4 focus:ring-gray-300
+        focus:outline-none focus:ring-4 focus:ring-gray-300 cursor-pointer
       `}
             aria-label={isSoundOn ? "Turn sound off" : "Turn sound on"}
         >

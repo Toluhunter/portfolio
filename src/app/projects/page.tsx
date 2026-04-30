@@ -61,7 +61,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
                 {project.images.length > 0 && (
                     <button
                         onClick={handlePrevClick}
-                        className="absolute left-2 z-10 p-2 bg-black bg-opacity-50 text-white rounded-full focus:outline-none hover:bg-opacity-75 transition-colors duration-200"
+                        className="absolute left-2 z-10 p-2 bg-black bg-opacity-50 text-white rounded-full focus:outline-none hover:bg-opacity-75 transition-colors duration-200 cursor-pointer"
                         aria-label="Previous image"
                     >
                         <ChevronLeft size={20} />
@@ -78,7 +78,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
                 {project.images.length > 0 && (
                     <button
                         onClick={handleNextClick}
-                        className="absolute right-2 z-10 p-2 bg-black bg-opacity-50 text-white rounded-full focus:outline-none hover:bg-opacity-75 transition-colors duration-200"
+                        className="absolute right-2 z-10 p-2 bg-black bg-opacity-50 text-white rounded-full focus:outline-none hover:bg-opacity-75 transition-colors duration-200 cursor-pointer"
                         aria-label="Next image"
                     >
                         <ChevronRight size={20} />
@@ -110,7 +110,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
             {project.websiteLink && (
                 <div className="w-full flex justify-center lg:justify-end mt-2 mr-5">
                     <a href={project.websiteLink} target="_blank" rel="noopener noreferrer" className="self-end w-fit"> {/* Changed self-center to self-end and w-full to w-fit */}
-                        <button className="bg-callout-custom text-white py-2 px-7 rounded-md hover:bg-purple-700 transition-colors duration-300 border-2 border-callout-custom font-bold">
+                        <button className="bg-callout-custom text-white py-2 px-7 rounded-md hover:bg-purple-700 transition-colors duration-300 border-2 border-callout-custom font-bold cursor-pointer">
                             VISIT APP WEBSITE
                         </button>
                     </a>

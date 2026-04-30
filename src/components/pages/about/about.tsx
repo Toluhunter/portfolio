@@ -79,7 +79,7 @@ export const AboutSection = () => {
               <button
                 key={section}
                 onClick={() => setActiveSection(section)}
-                className={`p-4 px-2 text-center rounded-lg border border-callout text-lg text-foreground transition-colors duration-300 ${activeSection === section
+                className={`p-4 px-2 text-center rounded-lg border border-callout text-lg text-foreground transition-colors duration-300 cursor-pointer ${activeSection === section
                   ? 'bg-callout text-white'
                   : 'bg-transparent hover:bg-callout/20'
                   }`}
