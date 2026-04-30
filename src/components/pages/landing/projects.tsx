@@ -1,6 +1,6 @@
 import { Title } from "@/components/utilities/shared/title"
 import { ProjectListing } from "@/components/utilities/landingpage/project/project-listing-landing"
-import Icon from "@/components/utilities/shared/icon"
+import { FaGithub } from "react-icons/fa"
 import { useState } from "react"
 import projects from "@/data/projects.json";
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from "react-icons/md";
@@ -84,9 +84,9 @@ export const ProjectSection = () => {
                             href="https://github.com/Toluhunter"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center justify-center bg-foreground text-background py-3 px-8 rounded-lg shadow-lg hover:text-foreground hover:bg-background transition-colors duration-300 ease-in-out font-bold text-lg"
+                            className="flex items-center justify-center bg-transparent text-foreground border-2 border-foreground py-3 px-8 rounded-lg shadow-lg hover:bg-foreground hover:text-background hover:border-transparent transition-colors duration-300 ease-in-out font-bold text-lg"
                         >
-                            <Icon name="github" classes="w-6 h-6" />
+                            <FaGithub className="w-6 h-6" />
                             <span className="ml-3">Check other repositories</span>
                         </a>
                     </div>
