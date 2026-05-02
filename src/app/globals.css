@@ -106,12 +106,30 @@ body:not(.dark) {
   50% { transform: translateX(-6px); }
 }
 
+@keyframes slide-from-top {
+  from { opacity: 0; transform: translateY(-40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-from-right {
+  from { opacity: 0; transform: translateX(60px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slide-from-left {
+  from { opacity: 0; transform: translateX(-60px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-callout: var(--callout);
   --animate-nudge-right: nudge-right 1.2s ease-in-out infinite;
   --animate-nudge-left: nudge-left 1.2s ease-in-out infinite;
+  --animate-slide-from-top: slide-from-top 0.5s ease-out forwards;
+  --animate-slide-from-right: slide-from-right 0.5s ease-out forwards;
+  --animate-slide-from-left: slide-from-left 0.5s ease-out forwards;
 }
 
 

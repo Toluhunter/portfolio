@@ -1,28 +1,55 @@
 import { Title } from "@/components/utilities/shared/title"
 import { ProjectListing } from "@/components/utilities/landingpage/project/project-listing-landing"
 import { FaGithub } from "react-icons/fa"
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import projects from "@/data/projects.json";
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from "react-icons/md";
 
 
 export const ProjectSection = () => {
     const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
+    const [direction, setDirection] = useState<'left' | 'right' | null>(null);
+    const [hasEntered, setHasEntered] = useState(false);
+    const sectionRef = useRef<HTMLElement>(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setHasEntered(true);
+                    observer.disconnect();
+                }
+            },
+            { threshold: 0.1 }
+        );
+        if (sectionRef.current) observer.observe(sectionRef.current);
+        return () => observer.disconnect();
+    }, []);
 
     const handlePrevProjectClick = () => {
+        setDirection('left');
         setCurrentProjectIndex((prevIndex) =>
             prevIndex === 0 ? projects.length - 1 : prevIndex - 1
         );
     };
 
     const handleNextProjectClick = () => {
+        setDirection('right');
         setCurrentProjectIndex((prevIndex) =>
             prevIndex === projects.length - 1 ? 0 : prevIndex + 1
         );
     };
 
+    const slideClass = !hasEntered
+        ? 'opacity-0'
+        : direction === 'right'
+        ? 'animate-slide-from-right'
+        : direction === 'left'
+        ? 'animate-slide-from-left'
+        : 'animate-slide-from-top';
+
     return (
-        <section id="projects" className="relative flex flex-col items-center min-h-screen bg-[url('https://assets.toluhunter.com/landing/backgrounds/project.webp')] bg-cover bg-center py-7">
+        <section ref={sectionRef} id="projects" className="relative flex flex-col items-center min-h-screen bg-[url('https://assets.toluhunter.com/landing/backgrounds/project.webp')] bg-cover bg-center py-7">
             <div className="relative flex flex-col flex-1 container px-4 md:px-8">
                 <Title text="Projects" link="/projects" hasMore={true} />
 
@@ -38,7 +65,7 @@ export const ProjectSection = () => {
                             <MdOutlineKeyboardArrowLeft size={48} className="animate-nudge-left" />
                         </button>
 
-                        <div id="project-card" className="flex-1 lg:min-h-[33rem]">
+                        <div id="project-card" key={currentProjectIndex} className={`flex-1 lg:min-h-[33rem] ${slideClass}`}>
                             <ProjectListing project={projects[currentProjectIndex]} />
                         </div>
 
