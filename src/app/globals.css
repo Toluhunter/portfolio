@@ -121,6 +121,11 @@ body:not(.dark) {
   to   { opacity: 1; transform: translateX(0); }
 }
 
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -130,6 +135,7 @@ body:not(.dark) {
   --animate-slide-from-top: slide-from-top 0.5s ease-out forwards;
   --animate-slide-from-right: slide-from-right 0.5s ease-out forwards;
   --animate-slide-from-left: slide-from-left 0.5s ease-out forwards;
+  --animate-marquee: marquee 20s linear infinite;
 }
 
 
