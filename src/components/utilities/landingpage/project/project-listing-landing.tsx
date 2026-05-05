@@ -6,7 +6,7 @@ import { useState, useEffect } from "react"
 export interface Project {
     name: string;
     status: string;
-    description: string;
+    description: string[];
     images: string[];
     websiteLink?: string;
     technologies?: string[];
@@ -15,7 +15,7 @@ export interface Project {
 }
 
 export const ProjectListing = ({ project }: { project: Project }) => {
-    const [showTechnologies, setShowTechnologies] = useState(false);
+    const [showDetails, setShowDetails] = useState(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
 
@@ -41,28 +41,46 @@ export const ProjectListing = ({ project }: { project: Project }) => {
         </a>
     );
 
-    const moreInfoToggle = (
-        <div
-            className="flex h-fit items-center text-foreground cursor-pointer text-md hover:text-foreground transition-colors duration-200 self-start"
-            onClick={() => setShowTechnologies(!showTechnologies)}
+    const technicalDetailsToggle = (
+        <button
+            className="flex items-center gap-3 self-start text-sm font-semibold text-foreground border border-foreground/40 rounded-md px-4 py-2 hover:border-foreground hover:bg-foreground/10 transition-all duration-200 cursor-pointer"
+            onClick={() => setShowDetails(!showDetails)}
         >
-            <span className="mr-5">more info</span>
-            {showTechnologies
-                ? <Icon color="currentColor" name="uparrow" classes="w-5 h-5" />
-                : <Icon color="currentColor" name="downarrow" classes="w-5 h-5" />}
+            <span>Technical Details</span>
+            {showDetails
+                ? <Icon color="currentColor" name="uparrow" classes="w-4 h-4" />
+                : <Icon color="currentColor" name="downarrow" classes="w-4 h-4" />}
+        </button>
+    );
+
+    const detailsPanel = showDetails && (
+        <div className="w-full p-5 bg-background rounded-lg text-foreground shadow-xl animate-fade-in flex flex-col gap-6">
+            {project.technologies && project.technologies.length > 0 && (
+                <div>
+                    <h3 className="font-bold text-lg mb-3 border-b border-foreground/20 pb-2">Stack</h3>
+                    <ul className="list-disc list-inside space-y-1 text-sm">
+                        {project.technologies.map((tech, index) => (
+                            <li key={index}>{tech}</li>
+                        ))}
+                    </ul>
+                </div>
+            )}
+            {project.roles && project.roles.length > 0 && (
+                <div>
+                    <h3 className="font-bold text-lg mb-3 border-b border-foreground/20 pb-2">Key Contributions</h3>
+                    <ul className="list-disc list-inside space-y-1 text-sm">
+                        {project.roles.map((role, index) => (
+                            <li key={index}>{role}</li>
+                        ))}
+                    </ul>
+                </div>
+            )}
         </div>
     );
 
-    const technologiesList = showTechnologies && project.technologies && project.technologies.length > 0 && (
-        <div className="w-full p-5 bg-background rounded-lg text-foreground shadow-xl animate-fade-in">
-            <h3 className="font-bold text-lg mb-3 border-b border-foreground pb-2">Technologies Used:</h3>
-            <ul className="list-disc list-inside space-y-1">
-                {project.technologies.map((tech, index) => (
-                    <li key={index}>{tech}</li>
-                ))}
-            </ul>
-        </div>
-    );
+    const descriptionParagraphs = (extraClass = "") => project.description.map((para, index) => (
+        <p key={index} className={`w-full text-foreground ${extraClass}`}>{para}</p>
+    ));
 
     return (
         <div id="project-listing" className="flex flex-col gap-10 px-4 md:px-0">
@@ -84,9 +102,11 @@ export const ProjectListing = ({ project }: { project: Project }) => {
                 <div id="project-info" className="hidden lg:flex flex-col gap-5 text-left lg:w-1/2">
                     <h1 className="text-foreground text-6xl my-4">{project.name}</h1>
                     <h2 className="text-2xl font-semibold text-gray-400 -mt-4 mb-4">{project.subtitle}</h2>
-                    <p className="w-full text-foreground mb-4">{project.description}</p>
+                    <div className="flex flex-col gap-3 mb-4">
+                        {descriptionParagraphs()}
+                    </div>
                     {visitButton}
-                    <div className="mt-4">{moreInfoToggle}</div>
+                    <div className="mt-4">{technicalDetailsToggle}</div>
                 </div>
 
                 {/* Image carousel: second on mobile, right column on desktop */}
@@ -130,19 +150,21 @@ export const ProjectListing = ({ project }: { project: Project }) => {
                     )}
                 </div>
 
-                {/* MOBILE: description, buttons, more info toggle, and dropdown appear after the image */}
+                {/* MOBILE: description, buttons, technical details toggle appear after the image */}
                 <div id="project-info-mobile" className="lg:hidden flex flex-col gap-5 text-left w-full mt-6">
-                    <p className="w-full text-foreground">{project.description}</p>
+                    <div className="flex flex-col gap-3">
+                        {descriptionParagraphs()}
+                    </div>
                     {visitButton}
-                    {moreInfoToggle}
-                    {technologiesList}
+                    {technicalDetailsToggle}
+                    {detailsPanel}
                 </div>
 
             </div>
 
-            {/* DESKTOP: technologies dropdown sits below the two-column row */}
-            <div id="project-technologies" className="hidden lg:block">
-                {technologiesList}
+            {/* DESKTOP: details panel sits below the two-column row */}
+            <div id="project-details" className="hidden lg:block">
+                {detailsPanel}
             </div>
         </div>
     );

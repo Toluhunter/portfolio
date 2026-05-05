@@ -1,51 +1,28 @@
 [
     {
         "name": "BeemBridge",
-        "subtitle": "Redefining Seamless File Transfer",
-        "description": "BeemBridge is an Electron.js desktop application designed for effortless, lightning-fast, and secure PC-to-PC file transfer over Wi-Fi. It eliminates the need for cables, flash drives, or complex network configurations, offering a convenient and reliable solution for moving data between devices.",
+        "subtitle": "File Transfer Without Walls",
+        "description": [
+            "Most file transfer tools force a compatibility check before you send anything. AirDrop works only inside Apple. Quick Share skips iOS and macOS entirely. Beembridge removes that check - install it once on any device and it works with every other device running Beembridge, across all major platforms.",
+            "Beyond the local network, Beembridge supports peer-to-peer transfers between devices on entirely different networks, without routing any file data through a server. A browser mode lets recipients receive files without installing anything. Currently in beta, with a commercial model planned for online transfers."
+        ],
         "status": "In Progress",
         "images": [
             "https://assets.toluhunter.com/projects/beembridge.svg"
         ],
         "websiteLink": "https://www.beembridge.com",
         "technologies": [
+            "Rust: Desktop application and core networking layer",
+            "WebRTC: Browser-based peer-to-peer transfers",
+            "STUN: Cross-network device discovery",
             "React.js: Frontend UI",
-            "Node.js: Backend services",
-            "Electron: Desktop application framework",
-            "TCP & UDP Socket: Peer-to-peer communication",
-            "Tailwind CSS: Styling and responsiveness"
+            "Tailwind CSS: Styling"
         ],
         "roles": [
-            "I designed and developed the frontend user interface.",
-            "I developed the cross-platform desktop application using GO wails.",
-            "I implemented the peer-to-peer networking using TCP & UDP Sockets.",
-            "I set up and managed the project's infrastructure.",
-            "I handled version control and management."
-        ]
-    },
-    {
-        "name": "LocalRAGify",
-        "subtitle": "Zero-Cost Local RAG Chatbot",
-        "description": "LocalRAGify is a free, local Retrieval-Augmented Generation (RAG) system that combines open-source tools like OpenSearch and Ollama with a user-friendly chat interface powered by Streamlit. This project enables you to set up a cost-effective chatbot capable of answering queries using both retrieval and generative AI techniques, offering zero-cost local deployment, interactive responses via Ollama LLM, custom document retrieval with OpenSearch, and a seamless user experience.",
-        "status": "Completed",
-        "images": [
-            "/LocalRAGify-2.png",
-            "/LocalRAGify-1.png"
-        ],
-        "technologies": [
-            "OpenSearch",
-            "Ollama",
-            "Streamlit",
-            "Retrieval-Augmented Generation (RAG)",
-            "Generative AI"
-        ],
-        "websiteLink": "https://www.linkedin.com/pulse/build-your-own-0-chatgpt-tolulope-fakoya-l4akf/",
-        "roles": [
-            "I integrated AI/ML models and developed the RAG system.",
-            "I designed and implemented data indexing and retrieval mechanisms.",
-            "I developed the frontend user interface using Streamlit.",
-            "I set up and managed the project's infrastructure.",
-            "I created the project documentation and article."
+            "Built the full-stack desktop and mobile application, from UI to core networking logic.",
+            "Implemented cross-network P2P using STUN-based device discovery and WebRTC for the browser transfer mode.",
+            "Designed and managed the cloud infrastructure and CI/CD deployment pipeline.",
+            "Architected the product split between the open-source local app and the closed-source online platform."
         ]
     }
 ]
