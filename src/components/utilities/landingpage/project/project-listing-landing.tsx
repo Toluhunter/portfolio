@@ -79,7 +79,7 @@ export const ProjectListing = ({ project }: { project: Project }) => {
     );
 
     const descriptionParagraphs = (extraClass = "") => project.description.map((para, index) => (
-        <p key={index} className={`w-full text-foreground ${extraClass}`}>{para}</p>
+        <p key={index} className={`w-full ${index === 0 ? 'text-foreground' : 'text-foreground/60'} ${extraClass}`}>{para}</p>
     ));
 
     return (
@@ -112,12 +112,12 @@ export const ProjectListing = ({ project }: { project: Project }) => {
                 {/* Image carousel: second on mobile, right column on desktop */}
                 <div
                     id="project-image-carousel"
-                    className="w-3/4 max-w-[500px] mx-auto mt-8 lg:mt-0 flex-shrink-0"
+                    className="w-full max-w-[40rem] lg:max-w-[26rem] mx-auto mt-8 lg:mt-0 flex-shrink-0"
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
                 >
                     {/* Stacked images with fade crossfade */}
-                    <div className="relative w-full aspect-[4/3] border-4 border-foreground rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                    <div className="relative w-full aspect-video border-2 border-foreground rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
                         {images.map((src, index) => (
                             <Image
                                 key={src}

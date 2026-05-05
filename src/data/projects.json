@@ -3,8 +3,8 @@
         "name": "BeemBridge",
         "subtitle": "File Transfer Without Walls",
         "description": [
-            "Most file transfer tools force a compatibility check before you send anything. AirDrop works only inside Apple. Quick Share skips iOS and macOS entirely. Beembridge removes that check - install it once on any device and it works with every other device running Beembridge, across all major platforms.",
-            "Beyond the local network, Beembridge supports peer-to-peer transfers between devices on entirely different networks, without routing any file data through a server. A browser mode lets recipients receive files without installing anything. Currently in beta, with a commercial model planned for online transfers."
+            "AirDrop is Apple-only. Quick Share skips iOS and macOS entirely. Beembridge works across all major platforms. Install it once on any device and it transfers to every other device running Beembridge, regardless of operating system.",
+            "Transfers work on your local network and online. Online transfers are peer-to-peer, so file data never passes through a server. Recipients can also receive files through a browser without installing anything."
         ],
         "status": "In Progress",
         "images": [
