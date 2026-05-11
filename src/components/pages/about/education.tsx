@@ -1,36 +1,15 @@
 "use client";
 import Image from "next/image";
+import content from "@/data/content.json";
 
-// Define the type for a single education entry
 interface Education {
     institution: string;
     degree: string;
     duration: string;
     description: string[];
-    logo: string; // Path to the logo image
+    logo: string;
 }
 
-// Sample data for education. Replace with your own.
-const educations: Education[] = [
-    {
-        institution: "Ontario Tech University",
-        degree: "Master of Science in Computer Science",
-        duration: "2025 - 2027 (Expected)",
-        description: [
-        ],
-        logo: "/school/ontariotech-logo.svg", // Replace with actual logo path
-    },
-    {
-        institution: "Babcock University",
-        degree: "Bachelor of Science in Software Engineering",
-        duration: "2019 - 2023",
-        description: [
-        ],
-        logo: "/school/babcock-logo.svg", // Replace with actual logo path
-    },
-];
-
-// The EducationCard component
 const EducationCard = ({ education }: { education: Education }) => {
     return (
         <div className="flex lg:flex-row flex-col gap-5 md:gap-0 items-start mb-8 rounded-lg shadow-md transition-transform transform hover:scale-105">
@@ -40,7 +19,7 @@ const EducationCard = ({ education }: { education: Education }) => {
                     alt={`${education.institution} logo`}
                     width={80}
                     height={80}
-                    className=" object-contain"
+                    className="object-contain"
                 />
             </div>
             <div className="w-full">
@@ -59,14 +38,11 @@ const EducationCard = ({ education }: { education: Education }) => {
 
 const EducationSection = () => {
     return (
-        <section className="py-12">
-            <h1 className="text-center font-bold text-4xl mb-10 text-foreground">My Education</h1>
-            <div className="max-w-4xl mx-auto px-4 text-foreground">
-                {educations.map((edu, index) => (
-                    <EducationCard key={index} education={edu} />
-                ))}
-            </div>
-        </section>
+        <div className="text-foreground">
+            {content.education.map((edu, index) => (
+                <EducationCard key={index} education={edu} />
+            ))}
+        </div>
     );
 };
 
