@@ -46,8 +46,15 @@ export default function RootLayout({
       >
         <AudioProvider>
           <ThemeWrapper>
+            <div className="lava-container" aria-hidden="true">
+              <div className="lava-blob lava-blob-1" />
+              <div className="lava-blob lava-blob-2" />
+              <div className="lava-blob lava-blob-3" />
+            </div>
             <Toaster />
-            {children}
+            <div className="relative z-[1]">
+              {children}
+            </div>
           </ThemeWrapper>
         </AudioProvider>
       </body>

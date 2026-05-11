@@ -9,7 +9,9 @@ export default function Home() {
     return (
         <>
             <NavBar />
-            <AboutSection/>
+            <div className="min-h-screen bg-background/50 backdrop-blur-sm">
+                <AboutSection/>
+            </div>
             <BuyMeACoffee />
             <Footer />
         </>

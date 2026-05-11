@@ -9,7 +9,9 @@ export default function Home() {
     return (
         <>
             <NavBar />
-            <ServicesPageSection />
+            <div className="min-h-screen bg-background/50 backdrop-blur-sm">
+                <ServicesPageSection />
+            </div>
             <BuyMeACoffee />
             <Footer />
         </>

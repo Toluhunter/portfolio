@@ -2,6 +2,7 @@
 import Icon from "@/components/utilities/shared/icon"
 import Image from "next/image"
 import { useState, useEffect } from "react"
+import { FaExternalLinkAlt } from "react-icons/fa"
 
 export interface Project {
     name: string;
@@ -35,8 +36,9 @@ export const ProjectListing = ({ project }: { project: Project }) => {
 
     const visitButton = project.websiteLink && (
         <a href={project.websiteLink} target="_blank" rel="noopener noreferrer" className="self-start">
-            <button className="bg-callout text-foreground py-2 px-7 rounded-md w-fit hover:bg-callout transition-colors duration-300 border-2 border-callout cursor-pointer">
-                VISIT APP WEBSITE
+            <button className="text-foreground py-2 px-7 rounded-md w-fit border-2 border-callout hover:bg-callout hover:text-white transition-colors duration-300 flex items-center gap-2 cursor-pointer">
+                Try it out
+                <FaExternalLinkAlt className="w-3 h-3" />
             </button>
         </a>
     );

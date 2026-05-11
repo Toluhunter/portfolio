@@ -97,33 +97,73 @@ body:not(.dark) {
 }
 
 @keyframes nudge-right {
-  0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(6px); }
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(6px);
+  }
 }
 
 @keyframes nudge-left {
-  0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(-6px); }
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(-6px);
+  }
 }
 
 @keyframes slide-from-top {
-  from { opacity: 0; transform: translateY(-40px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes slide-from-right {
-  from { opacity: 0; transform: translateX(60px); }
-  to   { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @keyframes slide-from-left {
-  from { opacity: 0; transform: translateX(-60px); }
-  to   { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @theme inline {
@@ -141,9 +181,144 @@ body:not(.dark) {
 
 
 body {
-  background: var(--background);
-
+  background-color: var(--background);
   color: var(--foreground);
+}
+
+@keyframes lava-1 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  25% {
+    transform: translate(40%, 30%) scale(1.10);
+  }
+
+  50% {
+    transform: translate(20%, 60%) scale(0.95);
+  }
+
+  75% {
+    transform: translate(-10%, 35%) scale(1.05);
+  }
+
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+@keyframes lava-2 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(-30%, -20%) scale(1.08);
+  }
+
+  66% {
+    transform: translate(-15%, 25%) scale(0.92);
+  }
+
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+@keyframes lava-3 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  20% {
+    transform: translate(-20%, -15%) scale(1.05);
+  }
+
+  40% {
+    transform: translate(15%, -30%) scale(0.95);
+  }
+
+  60% {
+    transform: translate(25%, -10%) scale(1.10);
+  }
+
+  80% {
+    transform: translate(5%, 15%) scale(0.97);
+  }
+
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+.lava-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.lava-blob {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.lava-blob-1 {
+  width: 50vw;
+  height: 50vh;
+  top: -5%;
+  left: -5%;
+  background: rgba(128, 79, 148, 0.75);
+  filter: blur(80px);
+  animation: lava-1 35s ease-in-out infinite;
+}
+
+.lava-blob-2 {
+  width: 40vw;
+  height: 45vh;
+  top: 30%;
+  right: -5%;
+  background: rgba(60, 30, 100, 0.65);
+  filter: blur(80px);
+  animation: lava-2 40s ease-in-out infinite;
+}
+
+.lava-blob-3 {
+  width: 45vw;
+  height: 40vh;
+  bottom: -5%;
+  left: 25%;
+  background: rgba(90, 45, 130, 0.60);
+  filter: blur(80px);
+  animation: lava-3 55s ease-in-out infinite;
+}
+
+body:not(.dark) .lava-blob-1 {
+  background: rgba(128, 79, 148, 0.50);
+  filter: blur(50px);
+}
+
+body:not(.dark) .lava-blob-2 {
+  background: rgba(60, 30, 100, 0.40);
+  filter: blur(50px);
+}
+
+body:not(.dark) .lava-blob-3 {
+  background: rgba(90, 45, 130, 0.40);
+  filter: blur(50px);
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
 }
 
 @keyframes fadeIn {

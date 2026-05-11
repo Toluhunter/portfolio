@@ -37,20 +37,12 @@ function Slider() {
             <div className="absolute inset-0 w-full h-full">
                 {images.map((image, index) => (
                     <Image
-                        key={image} // Unique key for each image
-                        src={image} // Image source URL
-                        alt={`Slide ${index + 1}`} // Alt text for accessibility
-                        width="1920" // Set a default width for the image
-                        height="1080" // Set a default height for the image
-                        // Tailwind classes for styling:
-                        // absolute: Position absolutely within the parent
-                        // inset-0: Top, right, bottom, left to 0 (covers parent)
-                        // w-full h-full: Full width and height (these will override the fixed width/height for display)
-                        // object-cover: Crop image to cover the container while maintaining aspect ratio
-                        // transition-opacity duration-1000 ease-in-out: Smooth opacity transition over 1 second
-                        // opacity-0 or opacity-100: Hide or show based on currentSlide
-                        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1500 ease-in-out ${index === currentSlide ? 'opacity-100' : 'opacity-0'
-                            }`}
+                        key={image}
+                        src={image}
+                        alt={`Slide ${index + 1}`}
+                        fill
+                        sizes="100vw"
+                        className={`object-cover transition-opacity duration-1500 ease-in-out ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`}
                     />
                 ))}
             </div>

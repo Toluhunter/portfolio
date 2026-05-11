@@ -5,6 +5,15 @@ import createMDX from '@next/mdx';
 const nextConfig: NextConfig = {
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
   reactStrictMode: true,
+  async redirects() {
+    return [
+      {
+        source: '/blogs/:path*',
+        destination: '/articles/:path*',
+        permanent: true,
+      },
+    ];
+  },
   // experimental: {
   //   mdxRs: true,
   // },

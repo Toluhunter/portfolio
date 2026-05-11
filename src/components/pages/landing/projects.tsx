@@ -49,11 +49,11 @@ export const ProjectSection = () => {
         : 'animate-slide-from-top';
 
     return (
-        <section ref={sectionRef} id="projects" className="relative flex flex-col items-center min-h-screen bg-[url('https://assets.toluhunter.com/landing/backgrounds/project.webp')] bg-cover bg-center py-7">
+        <section ref={sectionRef} id="projects" className="relative flex flex-col items-center min-h-screen bg-background bg-[url('https://assets.toluhunter.com/landing/backgrounds/project.webp')] bg-cover bg-center py-7">
             <div className="absolute inset-x-0 top-0 h-24 md:h-32 bg-gradient-to-b from-background to-transparent pointer-events-none" />
             <div className="absolute inset-x-0 bottom-0 h-24 md:h-32 bg-gradient-to-t from-background to-transparent pointer-events-none" />
             <div className="relative flex flex-col flex-1 container px-4 md:px-8">
-                <Title text="Projects" link="/projects" hasMore={true} />
+                <Title text="Products" link="/products" hasMore={true} />
 
                 <div className="flex flex-col flex-1 justify-center gap-4">
 

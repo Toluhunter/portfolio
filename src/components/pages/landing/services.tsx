@@ -2,6 +2,7 @@
 
 import { Title } from "@/components/utilities/shared/title";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import { services } from "@/data/content.json";
 
@@ -20,18 +21,19 @@ const ServiceCard = ({ service }: { service: typeof services[0] }) => {
                     src={service.imageUrl}
                     alt={service.name}
                     fill
+                    sizes="300px"
                     className={`rounded-lg object-cover transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
                     onLoad={() => setIsLoading(false)}
                 />
             </div>
             <span className="font-bold text-xl text-center text-foreground group-hover:text-white transition-colors duration-300 mb-4">{service.name}</span>
             <p className="text-center text-muted-foreground mb-4 flex-grow">{service.description}</p>
-            <a
-                href="mailto:toluhunterdev@gmail.com"
+            <Link
+                href="/book"
                 className="mt-auto px-6 py-2 border border-callout text-foreground font-bold rounded-lg hover:bg-callout hover:text-white transition-all duration-300 ease-in-out"
             >
-                Contact Me
-            </a>
+                Schedule a Call
+            </Link>
         </div>
     );
 };
