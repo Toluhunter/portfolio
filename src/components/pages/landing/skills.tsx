@@ -1,32 +1,28 @@
 import Icon from "@/components/utilities/shared/icon";
 import { Title } from "@/components/utilities/shared/title";
 import {
-    DiJavascript1,
-    DiReact,
     DiNodejs,
     DiPython,
     DiGit,
 } from "react-icons/di";
-import { FaAws, FaDocker, FaInfinity, } from "react-icons/fa";
-import { SiGooglecloud, SiTypescript, SiNextdotjs, SiTensorflow, SiScikitlearn, SiNumpy, SiKeras, SiPandas } from "react-icons/si";
+import { FaAws, FaDocker, FaInfinity } from "react-icons/fa";
+import { SiGooglecloud, SiTypescript, SiNextdotjs, SiTensorflow, SiScikitlearn, SiTerraform, SiKubernetes, SiGo } from "react-icons/si";
 
 export const skillsData = [
     { id: 'skill1', name: 'AWS', icon: FaAws },
-    { id: 'skill2', name: 'GCP', icon: SiGooglecloud },
+    { id: 'skill2', name: 'Terraform', icon: SiTerraform },
     { id: 'skill3', name: 'Docker', icon: FaDocker },
-    { id: 'skill13', name: 'TensorFlow', icon: SiTensorflow },
-    { id: 'skill14', name: 'Scikit-Learn', icon: SiScikitlearn },
-    { id: 'skill5', name: 'Next.js', icon: SiNextdotjs },
-    { id: 'skill6', name: 'Node.js', icon: DiNodejs },
-    { id: 'skill7', name: 'Python', icon: DiPython },
-    { id: 'skill8', name: 'Git', icon: DiGit },
-    { id: 'skill9', name: 'React', icon: DiReact }, // Reusing Webhook for React
-    { id: 'skill17', name: 'Pandas', icon: SiPandas },
-    { id: 'skill10', name: 'JavaScript', icon: DiJavascript1 },
+    { id: 'skill4', name: 'CI/CD', icon: FaInfinity },
+    { id: 'skill5', name: 'GCP', icon: SiGooglecloud },
+    { id: 'skill6', name: 'Kubernetes', icon: SiKubernetes },
+    { id: 'skill7', name: 'TensorFlow', icon: SiTensorflow },
+    { id: 'skill8', name: 'Scikit-Learn', icon: SiScikitlearn },
+    { id: 'skill9', name: 'Python', icon: DiPython },
+    { id: 'skill10', name: 'Go', icon: SiGo },
     { id: 'skill11', name: 'TypeScript', icon: SiTypescript },
-    { id: 'skill12', name: 'CI/CD', icon: FaInfinity }, // Reusing GitBranch for CI/CD
-    { id: 'skill15', name: 'NumPy', icon: SiNumpy },
-    { id: 'skill16', name: 'Keras', icon: SiKeras },
+    { id: 'skill12', name: 'Next.js', icon: SiNextdotjs },
+    { id: 'skill13', name: 'Node.js', icon: DiNodejs },
+    { id: 'skill16', name: 'Git', icon: DiGit },
 ];
 
 export const SkillSection = () => {
@@ -46,17 +42,17 @@ export const SkillSection = () => {
                     {skillsData.map((skill) => (
                         <div
                             key={skill.id}
-                            className="flex flex-col items-center justify-center p-8 bg-background rounded-xl shadow-xl border border-gray-700 hover:border-callout transition-all duration-300 transform hover:scale-105 group"
+                            className="flex flex-col items-center justify-center p-8 bg-background rounded-xl shadow-xl border border-gray-700 hover:border-foreground transition-all duration-300 transform hover:scale-105 group"
                         >
                             {skill.icon && (
-                                <div className="mb-4 text-callout group-hover:text-white transition-colors duration-300">
+                                <div className="mb-4 text-foreground">
 
                                     <skill.icon size={80} />
 
 
                                 </div>
                             )}
-                            <span className="font-bold text-xl text-foreground group-hover:text-white transition-colors duration-300">{skill.name}</span>
+                            <span className="font-bold text-xl text-foreground">{skill.name}</span>
                         </div>
                     ))}
                 </div>

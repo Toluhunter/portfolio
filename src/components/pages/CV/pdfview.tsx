@@ -9,7 +9,7 @@ export const PdfView = () => {
                     <a
                         href={cvUrl}
                         download={cvFileName}
-                        className="bg-callout hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
+                        className="bg-callout hover:bg-indigo-700 text-on-callout font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
                     >
                         Download CV (PDF)
                     </a>
@@ -57,7 +57,7 @@ export const PdfView = () => {
                     <a
                         href={cvUrl}
                         download={cvFileName}
-                        className="bg-callout hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
+                        className="bg-callout hover:bg-indigo-700 text-on-callout font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
                     >
                         Download CV (PDF)
                     </a>

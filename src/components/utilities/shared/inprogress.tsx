@@ -20,7 +20,7 @@ export const InProgress: React.FC = () => {
                     height={200}
                     width={200}
                     // Border color changed to a more professional blue
-                    className="w-48 h-48 rounded-full mx-auto mb-8 border-callout shadow-lg object-cover"
+                    className="w-48 h-48 rounded-full mx-auto mb-8 border-foreground shadow-lg object-cover"
                     // Fallback in case the image fails to load
                     onError={(e) => {
                         e.currentTarget.src = "https://placehold.co/200x200/cccccc/333333?text=Avatar+Error";

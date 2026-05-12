@@ -1,51 +1,98 @@
-import { useRef, useEffect } from "react";
+"use client";
+import { useEffect, useRef } from "react";
+import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { CertificationCard, Certification } from "./certficiation-card";
 
+const SPEED = 1.2;
+const CARD_WIDTH = 320;
+
 export const CertificationsCarousel: React.FC<{ certifications: Certification[] }> = ({ certifications }) => {
-    const carouselRef = useRef<HTMLDivElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const pausedRef = useRef(false);
+    const resumeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+    const doubled = [...certifications, ...certifications];
 
     useEffect(() => {
-        if (carouselRef.current && window.innerWidth < 768) { // md breakpoint
-            carouselRef.current.scrollBy({ left: 350, behavior: 'auto' }); // use auto for initial scroll
-        }
+        const container = containerRef.current;
+        if (!container) return;
+
+        const handleScroll = () => {
+            const half = container.scrollWidth / 2;
+            if (container.scrollLeft >= half) {
+                container.scrollLeft -= half;
+            }
+        };
+
+        // passive: false required to call preventDefault on wheel
+        const handleWheel = (e: WheelEvent) => e.preventDefault();
+
+        container.addEventListener("scroll", handleScroll, { passive: true });
+        container.addEventListener("wheel", handleWheel, { passive: false });
+
+        let raf: number;
+        const tick = () => {
+            if (!pausedRef.current) {
+                container.scrollLeft += SPEED;
+            }
+            raf = requestAnimationFrame(tick);
+        };
+        raf = requestAnimationFrame(tick);
+
+        return () => {
+            cancelAnimationFrame(raf);
+            container.removeEventListener("scroll", handleScroll);
+            container.removeEventListener("wheel", handleWheel);
+        };
     }, []);
 
-    const scroll = (direction: 'left' | 'right') => {
-        if (carouselRef.current) {
-            const scrollAmount = direction === 'left' ? -350 : 350; // Adjust scroll amount as needed
-            carouselRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-        }
+    const pause = () => {
+        if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
+        pausedRef.current = true;
+    };
+
+    const resume = (delay = 0) => {
+        if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
+        resumeTimerRef.current = setTimeout(() => {
+            pausedRef.current = false;
+        }, delay);
+    };
+
+    const nudge = (direction: "left" | "right") => {
+        const container = containerRef.current;
+        if (!container) return;
+        container.scrollLeft += direction === "right" ? CARD_WIDTH : -CARD_WIDTH;
     };
 
     return (
-        <div className="flex flex-row w-full h-full justify-center items-center mx-auto py-8">
-
-            {/* Navigation Buttons */}
+        <div className="flex flex-row flex-1 items-center w-full gap-4">
             <button
-                onClick={() => scroll('left')}
-                className="bg-background bg-opacity-70 text-foreground p-3 rounded-full shadow-lg hover:bg-opacity-100 transition duration-300 z-10 hidden md:block"
+                onClick={() => nudge("left")}
+                className="hidden lg:flex flex-shrink-0 text-foreground focus:outline-none cursor-pointer"
                 aria-label="Scroll left"
             >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
+                <MdOutlineKeyboardArrowLeft size={48} className="animate-nudge-left" />
             </button>
+
             <div
-                ref={carouselRef}
-                className="flex overflow-x-scroll no-scrollbar snap-x snap-mandatory pb-6"
+                ref={containerRef}
+                className="flex flex-1 overflow-x-scroll no-scrollbar [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]"
+                onMouseEnter={pause}
+                onMouseLeave={() => resume()}
+                onTouchStart={pause}
+                onTouchEnd={() => resume(600)}
             >
-                {certifications.map((cert, id) => (
+                {doubled.map((cert, id) => (
                     <CertificationCard key={id} cert={cert} />
                 ))}
             </div>
+
             <button
-                onClick={() => scroll('right')}
-                className="bg-background bg-opacity-70 text-foreground p-3 rounded-full shadow-lg hover:bg-opacity-100 transition duration-300 z-10 hidden md:block"
+                onClick={() => nudge("right")}
+                className="hidden lg:flex flex-shrink-0 text-foreground focus:outline-none cursor-pointer"
                 aria-label="Scroll right"
             >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
+                <MdOutlineKeyboardArrowRight size={48} className="animate-nudge-right" />
             </button>
         </div>
     );

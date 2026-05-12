@@ -12,14 +12,14 @@ export const BuyMeACoffee = () => {
             <button
                 className="
             bg-callout hover:bg-yellow-600
-            text-white font-bold
+            text-on-callout font-bold
             p-4 rounded-full shadow-lg
             flex items-center justify-center
             w-16 h-16
             transition-all duration-300 ease-in-out
             transform hover:scale-105
             focus:outline-none focus:ring-4 focus:ring-yellow-300 focus:ring-opacity-75
-            group
+            cursor-pointer group
           "
                 aria-label="Buy me a coffee"
                 onMouseEnter={() => { coinshakeplay(); play() }}

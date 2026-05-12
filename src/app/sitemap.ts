@@ -1,11 +1,11 @@
 import { MetadataRoute } from 'next';
-import blogs from '@/data/blogs.json';
+import articles from '@/data/articles.json';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
 
-  const blogRoutes = blogs.map(blog => ({
-    url: `https://toluhunter.com${blog.link}`,
+  const articleRoutes = articles.map(article => ({
+    url: `https://toluhunter.com${article.link}`,
     lastModified,
   }));
 
@@ -19,7 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
     },
     {
-      url: 'https://www.toluhunter.com/blogs',
+      url: 'https://www.toluhunter.com/articles',
       lastModified,
     },
     {
@@ -27,17 +27,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
     },
     {
-      url: 'https://www.toluhunter.com/labs',
+      url: 'https://www.toluhunter.com/experience',
       lastModified,
     },
     {
-      url: 'https://www.toluhunter.com/projects',
+      url: 'https://www.toluhunter.com/products',
       lastModified,
     },
     {
       url: 'https://www.toluhunter.com/services',
       lastModified,
     },
-    ...blogRoutes,
+    ...articleRoutes,
   ]
 }

@@ -1,4 +1,8 @@
 {
+    "status": {
+        "working": "Currently building BeemBridge",
+        "availability": "Open to gigs"
+    },
     "services": [
         {
             "id": "service1",
@@ -41,6 +45,12 @@
             "name": "AI/ML Consultation",
             "description": "Leverage the power of artificial intelligence and machine learning to build intelligent applications and gain insights from your data.",
             "imageUrl": "https://assets.toluhunter.com/services/ai-consultation.jpg"
+        },
+        {
+            "id": "service8",
+            "name": "Security Audit & Hardening",
+            "description": "Assess your cloud infrastructure and applications for vulnerabilities, then implement targeted hardening measures to protect against threats and meet compliance requirements.",
+            "imageUrl": "/security-audit.webp"
         }
     ],
     "certifications": [
@@ -83,6 +93,60 @@
             "institution": "ISC2",
             "expiring": "December 31, 2026",
             "verifyLink": "https://www.credly.com/badges/89c54739-c2c5-4fc0-8bcc-832192d9191d/public_url"
+        }
+    ],
+    "experience": [
+        {
+            "company": "Vontech Group",
+            "role": "Lead Solutions Architect",
+            "duration": "Oct 2024 - Present",
+            "logo": "/experience/vontech-logo.svg",
+            "description": [
+                "Designed and developed AI solutions leveraging AWS services such as AWS Bedrock and SageMaker, enabling clients to accelerate their machine learning workflows and reduce model deployment times by 35%.",
+                "Led migration efforts for 25+ startup clients, executing lift-and-shift strategies for existing infrastructure to AWS, reducing operational costs by 25% on average and improving system reliability.",
+                "Integrated traditional AI workflows with AWS services such as AWS Lambda, Amazon RDS, and Amazon S3, enabling seamless data preprocessing, model training, and inference pipelines that reduced processing times by 25%."
+            ]
+        },
+        {
+            "company": "Datamellon",
+            "role": "DevOps Engineer",
+            "duration": "Oct 2023 - Oct 2024",
+            "logo": "/experience/datamellon-logo.svg",
+            "description": [
+                "Implemented robust CI/CD pipelines using Jenkins and AWS CodePipeline, leading to a 60% decrease in deployment times and a 30% increase in deployment frequency.",
+                "Automated routine tasks and workflows with Terraform and AWS Lambda, reducing manual intervention by 80%.",
+                "Analyzed and optimized cloud spending, employing Reserved Instances and Spot Instances to achieve a 25% cost saving on AWS bills.",
+                "Employed serverless architecture to architect and deploy scalable, cost-efficient solutions for clients, resulting in a 40% decrease in infrastructure expenses.",
+                "Implemented Large Language Model (LLM) agents to streamline in-house operations, improving infrastructure development speed by 40% through automation and advanced generative capabilities."
+            ]
+        },
+        {
+            "company": "Azul Nigeria",
+            "role": "System Administrator",
+            "duration": "Jan 2021 - Jun 2023",
+            "logo": "https://assets.toluhunter.com/about/azul.png",
+            "description": [
+                "Managed network infrastructure, including switches, routers, and firewalls, resulting in a 25% increase in network reliability and speed.",
+                "Led incident response efforts for critical system failures, achieving a mean time to resolution (MTTR) of less than 1 hour.",
+                "Developed scripts using PowerShell and Bash to automate routine tasks, reducing manual workload by 60%.",
+                "Set up and maintained monitoring tools (e.g., Nagios, Zabbix) to track system health and performance, leading to a 50% reduction in downtime."
+            ]
+        }
+    ],
+    "education": [
+        {
+            "institution": "Ontario Tech University",
+            "degree": "Master of Science in Computer Science",
+            "duration": "2025 - 2027 (Expected)",
+            "logo": "/school/ontariotech-logo.svg",
+            "description": []
+        },
+        {
+            "institution": "Babcock University",
+            "degree": "Bachelor of Science in Software Engineering",
+            "duration": "",
+            "logo": "/school/babcock-logo.svg",
+            "description": []
         }
     ]
 }

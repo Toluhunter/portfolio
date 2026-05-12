@@ -12,7 +12,7 @@ const Type = () => {
     const professions = React.useMemo(() => [
         "AI & Cloud Engineer",
         "DevOps & MLOps Engineer",
-        "Bug Bounty Hunter",
+        "Full Stack Developer"
     ], []);
 
     // Helper function to generate a random glitched character
