@@ -42,7 +42,7 @@ const CertificationCard = ({ certification }: { certification: Certification }) 
     );
 };
 
-const AboutCertificationsSection = () => {
+const CertificationsSection = () => {
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {certifications.map((cert, index) => (
@@ -52,4 +52,4 @@ const AboutCertificationsSection = () => {
     );
 };
 
-export default AboutCertificationsSection;
+export default CertificationsSection;

@@ -1,4 +1,8 @@
 {
+    "status": {
+        "working": "Currently building BeemBridge",
+        "availability": "Open to gigs"
+    },
     "services": [
         {
             "id": "service1",
@@ -140,7 +144,7 @@
         {
             "institution": "Babcock University",
             "degree": "Bachelor of Science in Software Engineering",
-            "duration": "2019 - 2023",
+            "duration": "",
             "logo": "/school/babcock-logo.svg",
             "description": []
         }

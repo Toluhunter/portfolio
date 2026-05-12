@@ -5,6 +5,7 @@ import Type from "@/components/utilities/landingpage/hero/type";
 import { useState, useEffect, useRef } from "react";
 import { useAudio } from "@/components/utilities/shared/audio";
 import Link from "next/link";
+import { status } from "@/data/content.json";
 
 
 export const Herosection = () => {
@@ -53,7 +54,7 @@ export const Herosection = () => {
                     <span className="relative inline-flex items-center justify-center w-3 h-3 mr-2">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-callout opacity-75"></span>
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-callout"></span>
-                    </span>Currently Working on BeemBridge
+                    </span>{status.working} · {status.availability}
                 </div>
 
                 <div id="content-container" className="container mx-auto flex flex-col md:flex-row md:gap-10 xl:gap-20 md:items-center md:justify-center px-5 md:px-0 z-20">

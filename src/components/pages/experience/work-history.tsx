@@ -10,7 +10,7 @@ interface Experience {
     logo: string;
 }
 
-const ExperienceSection = () => {
+const WorkHistorySection = () => {
     return (
         <div className="relative">
             <div className="absolute left-[11px] top-3 bottom-0 w-0.5 bg-callout/25" />
@@ -33,7 +33,7 @@ const ExperienceSection = () => {
                             <h3 className="text-xl font-bold text-foreground">{exp.company}</h3>
                             <p className="text-base font-semibold text-foreground">{exp.role}</p>
                             <p className="text-sm text-foreground/50 mb-3">{exp.duration}</p>
-                            <ul className="list-disc list-inside text-foreground/80 space-y-1 text-sm">
+                            <ul className="list-disc list-inside text-foreground space-y-1 text-sm">
                                 {exp.description.map((item, i) => (
                                     <li key={i}>{item}</li>
                                 ))}
@@ -46,4 +46,4 @@ const ExperienceSection = () => {
     );
 };
 
-export default ExperienceSection;
+export default WorkHistorySection;
