@@ -55,7 +55,7 @@ export const NeonStylePreloader: React.FC = () => {
   return (
     <div
       id="global-preloader"
-      className="fixed inset-0 flex flex-col items-center justify-center bg-background z-[9999] opacity-100 transition-opacity duration-500 text-callout font-mono"
+      className="fixed inset-0 flex flex-col items-center justify-center bg-background z-[9999] opacity-100 transition-opacity duration-500 text-foreground font-mono"
       aria-hidden={!isVisible} // Convert boolean to string for aria-hidden
     >
       {/* Custom CSS for glitch and pulse effects */}
@@ -115,24 +115,24 @@ export const NeonStylePreloader: React.FC = () => {
           ACCESSING DATA...
         </h2>
         <div className="w-64 h-2 bg-foreground rounded-full overflow-hidden mb-8">
-          <div className="h-full bg-callout scan-line"></div>
+          <div className="h-full bg-foreground scan-line"></div>
         </div>
         <p className="text-xl md:text-2xl text-foreground animate-pulse">
           INITIATING PROTOCOL // 010101
         </p>
       </div>
 
-      <div className="absolute top-4 left-4 text-sm text-callout opacity-70 animate-fade-in-up">
+      <div className="absolute top-4 left-4 text-sm text-foreground opacity-70 animate-fade-in-up">
         [SYS_LOG] Attempting connection...
       </div>
-      <div className="absolute bottom-4 right-4 text-sm text-callout opacity-70 animate-fade-in-down">
+      <div className="absolute bottom-4 right-4 text-sm text-foreground opacity-70 animate-fade-in-down">
         [STATUS] Verifying checksum...
       </div>
 
       {/* Binary code background elements */}
       <div className="absolute inset-0 grid grid-cols-10 grid-rows-10 gap-2 p-8 opacity-5">
         {Array.from({ length: 100 }).map((_, i) => (
-          <span key={i} className="text-xs text-callout animate-pulse" style={{ animationDelay: `1s` }}>
+          <span key={i} className="text-xs text-foreground animate-pulse" style={{ animationDelay: `1s` }}>
             {Math.random() > 0.5 ? '0' : '1'}
           </span>
         ))}

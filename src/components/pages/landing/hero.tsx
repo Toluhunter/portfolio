@@ -52,8 +52,8 @@ export const Herosection = () => {
 
                 <div id="status-bar" className="absolute top-15 left-0 right-0 bg-black/60 backdrop-blur-sm text-white border-b border-white/20 py-1 px-5 text-sm md:text-lg text-center z-[51] md:z-30">
                     <span className="relative inline-flex items-center justify-center w-3 h-3 mr-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-callout opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-callout"></span>
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-foreground opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-foreground"></span>
                     </span>{status.working} · {status.availability}
                 </div>
 
@@ -64,7 +64,7 @@ export const Herosection = () => {
                         )}
                         <video
                             ref={videoRef}
-                            className="border border-callout rounded-lg object-cover w-full aspect-video"
+                            className="border border-foreground rounded-lg object-cover w-full aspect-video"
                             poster="https://assets.toluhunter.com/landing/profilePic.png"
                             autoPlay
                             muted
@@ -79,12 +79,12 @@ export const Herosection = () => {
                     <div id="content-column" className="flex flex-col gap-8 items-start text-left md:max-w-[28rem] xl:max-w-[36rem] text-3xl lg:text-4xl xl:text-5xl">
 
                         <p id="whoami-line">
-                            toluhunter:~<span className="text-callout">$</span> whoami <br />
-                            <span className="text-callout">Tolulope Fakoya</span>
+                            toluhunter:~<span className="text-foreground">$</span> whoami <br />
+                            <span className="text-foreground">Tolulope Fakoya</span>
                         </p>
                         <div id="whatido-line" className="w-full">
-                            toluhunter:~<span className="text-callout">$</span><span className="text-callout"> ./</span>whatido <br />
-                            <div className="text-callout">
+                            toluhunter:~<span className="text-foreground">$</span><span className="text-foreground"> ./</span>whatido <br />
+                            <div className="text-foreground">
                                 <Type />
                             </div>
                         </div>
@@ -92,12 +92,12 @@ export const Herosection = () => {
                             <p className="text-sm md:text-lg text-foreground font-fira-code">
                                 <i>Behind every unexpected outage, overpriced bill, or security incident is infrastructure that wasn't built to last.</i>
                             </p>
-                            <p className="text-sm md:text-lg text-foreground/60 font-fira-code">
+                            <p className="text-sm md:text-lg text-foreground/80 font-fira-code">
                                 <i>It doesn't have to be this way, and if you're planning something new, it doesn't have to start that way either.</i>
                             </p>
                         </div>
 
-                        <Link href="/book" className="px-5 py-2 text-base md:text-xl border-2 border-callout rounded-md hover:bg-callout hover:text-white transition-colors duration-300">
+                        <Link href="/book" className="px-5 py-2 text-base md:text-xl bg-callout text-on-callout border-2 border-callout rounded-md hover:opacity-90 transition-opacity duration-300">
                             Book A Free Meeting
                         </Link>
 

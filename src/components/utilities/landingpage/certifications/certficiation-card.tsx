@@ -44,7 +44,7 @@ export const CertificationCard: React.FC<{ cert: Certification }> = ({ cert }) =
                     href={cert.verifyLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full inline-flex items-center gap-2 justify-center px-6 py-2 bg-foreground text-background font-semibold rounded-md shadow-md hover:opacity-80 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-callout focus:ring-opacity-75"
+                    className="w-full inline-flex items-center gap-2 justify-center px-6 py-2 bg-foreground text-background font-semibold rounded-md shadow-md hover:opacity-80 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-foreground focus:ring-opacity-75"
                 >
                     Verify Certificate
                     <MdOutlineOpenInNew size={16} />

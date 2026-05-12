@@ -28,10 +28,7 @@ function Slider() {
         // Changed the main container to be absolute and cover the full width/height of its positioned parent.
         // This ensures it acts as a background that other elements can overlap.
         <div className="absolute inset-0 w-full h-full overflow-hidden">
-            {/* Dark overlay for visual effect */}
-            <div className="absolute inset-0 bg-background opacity-90 md:opacity-84 z-10"></div>
-            {/* Another dark overlay, slightly lighter */}
-            <div className="absolute inset-0 bg-background opacity-40 z-0"></div>
+            <div className="absolute inset-0 bg-white opacity-80 dark:bg-black dark:opacity-80 z-10"></div>
 
             {/* Image container */}
             <div className="absolute inset-0 w-full h-full">

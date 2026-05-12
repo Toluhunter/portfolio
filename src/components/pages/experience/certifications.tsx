@@ -14,7 +14,7 @@ interface Certification {
 
 const CertificationCard = ({ certification }: { certification: Certification }) => {
     return (
-        <div className="flex gap-4 items-start p-4 rounded-lg border border-callout/20 hover:border-callout/50 transition-colors duration-200">
+        <div className="flex gap-4 items-start p-4 rounded-lg border border-foreground/20 hover:border-foreground/50 transition-colors duration-200">
             <div className="flex-shrink-0">
                 <Image
                     src={certification.picture}
@@ -26,14 +26,14 @@ const CertificationCard = ({ certification }: { certification: Certification }) 
             </div>
             <div className="min-w-0">
                 <h3 className="font-bold text-foreground text-sm leading-snug mb-1">{certification.title}</h3>
-                <p className="text-xs text-foreground/50">{certification.institution}</p>
+                <p className="text-xs text-foreground/80">{certification.institution}</p>
                 {certification.expiring && (
-                    <p className="text-xs text-foreground/50">Expires {certification.expiring}</p>
+                    <p className="text-xs text-foreground/80">Expires {certification.expiring}</p>
                 )}
                 <Link
                     href={certification.verifyLink}
                     target="_blank"
-                    className="text-xs text-callout hover:underline mt-1 inline-block"
+                    className="text-xs text-foreground hover:underline mt-1 inline-block"
                 >
                     Verify Credential
                 </Link>

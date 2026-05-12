@@ -36,7 +36,7 @@ export const ProjectListing = ({ project }: { project: Project }) => {
 
     const visitButton = project.websiteLink && (
         <a href={project.websiteLink} target="_blank" rel="noopener noreferrer" className="self-start">
-            <button className="text-foreground py-2 px-7 rounded-md w-fit border-2 border-callout hover:bg-callout hover:text-white transition-colors duration-300 flex items-center gap-2 cursor-pointer">
+            <button className="text-foreground py-2 px-7 rounded-md w-fit border-2 border-callout hover:bg-callout hover:text-on-callout transition-colors duration-300 flex items-center gap-2 cursor-pointer">
                 Try it out
                 <FaExternalLinkAlt className="w-3 h-3" />
             </button>
@@ -81,13 +81,13 @@ export const ProjectListing = ({ project }: { project: Project }) => {
     );
 
     const descriptionParagraphs = (extraClass = "") => project.description.map((para, index) => (
-        <p key={index} className={`w-full ${index === 0 ? 'text-foreground' : 'text-foreground/60'} ${extraClass}`}>{para}</p>
+        <p key={index} className={`w-full ${index === 0 ? 'text-foreground' : 'text-foreground/80'} ${extraClass}`}>{para}</p>
     ));
 
     return (
         <div id="project-listing" className="flex flex-col gap-10 px-4 md:px-0">
             <span id="project-status" className="flex gap-5 flex-row items-center text-foreground">
-                <Icon name="check-circle" classes="w-7 h-7 text-callout" />
+                <Icon name="check-circle" classes="w-7 h-7 text-foreground" />
                 <div className="w-[1px] h-5 bg-foreground" />
                 {project.status}
             </span>

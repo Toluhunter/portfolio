@@ -12,7 +12,7 @@ export const BuyMeACoffee = () => {
             <button
                 className="
             bg-callout hover:bg-yellow-600
-            text-white font-bold
+            text-on-callout font-bold
             p-4 rounded-full shadow-lg
             flex items-center justify-center
             w-16 h-16

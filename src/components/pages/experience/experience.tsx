@@ -43,9 +43,9 @@ export const ExperiencePageSection = () => {
 
             {/* Hero */}
             <div className="flex flex-col gap-4 mb-16 max-w-2xl">
-                <span className="text-xs font-semibold uppercase tracking-widest text-foreground/40">Background</span>
+                <span className="text-xs font-semibold uppercase tracking-widest text-foreground/80">Background</span>
                 <h1 className="text-5xl md:text-6xl font-bold font-fira-code text-foreground">Experience</h1>
-                <p className="text-lg text-foreground/60 mt-1">Roles, education, and certifications.</p>
+                <p className="text-lg text-foreground/80 mt-1">Roles, education, and certifications.</p>
             </div>
 
             {/* Body: sticky sidebar + scrollable sections */}
@@ -60,7 +60,7 @@ export const ExperiencePageSection = () => {
                                 onClick={() => scrollTo(id)}
                                 className={`text-left px-4 py-2.5 border-l-2 text-sm font-medium transition-all duration-200 cursor-pointer ${
                                     activeSection === id
-                                        ? 'border-callout text-callout'
+                                        ? 'border-foreground text-foreground'
                                         : 'border-transparent text-foreground hover:text-foreground hover:border-foreground/30'
                                 }`}
                             >
