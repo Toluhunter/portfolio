@@ -26,7 +26,7 @@ const EducationCard = ({ education }: { education: Education }) => {
                 <h2 className="text-2xl font-bold text-foreground">{education.institution}</h2>
                 <p className="text-lg font-semibold text-foreground">{education.degree}</p>
                 {education.duration && (
-                    <p className="text-sm text-foreground/50 mb-3">{education.duration}</p>
+                    <p className="text-sm text-foreground/80 mb-3">{education.duration}</p>
                 )}
                 <ul className="list-disc list-inside text-foreground space-y-1">
                     {education.description.map((item, index) => (

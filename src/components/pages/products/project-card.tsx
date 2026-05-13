@@ -31,7 +31,7 @@ export const ProjectCard = ({ project }: { project: Project }) => {
                 <div className="flex flex-col gap-6 lg:w-[55%]">
                     <div className="flex flex-col gap-1">
                         <h2 className="text-5xl font-bold font-fira-code text-foreground">{project.name}</h2>
-                        <p className="text-xl text-foreground/60">{project.subtitle}</p>
+                        <p className="text-xl text-foreground/80">{project.subtitle}</p>
                     </div>
 
                     {/* Image shown between subtitle and description on mobile */}
@@ -48,7 +48,7 @@ export const ProjectCard = ({ project }: { project: Project }) => {
 
                     <div className="flex flex-col gap-3">
                         {project.description.map((para, index) => (
-                            <p key={index} className={index === 0 ? 'text-foreground' : 'text-foreground/70'}>
+                            <p key={index} className={index === 0 ? 'text-foreground' : 'text-foreground/80'}>
                                 {para}
                             </p>
                         ))}
@@ -56,13 +56,13 @@ export const ProjectCard = ({ project }: { project: Project }) => {
 
                     {project.roles && project.roles.length > 0 && (
                         <div className="flex flex-col gap-3">
-                            <h3 className="text-sm font-semibold uppercase tracking-widest text-foreground/50">
+                            <h3 className="text-sm font-semibold uppercase tracking-widest text-foreground/80">
                                 Key Contributions
                             </h3>
                             <ul className="flex flex-col gap-2">
                                 {project.roles.map((role, index) => (
                                     <li key={index} className="flex gap-3 text-sm text-foreground/80">
-                                        <span className="text-foreground/40 mt-0.5 flex-shrink-0">•</span>
+                                        <span className="text-foreground/80 mt-0.5 flex-shrink-0">•</span>
                                         <span>{role}</span>
                                     </li>
                                 ))}
@@ -92,7 +92,7 @@ export const ProjectCard = ({ project }: { project: Project }) => {
 
                     {showTechnologies && project.technologies && (
                         <div className="p-5 rounded-lg bg-foreground/5 border border-foreground/10 animate-fade-in">
-                            <h4 className="text-sm font-semibold uppercase tracking-widest text-foreground/50 mb-3">Stack</h4>
+                            <h4 className="text-sm font-semibold uppercase tracking-widest text-foreground/80 mb-3">Stack</h4>
                             <ul className="flex flex-col gap-2">
                                 {project.technologies.map((tech, index) => {
                                     const colonIndex = tech.indexOf(':');
@@ -102,7 +102,7 @@ export const ProjectCard = ({ project }: { project: Project }) => {
                                         <li key={index} className="text-sm">
                                             <span className="font-semibold text-foreground">{name}</span>
                                             {detail && (
-                                                <span className="text-foreground/60"> - {detail}</span>
+                                                <span className="text-foreground/80"> - {detail}</span>
                                             )}
                                         </li>
                                     );
