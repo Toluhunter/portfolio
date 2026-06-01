@@ -1,7 +1,6 @@
 'use client';
 import { NavBar } from "@/components/utilities/shared/navbar";
 import { Footer } from "@/components/pages/landing/footer";
-import { BuyMeACoffee } from "@/components/utilities/shared/buymecoffee";
 import { ProductsPageSection } from "@/components/pages/products/products";
 
 export default function ProductsPage() {
@@ -16,7 +15,6 @@ export default function ProductsPage() {
                 <ProductsPageSection />
             </div>
 
-            <BuyMeACoffee />
             <Footer />
         </>
     );

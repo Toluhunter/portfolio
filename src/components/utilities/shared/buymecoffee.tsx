@@ -1,3 +1,5 @@
+'use client'
+
 import { SiBuymeacoffee as BuyMeACoffeeIcon } from "react-icons/si";
 import useSound from "use-sound";
 import { useAudio } from './audio';
@@ -8,7 +10,7 @@ export const BuyMeACoffee = () => {
     const [play, { stop }] = useSound("/spare-change.mp3", { volume: 1, soundEnabled: isSoundOn });
 
     return (
-        <div className="fixed bottom-10 right-10 z-50">
+        <div className="fixed bottom-28 left-10 z-50">
             <button
                 className="
             bg-callout hover:bg-yellow-600

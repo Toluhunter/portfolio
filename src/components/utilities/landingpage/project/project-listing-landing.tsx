@@ -92,7 +92,7 @@ export const ProjectListing = ({ project }: { project: Project }) => {
                 {project.status}
             </span>
 
-            <div className="flex flex-col lg:flex-row lg:gap-10 items-start">
+            <div className="flex flex-col lg:flex-row lg:gap-10 items-center">
 
                 {/* MOBILE: title + subtitle appear first, above the image */}
                 <div className="lg:hidden flex flex-col gap-2 w-full">
@@ -104,7 +104,7 @@ export const ProjectListing = ({ project }: { project: Project }) => {
                 <div id="project-info" className="hidden lg:flex flex-col gap-5 text-left lg:w-1/2">
                     <h1 className="text-foreground text-6xl my-4">{project.name}</h1>
                     <h2 className="text-2xl font-semibold text-gray-400 -mt-4 mb-4">{project.subtitle}</h2>
-                    <div className="flex flex-col gap-3 mb-4">
+                    <div className="flex text-base md:text-lg flex-col gap-3 mb-4">
                         {descriptionParagraphs()}
                     </div>
                     {visitButton}
@@ -119,7 +119,7 @@ export const ProjectListing = ({ project }: { project: Project }) => {
                     onMouseLeave={() => setIsHovered(false)}
                 >
                     {/* Stacked images with fade crossfade */}
-                    <div className="relative w-full aspect-video border-2 border-foreground rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                    <div className="relative w-full aspect-video border-2 border-foreground rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 bg-black">
                         {images.map((src, index) => (
                             <Image
                                 key={src}
@@ -140,11 +140,10 @@ export const ProjectListing = ({ project }: { project: Project }) => {
                                 <button
                                     key={index}
                                     onClick={() => setCurrentImageIndex(index)}
-                                    className={`rounded-full transition-all duration-300 cursor-pointer ${
-                                        index === currentImageIndex
+                                    className={`rounded-full transition-all duration-300 cursor-pointer ${index === currentImageIndex
                                             ? 'bg-foreground w-4 h-2'
                                             : 'bg-gray-500 w-2 h-2 hover:bg-gray-300'
-                                    }`}
+                                        }`}
                                     aria-label={`Go to image ${index + 1}`}
                                 />
                             ))}

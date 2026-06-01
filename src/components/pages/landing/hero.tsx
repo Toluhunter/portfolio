@@ -58,6 +58,34 @@ export const Herosection = () => {
                 </div>
 
                 <div id="content-container" className="container mx-auto flex flex-col md:flex-row md:gap-10 xl:gap-20 md:items-center md:justify-center px-5 md:px-0 z-20">
+                    <div id="content-column" className="flex flex-col gap-8 items-start text-left md:max-w-[28rem] xl:max-w-[36rem] text-2xl lg:text-3xl xl:text-4xl">
+
+                        <p id="whoami-line">
+                            <span className="text-callout">toluhunter</span><span className="text-foreground/60">@site</span><span className="text-foreground/60">:</span><span className="text-callout">~</span><span className="text-foreground">$</span> whoami <br />
+                            <span className="text-foreground">Tolulope Fakoya</span>
+                        </p>
+                        <div id="whatido-line" className="w-full">
+                            <span className="text-callout">toluhunter</span><span className="text-foreground/60">@site</span><span className="text-foreground/60">:</span><span className="text-callout">~</span><span className="text-foreground">$</span><span className="text-foreground"> ./</span>whatido <br />
+                            <div className="text-foreground">
+                                <Type />
+                            </div>
+                        </div>
+                        <div id="tagline" className="flex flex-col gap-3">
+                            <p className="text-base md:text-xl text-foreground font-fira-code">
+                                <i>The limit of what you can build is near your imagination. The limit of what survives production is infrastructure.</i>
+                            </p>
+                            <p className="text-base md:text-lg text-foreground/80 font-fira-code">
+                                <i>I design, monitor, and secure yours so the platform you ship performs as well as the idea that started it.</i>
+                            </p>
+                        </div>
+
+                        <Link href="/book" className="px-5 py-2 text-base md:text-xl bg-callout text-on-callout border-2 border-callout rounded-md hover:opacity-90 transition-opacity duration-300">
+                            Book A Free Meeting
+                        </Link>
+
+
+                    </div>
+
                     <div id="video-column" className="flex justify-center items-center py-8 md:py-0 md:w-[34.75rem] relative">
                         {!videoLoaded && (
                             <div className="absolute inset-0 bg-gray-300 dark:bg-gray-700 animate-pulse rounded-lg" />
@@ -75,35 +103,6 @@ export const Herosection = () => {
                             <source src="https://assets.toluhunter.com/landing/intro-video-web.mp4" type="video/mp4" />
                         </video>
                     </div>
-
-                    <div id="content-column" className="flex flex-col gap-8 items-start text-left md:max-w-[28rem] xl:max-w-[36rem] text-3xl lg:text-4xl xl:text-5xl">
-
-                        <p id="whoami-line">
-                            toluhunter:~<span className="text-foreground">$</span> whoami <br />
-                            <span className="text-foreground">Tolulope Fakoya</span>
-                        </p>
-                        <div id="whatido-line" className="w-full">
-                            toluhunter:~<span className="text-foreground">$</span><span className="text-foreground"> ./</span>whatido <br />
-                            <div className="text-foreground">
-                                <Type />
-                            </div>
-                        </div>
-                        <div id="tagline" className="flex flex-col gap-3">
-                            <p className="text-sm md:text-lg text-foreground font-fira-code">
-                                <i>Behind every unexpected outage, overpriced bill, or security incident is infrastructure that wasn't built to last.</i>
-                            </p>
-                            <p className="text-sm md:text-lg text-foreground/80 font-fira-code">
-                                <i>It doesn't have to be this way, and if you're planning something new, it doesn't have to start that way either.</i>
-                            </p>
-                        </div>
-
-                        <Link href="/book" className="px-5 py-2 text-base md:text-xl bg-callout text-on-callout border-2 border-callout rounded-md hover:opacity-90 transition-opacity duration-300">
-                            Book A Free Meeting
-                        </Link>
-
-
-                    </div>
-
 
                 </div>
                 <Icon name="mouse-scroll" classes="hidden md:block absolute z-50 w-20 h-20 bottom-0 left-1/2 animate-bounce-scroll" color="var(--foreground)" />
