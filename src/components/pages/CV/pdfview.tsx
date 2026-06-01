@@ -2,8 +2,6 @@
 
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
-import 'react-pdf/dist/Page/AnnotationLayer.css';
-import 'react-pdf/dist/Page/TextLayer.css';
 import { FiDownload, FiZoomIn, FiZoomOut } from 'react-icons/fi';
 
 pdfjs.GlobalWorkerOptions.workerSrc =
