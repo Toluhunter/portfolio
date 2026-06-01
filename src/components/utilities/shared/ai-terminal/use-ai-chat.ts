@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 
 const WS_URL = 'wss://ai.toluhunter.com/ws/chat'
 const COOKIE_NAME = 'ai_session_id'
-const COOKIE_TTL_DAYS = 7
+const COOKIE_TTL_DAYS = 1
 
 function getSessionCookie(): string | null {
     if (typeof document === 'undefined') return null
@@ -21,6 +21,10 @@ function setSessionCookie(id: string): void {
     document.cookie = `${COOKIE_NAME}=${encodeURIComponent(id)}; expires=${expires}; path=/; SameSite=Lax`
 }
 
+function deleteSessionCookie(): void {
+    document.cookie = `${COOKIE_NAME}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=Lax`
+}
+
 export type MessageRole = 'user' | 'ai' | 'error' | 'system'
 
 export interface ChatMessage {
@@ -28,7 +32,7 @@ export interface ChatMessage {
     content: string
 }
 
-export type ConnectionStatus = 'idle' | 'connecting' | 'connected' | 'thinking' | 'error'
+export type ConnectionStatus = 'idle' | 'connecting' | 'connected' | 'thinking' | 'error' | 'rate_limited' | 'terminated'
 
 export function useAIChat(enabled: boolean) {
     const [messages, setMessages] = useState<ChatMessage[]>([])
@@ -70,14 +74,25 @@ export function useAIChat(enabled: boolean) {
                 pendingRef.current = false
                 setStatus('connected')
                 setMessages((prev) => [...prev, { role: 'error', content: data.message }])
+            } else if (data.type === 'rate_limited') {
+                pendingRef.current = false
+                setMessages((prev) => [...prev, { role: 'system', content: 'rate limit reached' }])
             }
         }
 
         ws.onerror = () => setStatus('error')
 
-        ws.onclose = () => {
-            if (pendingRef.current) setStatus('error')
-            else setStatus('idle')
+        ws.onclose = (event) => {
+            if (event.code === 4403) {
+                deleteSessionCookie()
+                setMessages((prev) => [...prev, { role: 'system', content: 'session ended' }])
+                setStatus('terminated')
+            } else if (event.code === 4029) {
+                setStatus('rate_limited')
+            } else {
+                if (pendingRef.current) setStatus('error')
+                else setStatus('idle')
+            }
             pendingRef.current = false
         }
     }, [])

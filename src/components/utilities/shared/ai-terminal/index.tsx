@@ -51,9 +51,11 @@ function StatusDot({ status }: { status: ConnectionStatus }) {
             ? 'bg-[var(--callout)]'
             : status === 'thinking' || status === 'connecting'
                 ? 'bg-yellow-400 animate-pulse'
-                : status === 'error'
+                : status === 'error' || status === 'terminated'
                     ? 'bg-red-400'
-                    : 'bg-gray-600'
+                    : status === 'rate_limited'
+                        ? 'bg-amber-400'
+                        : 'bg-gray-600'
 
     return <span className={`inline-block w-1.5 h-3 align-middle rounded-sm ${colour}`} />
 }
@@ -63,6 +65,8 @@ function statusLabel(status: ConnectionStatus): string {
     if (status === 'thinking') return 'thinking...'
     if (status === 'connected') return 'connected'
     if (status === 'error') return 'connection error'
+    if (status === 'rate_limited') return 'rate limited'
+    if (status === 'terminated') return 'session ended'
     return ''
 }
 
@@ -102,11 +106,10 @@ export function AITerminal() {
     }, [messages, status])
 
     useEffect(() => {
-        if (open) {
-            const t = setTimeout(() => inputRef.current?.focus(), 300)
-            return () => clearTimeout(t)
+        if (open && status === 'connected') {
+            inputRef.current?.focus()
         }
-    }, [open])
+    }, [open, status])
 
     useEffect(() => {
         const handler = (e: KeyboardEvent) => {
@@ -290,7 +293,11 @@ export function AITerminal() {
                                             ? 'waiting for response...'
                                             : status === 'error'
                                                 ? 'connection failed — refresh to retry'
-                                                : ''}
+                                                : status === 'rate_limited'
+                                                    ? 'rate limit reached — close and reopen to continue'
+                                                    : status === 'terminated'
+                                                        ? 'this session has ended'
+                                                        : ''}
                                 </span>
                             )}
                             {!input && canType && (
