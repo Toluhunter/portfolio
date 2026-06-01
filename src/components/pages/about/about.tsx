@@ -5,10 +5,10 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { status } from "@/data/content.json";
 
 const principles = [
-    "Scalable infrastructure means predictable cost. Infinite scale only works with an infinite wallet.",
-    "Document it so it can be reviewed.",
-    "Deleting code beats adding it.",
-    "Boring infrastructure is good infrastructure.",
+    "Your constraints are the design. Scale ambitions mean nothing without a budget to match - the best system is the one built for your reality, not someone else's.",
+    "An unmonitored system is an open vault. Without logs and alerts, anything can be stolen, modified, or broken in silence - and you will be the last to know.",
+    "Security is a live game between attacker and defender. Bolt it on at the end and you have already lost.",
+    "Systems fail - that is not the question. The question is whether your system recovers on its own or waits for a phone call at 3am.",
 ];
 
 const proofPoints = [
@@ -20,18 +20,27 @@ const proofPoints = [
 
 export const AboutSection = () => {
     return (
-        <section className="min-h-screen pt-25 w-full container mx-auto flex flex-col gap-24 px-8 pb-28">
+        <section className="min-h-screen pt-25 flex flex-col gap-24 px-5 md:px-8 pb-28 max-w-7xl mx-auto">
 
             {/* Hero: text + photo */}
-            <div className="flex flex-col-reverse lg:flex-row gap-12 lg:gap-16 items-start lg:items-center">
+            <div className="flex flex-col-reverse lg:flex-row gap-12 lg:gap-16 items-start lg:items-center lg:justify-between">
                 <div className="flex flex-col gap-4 max-w-2xl">
                     <span className="text-xs font-semibold uppercase tracking-widest text-foreground/80">Who I Am</span>
                     <h1 className="text-5xl md:text-6xl font-bold font-fira-code text-foreground">About</h1>
                     <p className="text-xl font-semibold text-foreground mt-2">
-                        I&apos;m Tolulope Fakoya, a Cloud and AI Engineer based in Canada.
+                        I&apos;m Tolulope Fakoya, a Cloud and AI Engineer.
                     </p>
                     <p className="text-lg text-foreground leading-relaxed">
-                        With 5+ years building, securing, and operating cloud-native and AI-powered systems, my focus is AWS architecture, MLOps, and security-first infrastructure. I&apos;ve led cloud migrations for 25+ clients, designed AI workflows using AWS Bedrock and SageMaker, and built systems that cut costs without sacrificing reliability. Whether you&apos;re starting fresh or rearchitecting something fragile, I build infrastructure that lasts.
+                        With 5+ years building, securing, and operating cloud-native and AI-powered systems, I have grown fond of the craft that is system architecture. A product does not truly exist until it is in the hands of its users - and architecture is what designs that journey. It can be smooth or jagged, fast or fragile. That is the beauty of it.
+                    </p>
+                    <p className="text-lg text-foreground leading-relaxed">
+                        Planning for capacity as user numbers grow, designing the guardrails and rate limits that hold up against malicious actors, making deliberate trade-offs between cost, reliability, and performance. I have fallen in love with the beauty of it.
+                    </p>
+                    <p className="text-lg text-foreground leading-relaxed">
+                        I have led teams deploying AI-powered workloads on platforms like AWS SageMaker and Google Vertex AI, building pipelines that move cleanly from experiment to production.
+                    </p>
+                    <p className="text-lg text-foreground leading-relaxed">
+                        Whatever your position, I will help you cover the bases - designing a system that fits your needs, budget, and operations. Nothing better than a dashboard full of green.
                     </p>
                     <div className="flex flex-wrap gap-5 items-center mt-2">
                         <Link
