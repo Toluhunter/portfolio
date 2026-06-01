@@ -106,11 +106,10 @@ export function AITerminal() {
     }, [messages, status])
 
     useEffect(() => {
-        if (open) {
-            const t = setTimeout(() => inputRef.current?.focus(), 300)
-            return () => clearTimeout(t)
+        if (open && status === 'connected') {
+            inputRef.current?.focus()
         }
-    }, [open])
+    }, [open, status])
 
     useEffect(() => {
         const handler = (e: KeyboardEvent) => {
