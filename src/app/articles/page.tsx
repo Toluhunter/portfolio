@@ -1,7 +1,6 @@
 'use client';
 import { NavBar } from "@/components/utilities/shared/navbar";
 import { Footer } from "@/components/pages/landing/footer";
-import { BuyMeACoffee } from "@/components/utilities/shared/buymecoffee";
 import { ArticleCard } from "@/components/pages/articles/article-card";
 import { FeaturedArticleCard } from "@/components/pages/articles/featured-article-card";
 import { ArticleCardSkeleton, FeaturedArticleCardSkeleton } from "@/components/pages/articles/article-card-skeleton";
@@ -90,7 +89,6 @@ export default function ArticlesPage() {
                 )}
             </main>
             </div>
-            <BuyMeACoffee />
             <Footer />
         </>
     );

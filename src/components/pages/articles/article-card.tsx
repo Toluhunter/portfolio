@@ -12,12 +12,14 @@ export const ArticleCard = ({ title, link, coverImage, description }: ArticleCar
     return (
         <Link href={link} className="block group">
             <div className="rounded-xl border border-gray-200 dark:border-gray-700 shadow-md group-hover:shadow-xl transition-shadow duration-300 overflow-hidden bg-background">
-                <div className="relative w-full h-56 overflow-hidden">
+                <div className="w-full overflow-hidden bg-gray-100 dark:bg-gray-800">
                     <Image
                         src={coverImage}
                         alt={title}
-                        fill
-                        style={{ objectFit: "cover" }}
+                        width={0}
+                        height={0}
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        style={{ width: "100%", height: "auto" }}
                         className="transition-transform duration-300 ease-in-out group-hover:scale-105"
                     />
                 </div>

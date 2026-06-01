@@ -2,7 +2,6 @@
 import { NavBar } from "@/components/utilities/shared/navbar";
 import { ExperiencePageSection } from "@/components/pages/experience/experience";
 import { Footer } from "@/components/pages/landing/footer";
-import { BuyMeACoffee } from "@/components/utilities/shared/buymecoffee";
 
 export default function ExperiencePage() {
     return (
@@ -11,7 +10,6 @@ export default function ExperiencePage() {
             <div className="min-h-screen bg-background/50 backdrop-blur-sm">
                 <ExperiencePageSection />
             </div>
-            <BuyMeACoffee />
             <Footer />
         </>
     );

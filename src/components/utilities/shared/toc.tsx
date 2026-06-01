@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import { useState, useEffect } from "react";
 
 type TocItem = {
     value: string;
@@ -9,19 +9,29 @@ type TocItem = {
     children?: TocItem[];
 };
 
-function TocItemView({ item }: { item: TocItem }) {
+function TocLink({ item, activeId }: { item: TocItem; activeId: string }) {
+    const isActive = item.id === activeId;
+    const indent = Math.max(0, item.depth - 2);
+
     return (
-        <li className="py-0.5">
+        <li>
             <a
                 href={`#${item.id ?? ""}`}
-                className="hover:underline block px-2 py-1 rounded-sm hover:bg-white/5"
+                style={{ paddingLeft: `${indent * 14}px` }}
+                className={`
+                    block py-1 pr-2 text-sm leading-5 border-l-2 pl-3 transition-all duration-150
+                    ${isActive
+                        ? "border-[var(--callout)] text-[var(--callout)] font-medium"
+                        : "border-transparent text-[var(--foreground)]/50 hover:text-[var(--foreground)] hover:border-[var(--foreground)]/30"
+                    }
+                `}
             >
                 {item.value}
             </a>
             {item.children && item.children.length > 0 && (
-                <ul className="pl-6 ml-1">
-                    {item.children.map((c) => (
-                        <TocItemView key={c.id ?? c.value} item={c} />
+                <ul>
+                    {item.children.map((child) => (
+                        <TocLink key={child.id ?? child.value} item={child} activeId={activeId} />
                     ))}
                 </ul>
             )}
@@ -30,16 +40,41 @@ function TocItemView({ item }: { item: TocItem }) {
 }
 
 export function TOC({ toc }: { toc?: TocItem[] }) {
+    const [activeId, setActiveId] = useState<string>("");
+
+    useEffect(() => {
+        const headings = document.querySelectorAll(
+            "h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]"
+        );
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                for (const entry of entries) {
+                    if (entry.isIntersecting) {
+                        setActiveId(entry.target.id);
+                    }
+                }
+            },
+            { rootMargin: "-80px 0px -70% 0px" }
+        );
+
+        headings.forEach((h) => observer.observe(h));
+        return () => observer.disconnect();
+    }, [toc]);
+
     if (!toc || toc.length === 0) return null;
+
     return (
         <nav
             aria-label="Table of contents"
-            className="text-sm bg-white/10 backdrop-blur-md border border-white/20 rounded-lg p-4 shadow-lg sticky top-25 mt-5 ml-4  max-h-[calc(100vh-5rem)] overflow-auto"
+            className="sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto"
         >
-            <strong className="block mb-3 text-xl font-semibold">On this page</strong>
-            <ul className="space-y-2">
+            <p className="text-xs font-semibold uppercase tracking-widest text-[var(--foreground)]/40 mb-4">
+                On this page
+            </p>
+            <ul className="space-y-0.5">
                 {toc.map((item) => (
-                    <TocItemView key={item.id ?? item.value} item={item} />
+                    <TocLink key={item.id ?? item.value} item={item} activeId={activeId} />
                 ))}
             </ul>
         </nav>
