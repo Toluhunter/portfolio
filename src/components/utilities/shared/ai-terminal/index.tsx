@@ -6,6 +6,43 @@ import { useAIChat, type ConnectionStatus } from './use-ai-chat'
 const PANEL_HEIGHT = 'min(45vh, 520px)'
 const BUBBLE_COOLDOWN_MS = 30 * 60 * 1000 // 30 minutes
 const SEEN_KEY = 'ai-bubble-seen-at'
+const THINKING_WORDS = [
+    "hunting",
+    "discombobulating",
+    "compiling",
+    "terraforming",
+    "debugging",
+    "recursing",
+    "vectorizing",
+    "hallucinating",
+    "tokenizing",
+    "beembridging",
+    "containerizing",
+    "deploying",
+    "cogitating",
+    "refactoring",
+    "backpropagating",
+    "git blaming",
+    "inferencing",
+    "lambdaing",
+    "quantizing",
+    "exmachinating",
+    "ruminating",
+    "dockerizing",
+    "fine-tuning",
+    "overthinking",
+    "scouting",
+    "reticulating splines",
+    "extrapolating",
+    "cloudforming",
+    "synapsing",
+    "defragmenting",
+    "overclocking",
+    "wrangling tensors",
+    "git bisecting",
+    "hypervectorizing",
+    "kubectl apply -f brain.yaml",
+]
 
 const PHRASES = [
     "I know Hunter better than his CV does.",
@@ -44,6 +81,29 @@ const PHRASES = [
     "I know him better than his mum thinks she does.",
     "Ask me. I dare you.",
 ]
+
+const BAR_LEN = 8
+
+function ThinkingAnimation() {
+    const [word] = useState(
+        () => THINKING_WORDS[Math.floor(Math.random() * THINKING_WORDS.length)]
+    )
+    const [tick, setTick] = useState(0)
+
+    useEffect(() => {
+        const t = setInterval(() => setTick(n => n + 1), 100)
+        return () => clearInterval(t)
+    }, [])
+
+    const filled = (tick % BAR_LEN) + 1
+    const bar = '#'.repeat(filled) + ' '.repeat(BAR_LEN - filled)
+
+    return (
+        <p className="font-mono text-sm whitespace-pre" style={{ color: 'var(--callout)' }}>
+            {word} [{bar}]
+        </p>
+    )
+}
 
 function StatusDot({ status }: { status: ConnectionStatus }) {
     const colour =
@@ -267,9 +327,7 @@ export function AITerminal() {
                         return null
                     })}
 
-                    {status === 'thinking' && (
-                        <p className="animate-pulse" style={{ color: 'var(--callout)' }}>▋</p>
-                    )}
+                    {status === 'thinking' && <ThinkingAnimation />}
 
                     <div ref={messagesEndRef} />
                 </div>
