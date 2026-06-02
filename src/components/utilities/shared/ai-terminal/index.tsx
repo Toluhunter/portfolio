@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useAIChat, type ConnectionStatus } from './use-ai-chat'
 
-const PANEL_HEIGHT = 'min(45vh, 520px)'
+const PANEL_HEIGHT = 'min(var(--terminal-height, 45vh), 520px)'
 const BUBBLE_COOLDOWN_MS = 30 * 60 * 1000 // 30 minutes
 const SEEN_KEY = 'ai-bubble-seen-at'
 const THINKING_WORDS = [
@@ -137,7 +137,7 @@ export function AITerminal() {
     const [showBubble, setShowBubble] = useState(false)
     const [showDot, setShowDot] = useState(false)
     const messagesEndRef = useRef<HTMLDivElement>(null)
-    const inputRef = useRef<HTMLInputElement>(null)
+    const inputRef = useRef<HTMLTextAreaElement>(null)
 
     const { messages, status, sessionId, send } = useAIChat(open)
 
@@ -180,8 +180,8 @@ export function AITerminal() {
     }, [open])
 
     const handleSubmit = useCallback(
-        (e: React.SyntheticEvent<HTMLFormElement>) => {
-            e.preventDefault()
+        (e?: React.FormEvent | React.KeyboardEvent) => {
+            e?.preventDefault()
             const trimmed = input.trim()
             if (!trimmed || status === 'thinking' || status === 'connecting') return
             send(trimmed)
@@ -189,6 +189,12 @@ export function AITerminal() {
         },
         [input, status, send]
     )
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            handleSubmit(e)
+        }
+    }
 
     const canType = status === 'connected'
 
@@ -297,7 +303,7 @@ export function AITerminal() {
                         }
                         if (msg.role === 'user') {
                             return (
-                                <div key={i}>
+                                <div key={i} className="whitespace-pre-wrap break-all overflow-wrap-anywhere">
                                     <span style={{ color: 'var(--callout)' }}>you</span>
                                     <span className="text-foreground/40">@terminal:~$&nbsp;</span>
                                     <span className="text-foreground">{msg.content}</span>
@@ -308,7 +314,7 @@ export function AITerminal() {
                             return (
                                 <div
                                     key={i}
-                                    className="text-foreground/80 whitespace-pre-wrap leading-relaxed pl-3"
+                                    className="text-foreground/80 whitespace-pre-wrap break-all overflow-wrap-anywhere leading-relaxed pl-3"
                                     style={{
                                         borderLeft: '2px solid color-mix(in srgb, var(--callout) 40%, transparent)',
                                     }}
@@ -335,13 +341,13 @@ export function AITerminal() {
                 {/* Input */}
                 <form
                     onSubmit={handleSubmit}
-                    className="shrink-0 flex items-center gap-2 px-4 py-3 border-t border-foreground/10"
+                    className="shrink-0 flex items-start gap-2 px-4 py-3 border-t border-foreground/10"
                 >
-                    <span className="font-mono text-sm shrink-0" style={{ color: 'var(--callout)' }}>
+                    <span className="font-mono text-sm shrink-0 mt-0.5" style={{ color: 'var(--callout)' }}>
                         {'>'}
                     </span>
-                    <div className="relative flex-1 font-mono text-sm h-5 flex items-center">
-                        <div className="flex items-center whitespace-pre pointer-events-none select-none overflow-hidden">
+                    <div className="relative flex-1 min-w-0 font-mono text-sm min-h-[1.25rem] flex items-start pt-0.5">
+                        <div className="whitespace-pre-wrap break-all overflow-wrap-anywhere pointer-events-none select-none w-full">
                             <span className="text-foreground">{input}</span>
                             {!input && !canType && (
                                 <span className="text-foreground/30">
@@ -363,22 +369,24 @@ export function AITerminal() {
                             )}
                             {canType && (
                                 <span
-                                    className="inline-block w-[0.55em] h-[1.15em] -mb-px ml-px shrink-0"
+                                    className="inline-block w-[0.55em] h-[1.15em] align-middle -mt-0.5 ml-px shrink-0"
                                     style={{
                                         backgroundColor: 'var(--callout)',
                                         animation: 'termBlink 1s step-end infinite',
                                     }}
                                 />
                             )}
+                            <span className="invisible select-none">{"\u00A0"}</span>
                         </div>
-                        <input
+                        <textarea
                             ref={inputRef}
-                            type="text"
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
+                            onKeyDown={handleKeyDown}
                             disabled={!canType}
-                            className="absolute inset-0 w-full bg-transparent text-transparent outline-none disabled:opacity-0"
-                            style={{ caretColor: 'transparent' }}
+                            rows={1}
+                            className="absolute inset-0 w-full h-full bg-transparent text-transparent outline-none disabled:opacity-0 resize-none overflow-hidden"
+                            style={{ caretColor: 'transparent', whiteSpace: 'pre-wrap' }}
                             autoComplete="off"
                             autoCorrect="off"
                             spellCheck={false}
@@ -387,7 +395,7 @@ export function AITerminal() {
                     <button
                         type="submit"
                         disabled={!input.trim() || !canType}
-                        className="font-mono text-xs text-foreground/40 disabled:opacity-20 transition-colors shrink-0 hover:text-foreground/70"
+                        className="font-mono text-xs text-foreground/40 disabled:opacity-20 transition-colors shrink-0 hover:text-foreground/70 mt-1"
                     >
                         [enter]
                     </button>
@@ -410,6 +418,11 @@ export function AITerminal() {
                 @keyframes termBlink {
                     0%, 100% { opacity: 1; }
                     50%       { opacity: 0; }
+                }
+                @media (max-width: 640px) {
+                    :root {
+                        --terminal-height: 70vh;
+                    }
                 }
             `}</style>
         </>
