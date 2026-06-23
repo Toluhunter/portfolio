@@ -14,7 +14,7 @@ const NavLinks = ({ className }: { className?: string }) => {
             <li><Link href="/products" className="py-2 px-4 hover:text-callout transition-colors duration-300">Products</Link></li>
             <li><Link href="/about" className="py-2 px-4 hover:text-callout transition-colors duration-300">About</Link></li>
             <li><Link href="/experience" className="py-2 px-4 hover:text-callout transition-colors duration-300">Experience</Link></li>
-            {/* <li><Link href="/articles" className="py-2 px-4 hover:text-callout transition-colors duration-300">Articles</Link></li> */}
+            <li><Link href="/articles" className="py-2 px-4 hover:text-callout transition-colors duration-300">Articles</Link></li>
             <li><Link href="/cv" className="py-2 px-4 hover:text-callout transition-colors duration-300">CV</Link></li>
             <li><Link href="/book" className="py-2 px-4 border-2 border-callout rounded-md hover:bg-callout hover:text-on-callout transition-colors duration-300">Book a Call</Link></li>
         </ul>

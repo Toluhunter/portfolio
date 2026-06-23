@@ -12,6 +12,8 @@ import { Metadata } from 'next'
 
 const CDN_BASE = 'https://assets.toluhunter.com'
 
+const API_BASE = 'https://api.toluhunter.com'
+
 export async function generateMetadata({
     params,
 }: {
@@ -19,32 +21,26 @@ export async function generateMetadata({
 }): Promise<Metadata> {
     const { slug } = await params
 
-    const res = await fetch(`${CDN_BASE}/articles/${slug}/content.mdx`, {
+    const res = await fetch(`${API_BASE}/articles`, {
         next: { revalidate: 3600 },
     })
 
     if (!res.ok) return {}
 
-    const rawMdx = await res.text()
-
-    const titleMatch = rawMdx.match(/^#\s+(.+)$/m)
-    const title = titleMatch ? titleMatch[1].trim() : 'Article'
-
-    let description = ''
-    for (const line of rawMdx.split('\n')) {
-        const t = line.trim()
-        if (t && !t.startsWith('#') && !t.startsWith('!') && !t.startsWith('_') && !t.startsWith('-') && t.length > 60) {
-            description = t.replace(/\*\*/g, '').replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').slice(0, 160)
-            break
-        }
+    const { articles } = await res.json() as {
+        articles: { id: string; title: string; description: string; cover_image?: string }[]
     }
 
+    const article = articles.find((a) => a.id === slug)
+    if (!article) return {}
+
     return {
-        title,
-        description: description || title,
+        title: article.title,
+        description: article.description,
         openGraph: {
-            title,
-            description: description || title,
+            title: article.title,
+            description: article.description,
+            ...(article.cover_image && { images: [{ url: article.cover_image }] }),
         },
     }
 }

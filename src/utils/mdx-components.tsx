@@ -4,6 +4,10 @@ import { CodeBlockWrapper } from '@/components/utilities/shared/code-block'
 import YouTube from '@/components/utilities/markdown/Youtube'
 import { AuthProvider } from '@/components/utilities/shared/AuthContext'
 import CommentSection from '@/components/utilities/shared/CommentSection'
+import { Definition } from '@/components/utilities/shared/definition'
+import { Mermaid } from '@/components/utilities/shared/mermaid'
+import { VideoLoop } from '@/components/utilities/shared/video-loop'
+import { BookCall } from '@/components/utilities/shared/book-call'
 
 export function getArticleComponents(overrides: MDXComponents = {}): MDXComponents {
     return {
@@ -99,6 +103,10 @@ export function getArticleComponents(overrides: MDXComponents = {}): MDXComponen
         YouTube,
         AuthProvider,
         CommentSection,
+        Definition,
+        Mermaid,
+        VideoLoop,
+        BookCall,
         pre: (props) => <CodeBlockWrapper {...props} />,
         code: ({ children, className, ...props }) => {
             if (className?.startsWith('language-')) {
