@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 
-const WS_URL = 'wss://ai.toluhunter.com/ws/chat'
+const WS_URL = `${process.env.NEXT_PUBLIC_AI_WS_URL}`
 const COOKIE_NAME = 'ai_session_id'
 const COOKIE_TTL_DAYS = 1
 

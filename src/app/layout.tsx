@@ -1,6 +1,6 @@
 import "./globals.css";
 import type { Metadata } from 'next';
-import { Monda } from 'next/font/google';
+import { Monda, Lobster, Gugi } from 'next/font/google';
 import ThemeWrapper from '@/components/utilities/shared/ThemeWrapper';
 import { AudioProvider } from "@/components/utilities/shared/audio";
 import { AITerminal } from "@/components/utilities/shared/ai-terminal";
@@ -11,6 +11,20 @@ const monda = Monda({
   subsets: ['latin'],
   weight: ['400', '700'],
   variable: '--font-monda',
+  display: 'swap',
+});
+
+const lobster = Lobster({
+  subsets: ['latin'],
+  weight: ['400'],
+  variable: '--font-lobster',
+  display: 'swap',
+});
+
+const gugi = Gugi({
+  subsets: ['latin'],
+  weight: ['400'],
+  variable: '--font-gugi',
   display: 'swap',
 });
 
@@ -95,7 +109,7 @@ export default function RootLayout({
 
       </head>
       <body
-        className={`${monda.variable} p-0 m-0 relative`}
+        className={`${monda.variable} ${lobster.variable} ${gugi.variable} p-0 m-0 relative`}
         style={{ fontFamily: 'var(--font-monda), sans-serif' }}
       >
         <AudioProvider>

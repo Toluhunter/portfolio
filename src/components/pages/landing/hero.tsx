@@ -62,7 +62,7 @@ export const Herosection = () => {
 
                         <p id="whoami-line">
                             <span className="text-callout">toluhunter</span><span className="text-foreground/60">@site</span><span className="text-foreground/60">:</span><span className="text-callout">~</span><span className="text-foreground">$</span> whoami <br />
-                            <span className="text-foreground">Tolulope Fakoya</span>
+                            <span className="text-foreground" style={{ fontFamily: 'var(--font-gugi), sans-serif' }}>Tolulope Fakoya</span>
                         </p>
                         <div id="whatido-line" className="w-full">
                             <span className="text-callout">toluhunter</span><span className="text-foreground/60">@site</span><span className="text-foreground/60">:</span><span className="text-callout">~</span><span className="text-foreground">$</span><span className="text-foreground"> ./</span>whatido <br />

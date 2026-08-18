@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useAIChat, type ConnectionStatus } from './use-ai-chat'
+import { AIMarkdown } from './ai-markdown'
 
 const PANEL_HEIGHT = 'min(var(--terminal-height, 45vh), 520px)'
 const BUBBLE_COOLDOWN_MS = 30 * 60 * 1000 // 30 minutes
@@ -303,7 +304,7 @@ export function AITerminal() {
                         }
                         if (msg.role === 'user') {
                             return (
-                                <div key={i} className="whitespace-pre-wrap break-all overflow-wrap-anywhere">
+                                <div key={i} className="whitespace-pre-wrap wrap-anywhere">
                                     <span style={{ color: 'var(--callout)' }}>you</span>
                                     <span className="text-foreground/40">@terminal:~$&nbsp;</span>
                                     <span className="text-foreground">{msg.content}</span>
@@ -314,12 +315,12 @@ export function AITerminal() {
                             return (
                                 <div
                                     key={i}
-                                    className="text-foreground/80 whitespace-pre-wrap break-all overflow-wrap-anywhere leading-relaxed pl-3"
+                                    className="text-foreground/80 wrap-anywhere leading-relaxed pl-3"
                                     style={{
                                         borderLeft: '2px solid color-mix(in srgb, var(--callout) 40%, transparent)',
                                     }}
                                 >
-                                    {msg.content}
+                                    <AIMarkdown content={msg.content} />
                                 </div>
                             )
                         }
@@ -347,7 +348,7 @@ export function AITerminal() {
                         {'>'}
                     </span>
                     <div className="relative flex-1 min-w-0 font-mono text-sm min-h-[1.25rem] flex items-start pt-0.5">
-                        <div className="whitespace-pre-wrap break-all overflow-wrap-anywhere pointer-events-none select-none w-full">
+                        <div className="whitespace-pre-wrap wrap-anywhere pointer-events-none select-none w-full">
                             <span className="text-foreground">{input}</span>
                             {!input && !canType && (
                                 <span className="text-foreground/30">

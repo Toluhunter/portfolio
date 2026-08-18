@@ -10,14 +10,17 @@ export const BuyMeACoffee = () => {
     const [play, { stop }] = useSound("/spare-change.mp3", { volume: 1, soundEnabled: isSoundOn });
 
     return (
-        <div className="fixed bottom-28 left-10 z-50">
+        <div className="fixed bottom-28 left-5 z-50 flex flex-col items-center gap-2">
+            <p className="text-base text-foreground" style={{ fontFamily: 'var(--font-lobster), cursive' }}>
+                Buy me a coffee
+            </p>
             <button
                 className="
             bg-callout hover:bg-yellow-600
             text-on-callout font-bold
             p-4 rounded-full shadow-lg
             flex items-center justify-center
-            w-16 h-16
+            w-13 h-13
             transition-all duration-300 ease-in-out
             transform hover:scale-105
             focus:outline-none focus:ring-4 focus:ring-yellow-300 focus:ring-opacity-75
