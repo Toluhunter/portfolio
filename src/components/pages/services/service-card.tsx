@@ -1,36 +1,46 @@
-'use client';
+import Link from "next/link";
+import { FaArrowRight } from "react-icons/fa";
+import { serviceIcons, Service } from "@/components/utilities/shared/service-icon";
 
-import Image from "next/image";
-import { useState } from "react";
-import { services } from "@/data/content.json";
-
-export const ServiceCard = ({ service }: { service: typeof services[0] }) => {
-    const [isLoading, setIsLoading] = useState(true);
+export const ServiceCard = ({ service }: { service: Service }) => {
+    const IconComponent = serviceIcons[service.icon];
 
     return (
-        <div
-            className="flex flex-col items-center justify-between p-8 bg-background rounded-xl shadow-xl border border-gray-700 hover:border-foreground transition-all duration-300 transform hover:scale-105 group"
-        >
-            <div className="relative w-full h-[12.5rem] mb-4">
-                {isLoading && (
-                    <div className="absolute inset-0 bg-gray-700 rounded-lg animate-pulse"></div>
-                )}
-                <Image
-                    src={service.imageUrl}
-                    alt={service.name}
-                    fill
-                    className={`rounded-lg object-cover transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
-                    onLoad={() => setIsLoading(false)}
-                />
+        <div id={service.id} className="flex flex-col gap-5 p-6 md:p-8 border border-foreground/20 rounded-xl text-left scroll-mt-28">
+            <div className="flex items-center gap-4">
+                <div className="flex items-center justify-center w-14 h-14 flex-shrink-0 rounded-lg border border-foreground/30 text-callout">
+                    <IconComponent size={26} />
+                </div>
+                <h3 className="text-xl font-bold text-foreground">{service.name}</h3>
             </div>
-            <span className="font-bold text-xl text-center text-foreground transition-colors duration-300 mb-4">{service.name}</span>
-            <p className="text-center text-muted-foreground mb-4 flex-grow">{service.description}</p>
-            <a
-                href="mailto:toluhunterdev@gmail.com"
-                className="mt-auto px-6 py-2 border border-callout text-foreground font-bold rounded-lg hover:bg-callout hover:text-on-callout transition-all duration-300 ease-in-out"
-            >
-                Contact Me
-            </a>
+
+            <p className="text-foreground/90 italic">{service.hook}</p>
+
+            <ul className="flex flex-col gap-2">
+                {service.includes.map((item) => (
+                    <li key={item} className="flex gap-3 text-sm text-foreground/80">
+                        <span className="text-callout mt-0.5 flex-shrink-0">//</span>
+                        <span>{item}</span>
+                    </li>
+                ))}
+            </ul>
+
+            <div className="flex flex-wrap items-center gap-4 mt-auto pt-2">
+                <Link
+                    href="/book"
+                    className="px-6 py-2 border-2 border-callout text-foreground font-bold rounded-lg hover:bg-callout hover:text-on-callout transition-all duration-300 ease-in-out"
+                >
+                    Book a Call
+                </Link>
+                {service.caseStudyLink && (
+                    <Link
+                        href={service.caseStudyLink}
+                        className="flex items-center gap-2 text-sm text-foreground/70 hover:text-foreground transition-colors duration-200"
+                    >
+                        See it in a real case study <FaArrowRight className="w-3 h-3" />
+                    </Link>
+                )}
+            </div>
         </div>
     );
 };

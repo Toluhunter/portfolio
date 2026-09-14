@@ -1,0 +1,16 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: portfolio-frontend:dev
+    ports:
+      - "3625:3000"
+    env_file:
+      - ./.env.local
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+
+volumes:
+  node_modules:

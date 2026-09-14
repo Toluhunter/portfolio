@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import Cal, { getCalApi } from "@calcom/embed-react";
+import { FAQSection } from "./faq";
 
 export const BookingSection = () => {
     useEffect(() => {
@@ -37,6 +38,8 @@ export const BookingSection = () => {
                     style={{ width: "100%", height: "100%", overflow: "scroll" }}
                     config={{ layout: "month_view" }}
                 />
+
+                <FAQSection />
             </div>
         </section>
     );

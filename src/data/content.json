@@ -1,58 +1,4 @@
 {
-    "status": {
-        "working": "Currently building BeemBridge",
-        "availability": "Open to gigs"
-    },
-    "services": [
-        {
-            "id": "service1",
-            "name": "Cloud Consultation",
-            "description": "Expert guidance to help you navigate the complexities of the cloud and develop a strategy that aligns with your business goals.",
-            "imageUrl": "https://assets.toluhunter.com/services/cloud-consultation.jpg"
-        },
-        {
-            "id": "service2",
-            "name": "Cost Optimization of AWS",
-            "description": "Analyze your AWS infrastructure to identify savings opportunities and implement strategies to reduce your cloud spending.",
-            "imageUrl": "https://assets.toluhunter.com/services/cost-optimization.jpg"
-        },
-        {
-            "id": "service3",
-            "name": "Solution Architecture",
-            "description": "Design and build scalable, reliable, and secure solutions on the cloud that meet your specific business needs.",
-            "imageUrl": "https://assets.toluhunter.com/services/solution-architecture.jpg"
-        },
-        {
-            "id": "service4",
-            "name": "Cloud Migration",
-            "description": "Seamlessly migrate your applications and data to the cloud with minimal downtime and disruption.",
-            "imageUrl": "https://assets.toluhunter.com/services/cloud-migration.jpg"
-        },
-        {
-            "id": "service5",
-            "name": "Full Stack Development",
-            "description": "End-to-end development of web applications, from front-end user interfaces to back-end services and databases.",
-            "imageUrl": "https://assets.toluhunter.com/services/full-stack-development.jpg"
-        },
-        {
-            "id": "service6",
-            "name": "Infrastructure Management",
-            "description": "Proactive management and monitoring of your cloud infrastructure to ensure optimal performance, security, and reliability.",
-            "imageUrl": "https://assets.toluhunter.com/services/infrastructure-management.jpg"
-        },
-        {
-            "id": "service7",
-            "name": "AI/ML Consultation",
-            "description": "Leverage the power of artificial intelligence and machine learning to build intelligent applications and gain insights from your data.",
-            "imageUrl": "https://assets.toluhunter.com/services/ai-consultation.jpg"
-        },
-        {
-            "id": "service8",
-            "name": "Security Audit & Hardening",
-            "description": "Assess your cloud infrastructure and applications for vulnerabilities, then implement targeted hardening measures to protect against threats and meet compliance requirements.",
-            "imageUrl": "/security-audit.webp"
-        }
-    ],
     "certifications": [
         {
             "picture": "https://assets.toluhunter.com/certifications/aws-certified-machine-learning-specialty.png",
@@ -97,14 +43,32 @@
     ],
     "experience": [
         {
+            "company": "Ontario Tech University",
+            "role": "TinyML Security Researcher (Graduate)",
+            "duration": "Sept 2025 - Present",
+            "logo": "/school/ontariotech-logo.svg",
+            "description": [
+                "Leading research on shrinking ML models (quantization, pruning, knowledge distillation) so they run directly on resource-constrained IoT hardware like ESP32 microcontrollers, instead of needing a cloud round-trip.",
+                "Built and evaluated lightweight ML pipelines for TinyML-based security, aimed at energy-efficient threat detection directly on embedded devices.",
+                "Synthesized 60+ peer-reviewed papers on TinyML for cybersecurity to identify real gaps in the field."
+            ],
+            "stats": [
+                { "value": "60+", "label": "peer-reviewed papers synthesized" }
+            ]
+        },
+        {
             "company": "Vontech Group",
             "role": "Lead Solutions Architect",
-            "duration": "Oct 2024 - Present",
+            "duration": "Oct 2024 - Sept 2025",
             "logo": "/experience/vontech-logo.svg",
             "description": [
-                "Designed and developed AI solutions leveraging AWS services such as AWS Bedrock and SageMaker, enabling clients to accelerate their machine learning workflows and reduce model deployment times by 35%.",
-                "Led migration efforts for 25+ startup clients, executing lift-and-shift strategies for existing infrastructure to AWS, reducing operational costs by 25% on average and improving system reliability.",
-                "Integrated traditional AI workflows with AWS services such as AWS Lambda, Amazon RDS, and Amazon S3, enabling seamless data preprocessing, model training, and inference pipelines that reduced processing times by 25%."
+                "Led migration for 25+ startup clients: scoped requirements, proposed the target architecture, then directed implementation combining Graviton compute, AWS Compute Optimizer right-sizing, autoscaling for variable traffic, and serverless refactors. Cut operational costs by ~25% on average, measured against AWS Cost Explorer.",
+                "Introduced Terraform to a client base that had been provisioning infrastructure by hand, building reusable modules, including a standardized Lambda + API Gateway pattern.",
+                "Integrated AI workflows (Lambda, RDS, S3) into client infrastructure for data preprocessing, model training, and inference, cutting processing time by 25%."
+            ],
+            "stats": [
+                { "value": "25+", "label": "startup clients migrated" },
+                { "value": "~25%", "label": "average cost reduction" }
             ]
         },
         {
@@ -113,11 +77,14 @@
             "duration": "Oct 2023 - Oct 2024",
             "logo": "/experience/datamellon-logo.svg",
             "description": [
-                "Implemented robust CI/CD pipelines using Jenkins and AWS CodePipeline, leading to a 60% decrease in deployment times and a 30% increase in deployment frequency.",
-                "Automated routine tasks and workflows with Terraform and AWS Lambda, reducing manual intervention by 80%.",
-                "Analyzed and optimized cloud spending, employing Reserved Instances and Spot Instances to achieve a 25% cost saving on AWS bills.",
-                "Employed serverless architecture to architect and deploy scalable, cost-efficient solutions for clients, resulting in a 40% decrease in infrastructure expenses.",
-                "Implemented Large Language Model (LLM) agents to streamline in-house operations, improving infrastructure development speed by 40% through automation and advanced generative capabilities."
+                "Replaced a manual SSH deploy process (someone logging in to stop and rebuild the app by hand) with a real CI/CD pipeline on Jenkins, CodePipeline, CodeBuild, and CodeDeploy.",
+                "Automated routine provisioning with Terraform and Lambda, cutting manual effort by an estimated 80%.",
+                "Cut AWS bills 25% through a Reserved/Spot Instance strategy, and another 40% by moving eligible workloads to serverless.",
+                "Built LLM agents to automate in-house operations, speeding up infrastructure development by 40%."
+            ],
+            "stats": [
+                { "value": "5-7 min", "label": "deploy time, down from 20-30 min" },
+                { "value": "80%", "label": "less manual provisioning" }
             ]
         },
         {
@@ -130,6 +97,10 @@
                 "Led incident response efforts for critical system failures, achieving a mean time to resolution (MTTR) of less than 1 hour.",
                 "Developed scripts using PowerShell and Bash to automate routine tasks, reducing manual workload by 60%.",
                 "Set up and maintained monitoring tools (e.g., Nagios, Zabbix) to track system health and performance, leading to a 50% reduction in downtime."
+            ],
+            "stats": [
+                { "value": "<1hr", "label": "mean time to resolution" },
+                { "value": "50%", "label": "downtime reduction" }
             ]
         }
     ],

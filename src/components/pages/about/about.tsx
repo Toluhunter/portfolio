@@ -2,7 +2,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { status } from "@/data/content.json";
 
 const principles = [
     "Your constraints are the design. Scale ambitions mean nothing without a budget to match - the best system is the one built for your reality, not someone else's.",
@@ -73,7 +72,7 @@ export const AboutSection = () => {
                 <div className="w-full lg:w-[26rem] lg:flex-shrink-0">
                     <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden border border-foreground/15">
                         <Image
-                            src="https://assets.toluhunter.com/about/pic.webp"
+                            src="https://assets.toluhunter.com/about/profile-pic.webp"
                             alt="Tolulope Fakoya"
                             fill
                             sizes="(max-width: 1024px) 100vw, 26rem"
@@ -94,9 +93,14 @@ export const AboutSection = () => {
                         </span>
                     ))}
                 </div>
-                <Link href="/experience" className="text-sm text-foreground hover:underline w-fit">
-                    See the full background &rarr;
-                </Link>
+                <div className="flex flex-wrap gap-x-6 gap-y-2">
+                    <Link href="/experience" className="text-sm text-foreground hover:underline w-fit">
+                        See the full background &rarr;
+                    </Link>
+                    <Link href="/cv" className="text-sm text-foreground hover:underline w-fit">
+                        Download CV &rarr;
+                    </Link>
+                </div>
             </div>
 
             {/* How I work */}
@@ -114,18 +118,6 @@ export const AboutSection = () => {
                         </li>
                     ))}
                 </ul>
-            </div>
-
-            {/* Right now */}
-            <div className="flex flex-col gap-3">
-                <span className="text-xs font-semibold uppercase tracking-widest text-foreground/80">Right Now</span>
-                <p className="flex items-center gap-3 text-lg text-foreground">
-                    <span className="relative inline-flex items-center justify-center w-3 h-3 flex-shrink-0">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-foreground opacity-75" />
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-foreground" />
-                    </span>
-                    {status.working} &middot; <span className="text-foreground font-semibold">{status.availability}</span>
-                </p>
             </div>
 
             {/* Closing CTA */}

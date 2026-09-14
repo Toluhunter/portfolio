@@ -1,40 +1,21 @@
-'use client';
-
 import { Title } from "@/components/utilities/shared/title";
-import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import { services } from "@/data/content.json";
+import services from "@/data/services.json";
+import { serviceIcons, Service } from "@/components/utilities/shared/service-icon";
 
-const ServiceCard = ({ service }: { service: typeof services[0] }) => {
-    const [isLoading, setIsLoading] = useState(true);
+const ServiceTile = ({ service }: { service: Service }) => {
+    const IconComponent = serviceIcons[service.icon];
 
     return (
-        <div
-            className="flex flex-col items-center justify-between p-8 bg-background rounded-xl shadow-xl border border-gray-700 hover:border-foreground transition-all duration-300 transform hover:scale-105 group"
+        <Link
+            href={`/services#${service.id}`}
+            className="flex flex-col items-center gap-4 p-6 border border-foreground/20 rounded-xl text-center hover:border-callout transition-colors duration-300"
         >
-            <div className="relative w-[18.75rem] h-[12.5rem] mb-4">
-                {isLoading && (
-                    <div className="absolute inset-0 bg-gray-700 rounded-lg animate-pulse"></div>
-                )}
-                <Image
-                    src={service.imageUrl}
-                    alt={service.name}
-                    fill
-                    sizes="300px"
-                    className={`rounded-lg object-cover transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
-                    onLoad={() => setIsLoading(false)}
-                />
+            <div className="flex items-center justify-center w-14 h-14 rounded-lg border border-foreground/30 text-callout">
+                <IconComponent size={26} />
             </div>
-            <span className="font-bold text-xl text-center text-foreground transition-colors duration-300 mb-4">{service.name}</span>
-            <p className="text-center text-muted-foreground mb-4 flex-grow">{service.description}</p>
-            <Link
-                href="/book"
-                className="mt-auto px-6 py-2 border border-callout text-foreground font-bold rounded-lg hover:bg-callout hover:text-on-callout transition-all duration-300 ease-in-out"
-            >
-                Schedule a Call
-            </Link>
-        </div>
+            <span className="font-bold text-foreground">{service.name}</span>
+        </Link>
     );
 };
 
@@ -42,14 +23,22 @@ export const ServicesSection = () => {
     return (
         <section
             id="services"
-            className="flex flex-col items-center min-h-[64rem] w-full overflow-hidden relative py-5"
+            className="flex flex-col items-center w-full py-12"
         >
-            <div className="relative w-full h-full container mx-auto px-4">
-                <Title text="Services" />
-                <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-6xl mx-auto">
-                    {services.map((service) => (
-                        <ServiceCard key={service.id} service={service} />
+            <div className="relative w-full container mx-auto px-4">
+                <Title text="Services" link="/services" hasMore={true} />
+                <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 w-full max-w-6xl mx-auto">
+                    {(services as Service[]).map((service) => (
+                        <ServiceTile key={service.id} service={service} />
                     ))}
+                </div>
+                <div className="flex justify-center mt-10">
+                    <Link
+                        href="/book"
+                        className="px-8 py-3 border-2 border-callout text-foreground font-bold rounded-lg hover:bg-callout hover:text-on-callout transition-all duration-300 ease-in-out"
+                    >
+                        Book a Call
+                    </Link>
                 </div>
             </div>
         </section>

@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import content from "@/data/content.json";
+import { CaseStudyStat } from "@/components/utilities/shared/beat";
 
 interface Experience {
     company: string;
@@ -8,6 +9,7 @@ interface Experience {
     duration: string;
     description: string[];
     logo: string;
+    stats?: CaseStudyStat[];
 }
 
 const WorkHistorySection = () => {
@@ -29,15 +31,27 @@ const WorkHistorySection = () => {
                                 className="object-contain"
                             />
                         </div>
-                        <div>
-                            <h3 className="text-xl font-bold text-foreground">{exp.company}</h3>
-                            <p className="text-base font-semibold text-foreground">{exp.role}</p>
-                            <p className="text-sm text-foreground/80 mb-3">{exp.duration}</p>
+                        <div className="flex flex-col gap-3 flex-1">
+                            <div>
+                                <h3 className="text-xl font-bold text-foreground">{exp.company}</h3>
+                                <p className="text-base font-semibold text-foreground">{exp.role}</p>
+                                <p className="text-sm text-foreground/80">{exp.duration}</p>
+                            </div>
                             <ul className="list-disc list-inside text-foreground space-y-1 text-sm">
                                 {exp.description.map((item, i) => (
                                     <li key={i}>{item}</li>
                                 ))}
                             </ul>
+                            {exp.stats && exp.stats.length > 0 && (
+                                <div className="flex flex-wrap gap-3 mt-1">
+                                    {exp.stats.map((stat) => (
+                                        <div key={stat.label} className="flex flex-col gap-0.5 px-4 py-2 border border-foreground/20 rounded-lg">
+                                            <span className="font-fira-code text-lg font-bold text-callout">{stat.value}</span>
+                                            <span className="text-[10px] text-foreground/60 uppercase tracking-wide">{stat.label}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,80 @@
+[
+    {
+        "id": "cloud-migration",
+        "name": "Cloud Migration",
+        "icon": "cloud-upload",
+        "hook": "You're outgrowing where you're hosted now, and need to move onto AWS without losing data or downtime along the way.",
+        "includes": [
+            "Live database migration with AWS DMS",
+            "Zero-downtime cutover planning",
+            "Re-platforming onto managed services (RDS, ElastiCache, S3, CloudFront)"
+        ]
+    },
+    {
+        "id": "infrastructure-cost-management",
+        "name": "Infrastructure Cost Management",
+        "icon": "dollar",
+        "hook": "Your AWS bill is higher than it should be, or you simply don't have visibility into where the money's going.",
+        "includes": [
+            "Cost and usage audit",
+            "Right-sizing and reserved/spot instance strategy",
+            "Ongoing cost monitoring so it doesn't creep back up"
+        ]
+    },
+    {
+        "id": "security-tightening",
+        "name": "Security Tightening",
+        "icon": "shield",
+        "hook": "You need to know where the real gaps are before a client, auditor, or attacker finds them for you.",
+        "includes": [
+            "Infrastructure and application security audit",
+            "Hardening against common attack paths",
+            "Compliance-ready documentation"
+        ]
+    },
+    {
+        "id": "ai-ml-development",
+        "name": "AI/ML Development",
+        "icon": "brain",
+        "hook": "You want to ship AI features that hold up in production, not just in a demo.",
+        "includes": [
+            "LLM/agent system design with guardrails",
+            "Multi-provider model abstraction (Bedrock, OpenAI, and others)",
+            "Production deployment, not just a notebook"
+        ],
+        "caseStudyLink": "/#projects"
+    },
+    {
+        "id": "custom-cloud-solutions",
+        "name": "Custom Cloud Solutions",
+        "icon": "cubes",
+        "hook": "You need something built end-to-end for your infrastructure, not off-the-shelf.",
+        "includes": [
+            "Full-stack application development",
+            "Solution architecture from scratch",
+            "Built on infrastructure that scales with you"
+        ]
+    },
+    {
+        "id": "observability-alerting",
+        "name": "Observability & Alerting",
+        "icon": "chart",
+        "hook": "You have to make critical business decisions without the metrics to back them up.",
+        "includes": [
+            "Metrics and dashboards for what actually matters",
+            "Alerting that reaches you before your users notice",
+            "Distributed tracing for real production debugging"
+        ]
+    },
+    {
+        "id": "infrastructure-management",
+        "name": "Infrastructure Management",
+        "icon": "server",
+        "hook": "Your infrastructure needs ongoing maintenance, and you or your team are stretched too thin to keep up with it.",
+        "includes": [
+            "Ongoing monitoring and maintenance",
+            "Incident response and on-call coverage",
+            "Proactive scaling before it becomes a problem"
+        ]
+    }
+]

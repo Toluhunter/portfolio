@@ -64,7 +64,7 @@ A product does not truly exist until it is in the hands of its users - and archi
 
 - [Home](${BASE_URL}): Landing page with introduction and overview of services
 - [About](${BASE_URL}/about): Background, philosophy, and approach to cloud and AI engineering
-- [Services](${BASE_URL}/services): Cloud consultation, solution architecture, AI/ML pipelines, cost optimization, security audits
+- [Services](${BASE_URL}/services): Cloud migration, infrastructure cost management, security tightening, AI/ML development, custom cloud solutions, observability and alerting, infrastructure management
 - [Experience](${BASE_URL}/experience): Full work history across cloud architecture, DevOps, and system administration
 - [Articles](${BASE_URL}/articles): Technical writing on cloud architecture, engineering, and systems
 - [Products](${BASE_URL}/products): Products and tools built by Tolulope Fakoya

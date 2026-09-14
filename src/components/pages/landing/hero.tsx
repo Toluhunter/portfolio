@@ -5,7 +5,6 @@ import Type from "@/components/utilities/landingpage/hero/type";
 import { useState, useEffect, useRef } from "react";
 import { useAudio } from "@/components/utilities/shared/audio";
 import Link from "next/link";
-import { status } from "@/data/content.json";
 
 
 export const Herosection = () => {
@@ -50,13 +49,6 @@ export const Herosection = () => {
             <section id="hero-section" className="relative w-full flex flex-col items-stretch justify-center pt-25 pb-20 overflow-hidden min-h-screen max-h-[1600px]">
                 <Slider />
 
-                <div id="status-bar" className="absolute top-15 left-0 right-0 bg-black/60 backdrop-blur-sm text-white border-b border-white/20 py-1 px-5 text-sm md:text-lg text-center z-[51] md:z-30">
-                    <span className="relative inline-flex items-center justify-center w-3 h-3 mr-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-foreground opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-foreground"></span>
-                    </span>{status.working} · {status.availability}
-                </div>
-
                 <div id="content-container" className="container mx-auto flex flex-col md:flex-row md:gap-10 xl:gap-20 md:items-center md:justify-center px-5 md:px-0 z-20">
                     <div id="content-column" className="flex flex-col gap-8 items-start text-left md:max-w-[28rem] xl:max-w-[36rem] text-2xl lg:text-3xl xl:text-4xl">
 
@@ -76,6 +68,9 @@ export const Herosection = () => {
                             </p>
                             <p className="text-base md:text-lg text-foreground/80 font-fira-code">
                                 <i>I design, monitor, and secure yours so the platform you ship performs as well as the idea that started it.</i>
+                            </p>
+                            <p className="text-base md:text-lg text-foreground font-fira-code">
+                                I work with small teams shipping an AI or cloud product who don&apos;t have a platform team in place yet.
                             </p>
                         </div>
 

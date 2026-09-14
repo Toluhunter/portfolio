@@ -1,5 +1,54 @@
 [
     {
+        "name": "Guarded Agentic Chatbot",
+        "subtitle": "Production-Grade AI Assistant with Built-In Guardrails",
+        "description": [
+            "A production agentic chatbot built on LangGraph, with prompt-injection defense built into the graph. A fast regex check catches obvious attacks before any model call happens, and a semantic LLM check catches the reworded ones, on both what the user sends and what the model sends back, so a bypass on the way in doesn't help if the reply is still off-policy on the way out.",
+            "Ships with two real deployment tiers: a full AWS-native setup on ECS, RDS, and ElastiCache that handles roughly 39,000 monthly active users on real load-test numbers, and a budget single-server tier on Terraform and Ansible for $24 a month. Same design, same guardrails, sized to what the client actually needs."
+        ],
+        "status": "Live",
+        "images": [
+            "/projects/guarded-agentic-chatbot/frontend-chat.png",
+            "/projects/guarded-agentic-chatbot/tier1-architecture.png",
+            "/projects/guarded-agentic-chatbot/mau-comparison.png"
+        ],
+        "imageAspectRatios": [
+            1.49,
+            1.48,
+            1.19
+        ],
+        "websiteLink": "https://github.com/Toluhunter/guarded-agentic-chatbot",
+        "technologies": [
+            "LangGraph: Agent orchestration and guardrail graph",
+            "AWS Bedrock / OpenAI / Gemini / Ollama: Swappable LLM providers",
+            "Terraform: Infrastructure as code for both deployment tiers",
+            "PostgreSQL + pgvector: Vector store for retrieval",
+            "Docker: Local dev and both production tiers"
+        ],
+        "roles": [
+            "Designed and built the LangGraph agent graph, including the two-layer input/output guardrail system.",
+            "Architected both production deployment tiers and wrote the full Terraform infrastructure for each.",
+            "Ran and documented real load testing to establish the actual concurrent-user ceiling for both tiers.",
+            "Built the multi-provider LLM abstraction so the same graph runs on Bedrock, OpenAI, Gemini, or Ollama."
+        ],
+        "caseStudy": {
+            "hook": "Guardrails used for real load, at a price that scales with the your budget.",
+            "problem": "An AI assistant that's actually production-ready has to be cost-effective to run and secure against attacks, including the reworded prompts that slip past a simple filter.",
+            "built": "A two-layer guardrail graph on LangGraph: a fast regex check catches the obvious attacks before any model call happens, and a semantic LLM check catches the reworded ones, checking both what the user sends and what the model replies with, so a bypass on the way in doesn't help if the reply is still off-policy on the way out.",
+            "result": "Same design, same guardrails, deployed at two different budgets depending on what the client needs.",
+            "stats": [
+                {
+                    "value": "39,000",
+                    "label": "monthly active users, load-tested"
+                },
+                {
+                    "value": "$24/mo",
+                    "label": "budget deployment tier"
+                }
+            ]
+        }
+    },
+    {
         "name": "BeemBridge",
         "subtitle": "File Transfer Without Walls",
         "description": [
@@ -9,6 +58,9 @@
         "status": "In Progress",
         "images": [
             "https://assets.toluhunter.com/projects/beembridge.svg"
+        ],
+        "imageAspectRatios": [
+            1.48
         ],
         "websiteLink": "https://www.beembridge.com",
         "technologies": [
@@ -23,6 +75,12 @@
             "Implemented cross-network P2P using STUN-based device discovery and WebRTC for the browser transfer mode.",
             "Designed and managed the cloud infrastructure and CI/CD deployment pipeline.",
             "Architected the product split between the open-source local app and the closed-source online platform."
-        ]
+        ],
+        "caseStudy": {
+            "hook": "Works identically across every major platform, and no server ever sees your files.",
+            "problem": "AirDrop only works between Apple devices, and Quick Share skips iOS and macOS entirely. Nothing lets you send a file to any device, on any platform, without installing extra software or routing it through someone else's server.",
+            "built": "A cross-platform transfer app in Rust that works the same way everywhere: install it once and it finds every other device running it, on the same network or over the internet. Online transfers go peer-to-peer over WebRTC, so file data never touches a server, and recipients without the app can still receive files straight through a browser.",
+            "result": "Works the same way on Windows, macOS, Linux, iOS, and Android, with no server ever touching the file data in an online transfer."
+        }
     }
 ]

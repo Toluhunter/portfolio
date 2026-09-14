@@ -1,0 +1,25 @@
+[
+    {
+        "title": "Large Financial Institution",
+        "subtitle": "Mobile App Infrastructure",
+        "icon": "landmark",
+        "caseStudy": {
+            "problem": "A large financial institution's mobile app backend couldn't scale or recover on its own, and every spike in load turned into downtime users could feel.",
+            "built": "Containerized the application and moved it onto Amazon EKS, with pod-level autoscaling so the infrastructure absorbs load spikes and recovers from failures automatically instead of needing a human to step in.",
+            "result": "Downtime over the year dropped by roughly half.",
+            "stats": [
+                { "value": "~50%", "label": "reduction in downtime over the year" }
+            ]
+        }
+    },
+    {
+        "title": "Online Marketplace",
+        "subtitle": "Migration from DigitalOcean to AWS",
+        "icon": "store",
+        "caseStudy": {
+            "problem": "An online marketplace had outgrown DigitalOcean and needed to move onto AWS without losing a single record out of its relational database mid-migration.",
+            "built": "A full re-platform onto AWS: a load balancer and auto-scaling group in front of the application, RDS and ElastiCache for the data layer, AWS DMS to migrate the relational database live, object storage moved to S3, and CloudFront in front of it all for the CDN.",
+            "result": "The marketplace now runs on infrastructure it didn't have on DigitalOcean, with traffic spikes absorbed by the auto-scaling group and ElastiCache instead of by hand, and CloudFront in front of it for the CDN layer."
+        }
+    }
+]
