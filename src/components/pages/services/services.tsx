@@ -4,6 +4,7 @@ import { Fragment } from "react";
 import { FaArrowRight, FaArrowDown } from "react-icons/fa";
 import services from "@/data/services.json";
 import { ServiceCard } from "./service-card";
+import { PricingSection } from "./pricing";
 import { Service } from "@/components/utilities/shared/service-icon";
 
 const steps = [
@@ -41,6 +42,8 @@ export const ServicesPageSection = () => {
                     </Fragment>
                 ))}
             </div>
+
+            <PricingSection />
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full max-w-6xl">
                 {(services as Service[]).map((service) => (

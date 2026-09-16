@@ -1,0 +1,58 @@
+{
+    "intro": "Every engagement is scoped to your actual infrastructure, not a one size fits all rate card. Here is roughly what each way of working together looks like at each level of complexity.",
+    "tiers": [
+        {
+            "name": "Starter",
+            "description": "One application, one environment, no separate staging yet.",
+            "comparison": "A pre-seed MVP that just landed its first real users.",
+            "included": [
+                "Authentication and authorization",
+                "Database setup and management",
+                "Payment/billing integration (Stripe-style)",
+                "A dashboard",
+                "Logs",
+                "Uptime monitoring"
+            ],
+            "addOns": [
+                "Error-rate alerting",
+                "Scheduled/automated tasks",
+                "Automated security patching",
+                "Kubernetes cluster setup"
+            ],
+            "audit": "~$700",
+            "project": "Starting around $2,500",
+            "retainer": "~$750/mo"
+        },
+        {
+            "name": "Growing",
+            "description": "Multiple environments, each with its own database and configuration.",
+            "comparison": "A funded startup's product a year or two post launch.",
+            "included": [
+                "Everything in Starter, per environment",
+                "Database servers or microservice setup per environment",
+                "Scheduled security updates",
+                "Full observability across every environment: metrics, logs, dashboards, and error-rate alerting"
+            ],
+            "addOns": [
+                "Kubernetes cluster setup"
+            ],
+            "audit": "~$1,300",
+            "project": "Starting around $5,500",
+            "retainer": "~$1,600/mo"
+        },
+        {
+            "name": "Scaling",
+            "description": "Multiple applications or services, multiple environments, compliance or reliability requirements that matter.",
+            "comparison": "A Series A+ startup with an engineering team but no dedicated platform engineer.",
+            "included": [
+                "Everything in Growing, across multiple applications or services",
+                "Kubernetes cluster setup",
+                "Cross-service observability: distributed tracing across services, plus SLA-based alerting"
+            ],
+            "addOns": [],
+            "audit": "~$2,200+",
+            "project": "Custom quote, typically $10,000+",
+            "retainer": "~$3,200+/mo"
+        }
+    ]
+}
