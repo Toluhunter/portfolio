@@ -22,10 +22,10 @@
   --on-callout-light: #ffffff;
 
   /* dark theme */
-  --background-dark: #0a0a0a;
-  --panel-dark: #171717;
-  --card-dark: #202020;
-  --raised-dark: #2a2a2a;
+  --background-dark: #121212;
+  --panel-dark: #1a1a1a;
+  --card-dark: #232323;
+  --raised-dark: #2b2b2b;
   --foreground-dark: #e6e6e6;
   --muted-dark: #b4b4b4;
   --faint-dark: #8a8a8a;

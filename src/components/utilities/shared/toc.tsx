@@ -67,9 +67,9 @@ export function TOC({ toc }: { toc?: TocItem[] }) {
     return (
         <nav
             aria-label="Table of contents"
-            className="sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto"
+            className="sticky top-24 max-h-[calc(100vh-20rem)] overflow-y-auto pr-1"
         >
-            <p className="text-xs font-semibold uppercase tracking-widest text-[var(--foreground)]/40 mb-4">
+            <p className="text-xs font-semibold uppercase tracking-widest text-[var(--foreground)]/60 mb-4">
                 On this page
             </p>
             <ul className="space-y-0.5">

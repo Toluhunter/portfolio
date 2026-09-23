@@ -67,7 +67,7 @@ export default function RootLayout({
             __html: `(function(){try{var r=document.documentElement;var s=null;try{s=localStorage.getItem('theme')}catch(e){}var d;if(s==='light'){d=false}else if(s==='dark'){d=true}else{var l=null;try{l=localStorage.getItem('isLightOn')}catch(e){}if(l!==null){d=!JSON.parse(l)}else{d=window.matchMedia('(prefers-color-scheme: dark)').matches}}r.classList.toggle('dark',d);r.style.colorScheme=d?'dark':'light'}catch(e){document.documentElement.classList.add('dark')}})();`,
           }}
         />
-        <meta name="theme-color" content="#0a0a0a" />
+        <meta name="theme-color" content="#121212" />
 
         <Script async src="https://www.googletagmanager.com/gtag/js?id=G-6WMS15MTQ9"></Script>
         <Script id="google-analytics">

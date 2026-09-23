@@ -34,7 +34,7 @@ export const ServicesPageSection = () => {
                             <p className="text-sm text-foreground/70">{step.description}</p>
                         </div>
                         {i < steps.length - 1 && (
-                            <div className="flex items-center justify-center text-foreground/30 flex-shrink-0">
+                            <div className="flex items-center justify-center text-faint flex-shrink-0">
                                 <FaArrowDown className="lg:hidden" size={18} />
                                 <FaArrowRight className="hidden lg:block mt-1" size={18} />
                             </div>

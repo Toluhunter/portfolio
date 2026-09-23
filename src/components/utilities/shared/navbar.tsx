@@ -26,7 +26,7 @@ export const NavBar = () => {
 
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
-    const { isLightOn, toggleLight } = useLightbulb();
+    const { isLightOn, toggleLight, choice, setChoice } = useLightbulb();
     const { isSoundOn } = useAudio();
     const [play] = useSound("https://assets.toluhunter.com/sounds/light-switch.mp3", { volume: 1, soundEnabled: isSoundOn });
 
@@ -68,6 +68,18 @@ export const NavBar = () => {
                             onToggle={() => { toggleLight(); play() }}
                             className="absolute top-0 left-[68%] -translate-x-1/2"
                         />
+                        {/* The cord makes an explicit choice. This is the way back to
+                            following the device, and it only exists while a choice is set. */}
+                        {choice !== 'system' && (
+                            <button
+                                type="button"
+                                onClick={() => setChoice('system')}
+                                title="Follow this device's theme again"
+                                className="absolute -bottom-1 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-[10px] text-faint underline underline-offset-2 transition-colors hover:text-callout cursor-pointer"
+                            >
+                                follow device
+                            </button>
+                        )}
                     </div>
                     <NavLinks className="hidden lg:flex lg:flex-row lg:gap-7 font-bold" />
 

@@ -50,7 +50,7 @@ function applyTheme(resolved: ResolvedTheme) {
     }
     const meta = document.querySelector("meta[name='theme-color']");
     if (meta) {
-        (meta as HTMLMetaElement).content = resolved === 'dark' ? '#0a0a0a' : '#f5f5f5';
+        (meta as HTMLMetaElement).content = resolved === 'dark' ? '#121212' : '#f5f5f5';
     }
 }
 
