@@ -75,7 +75,7 @@ export const NavBar = () => {
                                 type="button"
                                 onClick={() => setChoice('system')}
                                 title="Follow this device's theme again"
-                                className="absolute -bottom-1 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-[10px] text-faint underline underline-offset-2 transition-colors hover:text-callout cursor-pointer"
+                                className="absolute top-4 right-0 whitespace-nowrap font-mono text-[10px] leading-none text-faint underline underline-offset-2 transition-colors hover:text-callout cursor-pointer"
                             >
                                 follow device
                             </button>
