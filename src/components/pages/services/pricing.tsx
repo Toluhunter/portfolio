@@ -55,7 +55,7 @@ export const PricingSection = () => {
                 ))}
             </div>
 
-            <p className="text-sm text-foreground/60 mt-6">
+            <p className="text-sm text-foreground/70 mt-6 prose-measure">
                 Not sure which tier fits? <Link href="/book" className="text-callout hover:underline">Book a free call</Link> and we will figure it out together.
             </p>
         </div>

@@ -52,7 +52,7 @@ export default function ArticlesPage() {
                 <div className="flex flex-col gap-2 mb-12">
                     <span className="text-xs font-semibold uppercase tracking-widest text-foreground/80">Writing</span>
                     <h1 className="text-5xl md:text-6xl font-bold font-fira-code text-foreground">Articles</h1>
-                    <p className="text-lg text-foreground/80 mt-1">Thoughts on cloud architecture, engineering, and the things I build.</p>
+                    <p className="text-lg text-foreground/80 mt-1 prose-measure">Thoughts on cloud architecture, engineering, and the things I build.</p>
                 </div>
                 {loading ? (
                     <div className="space-y-8">

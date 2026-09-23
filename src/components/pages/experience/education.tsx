@@ -28,7 +28,7 @@ const EducationCard = ({ education }: { education: Education }) => {
                 {education.duration && (
                     <p className="text-sm text-foreground/80 mb-3">{education.duration}</p>
                 )}
-                <ul className="list-disc list-inside text-foreground space-y-1">
+                <ul className="list-disc list-inside text-foreground space-y-1.5 leading-relaxed prose-measure">
                     {education.description.map((item, index) => (
                         <li key={index}>{item}</li>
                     ))}

@@ -35,17 +35,19 @@
 
 }
 
-/* Responsive base font sizes */
+/* Responsive base font sizes.
+   Ladder raised roughly 0.5px per step over the original 14/15/15.5/16/17/17.5px
+   scale: the old mobile base of 14px was below a comfortable reading size. */
 html {
-  font-size: 15.5px;
-  /* Base font size for mobile, raised from 14px for readability */
+  font-size: 15px;
+  /* Base font size for mobile */
 }
 
 @media (min-width: 640px) {
 
   /* sm */
   html {
-    font-size: 15px;
+    font-size: 15.5px;
   }
 }
 
@@ -53,7 +55,7 @@ html {
 
   /* md */
   html {
-    font-size: 15.5px;
+    font-size: 16px;
   }
 }
 
@@ -61,7 +63,7 @@ html {
 
   /* lg */
   html {
-    font-size: 16px;
+    font-size: 16.5px;
   }
 }
 
@@ -69,7 +71,7 @@ html {
 
   /* xl */
   html {
-    font-size: 17px;
+    font-size: 17.5px;
   }
 }
 
@@ -77,7 +79,7 @@ html {
 
   /* 2xl */
   html {
-    font-size: 17.5px;
+    font-size: 18px;
   }
 }
 
@@ -85,7 +87,7 @@ html {
 
   /* 3xl — ultra-wide */
   html {
-    font-size: 18.5px;
+    font-size: 19px;
   }
 }
 
@@ -93,7 +95,7 @@ html {
 
   /* 4xl */
   html {
-    font-size: 20px;
+    font-size: 20.5px;
   }
 }
 
@@ -101,7 +103,7 @@ html {
 
   /* 5xl (4K) */
   html {
-    font-size: 22px;
+    font-size: 22.5px;
   }
 }
 
@@ -406,11 +408,11 @@ body::after {
    the 50-75 band that typography research and the British Dyslexia Association
    recommend. prose-measure-center is for text inside centered cards. */
 .prose-measure {
-  max-width: var(--measure);
+  max-width: min(var(--measure), 68ch);
 }
 
 .prose-measure-center {
-  max-width: var(--measure);
+  max-width: min(var(--measure), 68ch);
   margin-inline: auto;
 }
 
