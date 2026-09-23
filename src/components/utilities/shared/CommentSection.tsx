@@ -94,7 +94,7 @@ export default function CommentSection({ articleId, initialComments = [] }: Prop
             <h3 className="text-lg font-semibold mb-2">Comments</h3>
 
             {loading ? (
-                <div className="text-sm text-gray-500">Checking authentication…</div>
+                <div className="text-sm text-faint">Checking authentication…</div>
             ) : user ? (
                 <div className="space-y-3 mb-6">
                     <div className="flex items-start gap-3">
@@ -139,9 +139,9 @@ export default function CommentSection({ articleId, initialComments = [] }: Prop
 
             <div className="space-y-4">
                 {commentsLoading ? (
-                    <div className="text-sm text-gray-500">Loading comments...</div>
+                    <div className="text-sm text-faint">Loading comments...</div>
                 ) : comments.length === 0 ? (
-                    <div className="text-sm text-gray-500">No comments yet.</div>
+                    <div className="text-sm text-faint">No comments yet.</div>
                 ) : (
                     comments.map((c) => (
                         <article key={c.id} className="border rounded p-3">
@@ -149,7 +149,7 @@ export default function CommentSection({ articleId, initialComments = [] }: Prop
                                 <CommentAuthorImage src={c.author?.profile_picture || ''} alt={c.author?.name || 'Anonymous'} />
                                 <div>
                                     <div className="text-sm font-medium">{c.author?.name ?? "Anonymous"}</div>
-                                    <div className="text-xs text-gray-500">{c.createdAt ? new Date(c.createdAt).toLocaleString() : ""}</div>
+                                    <div className="text-xs text-faint">{c.createdAt ? new Date(c.createdAt).toLocaleString() : ""}</div>
                                 </div>
                             </div>
                             <div className="text-sm">{c.text}</div>

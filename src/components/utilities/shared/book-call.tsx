@@ -6,7 +6,7 @@ export function BookCall() {
             <p className="font-semibold text-lg text-[var(--foreground)]">
                 Got something in mind?
             </p>
-            <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+            <p className="text-sm text-muted leading-relaxed">
                 I work with teams and founders building systems that need to be built right. Scalable, reliable, maintainable. If that sounds like your situation, let&apos;s talk.
             </p>
             <a

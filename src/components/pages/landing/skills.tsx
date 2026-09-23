@@ -42,7 +42,7 @@ export const SkillSection = () => {
                     {skillsData.map((skill) => (
                         <div
                             key={skill.id}
-                            className="flex flex-col items-center justify-center p-8 bg-background rounded-xl shadow-xl border border-gray-700 hover:border-foreground transition-all duration-300 transform hover:scale-105 group"
+                            className="flex flex-col items-center justify-center p-8 bg-panel rounded-xl shadow-xl border border-foreground/15 hover:border-foreground transition-all duration-300 transform hover:scale-105 group"
                         >
                             {skill.icon && (
                                 <div className="mb-4 text-foreground">

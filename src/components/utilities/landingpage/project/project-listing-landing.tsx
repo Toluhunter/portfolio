@@ -119,7 +119,7 @@ export const ProjectListing = ({ project, reverse = false }: { project: Project;
                 <div className="flex flex-col gap-6 text-left lg:w-[55%]">
                     <div className="flex flex-col gap-2">
                         <h3 className="text-foreground text-3xl md:text-5xl">{project.name}</h3>
-                        <p className="text-lg md:text-2xl font-semibold text-gray-400">{project.subtitle}</p>
+                        <p className="text-lg md:text-2xl font-semibold text-faint">{project.subtitle}</p>
                     </div>
 
                     <p className="text-foreground text-lg md:text-xl italic">{caseStudy.hook}</p>
