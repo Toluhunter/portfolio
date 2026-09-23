@@ -7,22 +7,38 @@
 
 
 :root {
+  --measure: 34rem;
+
+  /* light theme */
   --background-light: #f5f5f5;
-  --foreground-light: #000000;
-  --callout-light: #3f1117;
+  --panel-light: #ffffff;
+  --card-light: #fafafa;
+  --raised-light: #ffffff;
+  --foreground-light: #1a1a1a;
+  --muted-light: #4a4a4a;
+  --faint-light: #6b6b6b;
+  --callout-light: #9B2D3A;
+  --callout-fill-light: #9B2D3A;
   --on-callout-light: #ffffff;
 
+  /* dark theme */
   --background-dark: #0a0a0a;
-  --foreground-dark: #ffffff;
-  --callout-dark: #9B2D3A;
+  --panel-dark: #171717;
+  --card-dark: #202020;
+  --raised-dark: #2a2a2a;
+  --foreground-dark: #e6e6e6;
+  --muted-dark: #b4b4b4;
+  --faint-dark: #8a8a8a;
+  --callout-dark: #E0657A;
+  --callout-fill-dark: #9B2D3A;
   --on-callout-dark: #ffffff;
 
 }
 
 /* Responsive base font sizes */
 html {
-  font-size: 14px;
-  /* Base font size for mobile */
+  font-size: 15.5px;
+  /* Base font size for mobile, raised from 14px for readability */
 }
 
 @media (min-width: 640px) {
@@ -89,18 +105,36 @@ html {
   }
 }
 
-body.dark {
-  --background: var(--background-dark);
-  --foreground: var(--foreground-dark);
-  --callout: var(--callout-dark);
-  --on-callout: var(--on-callout-dark);
+/* Effective tokens. The theme class lives on <html> so the pre-paint script in
+   layout.tsx can apply it before the first paint; body.dark stays supported for
+   any component that still sets it. */
+:root {
+  color-scheme: light;
+  --background: var(--background-light);
+  --panel: var(--panel-light);
+  --card: var(--card-light);
+  --raised: var(--raised-light);
+  --foreground: var(--foreground-light);
+  --muted: var(--muted-light);
+  --faint: var(--faint-light);
+  --callout: var(--callout-light);
+  --callout-fill: var(--callout-fill-light);
+  --on-callout: var(--on-callout-light);
 }
 
-body:not(.dark) {
-  --background: var(--background-light);
-  --foreground: var(--foreground-light);
-  --callout: var(--callout-light);
-  --on-callout: var(--on-callout-light);
+:root.dark,
+body.dark {
+  color-scheme: dark;
+  --background: var(--background-dark);
+  --panel: var(--panel-dark);
+  --card: var(--card-dark);
+  --raised: var(--raised-dark);
+  --foreground: var(--foreground-dark);
+  --muted: var(--muted-dark);
+  --faint: var(--faint-dark);
+  --callout: var(--callout-dark);
+  --callout-fill: var(--callout-fill-dark);
+  --on-callout: var(--on-callout-dark);
 }
 
 @keyframes nudge-right {
@@ -175,8 +209,14 @@ body:not(.dark) {
 
 @theme inline {
   --color-background: var(--background);
+  --color-panel: var(--panel);
+  --color-card: var(--card);
+  --color-raised: var(--raised);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
   --color-callout: var(--callout);
+  --color-callout-fill: var(--callout-fill);
   --color-on-callout: var(--on-callout);
   --animate-nudge-right: nudge-right 1.2s ease-in-out infinite;
   --animate-nudge-left: nudge-left 1.2s ease-in-out infinite;
@@ -359,4 +399,49 @@ body::after {
   /* IE and Edge */
   scrollbar-width: none;
   /* Firefox */
+}
+
+/* ---------------------------------------------------------------- readability
+   Measure: 34rem at the current type scale is roughly 65-70 characters, inside
+   the 50-75 band that typography research and the British Dyslexia Association
+   recommend. prose-measure-center is for text inside centered cards. */
+.prose-measure {
+  max-width: var(--measure);
+}
+
+.prose-measure-center {
+  max-width: var(--measure);
+  margin-inline: auto;
+}
+
+/* Soft scrim so hero copy is never read against moving artwork. */
+.hero-scrim {
+  position: relative;
+}
+
+.hero-scrim::before {
+  content: "";
+  position: absolute;
+  inset: -1.25rem;
+  border-radius: 1.75rem;
+  background: color-mix(in srgb, var(--background) 78%, transparent);
+  filter: blur(16px);
+  z-index: -1;
+}
+
+/* Keep the documented 4.5:1 floor for the smallest labels. */
+.text-floor {
+  color: var(--muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }

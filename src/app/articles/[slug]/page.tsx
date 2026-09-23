@@ -100,9 +100,9 @@ export default async function RemoteArticlePage({
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }}
             />
             <NavBar />
-            <div className="max-w-screen-xl mx-auto px-6 pt-20">
+            <div className="max-w-screen-xl mx-auto px-6 pt-20 pb-28">
                 <div className="flex gap-12">
-                    <main className="flex-1 min-w-0 max-w-3xl mx-auto py-8">
+                    <main className="flex-1 min-w-0 max-w-[36rem] mx-auto py-8 px-6 md:px-10 bg-panel border border-foreground/10 rounded-2xl">
                         {content}
                     </main>
                     <aside className="hidden xl:block w-56 shrink-0">

@@ -20,7 +20,7 @@ export const ServicesPageSection = () => {
             <div className="flex flex-col gap-2 mb-16 max-w-3xl">
                 <span className="text-xs font-semibold uppercase tracking-widest text-foreground/80">What I Offer</span>
                 <h1 className="text-5xl md:text-6xl font-bold font-fira-code text-foreground">Services</h1>
-                <p className="text-lg text-foreground/80 mt-3">
+                <p className="text-lg text-foreground/80 mt-3 prose-measure">
                     From capacity planning to rate limits and security guardrails, I help you design a system that fits your reality, not a textbook or copy-pasted solution.
                 </p>
             </div>

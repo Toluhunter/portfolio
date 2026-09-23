@@ -16,7 +16,7 @@ export const BuyMeACoffee = () => {
             </p>
             <button
                 className="
-            bg-callout hover:bg-yellow-600
+            bg-callout-fill hover:bg-yellow-600
             text-on-callout font-bold
             p-4 rounded-full shadow-lg
             flex items-center justify-center

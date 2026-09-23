@@ -6,7 +6,7 @@ export const ServiceCard = ({ service }: { service: Service }) => {
     const IconComponent = serviceIcons[service.icon];
 
     return (
-        <div id={service.id} className="flex flex-col gap-5 p-6 md:p-8 border border-foreground/20 rounded-xl text-left scroll-mt-28">
+        <div id={service.id} className="flex flex-col gap-5 p-6 md:p-8 bg-panel border border-foreground/15 rounded-xl text-left scroll-mt-28">
             <div className="flex items-center gap-4">
                 <div className="flex items-center justify-center w-14 h-14 flex-shrink-0 rounded-lg border border-foreground/30 text-callout">
                     <IconComponent size={26} />
@@ -28,7 +28,7 @@ export const ServiceCard = ({ service }: { service: Service }) => {
             <div className="flex flex-wrap items-center gap-4 mt-auto pt-2">
                 <Link
                     href="/book"
-                    className="px-6 py-2 border-2 border-callout text-foreground font-bold rounded-lg hover:bg-callout hover:text-on-callout transition-all duration-300 ease-in-out"
+                    className="px-6 py-2 border-2 border-callout text-foreground font-bold rounded-lg hover:bg-callout-fill hover:text-on-callout transition-all duration-300 ease-in-out"
                 >
                     Book a Call
                 </Link>

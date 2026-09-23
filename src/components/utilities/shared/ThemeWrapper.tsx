@@ -1,20 +1,14 @@
 'use client';
 
-import { useEffect } from 'react';
-import { useLightbulb } from './useLightbulb';
+import { ThemeProvider } from './useLightbulb';
 
+/**
+ * Theme provider. The theme class lives on <html> and is applied by the
+ * pre-paint script in layout.tsx, so there is no flash of the wrong theme and
+ * no second copy of the theme state.
+ */
 export default function ThemeWrapper({
   children,
 }: { children: React.ReactNode }) {
-  const { isLightOn } = useLightbulb();
-
-  useEffect(() => {
-    document.body.classList.toggle('dark', !isLightOn);
-    const favicon = document.querySelector("link[rel='icon']");
-    if (favicon) {
-      (favicon as HTMLLinkElement).href = isLightOn ? '/logo-black.svg' : '/logo.svg';
-    }
-  }, [isLightOn]);
-
-  return <>{children}</>;
+  return <ThemeProvider>{children}</ThemeProvider>;
 }

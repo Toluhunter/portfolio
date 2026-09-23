@@ -50,7 +50,7 @@ export const Herosection = () => {
                 <Slider />
 
                 <div id="content-container" className="container mx-auto flex flex-col md:flex-row md:gap-10 xl:gap-20 md:items-center md:justify-center px-5 md:px-0 z-20">
-                    <div id="content-column" className="flex flex-col gap-8 items-start text-left md:max-w-[28rem] xl:max-w-[36rem] text-2xl lg:text-3xl xl:text-4xl">
+                    <div id="content-column" className="hero-scrim flex flex-col gap-8 items-start text-left md:max-w-[28rem] xl:max-w-[36rem] text-2xl lg:text-3xl xl:text-4xl">
 
                         <p id="whoami-line">
                             <span className="text-callout">toluhunter</span><span className="text-foreground/60">@site</span><span className="text-foreground/60">:</span><span className="text-callout">~</span><span className="text-foreground">$</span> whoami <br />
@@ -74,7 +74,7 @@ export const Herosection = () => {
                             </p>
                         </div>
 
-                        <Link href="/book" className="px-5 py-2 text-base md:text-xl bg-callout text-on-callout border-2 border-callout rounded-md hover:opacity-90 transition-opacity duration-300">
+                        <Link href="/book" className="px-5 py-2 text-base md:text-xl bg-callout-fill text-on-callout border-2 border-callout rounded-md hover:opacity-90 transition-opacity duration-300">
                             Book A Free Meeting
                         </Link>
 

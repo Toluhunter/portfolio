@@ -22,7 +22,7 @@ function TocLink({ item, activeId }: { item: TocItem; activeId: string }) {
                     block py-1 pr-2 text-sm leading-5 border-l-2 pl-3 transition-all duration-150
                     ${isActive
                         ? "border-[var(--callout)] text-[var(--callout)] font-medium"
-                        : "border-transparent text-[var(--foreground)]/50 hover:text-[var(--foreground)] hover:border-[var(--foreground)]/30"
+                        : "border-transparent text-[var(--foreground)]/70 hover:text-[var(--foreground)] hover:border-[var(--foreground)]/30"
                     }
                 `}
             >

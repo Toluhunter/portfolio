@@ -29,7 +29,7 @@ export const FAQSection = () => {
             </h2>
             <ul className="flex flex-col divide-y divide-foreground/10">
                 {faqs.map((faq) => (
-                    <li key={faq.question} className="flex flex-col gap-2 py-6 first:pt-0">
+                    <li key={faq.question} className="flex flex-col gap-2 py-6 first:pt-0 prose-measure">
                         <span className="text-lg font-bold text-foreground">{faq.question}</span>
                         <span className="text-foreground/80">{faq.answer}</span>
                     </li>

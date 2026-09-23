@@ -139,7 +139,7 @@ export const PdfView = () => {
                             onLoadSuccess={onLoadSuccess}
                             loading={
                                 <div className="flex items-center justify-center h-full min-h-[60vh]">
-                                    <span className="text-foreground/50 font-mono animate-pulse">Loading CV...</span>
+                                    <span className="text-foreground/70 font-mono animate-pulse">Loading CV...</span>
                                 </div>
                             }
                             error={
@@ -218,7 +218,7 @@ export const PdfView = () => {
                 </span>
 
                 <a href={CV_DOWNLOAD_URL} download={CV_FILENAME}
-                    className="flex items-center gap-2 px-5 py-2 bg-callout text-on-callout rounded-lg font-semibold hover:opacity-90 transition-opacity">
+                    className="flex items-center gap-2 px-5 py-2 bg-callout-fill text-on-callout rounded-lg font-semibold hover:opacity-90 transition-opacity">
                     <FiDownload className="w-4 h-4" />
                     Download
                 </a>

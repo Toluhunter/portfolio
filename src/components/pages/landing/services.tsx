@@ -9,7 +9,7 @@ const ServiceTile = ({ service }: { service: Service }) => {
     return (
         <Link
             href={`/services#${service.id}`}
-            className="flex flex-col items-center gap-4 p-6 border border-foreground/20 rounded-xl text-center hover:border-callout transition-colors duration-300"
+            className="flex flex-col items-center gap-4 p-6 bg-panel border border-foreground/15 rounded-xl text-center hover:border-callout transition-colors duration-300"
         >
             <div className="flex items-center justify-center w-14 h-14 rounded-lg border border-foreground/30 text-callout">
                 <IconComponent size={26} />
@@ -35,7 +35,7 @@ export const ServicesSection = () => {
                 <div className="flex justify-center mt-10">
                     <Link
                         href="/book"
-                        className="px-8 py-3 border-2 border-callout text-foreground font-bold rounded-lg hover:bg-callout hover:text-on-callout transition-all duration-300 ease-in-out"
+                        className="px-8 py-3 border-2 border-callout text-foreground font-bold rounded-lg hover:bg-callout-fill hover:text-on-callout transition-all duration-300 ease-in-out"
                     >
                         Book a Call
                     </Link>

@@ -44,7 +44,7 @@ export const AboutSection = () => {
                     <div className="flex flex-wrap gap-5 items-center mt-2">
                         <Link
                             href="/book"
-                            className="px-5 py-2 text-base border-2 border-callout rounded-md hover:bg-callout hover:text-on-callout transition-colors duration-300 text-foreground"
+                            className="px-5 py-2 text-base border-2 border-callout rounded-md hover:bg-callout-fill hover:text-on-callout transition-colors duration-300 text-foreground"
                         >
                             Book a Free Meeting
                         </Link>
@@ -126,7 +126,7 @@ export const AboutSection = () => {
                 <h2 className="text-3xl md:text-4xl font-bold font-fira-code text-foreground">Have a project? Let&apos;s talk.</h2>
                 <Link
                     href="/book"
-                    className="px-6 py-3 text-base border-2 border-callout rounded-md hover:bg-callout hover:text-on-callout transition-colors duration-300 text-foreground w-fit"
+                    className="px-6 py-3 text-base border-2 border-callout rounded-md hover:bg-callout-fill hover:text-on-callout transition-colors duration-300 text-foreground w-fit"
                 >
                     Book a Free Meeting
                 </Link>

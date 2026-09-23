@@ -37,7 +37,7 @@ const WorkHistorySection = () => {
                                 <p className="text-base font-semibold text-foreground">{exp.role}</p>
                                 <p className="text-sm text-foreground/80">{exp.duration}</p>
                             </div>
-                            <ul className="list-disc list-inside text-foreground space-y-1 text-sm">
+                            <ul className="list-disc list-inside text-foreground space-y-1.5 text-base leading-relaxed prose-measure">
                                 {exp.description.map((item, i) => (
                                     <li key={i}>{item}</li>
                                 ))}
@@ -47,7 +47,7 @@ const WorkHistorySection = () => {
                                     {exp.stats.map((stat) => (
                                         <div key={stat.label} className="flex flex-col gap-0.5 px-4 py-2 border border-foreground/20 rounded-lg">
                                             <span className="font-fira-code text-lg font-bold text-callout">{stat.value}</span>
-                                            <span className="text-[10px] text-foreground/60 uppercase tracking-wide">{stat.label}</span>
+                                            <span className="text-xs text-foreground/70 uppercase tracking-wide">{stat.label}</span>
                                         </div>
                                     ))}
                                 </div>

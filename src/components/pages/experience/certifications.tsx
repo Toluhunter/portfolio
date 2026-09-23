@@ -14,7 +14,7 @@ interface Certification {
 
 const CertificationCard = ({ certification }: { certification: Certification }) => {
     return (
-        <div className="flex gap-4 items-start p-4 rounded-lg border border-foreground/20 hover:border-foreground/50 transition-colors duration-200">
+        <div className="flex gap-4 items-start p-4 rounded-lg bg-panel border border-foreground/15 hover:border-foreground/50 transition-colors duration-200">
             <div className="flex-shrink-0">
                 <Image
                     src={certification.picture}

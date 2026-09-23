@@ -51,7 +51,7 @@ export const ProjectListing = ({ project, reverse = false }: { project: Project;
 
     const visitButton = project.websiteLink && (
         <a href={project.websiteLink} target="_blank" rel="noopener noreferrer">
-            <button className="text-foreground py-2 px-7 rounded-md w-fit border-2 border-callout hover:bg-callout hover:text-on-callout transition-colors duration-300 flex items-center gap-2 cursor-pointer">
+            <button className="text-foreground py-2 px-7 rounded-md w-fit border-2 border-callout hover:bg-callout-fill hover:text-on-callout transition-colors duration-300 flex items-center gap-2 cursor-pointer">
                 Try it out
                 <FaExternalLinkAlt className="w-3 h-3" />
             </button>

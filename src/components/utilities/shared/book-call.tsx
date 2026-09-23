@@ -11,7 +11,7 @@ export function BookCall() {
             </p>
             <a
                 href="/book"
-                className="self-start rounded-lg bg-[var(--callout)] text-white text-sm font-medium px-4 py-2 hover:opacity-90 transition-opacity"
+                className="self-start rounded-lg bg-[var(--callout-fill)] text-white text-sm font-medium px-4 py-2 hover:opacity-90 transition-opacity"
             >
                 Let&apos;s talk
             </a>

@@ -13,7 +13,7 @@ export const ContactMeSection = () => {
                 </p>
                 <Link
                     href="/book"
-                    className="mt-8 px-8 py-3 border-2 border-callout text-foreground font-bold text-lg rounded-md shadow-lg hover:bg-callout hover:text-on-callout transition-all duration-300 ease-in-out transform hover:scale-105"
+                    className="mt-8 px-8 py-3 border-2 border-callout text-foreground font-bold text-lg rounded-md shadow-lg hover:bg-callout-fill hover:text-on-callout transition-all duration-300 ease-in-out transform hover:scale-105"
                 >
                     Book a Free Call
                 </Link>

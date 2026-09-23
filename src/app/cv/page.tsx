@@ -9,7 +9,7 @@ const PdfView = dynamic(
         ssr: false,
         loading: () => (
             <div className="min-h-screen flex items-center justify-center">
-                <span className="font-mono text-foreground/50 animate-pulse">Loading CV...</span>
+                <span className="font-mono text-foreground/70 animate-pulse">Loading CV...</span>
             </div>
         ),
     }

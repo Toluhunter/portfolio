@@ -277,12 +277,12 @@ export function AITerminal() {
                         <StatusDot status={status} />
                     </span>
 
-                    <span className="font-mono text-[10px] text-foreground/40">
+                    <span className="font-mono text-[10px] text-foreground/60">
                         {statusLabel(status)}
                     </span>
 
                     {sessionId && (
-                        <span className="font-mono text-[10px] text-foreground/25 hidden sm:block">
+                        <span className="font-mono text-[10px] text-foreground/60 hidden sm:block">
                             &nbsp;·&nbsp;{sessionId.slice(0, 8)}
                         </span>
                     )}
@@ -291,13 +291,13 @@ export function AITerminal() {
                 {/* Messages */}
                 <div className="flex-1 overflow-y-auto px-4 py-3 space-y-3 font-mono text-sm">
                     {messages.length === 0 && status === 'connecting' && (
-                        <p className="text-foreground/40 animate-pulse">establishing connection...</p>
+                        <p className="text-foreground/60 animate-pulse">establishing connection...</p>
                     )}
 
                     {messages.map((msg, i) => {
                         if (msg.role === 'system') {
                             return (
-                                <p key={i} className="text-foreground/35 text-xs">
+                                <p key={i} className="text-foreground/60 text-xs">
                                     # {msg.content}
                                 </p>
                             )
@@ -306,7 +306,7 @@ export function AITerminal() {
                             return (
                                 <div key={i} className="whitespace-pre-wrap wrap-anywhere">
                                     <span style={{ color: 'var(--callout)' }}>you</span>
-                                    <span className="text-foreground/40">@terminal:~$&nbsp;</span>
+                                    <span className="text-foreground/60">@terminal:~$&nbsp;</span>
                                     <span className="text-foreground">{msg.content}</span>
                                 </div>
                             )
@@ -351,7 +351,7 @@ export function AITerminal() {
                         <div className="whitespace-pre-wrap wrap-anywhere pointer-events-none select-none w-full">
                             <span className="text-foreground">{input}</span>
                             {!input && !canType && (
-                                <span className="text-foreground/30">
+                                <span className="text-foreground/60">
                                     {status === 'connecting'
                                         ? 'connecting...'
                                         : status === 'thinking'
@@ -366,7 +366,7 @@ export function AITerminal() {
                                 </span>
                             )}
                             {!input && canType && (
-                                <span className="text-foreground/30">ask me anything...</span>
+                                <span className="text-foreground/60">ask me anything...</span>
                             )}
                             {canType && (
                                 <span
@@ -396,7 +396,7 @@ export function AITerminal() {
                     <button
                         type="submit"
                         disabled={!input.trim() || !canType}
-                        className="font-mono text-xs text-foreground/40 disabled:opacity-20 transition-colors shrink-0 hover:text-foreground/70 mt-1"
+                        className="font-mono text-xs text-foreground/60 disabled:opacity-20 transition-colors shrink-0 hover:text-foreground/70 mt-1"
                     >
                         [enter]
                     </button>

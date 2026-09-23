@@ -18,7 +18,7 @@ export const EngagementCard = ({ engagement }: { engagement: Engagement }) => {
     const IconComponent = icons[engagement.icon];
 
     return (
-        <div className="flex flex-col gap-6 p-6 md:p-8 border border-foreground/20 rounded-xl text-left">
+        <div className="flex flex-col gap-6 p-6 md:p-8 bg-panel border border-foreground/15 rounded-xl text-left">
             <div className="flex items-center gap-4">
                 <div className="flex items-center justify-center w-14 h-14 flex-shrink-0 rounded-lg border border-foreground/30 text-callout">
                     <IconComponent size={26} />
