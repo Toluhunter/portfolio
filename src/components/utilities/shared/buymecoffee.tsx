@@ -10,7 +10,7 @@ export const BuyMeACoffee = () => {
     const [play, { stop }] = useSound("/spare-change.mp3", { volume: 1, soundEnabled: isSoundOn });
 
     return (
-        <div className="fixed bottom-28 left-5 z-50 flex flex-col items-center gap-2">
+        <div className="fixed bottom-20 left-5 z-40 flex flex-col items-center gap-2">
             <p className="text-base text-foreground" style={{ fontFamily: 'var(--font-lobster), cursive' }}>
                 Buy me a coffee
             </p>
