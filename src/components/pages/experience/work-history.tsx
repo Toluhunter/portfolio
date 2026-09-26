@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { CaseStudyStat } from "@/components/utilities/shared/beat";
+import { TimelineEntrySkeleton } from "@/components/utilities/shared/skeletons";
 
 interface Experience {
     company: string;
@@ -14,6 +15,7 @@ interface Experience {
 
 const WorkHistorySection = () => {
     const [experience, setExperience] = useState<Experience[]>([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchExperience = async () => {
@@ -23,11 +25,24 @@ const WorkHistorySection = () => {
                 setExperience(data.experience || []);
             } catch (error) {
                 console.error("Failed to fetch experience:", error);
+            } finally {
+                setLoading(false);
             }
         };
 
         fetchExperience();
     }, []);
+
+    if (loading) {
+        return (
+            <div className="relative">
+                <div className="absolute left-[11px] top-3 bottom-0 w-0.5 bg-foreground/25" />
+                {[0, 1, 2].map((i) => (
+                    <TimelineEntrySkeleton key={i} />
+                ))}
+            </div>
+        );
+    }
 
     return (
         <div className="relative">

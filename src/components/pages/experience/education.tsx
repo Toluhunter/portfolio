@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { EducationCardSkeleton } from "@/components/utilities/shared/skeletons";
 
 interface Education {
     institution: string;
@@ -40,6 +41,7 @@ const EducationCard = ({ education }: { education: Education }) => {
 
 const EducationSection = () => {
     const [education, setEducation] = useState<Education[]>([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchEducation = async () => {
@@ -49,11 +51,23 @@ const EducationSection = () => {
                 setEducation(data.education || []);
             } catch (error) {
                 console.error("Failed to fetch education:", error);
+            } finally {
+                setLoading(false);
             }
         };
 
         fetchEducation();
     }, []);
+
+    if (loading) {
+        return (
+            <div className="text-foreground">
+                {[0, 1].map((i) => (
+                    <EducationCardSkeleton key={i} />
+                ))}
+            </div>
+        );
+    }
 
     return (
         <div className="text-foreground">

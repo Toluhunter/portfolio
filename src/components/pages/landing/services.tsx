@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Title } from "@/components/utilities/shared/title";
 import Link from "next/link";
 import { serviceIcons, Service } from "@/components/utilities/shared/service-icon";
+import { ServiceTileSkeleton } from "@/components/utilities/shared/skeletons";
 
 const ServiceTile = ({ service }: { service: Service }) => {
     const IconComponent = serviceIcons[service.icon];
@@ -22,6 +23,7 @@ const ServiceTile = ({ service }: { service: Service }) => {
 
 export const ServicesSection = () => {
     const [services, setServices] = useState<Service[]>([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchServices = async () => {
@@ -39,6 +41,8 @@ export const ServicesSection = () => {
                 })));
             } catch (error) {
                 console.error("Failed to fetch services:", error);
+            } finally {
+                setLoading(false);
             }
         };
 
@@ -53,6 +57,9 @@ export const ServicesSection = () => {
             <div className="relative w-full container mx-auto px-4">
                 <Title text="Services" link="/services" hasMore={true} />
                 <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 w-full max-w-6xl mx-auto">
+                    {loading && Array.from({ length: 8 }, (_, i) => (
+                        <ServiceTileSkeleton key={`skeleton-${i}`} />
+                    ))}
                     {services.map((service) => (
                         <ServiceTile key={service.id} service={service} />
                     ))}

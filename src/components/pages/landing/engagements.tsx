@@ -2,9 +2,11 @@
 import { useEffect, useState } from "react";
 import { Title } from "@/components/utilities/shared/title"
 import { EngagementCard, Engagement } from "@/components/utilities/landingpage/engagement/engagement-card"
+import { EngagementCardSkeleton } from "@/components/utilities/shared/skeletons"
 
 export const EngagementsSection = () => {
     const [engagements, setEngagements] = useState<Engagement[]>([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchEngagements = async () => {
@@ -20,13 +22,15 @@ export const EngagementsSection = () => {
                 })));
             } catch (error) {
                 console.error("Failed to fetch engagements:", error);
+            } finally {
+                setLoading(false);
             }
         };
 
         fetchEngagements();
     }, []);
 
-    if (engagements.length === 0) return null;
+    if (!loading && engagements.length === 0) return null;
 
     return (
         <section id="engagements" className="relative flex flex-col items-center py-12">
@@ -34,6 +38,9 @@ export const EngagementsSection = () => {
                 <Title text="Client Engagements" />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {loading && [0, 1].map((i) => (
+                        <EngagementCardSkeleton key={`skeleton-${i}`} />
+                    ))}
                     {engagements.map((engagement) => (
                         <EngagementCard key={engagement.title} engagement={engagement} />
                     ))}
