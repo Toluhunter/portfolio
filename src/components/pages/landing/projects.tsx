@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 import { Title } from "@/components/utilities/shared/title"
 import { ProjectListing, Project } from "@/components/utilities/landingpage/project/project-listing-landing"
 import { FaGithub } from "react-icons/fa"
+import { ProjectListingSkeleton } from "@/components/utilities/shared/skeletons"
 
 export const ProjectSection = () => {
     const [projects, setProjects] = useState<Project[]>([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -27,6 +29,8 @@ export const ProjectSection = () => {
                 })));
             } catch (error) {
                 console.error("Failed to fetch products:", error);
+            } finally {
+                setLoading(false);
             }
         };
 
@@ -41,6 +45,11 @@ export const ProjectSection = () => {
                 <Title text="Case Studies" link="/products" hasMore={true} />
 
                 <div className="flex flex-col divide-y divide-foreground/15">
+                    {loading && [0, 1].map((i) => (
+                        <div key={`skeleton-${i}`} className="py-12 first:pt-4">
+                            <ProjectListingSkeleton reverse={i % 2 === 1} />
+                        </div>
+                    ))}
                     {projects.map((project, index) => (
                         <div key={project.name} className="py-12 first:pt-4">
                             <ProjectListing project={project} reverse={index % 2 === 1} />
