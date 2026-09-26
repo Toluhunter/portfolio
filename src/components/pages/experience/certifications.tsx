@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { certifications } from "@/data/content.json";
+import { useEffect, useState } from "react";
 
 interface Certification {
     picture: string;
@@ -43,6 +43,43 @@ const CertificationCard = ({ certification }: { certification: Certification }) 
 };
 
 const CertificationsSection = () => {
+    const [certifications, setCertifications] = useState<Certification[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchCertifications = async () => {
+            try {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/certifications`);
+                const data = await res.json();
+                const fetched = data.certifications || [];
+                setCertifications(fetched.map((c: any) => ({
+                    picture: c.picture,
+                    title: c.title,
+                    date: c.date,
+                    expiring: c.expiring,
+                    institution: c.institution,
+                    verifyLink: c.verify_link,
+                })));
+            } catch (error) {
+                console.error("Failed to fetch certifications:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchCertifications();
+    }, []);
+
+    if (loading) {
+        return (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {[...Array(4)].map((_, i) => (
+                    <div key={i} className="h-24 rounded-lg bg-panel border border-foreground/15 animate-pulse" />
+                ))}
+            </div>
+        );
+    }
+
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {certifications.map((cert, index) => (

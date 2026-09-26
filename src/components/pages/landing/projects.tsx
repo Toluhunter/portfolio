@@ -1,9 +1,38 @@
+"use client";
+import { useEffect, useState } from "react";
 import { Title } from "@/components/utilities/shared/title"
-import { ProjectListing } from "@/components/utilities/landingpage/project/project-listing-landing"
+import { ProjectListing, Project } from "@/components/utilities/landingpage/project/project-listing-landing"
 import { FaGithub } from "react-icons/fa"
-import projects from "@/data/projects.json";
 
 export const ProjectSection = () => {
+    const [projects, setProjects] = useState<Project[]>([]);
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/products`);
+                const data = await res.json();
+                const fetched = data.products || [];
+                setProjects(fetched.map((p: any) => ({
+                    name: p.name,
+                    status: p.status,
+                    description: p.description,
+                    images: p.images,
+                    imageAspectRatios: p.image_aspect_ratios,
+                    websiteLink: p.website_link,
+                    technologies: p.technologies,
+                    subtitle: p.subtitle,
+                    roles: p.roles,
+                    caseStudy: p.case_study,
+                })));
+            } catch (error) {
+                console.error("Failed to fetch products:", error);
+            }
+        };
+
+        fetchProducts();
+    }, []);
+
     return (
         <section id="projects" className="relative flex flex-col items-center bg-background bg-[url('https://assets.toluhunter.com/landing/backgrounds/project.webp')] bg-cover bg-center py-7">
             <div className="absolute inset-x-0 top-0 h-24 md:h-32 bg-gradient-to-b from-background to-transparent pointer-events-none" />

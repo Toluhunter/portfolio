@@ -1,6 +1,7 @@
+"use client";
+import { useEffect, useState } from "react";
 import { Title } from "@/components/utilities/shared/title";
 import Link from "next/link";
-import services from "@/data/services.json";
 import { serviceIcons, Service } from "@/components/utilities/shared/service-icon";
 
 const ServiceTile = ({ service }: { service: Service }) => {
@@ -20,6 +21,30 @@ const ServiceTile = ({ service }: { service: Service }) => {
 };
 
 export const ServicesSection = () => {
+    const [services, setServices] = useState<Service[]>([]);
+
+    useEffect(() => {
+        const fetchServices = async () => {
+            try {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/services`);
+                const data = await res.json();
+                const fetched = data.services || [];
+                setServices(fetched.map((s: any) => ({
+                    id: s.id,
+                    name: s.name,
+                    icon: s.icon,
+                    hook: s.hook,
+                    includes: s.includes,
+                    caseStudyLink: s.case_study_link,
+                })));
+            } catch (error) {
+                console.error("Failed to fetch services:", error);
+            }
+        };
+
+        fetchServices();
+    }, []);
+
     return (
         <section
             id="services"
@@ -28,7 +53,7 @@ export const ServicesSection = () => {
             <div className="relative w-full container mx-auto px-4">
                 <Title text="Services" link="/services" hasMore={true} />
                 <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 w-full max-w-6xl mx-auto">
-                    {(services as Service[]).map((service) => (
+                    {services.map((service) => (
                         <ServiceTile key={service.id} service={service} />
                     ))}
                 </div>
