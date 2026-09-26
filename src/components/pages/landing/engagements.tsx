@@ -1,10 +1,33 @@
+"use client";
+import { useEffect, useState } from "react";
 import { Title } from "@/components/utilities/shared/title"
 import { EngagementCard, Engagement } from "@/components/utilities/landingpage/engagement/engagement-card"
-import engagementsData from "@/data/engagements.json";
-
-const engagements = engagementsData as Engagement[];
 
 export const EngagementsSection = () => {
+    const [engagements, setEngagements] = useState<Engagement[]>([]);
+
+    useEffect(() => {
+        const fetchEngagements = async () => {
+            try {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/engagements`);
+                const data = await res.json();
+                const fetched = data.engagements || [];
+                setEngagements(fetched.map((e: any) => ({
+                    title: e.title,
+                    subtitle: e.subtitle,
+                    icon: e.icon,
+                    caseStudy: e.case_study,
+                })));
+            } catch (error) {
+                console.error("Failed to fetch engagements:", error);
+            }
+        };
+
+        fetchEngagements();
+    }, []);
+
+    if (engagements.length === 0) return null;
+
     return (
         <section id="engagements" className="relative flex flex-col items-center py-12">
             <div className="relative flex flex-col container px-4 md:px-8">

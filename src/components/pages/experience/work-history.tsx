@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import content from "@/data/content.json";
+import { useEffect, useState } from "react";
 import { CaseStudyStat } from "@/components/utilities/shared/beat";
 
 interface Experience {
@@ -13,10 +13,26 @@ interface Experience {
 }
 
 const WorkHistorySection = () => {
+    const [experience, setExperience] = useState<Experience[]>([]);
+
+    useEffect(() => {
+        const fetchExperience = async () => {
+            try {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/experience`);
+                const data = await res.json();
+                setExperience(data.experience || []);
+            } catch (error) {
+                console.error("Failed to fetch experience:", error);
+            }
+        };
+
+        fetchExperience();
+    }, []);
+
     return (
         <div className="relative">
             <div className="absolute left-[11px] top-3 bottom-0 w-0.5 bg-foreground/25" />
-            {(content.experience as Experience[]).map((exp, index) => (
+            {experience.map((exp, index) => (
                 <div key={index} className="flex gap-6 pb-12 last:pb-0">
                     <div className="flex-shrink-0 mt-1 z-10">
                         <div className="w-6 h-6 rounded-full border-2 border-foreground bg-background" />
