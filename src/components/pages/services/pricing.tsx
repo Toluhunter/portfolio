@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { ReactNode, useEffect, useState } from "react";
 import { FaCheck, FaPlus } from "react-icons/fa";
+import { PricingTierSkeleton } from "@/components/utilities/shared/skeletons";
 
 interface Tier {
     name: string;
@@ -42,6 +43,7 @@ const FeatureList = ({ title, icon, items }: { title: string; icon: ReactNode; i
 
 export const PricingSection = () => {
     const [pricingData, setPricingData] = useState<Pricing | null>(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchPricing = async () => {
@@ -63,11 +65,26 @@ export const PricingSection = () => {
                 });
             } catch (error) {
                 console.error("Failed to fetch pricing:", error);
+            } finally {
+                setLoading(false);
             }
         };
 
         fetchPricing();
     }, []);
+
+    if (loading) {
+        return (
+            <div className="mb-20 max-w-6xl">
+                <h2 className="text-2xl font-bold text-foreground mb-3">Pricing</h2>
+                <div className="flex flex-col gap-6 mt-10">
+                    {[0, 1, 2].map((i) => (
+                        <PricingTierSkeleton key={i} />
+                    ))}
+                </div>
+            </div>
+        );
+    }
 
     if (!pricingData) return null;
 

@@ -1,9 +1,11 @@
 'use client';
 import { useEffect, useState } from "react";
 import { ProjectCard, Project } from "./project-card";
+import { ProjectCardSkeleton } from "@/components/utilities/shared/skeletons";
 
 export const ProductsPageSection = () => {
     const [projects, setProjects] = useState<Project[]>([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -23,6 +25,8 @@ export const ProductsPageSection = () => {
                 })));
             } catch (error) {
                 console.error("Failed to fetch products:", error);
+            } finally {
+                setLoading(false);
             }
         };
 
@@ -38,6 +42,9 @@ export const ProductsPageSection = () => {
             </div>
 
             <div className="flex flex-col gap-20">
+                {loading && [0, 1].map((i) => (
+                    <ProjectCardSkeleton key={`skeleton-${i}`} />
+                ))}
                 {projects.map((project, index) => (
                     <ProjectCard key={index} project={project} />
                 ))}

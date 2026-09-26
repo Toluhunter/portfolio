@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { CertificationCardSkeleton } from "@/components/utilities/shared/skeletons";
 
 interface Certification {
     picture: string;
@@ -73,8 +74,8 @@ const CertificationsSection = () => {
     if (loading) {
         return (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {[...Array(4)].map((_, i) => (
-                    <div key={i} className="h-24 rounded-lg bg-panel border border-foreground/15 animate-pulse" />
+                {[0, 1, 2, 3].map((i) => (
+                    <CertificationCardSkeleton key={i} />
                 ))}
             </div>
         );

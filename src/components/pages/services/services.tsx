@@ -5,6 +5,7 @@ import { FaArrowRight, FaArrowDown } from "react-icons/fa";
 import { ServiceCard } from "./service-card";
 import { PricingSection } from "./pricing";
 import { Service } from "@/components/utilities/shared/service-icon";
+import { ServiceCardSkeleton } from "@/components/utilities/shared/skeletons";
 
 const steps = [
     { label: "Book a call", description: "Talk through what's actually going on, no obligation." },
@@ -15,6 +16,7 @@ const steps = [
 
 export const ServicesPageSection = () => {
     const [services, setServices] = useState<Service[]>([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchServices = async () => {
@@ -32,6 +34,8 @@ export const ServicesPageSection = () => {
                 })));
             } catch (error) {
                 console.error("Failed to fetch services:", error);
+            } finally {
+                setLoading(false);
             }
         };
 
@@ -69,6 +73,9 @@ export const ServicesPageSection = () => {
             <PricingSection />
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full max-w-6xl">
+                {loading && [0, 1, 2, 3].map((i) => (
+                    <ServiceCardSkeleton key={`skeleton-${i}`} />
+                ))}
                 {services.map((service) => (
                     <ServiceCard key={service.id} service={service} />
                 ))}
