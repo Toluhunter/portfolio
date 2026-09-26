@@ -1,12 +1,28 @@
-import { experience, certifications } from '@/data/content.json';
-import projects from '@/data/projects.json';
-
 const BASE_URL = 'https://toluhunter.com';
 const API_URL = 'https://api.toluhunter.com';
 
 interface Article {
     title: string;
     link: string;
+}
+
+interface Experience {
+    company: string;
+    role: string;
+    duration: string;
+}
+
+interface Certification {
+    title: string;
+    institution: string;
+    date: string;
+}
+
+interface Product {
+    name: string;
+    subtitle: string;
+    description: string[];
+    website_link?: string;
 }
 
 async function fetchAllArticles(): Promise<Article[]> {
@@ -35,8 +51,46 @@ async function fetchAllArticles(): Promise<Article[]> {
     return collected;
 }
 
+async function fetchExperience(): Promise<Experience[]> {
+    try {
+        const res = await fetch(`${API_URL}/experience`, { next: { revalidate: 86400 } });
+        if (!res.ok) return [];
+        const data = await res.json();
+        return data.experience || [];
+    } catch {
+        return [];
+    }
+}
+
+async function fetchCertifications(): Promise<Certification[]> {
+    try {
+        const res = await fetch(`${API_URL}/certifications`, { next: { revalidate: 86400 } });
+        if (!res.ok) return [];
+        const data = await res.json();
+        return data.certifications || [];
+    } catch {
+        return [];
+    }
+}
+
+async function fetchProducts(): Promise<Product[]> {
+    try {
+        const res = await fetch(`${API_URL}/products`, { next: { revalidate: 86400 } });
+        if (!res.ok) return [];
+        const data = await res.json();
+        return data.products || [];
+    } catch {
+        return [];
+    }
+}
+
 export async function GET() {
-    const articles = await fetchAllArticles();
+    const [articles, experience, certifications, projects] = await Promise.all([
+        fetchAllArticles(),
+        fetchExperience(),
+        fetchCertifications(),
+        fetchProducts(),
+    ]);
 
     const experienceSection = experience
         .map((e) => `- **${e.role}** at ${e.company} (${e.duration})`)
@@ -47,7 +101,7 @@ export async function GET() {
         .join('\n');
 
     const productsSection = projects
-        .map((p) => `- **${p.name}**: ${p.subtitle}. ${p.description[0]} ${p.websiteLink ? `Website: ${p.websiteLink}` : ''}`)
+        .map((p) => `- **${p.name}**: ${p.subtitle}. ${p.description[0]} ${p.website_link ? `Website: ${p.website_link}` : ''}`)
         .join('\n');
 
     const articlesSection = articles.length > 0

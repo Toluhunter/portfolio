@@ -1,8 +1,7 @@
 'use client';
 
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { FaArrowRight, FaArrowDown } from "react-icons/fa";
-import services from "@/data/services.json";
 import { ServiceCard } from "./service-card";
 import { PricingSection } from "./pricing";
 import { Service } from "@/components/utilities/shared/service-icon";
@@ -15,6 +14,30 @@ const steps = [
 ];
 
 export const ServicesPageSection = () => {
+    const [services, setServices] = useState<Service[]>([]);
+
+    useEffect(() => {
+        const fetchServices = async () => {
+            try {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/services`);
+                const data = await res.json();
+                const fetched = data.services || [];
+                setServices(fetched.map((s: any) => ({
+                    id: s.id,
+                    name: s.name,
+                    icon: s.icon,
+                    hook: s.hook,
+                    includes: s.includes,
+                    caseStudyLink: s.case_study_link,
+                })));
+            } catch (error) {
+                console.error("Failed to fetch services:", error);
+            }
+        };
+
+        fetchServices();
+    }, []);
+
     return (
         <section className="min-h-screen pt-24 pb-16 px-4 md:px-8 lg:px-16 container mx-auto">
             <div className="flex flex-col gap-2 mb-16 max-w-3xl">
@@ -46,7 +69,7 @@ export const ServicesPageSection = () => {
             <PricingSection />
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full max-w-6xl">
-                {(services as Service[]).map((service) => (
+                {services.map((service) => (
                     <ServiceCard key={service.id} service={service} />
                 ))}
             </div>

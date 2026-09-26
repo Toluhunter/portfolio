@@ -1,7 +1,23 @@
+"use client";
 import Link from "next/link";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { FaCheck, FaPlus } from "react-icons/fa";
-import pricingData from "@/data/pricing.json";
+
+interface Tier {
+    name: string;
+    description: string;
+    comparison: string;
+    included: string[];
+    addOns: string[];
+    audit: string;
+    project: string;
+    retainer: string;
+}
+
+interface Pricing {
+    intro: string;
+    tiers: Tier[];
+}
 
 const PriceBox = ({ label, value }: { label: string; value: string }) => (
     <div className="flex flex-col gap-1 px-4 py-3 border border-foreground/20 rounded-lg">
@@ -25,6 +41,36 @@ const FeatureList = ({ title, icon, items }: { title: string; icon: ReactNode; i
 );
 
 export const PricingSection = () => {
+    const [pricingData, setPricingData] = useState<Pricing | null>(null);
+
+    useEffect(() => {
+        const fetchPricing = async () => {
+            try {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/pricing`);
+                const data = await res.json();
+                setPricingData({
+                    intro: data.intro,
+                    tiers: (data.tiers || []).map((t: any) => ({
+                        name: t.name,
+                        description: t.description,
+                        comparison: t.comparison,
+                        included: t.included,
+                        addOns: t.add_ons,
+                        audit: t.audit,
+                        project: t.project,
+                        retainer: t.retainer,
+                    })),
+                });
+            } catch (error) {
+                console.error("Failed to fetch pricing:", error);
+            }
+        };
+
+        fetchPricing();
+    }, []);
+
+    if (!pricingData) return null;
+
     return (
         <div className="mb-20 max-w-6xl">
             <h2 className="text-2xl font-bold text-foreground mb-3">Pricing</h2>

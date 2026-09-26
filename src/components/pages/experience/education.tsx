@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import content from "@/data/content.json";
+import { useEffect, useState } from "react";
 
 interface Education {
     institution: string;
@@ -39,9 +39,25 @@ const EducationCard = ({ education }: { education: Education }) => {
 };
 
 const EducationSection = () => {
+    const [education, setEducation] = useState<Education[]>([]);
+
+    useEffect(() => {
+        const fetchEducation = async () => {
+            try {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/education`);
+                const data = await res.json();
+                setEducation(data.education || []);
+            } catch (error) {
+                console.error("Failed to fetch education:", error);
+            }
+        };
+
+        fetchEducation();
+    }, []);
+
     return (
         <div className="text-foreground">
-            {content.education.map((edu, index) => (
+            {education.map((edu, index) => (
                 <EducationCard key={index} education={edu} />
             ))}
         </div>
