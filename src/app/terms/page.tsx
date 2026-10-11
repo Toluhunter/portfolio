@@ -1,65 +1,111 @@
+import Link from "next/link";
 import { LegalLayout, LegalSection, LegalList, LegalItem, legalLink } from "@/components/pages/legal/legal-layout";
 
 export const metadata = {
-    title: "Terms of Service: Spiral",
-    description:
-        "Terms of service for Spiral, a personal automation assistant operated by Tolulope Fakoya for his own use.",
+    title: "Terms of Use",
+    description: "Terms for using toluhunter.com and how client engagements with Tolulope Fakoya are governed.",
 };
 
 export default function TermsPage() {
     return (
         <LegalLayout
-            title="Terms of Service"
+            title="Terms of Use"
             lede={
                 <>
-                    Spiral is a personal automation assistant built and operated by Tolulope Fakoya
-                    (Toluhunter) for his own use on his own hardware. It is not a public product and has no
-                    other users.
+                    The terms for using toluhunter.com and how client work is agreed. Spiral, my personal
+                    automation assistant, has <Link href="/spiral/terms" className={legalLink}>its own terms</Link>.
                 </>
             }
             updated="11 October 2026"
-            other={{ href: "/privacy", label: "Privacy Policy" }}
+            related={[
+                { href: "/privacy", label: "Privacy Policy" },
+                { href: "/spiral/terms", label: "Spiral Terms of Service" },
+            ]}
+            sections={[
+                "Using this site",
+                "Content",
+                "Comments",
+                "The AI terminal",
+                "Client work",
+                "No warranty",
+                "Limitation of liability",
+                "Other services",
+                "Governing law",
+                "Changes",
+                "Contact",
+            ]}
         >
-            <LegalSection title="Acceptance">
+            <LegalSection title="Using this site">
                 <p>
-                    Use of Spiral is limited to its owner. By connecting a Google account to Spiral, the
-                    owner accepts these terms.
+                    By using toluhunter.com you agree to these terms. Use the site lawfully, and don&apos;t try
+                    to disrupt it, break its security, or overload it with automated requests.
                 </p>
             </LegalSection>
 
-            <LegalSection title="Scope of use">
+            <LegalSection title="Content">
+                <p>
+                    Articles, images and other content on this site belong to me unless stated otherwise. You
+                    are welcome to quote and link to it with attribution. Where a license is given alongside
+                    a piece of content or code, that license applies instead.
+                </p>
+            </LegalSection>
+
+            <LegalSection title="Comments">
+                <p>
+                    You are responsible for what you post. Keep it respectful and on topic. I may remove
+                    comments that are abusive, spam, or unlawful.
+                </p>
+            </LegalSection>
+
+            <LegalSection title="The AI terminal">
+                <p>
+                    Answers from the on-site assistant are generated automatically and can be wrong. They are
+                    general information, not professional advice for your situation.
+                </p>
+            </LegalSection>
+
+            <LegalSection title="Client work">
                 <LegalList>
-                    <LegalItem>Spiral is used only with accounts owned by the owner.</LegalItem>
+                    <LegalItem>A discovery call is free and creates no obligation on either side.</LegalItem>
                     <LegalItem>
-                        It performs actions on the owner&apos;s instruction, and sends email only when the
-                        owner explicitly approves that specific message.
+                        Every engagement starts with a written scope and quote that we both agree before work
+                        begins. That agreement, together with any NDA or contract we sign, governs the work.
                     </LegalItem>
                     <LegalItem>
-                        It is not intended for, and must not be used for, bulk messaging, advertising, or any
-                        purpose that violates Google&apos;s APIs Terms of Service or applicable law.
+                        If anything in these terms conflicts with our signed agreement, the signed agreement wins.
                     </LegalItem>
                 </LegalList>
             </LegalSection>
 
             <LegalSection title="No warranty">
                 <p>
-                    Spiral is provided as-is, without warranty of any kind. The owner is responsible for
-                    reviewing any output, draft, or action before it is relied upon or sent.
+                    The site and its content are provided as-is. Articles share general information and
+                    opinion; check anything you rely on against your own situation.
                 </p>
             </LegalSection>
 
             <LegalSection title="Limitation of liability">
                 <p>
-                    To the extent permitted by law, the owner of Spiral is not liable for any loss arising
-                    from use of the tool, including missed messages, incorrect summaries, or actions taken on
-                    stale information.
+                    To the extent permitted by law, I am not liable for any loss arising from use of this site
+                    or its content. Liability for client work is set by our signed agreement.
                 </p>
+            </LegalSection>
+
+            <LegalSection title="Other services">
+                <p>
+                    The site links to and embeds services run by others, such as Cal.com, GitHub and Buy Me a
+                    Coffee. Their own terms and privacy policies apply when you use them.
+                </p>
+            </LegalSection>
+
+            <LegalSection title="Governing law">
+                <p>These terms are governed by the laws of Ontario and the federal laws of Canada that apply there.</p>
             </LegalSection>
 
             <LegalSection title="Changes">
                 <p>
-                    These terms may be updated at any time; the current version is always the one published
-                    at this URL.
+                    I may update these terms at any time. The current version is always the one published at
+                    this URL, with its date at the top.
                 </p>
             </LegalSection>
 

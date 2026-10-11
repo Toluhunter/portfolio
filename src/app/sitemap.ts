@@ -50,6 +50,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         { url: `${BASE_URL}/articles`,          priority: 0.6, changeFrequency: 'weekly'  },
         { url: `${BASE_URL}/cv`,                priority: 0.5, changeFrequency: 'monthly' },
         { url: `${BASE_URL}/products`,          priority: 0.4, changeFrequency: 'monthly' },
+        { url: `${BASE_URL}/privacy`,           priority: 0.2, changeFrequency: 'yearly'  },
+        { url: `${BASE_URL}/terms`,             priority: 0.2, changeFrequency: 'yearly'  },
+        { url: `${BASE_URL}/spiral`,            priority: 0.2, changeFrequency: 'yearly'  },
+        { url: `${BASE_URL}/spiral/privacy`,    priority: 0.2, changeFrequency: 'yearly'  },
+        { url: `${BASE_URL}/spiral/terms`,      priority: 0.2, changeFrequency: 'yearly'  },
     ];
 
     const articleRoutes: MetadataRoute.Sitemap = articles.map((article) => ({
