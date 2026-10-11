@@ -9,6 +9,11 @@ const pages = [
     { href: "/cv", label: "CV" },
 ];
 
+const legal = [
+    { href: "/privacy", label: "Privacy" },
+    { href: "/terms", label: "Terms" },
+];
+
 const socials = [
     { href: "https://github.com/Toluhunter", label: "GitHub", Icon: Github },
     { href: "https://x.com/tolu_hunter", label: "X (Twitter)", Icon: Twitter },
@@ -19,9 +24,14 @@ export const Footer: React.FC = () => {
     return (
         <footer className="relative w-full border-t border-foreground/10 bg-background text-sm">
             <div className="container mx-auto px-5 md:px-8 py-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-                <p className="text-muted">
-                    &copy; {new Date().getFullYear()} Tolulope Fakoya (Toluhunter)
-                </p>
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-muted">
+                    <p>&copy; {new Date().getFullYear()} Tolulope Fakoya (Toluhunter)</p>
+                    {legal.map(({ href, label }) => (
+                        <Link key={href} href={href} className="hover:text-callout transition-colors duration-200">
+                            {label}
+                        </Link>
+                    ))}
+                </div>
                 <nav aria-label="Footer" className="flex flex-wrap items-center gap-x-5 gap-y-2">
                     {pages.map(({ href, label }) => (
                         <Link key={href} href={href} className="text-muted hover:text-callout transition-colors duration-200">
