@@ -16,6 +16,12 @@ export const Footer: React.FC = () => {
                     <Link href="/cv" className="text-foreground hover:text-foreground transition-colors duration-300">
                         CV
                     </Link>
+                    <Link href="/privacy" className="text-foreground hover:text-foreground transition-colors duration-300">
+                        Privacy
+                    </Link>
+                    <Link href="/terms" className="text-foreground hover:text-foreground transition-colors duration-300">
+                        Terms
+                    </Link>
                     <a href="https://github.com/Toluhunter" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-foreground transition-colors duration-300">
                         <Github size={15} />
                     </a>
