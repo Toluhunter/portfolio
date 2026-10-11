@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Eyebrow } from "@/components/utilities/shared/ui";
 
 interface FeaturedArticleCardProps {
     title: string;
@@ -11,33 +12,31 @@ interface FeaturedArticleCardProps {
 export const FeaturedArticleCard = ({ title, link, coverImage, description }: FeaturedArticleCardProps) => {
     return (
         <Link href={link} className="block group">
-            <div className="rounded-xl border border-gray-200 dark:border-gray-700 shadow-md group-hover:shadow-xl transition-shadow duration-300 overflow-hidden bg-background flex flex-col lg:flex-row">
-                <div className="relative w-full lg:w-[45%] shrink-0 overflow-hidden bg-gray-100 dark:bg-gray-800">
+            <article className="rounded-2xl border border-foreground/10 group-hover:border-foreground/25 transition-colors duration-300 overflow-hidden bg-panel flex flex-col lg:flex-row">
+                <div className="relative w-full lg:w-[50%] shrink-0 overflow-hidden bg-foreground/5">
                     <Image
                         src={coverImage}
-                        alt={title}
+                        alt=""
                         width={0}
                         height={0}
-                        sizes="(max-width: 1024px) 100vw, 45vw"
+                        sizes="(max-width: 1024px) 100vw, 50vw"
                         style={{ width: "100%", height: "auto" }}
-                        className="transition-transform duration-300 ease-in-out group-hover:scale-105"
+                        className="transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                     />
                 </div>
-                <div className="p-6 lg:p-10 flex flex-col justify-center">
-                    <span className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: 'var(--text-secondary)' }}>
-                        Featured
-                    </span>
-                    <h2 className="text-2xl lg:text-3xl font-bold text-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 line-clamp-3">
+                <div className="p-6 lg:p-10 flex flex-col justify-center gap-4">
+                    <Eyebrow>featured</Eyebrow>
+                    <h2 className="text-2xl lg:text-4xl font-bold tracking-tight text-foreground group-hover:text-callout transition-colors duration-200 line-clamp-3">
                         {title}
                     </h2>
-                    <p className="mt-4 text-sm lg:text-base line-clamp-4" style={{ color: 'var(--text-secondary)' }}>
+                    <p className="text-muted leading-relaxed line-clamp-4 prose-measure">
                         {description}
                     </p>
-                    <span className="mt-6 text-sm font-semibold text-blue-600 dark:text-blue-400 group-hover:underline w-fit">
-                        Read Article →
+                    <span className="mt-2 font-semibold text-callout w-fit">
+                        Read Article &rarr;
                     </span>
                 </div>
-            </div>
+            </article>
         </Link>
     );
 };

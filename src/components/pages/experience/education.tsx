@@ -13,27 +13,29 @@ interface Education {
 
 const EducationCard = ({ education }: { education: Education }) => {
     return (
-        <div className="flex lg:flex-row flex-col gap-5 md:gap-0 items-start mb-8 rounded-lg shadow-md transition-transform transform hover:scale-105">
-            <div className="mr-6">
+        <div className="flex gap-5 items-start p-6 rounded-2xl bg-panel border border-foreground/10 hover:border-foreground/25 transition-colors duration-300">
+            <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-white flex items-center justify-center p-2">
                 <Image
                     src={education.logo}
                     alt={`${education.institution} logo`}
-                    width={80}
-                    height={80}
+                    width={48}
+                    height={48}
                     className="object-contain"
                 />
             </div>
-            <div className="w-full">
-                <h2 className="text-2xl font-bold text-foreground">{education.institution}</h2>
-                <p className="text-lg font-semibold text-foreground">{education.degree}</p>
+            <div className="min-w-0 flex flex-col gap-1">
+                <h3 className="text-lg font-bold text-foreground leading-snug">{education.degree}</h3>
+                <p className="text-muted">{education.institution}</p>
                 {education.duration && (
-                    <p className="text-sm text-foreground/80 mb-3">{education.duration}</p>
+                    <p className="font-fira-code text-sm text-faint mt-1">{education.duration}</p>
                 )}
-                <ul className="list-disc list-inside text-foreground space-y-1.5 leading-relaxed prose-measure">
-                    {education.description.map((item, index) => (
-                        <li key={index}>{item}</li>
-                    ))}
-                </ul>
+                {education.description.length > 0 && (
+                    <ul className="flex flex-col gap-1.5 text-muted leading-relaxed prose-measure mt-2">
+                        {education.description.map((item, index) => (
+                            <li key={index}>{item}</li>
+                        ))}
+                    </ul>
+                )}
             </div>
         </div>
     );
@@ -61,7 +63,7 @@ const EducationSection = () => {
 
     if (loading) {
         return (
-            <div className="text-foreground">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {[0, 1].map((i) => (
                     <EducationCardSkeleton key={i} />
                 ))}
@@ -70,7 +72,7 @@ const EducationSection = () => {
     }
 
     return (
-        <div className="text-foreground">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {education.map((edu, index) => (
                 <EducationCard key={index} education={edu} />
             ))}

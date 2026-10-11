@@ -119,14 +119,14 @@ export const PdfView = () => {
         flipDir === 'next' ? 'animate-cv-flip-out-next' : 'animate-cv-flip-out-prev';
 
     return (
-        <section className="min-h-screen pt-24 pb-8 flex flex-col items-center px-4">
+        <section className="min-h-screen pt-28 pb-16 flex flex-col items-center px-4">
 
             {/* Viewer + rail */}
             <div className="flex gap-4 w-full max-w-4xl" style={{ height: '82vh' }}>
 
                 {/* Scrollable page */}
                 <div
-                    className="flex-1 overflow-hidden rounded-xl border border-foreground/15 shadow-lg bg-foreground/5"
+                    className="flex-1 overflow-hidden rounded-2xl border border-foreground/10 bg-panel"
                     style={{ perspective: '1200px' }}
                 >
                     <div
@@ -139,12 +139,12 @@ export const PdfView = () => {
                             onLoadSuccess={onLoadSuccess}
                             loading={
                                 <div className="flex items-center justify-center h-full min-h-[60vh]">
-                                    <span className="text-foreground/70 font-mono animate-pulse">Loading CV...</span>
+                                    <span className="text-muted font-fira-code animate-pulse">Loading CV...</span>
                                 </div>
                             }
                             error={
                                 <div className="flex flex-col items-center justify-center min-h-[40vh] gap-4">
-                                    <p className="text-foreground/60">Could not load CV.</p>
+                                    <p className="text-muted">Could not load CV.</p>
                                     <a href={CV_DOWNLOAD_URL} download={CV_FILENAME} className="text-callout underline">Download directly</a>
                                 </div>
                             }
@@ -200,21 +200,21 @@ export const PdfView = () => {
             {/* Toolbar */}
             <div className="w-full max-w-4xl flex items-center justify-between gap-4 mt-4 flex-wrap">
                 <div className="flex items-center gap-2">
-                    <button onClick={zoomOut} disabled={scale <= 0.5}
+                    <button type="button" aria-label="Zoom out" onClick={zoomOut} disabled={scale <= 0.5}
                         className="p-2 rounded-lg border border-foreground/20 hover:border-foreground/50 disabled:opacity-30 transition-all cursor-pointer">
                         <FiZoomOut className="w-5 h-5 text-foreground" />
                     </button>
-                    <span className="text-sm font-mono text-foreground/70 w-14 text-center">
+                    <span className="text-sm font-fira-code text-muted w-14 text-center">
                         {Math.round(scale * 100)}%
                     </span>
-                    <button onClick={zoomIn} disabled={scale >= 2.5}
+                    <button type="button" aria-label="Zoom in" onClick={zoomIn} disabled={scale >= 2.5}
                         className="p-2 rounded-lg border border-foreground/20 hover:border-foreground/50 disabled:opacity-30 transition-all cursor-pointer">
                         <FiZoomIn className="w-5 h-5 text-foreground" />
                     </button>
                 </div>
 
-                <span className="text-sm font-mono text-foreground/60">
-                    {numPages > 0 ? `${page} / ${numPages}` : '—'}
+                <span className="text-sm font-fira-code text-muted">
+                    {numPages > 0 ? `${page} / ${numPages}` : '-'}
                 </span>
 
                 <a href={CV_DOWNLOAD_URL} download={CV_FILENAME}

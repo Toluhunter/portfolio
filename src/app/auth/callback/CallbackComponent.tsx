@@ -50,6 +50,6 @@ export default function CallbackComponent() {
     }, [code, router, setAuthTokens, redirectUrl])
 
     if (status === "loading") return <p>Signing you in…</p>
-    if (status === "success") return <p>Signed in — redirecting…</p>
+    if (status === "success") return <p>Signed in, redirecting…</p>
     if (status === "error") return <p>Sign in failed, redirecting to login…</p>
 }

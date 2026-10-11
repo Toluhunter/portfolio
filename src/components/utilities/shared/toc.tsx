@@ -69,8 +69,8 @@ export function TOC({ toc }: { toc?: TocItem[] }) {
             aria-label="Table of contents"
             className="sticky top-24 max-h-[calc(100vh-20rem)] overflow-y-auto pr-1"
         >
-            <p className="text-xs font-semibold uppercase tracking-widest text-[var(--foreground)]/60 mb-4">
-                On this page
+            <p className="font-fira-code text-sm text-callout mb-4">
+                <span aria-hidden>// </span>on this page
             </p>
             <ul className="space-y-0.5">
                 {toc.map((item) => (

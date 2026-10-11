@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&display=swap');
 @import "tailwindcss";
 @import "react-pdf/dist/Page/AnnotationLayer.css";
 @import "react-pdf/dist/Page/TextLayer.css";
@@ -220,6 +219,7 @@ body.dark {
   --color-callout: var(--callout);
   --color-callout-fill: var(--callout-fill);
   --color-on-callout: var(--on-callout);
+  --font-fira-code: var(--font-fira), ui-monospace, SFMono-Regular, Menlo, monospace;
   --animate-nudge-right: nudge-right 1.2s ease-in-out infinite;
   --animate-nudge-left: nudge-left 1.2s ease-in-out infinite;
   --animate-slide-from-top: slide-from-top 0.5s ease-out forwards;
@@ -233,6 +233,13 @@ body.dark {
 body {
   background-color: var(--background);
   color: var(--foreground);
+}
+
+/* One visible focus ring for every interactive element, keyboard only. */
+:focus-visible {
+  outline: 2px solid var(--callout);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 @keyframes lava-1 {
@@ -414,21 +421,6 @@ body::after {
 .prose-measure-center {
   max-width: min(var(--measure), 68ch);
   margin-inline: auto;
-}
-
-/* Soft scrim so hero copy is never read against moving artwork. */
-.hero-scrim {
-  position: relative;
-}
-
-.hero-scrim::before {
-  content: "";
-  position: absolute;
-  inset: -1.25rem;
-  border-radius: 1.75rem;
-  background: color-mix(in srgb, var(--background) 78%, transparent);
-  filter: blur(16px);
-  z-index: -1;
 }
 
 /* Keep the documented 4.5:1 floor for the smallest labels. */

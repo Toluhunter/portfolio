@@ -8,10 +8,7 @@ export default function ProductsPage() {
         <>
             <NavBar />
 
-            <div className="min-h-screen bg-background/50 backdrop-blur-sm" style={{
-                color: 'var(--foreground)',
-                fontFamily: 'Arial, Helvetica, sans-serif'
-            }}>
+            <div className="min-h-screen bg-background/50 backdrop-blur-sm">
                 <ProductsPageSection />
             </div>
 

@@ -1,11 +1,13 @@
 "use client";
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { PageHeader, textLink } from '@/components/utilities/shared/ui';
 import WorkHistorySection from "./work-history";
 import EducationSection from "./education";
 import CertificationsSection from "./certifications";
 
 const navSections = [
-    { id: 'experience', label: 'Experience' },
+    { id: 'experience', label: 'Work History' },
     { id: 'education', label: 'Education' },
     { id: 'certifications', label: 'Certifications' },
 ];
@@ -39,29 +41,35 @@ export const ExperiencePageSection = () => {
     };
 
     return (
-        <section className="min-h-screen pt-25 w-full container mx-auto flex flex-col px-8 pb-20">
+        <section className="min-h-screen pt-32 w-full container mx-auto flex flex-col px-5 md:px-8 pb-28">
 
             {/* Hero */}
-            <div className="flex flex-col gap-4 mb-16 max-w-2xl">
-                <span className="text-xs font-semibold uppercase tracking-widest text-foreground/80">Background</span>
-                <h1 className="text-5xl md:text-6xl font-bold font-fira-code text-foreground">Experience</h1>
-                <p className="text-lg text-foreground/80 mt-1">Roles, education, and certifications.</p>
-            </div>
+            <PageHeader
+                eyebrow="background"
+                title="Experience"
+                lede="5+ years across cloud architecture, DevOps, and systems administration. Now researching TinyML security at Ontario Tech."
+            >
+                <Link href="/cv" className={textLink}>
+                    Download CV &rarr;
+                </Link>
+            </PageHeader>
 
             {/* Body: sticky sidebar + scrollable sections */}
             <div className="flex flex-col lg:flex-row gap-12">
 
                 {/* Sticky sidebar, desktop only */}
                 <aside className="hidden lg:block w-44 flex-shrink-0">
-                    <nav className="sticky top-28 flex flex-col gap-1">
+                    <nav aria-label="On this page" className="sticky top-28 flex flex-col gap-1">
                         {navSections.map(({ id, label }) => (
                             <button
                                 key={id}
+                                type="button"
                                 onClick={() => scrollTo(id)}
+                                aria-current={activeSection === id ? 'location' : undefined}
                                 className={`text-left px-4 py-2.5 border-l-2 text-sm font-medium transition-all duration-200 cursor-pointer ${
                                     activeSection === id
-                                        ? 'border-foreground text-foreground'
-                                        : 'border-transparent text-foreground hover:text-foreground hover:border-foreground/30'
+                                        ? 'border-callout text-foreground'
+                                        : 'border-foreground/10 text-muted hover:text-foreground hover:border-foreground/30'
                                 }`}
                             >
                                 {label}
@@ -71,17 +79,17 @@ export const ExperiencePageSection = () => {
                 </aside>
 
                 {/* Sections */}
-                <div className="flex-1 flex flex-col gap-16">
-                    <div id="experience">
-                        <h2 className="text-2xl font-bold text-foreground mb-8">Experience</h2>
+                <div className="flex-1 min-w-0 flex flex-col gap-24">
+                    <div id="experience" className="scroll-mt-28">
+                        <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground mb-10">Work History</h2>
                         <WorkHistorySection />
                     </div>
-                    <div id="education">
-                        <h2 className="text-2xl font-bold text-foreground mb-8">Education</h2>
+                    <div id="education" className="scroll-mt-28">
+                        <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground mb-10">Education</h2>
                         <EducationSection />
                     </div>
-                    <div id="certifications">
-                        <h2 className="text-2xl font-bold text-foreground mb-8">Certifications</h2>
+                    <div id="certifications" className="scroll-mt-28">
+                        <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground mb-10">Certifications</h2>
                         <CertificationsSection />
                     </div>
                 </div>

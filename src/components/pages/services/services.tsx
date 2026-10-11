@@ -1,11 +1,11 @@
 'use client';
 
-import { Fragment, useEffect, useState } from "react";
-import { FaArrowRight, FaArrowDown } from "react-icons/fa";
+import { useEffect, useState } from "react";
 import { ServiceCard } from "./service-card";
 import { PricingSection } from "./pricing";
 import { Service } from "@/components/utilities/shared/service-icon";
 import { ServiceCardSkeleton } from "@/components/utilities/shared/skeletons";
+import { PageHeader, SectionHeading, card } from "@/components/utilities/shared/ui";
 
 const steps = [
     { label: "Book a call", description: "Talk through what's actually going on, no obligation." },
@@ -43,43 +43,37 @@ export const ServicesPageSection = () => {
     }, []);
 
     return (
-        <section className="min-h-screen pt-24 pb-16 px-4 md:px-8 lg:px-16 container mx-auto">
-            <div className="flex flex-col gap-2 mb-16 max-w-3xl">
-                <span className="text-xs font-semibold uppercase tracking-widest text-foreground/80">What I Offer</span>
-                <h1 className="text-5xl md:text-6xl font-bold font-fira-code text-foreground">Services</h1>
-                <p className="text-lg text-foreground/80 mt-3 prose-measure">
-                    From capacity planning to rate limits and security guardrails, I help you design a system that fits your reality, not a textbook or copy-pasted solution.
-                </p>
-            </div>
+        <section className="min-h-screen pt-32 pb-28 px-5 md:px-8 container mx-auto">
+            <PageHeader
+                eyebrow="what I offer"
+                title="Services"
+                lede="From capacity planning to rate limits and security guardrails, I help you design a system that fits your reality, not a textbook or copy-pasted solution."
+            />
 
-            <div className="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-6 mb-20 max-w-6xl">
+            {/* How an engagement runs: a real sequence, so the steps are numbered */}
+            <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-24 md:mb-32">
                 {steps.map((step, i) => (
-                    <Fragment key={step.label}>
-                        <div className="flex flex-col gap-2 lg:flex-1">
-                            <span className="font-fira-code text-callout text-sm">0{i + 1}</span>
-                            <h3 className="font-bold text-lg text-foreground">{step.label}</h3>
-                            <p className="text-sm text-foreground/70">{step.description}</p>
-                        </div>
-                        {i < steps.length - 1 && (
-                            <div className="flex items-center justify-center text-faint flex-shrink-0">
-                                <FaArrowDown className="lg:hidden" size={18} />
-                                <FaArrowRight className="hidden lg:block mt-1" size={18} />
-                            </div>
-                        )}
-                    </Fragment>
+                    <li key={step.label} className={`${card} flex flex-col gap-2 p-6`}>
+                        <span className="font-fira-code text-sm text-callout">0{i + 1}</span>
+                        <h3 className="font-bold text-lg text-foreground">{step.label}</h3>
+                        <p className="text-muted leading-relaxed">{step.description}</p>
+                    </li>
                 ))}
+            </ol>
+
+            <div className="mb-24 md:mb-32">
+                <SectionHeading eyebrow="services" title="What I can take off your plate" />
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+                    {loading && [0, 1, 2, 3].map((i) => (
+                        <ServiceCardSkeleton key={`skeleton-${i}`} />
+                    ))}
+                    {services.map((service) => (
+                        <ServiceCard key={service.id} service={service} />
+                    ))}
+                </div>
             </div>
 
             <PricingSection />
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full max-w-6xl">
-                {loading && [0, 1, 2, 3].map((i) => (
-                    <ServiceCardSkeleton key={`skeleton-${i}`} />
-                ))}
-                {services.map((service) => (
-                    <ServiceCard key={service.id} service={service} />
-                ))}
-            </div>
         </section>
     );
 };

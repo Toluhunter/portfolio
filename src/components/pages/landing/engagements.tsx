@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Title } from "@/components/utilities/shared/title"
+import { SectionHeading } from "@/components/utilities/shared/ui"
 import { EngagementCard, Engagement } from "@/components/utilities/landingpage/engagement/engagement-card"
 import { EngagementCardSkeleton } from "@/components/utilities/shared/skeletons"
 
@@ -33,11 +33,11 @@ export const EngagementsSection = () => {
     if (!loading && engagements.length === 0) return null;
 
     return (
-        <section id="engagements" className="relative flex flex-col items-center py-12">
-            <div className="relative flex flex-col container px-4 md:px-8">
-                <Title text="Client Engagements" />
+        <section id="engagements" className="py-20 md:py-28">
+            <div className="container mx-auto px-5 md:px-8">
+                <SectionHeading eyebrow="client work" title="Client engagements" />
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     {loading && [0, 1].map((i) => (
                         <EngagementCardSkeleton key={`skeleton-${i}`} />
                     ))}

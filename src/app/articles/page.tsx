@@ -5,6 +5,7 @@ import { ArticleCard } from "@/components/pages/articles/article-card";
 import { FeaturedArticleCard } from "@/components/pages/articles/featured-article-card";
 import { ArticleCardSkeleton, FeaturedArticleCardSkeleton } from "@/components/pages/articles/article-card-skeleton";
 import { useEffect, useState } from "react";
+import { PageHeader } from "@/components/utilities/shared/ui";
 
 interface Article {
     ID: number;
@@ -48,22 +49,22 @@ export default function ArticlesPage() {
         <>
             <NavBar />
             <div className="min-h-screen bg-background/50 backdrop-blur-sm">
-            <main className="container mx-auto px-4 py-8 pt-20">
-                <div className="flex flex-col gap-2 mb-12">
-                    <span className="text-xs font-semibold uppercase tracking-widest text-foreground/80">Writing</span>
-                    <h1 className="text-5xl md:text-6xl font-bold font-fira-code text-foreground">Articles</h1>
-                    <p className="text-lg text-foreground/80 mt-1 prose-measure">Thoughts on cloud architecture, engineering, and the things I build.</p>
-                </div>
+            <main className="container mx-auto px-5 md:px-8 pt-32 pb-28">
+                <PageHeader
+                    eyebrow="writing"
+                    title="Articles"
+                    lede="Thoughts on cloud architecture, engineering, and the things I build."
+                />
                 {loading ? (
-                    <div className="space-y-8">
+                    <div className="space-y-6">
                         <FeaturedArticleCardSkeleton />
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <ArticleCardSkeleton />
                             <ArticleCardSkeleton />
                         </div>
                     </div>
                 ) : (
-                    <div className="space-y-8">
+                    <div className="space-y-6">
                         {featured && (
                             <FeaturedArticleCard
                                 title={featured.title}
@@ -73,7 +74,7 @@ export default function ArticlesPage() {
                             />
                         )}
                         {rest.length > 0 && (
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 {rest.map((article) => (
                                     <ArticleCard
                                         key={article.ID}

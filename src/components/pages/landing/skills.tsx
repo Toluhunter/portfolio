@@ -1,5 +1,4 @@
-import Icon from "@/components/utilities/shared/icon";
-import { Title } from "@/components/utilities/shared/title";
+import { SectionHeading, card, cardHover } from "@/components/utilities/shared/ui";
 import {
     DiNodejs,
     DiPython,
@@ -26,36 +25,21 @@ export const skillsData = [
 ];
 
 export const SkillSection = () => {
-    // Skills Data (JSON structure)
-
     return (
-        <section
-            id="skills"
-            className="flex flex-col items-center min-h-[1080px] w-full overflow-hidden relative py-20"
-        >
-            <div className="relative w-full h-full container mx-auto px-4">
-                {/* Background pattern icon. If you want this to show over the gradient, ensure its opacity is low enough. */}
-                <Icon name="background-pattern" classes="absolute top-0 left-0 w-full h-full object-cover opacity-10 pointer-events-none"></Icon>
-                <Title text="Skills" link="#all-skills" />
-                <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-6xl mx-auto">
-
+        <section id="skills" className="py-20 md:py-28">
+            <div className="container mx-auto px-5 md:px-8">
+                <SectionHeading eyebrow="toolbox" title="What I build with" />
+                <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-7 gap-3">
                     {skillsData.map((skill) => (
-                        <div
+                        <li
                             key={skill.id}
-                            className="flex flex-col items-center justify-center p-8 bg-panel rounded-xl shadow-xl border border-foreground/15 hover:border-foreground transition-all duration-300 transform hover:scale-105 group"
+                            className={`${card} ${cardHover} flex items-center gap-3 px-4 py-4`}
                         >
-                            {skill.icon && (
-                                <div className="mb-4 text-foreground">
-
-                                    <skill.icon size={80} />
-
-
-                                </div>
-                            )}
-                            <span className="font-bold text-xl text-foreground">{skill.name}</span>
-                        </div>
+                            <skill.icon size={24} aria-hidden className="flex-shrink-0 text-foreground" />
+                            <span className="font-semibold text-foreground">{skill.name}</span>
+                        </li>
                     ))}
-                </div>
+                </ul>
             </div>
         </section>
     )

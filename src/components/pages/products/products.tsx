@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { ProjectCard, Project } from "./project-card";
 import { ProjectCardSkeleton } from "@/components/utilities/shared/skeletons";
+import { PageHeader } from "@/components/utilities/shared/ui";
 
 export const ProductsPageSection = () => {
     const [projects, setProjects] = useState<Project[]>([]);
@@ -34,19 +35,19 @@ export const ProductsPageSection = () => {
     }, []);
 
     return (
-        <main className="pt-24 pb-16 px-4 md:px-8 lg:px-16 container mx-auto relative">
-            <div className="flex flex-col gap-2 mb-16">
-                <span className="text-xs font-semibold uppercase tracking-widest text-foreground/80">Portfolio</span>
-                <h1 className="text-5xl md:text-6xl font-bold font-fira-code text-foreground">My Products</h1>
-                <p className="text-lg text-foreground/80 mt-1">Independently built, architected, and taken to production.</p>
-            </div>
+        <main className="pt-32 pb-28 px-5 md:px-8 container mx-auto relative">
+            <PageHeader
+                eyebrow="products"
+                title="My Products"
+                lede="Independently built, architected, and taken to production."
+            />
 
-            <div className="flex flex-col gap-20">
+            <div className="flex flex-col divide-y divide-foreground/10">
                 {loading && [0, 1].map((i) => (
-                    <ProjectCardSkeleton key={`skeleton-${i}`} />
+                    <div key={`skeleton-${i}`} className="py-16 first:pt-0"><ProjectCardSkeleton /></div>
                 ))}
                 {projects.map((project, index) => (
-                    <ProjectCard key={index} project={project} />
+                    <div key={index} className="py-16 first:pt-0"><ProjectCard project={project} /></div>
                 ))}
             </div>
         </main>

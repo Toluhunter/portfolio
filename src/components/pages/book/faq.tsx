@@ -1,3 +1,5 @@
+import { SectionHeading } from "@/components/utilities/shared/ui";
+
 const faqs = [
     {
         question: "What timezone are you in?",
@@ -23,18 +25,16 @@ const faqs = [
 
 export const FAQSection = () => {
     return (
-        <div className="w-full max-w-3xl mx-auto mt-20">
-            <h2 className="text-2xl font-bold font-fira-code text-foreground text-center mb-10">
-                Frequently Asked Questions
-            </h2>
-            <ul className="flex flex-col divide-y divide-foreground/10">
+        <div className="w-full mt-24 md:mt-32">
+            <SectionHeading eyebrow="faq" title="Frequently Asked Questions" />
+            <dl className="flex flex-col divide-y divide-foreground/10 border-y border-foreground/10">
                 {faqs.map((faq) => (
-                    <li key={faq.question} className="flex flex-col gap-2 py-6 first:pt-0 prose-measure">
-                        <span className="text-lg font-bold text-foreground">{faq.question}</span>
-                        <span className="text-foreground/80">{faq.answer}</span>
-                    </li>
+                    <div key={faq.question} className="grid md:grid-cols-[1fr_1.4fr] gap-2 md:gap-10 py-6">
+                        <dt className="text-lg font-bold text-foreground">{faq.question}</dt>
+                        <dd className="text-muted leading-relaxed prose-measure">{faq.answer}</dd>
+                    </div>
                 ))}
-            </ul>
+            </dl>
         </div>
     );
 };

@@ -2,8 +2,8 @@
 
 export function BookCall() {
     return (
-        <div className="my-8 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 p-6 flex flex-col gap-3">
-            <p className="font-semibold text-lg text-[var(--foreground)]">
+        <div className="my-8 rounded-2xl border border-foreground/10 bg-panel p-6 flex flex-col gap-3">
+            <p className="font-bold text-lg text-foreground">
                 Got something in mind?
             </p>
             <p className="text-sm text-muted leading-relaxed">
@@ -11,7 +11,7 @@ export function BookCall() {
             </p>
             <a
                 href="/book"
-                className="self-start rounded-lg bg-[var(--callout-fill)] text-white text-sm font-medium px-4 py-2 hover:opacity-90 transition-opacity"
+                className="self-start rounded-md bg-callout-fill text-on-callout font-semibold px-5 py-2.5 hover:opacity-90 transition-opacity"
             >
                 Let&apos;s talk
             </a>

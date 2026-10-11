@@ -4,6 +4,7 @@ import Image from "next/image";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import Icon from "@/components/utilities/shared/icon";
 import { StatusBadge } from "./status-badge";
+import { Eyebrow, btnPrimary, btnSecondary } from "@/components/utilities/shared/ui";
 
 export interface Project {
     name: string;
@@ -30,12 +31,12 @@ export const ProjectCard = ({ project }: { project: Project }) => {
                 {/* Left column - all text content */}
                 <div className="flex flex-col gap-6 lg:w-[55%]">
                     <div className="flex flex-col gap-1">
-                        <h2 className="text-5xl font-bold font-fira-code text-foreground">{project.name}</h2>
-                        <p className="text-xl text-foreground/80">{project.subtitle}</p>
+                        <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">{project.name}</h2>
+                        <p className="text-lg md:text-xl text-muted">{project.subtitle}</p>
                     </div>
 
                     {/* Image shown between subtitle and description on mobile */}
-                    <div className="lg:hidden w-full border border-foreground/20 rounded-xl overflow-hidden bg-foreground/5">
+                    <div className="lg:hidden w-full border border-foreground/15 rounded-2xl overflow-hidden bg-foreground/5">
                         <Image
                             src={project.images[0] || placeholderImage}
                             alt={`${project.name} preview`}
@@ -46,9 +47,9 @@ export const ProjectCard = ({ project }: { project: Project }) => {
                         />
                     </div>
 
-                    <div className="flex flex-col gap-3">
+                    <div className="flex flex-col gap-3 prose-measure leading-relaxed">
                         {project.description.map((para, index) => (
-                            <p key={index} className={index === 0 ? 'text-foreground' : 'text-foreground/80'}>
+                            <p key={index} className={index === 0 ? 'text-foreground text-lg' : 'text-muted'}>
                                 {para}
                             </p>
                         ))}
@@ -56,13 +57,11 @@ export const ProjectCard = ({ project }: { project: Project }) => {
 
                     {project.roles && project.roles.length > 0 && (
                         <div className="flex flex-col gap-3">
-                            <h3 className="text-sm font-semibold uppercase tracking-widest text-foreground/80">
-                                Key Contributions
-                            </h3>
+                            <h3><Eyebrow>key contributions</Eyebrow></h3>
                             <ul className="flex flex-col gap-2">
                                 {project.roles.map((role, index) => (
-                                    <li key={index} className="flex gap-3 text-sm text-foreground/80">
-                                        <span className="text-foreground/80 mt-0.5 flex-shrink-0">•</span>
+                                    <li key={index} className="flex gap-3 text-muted leading-relaxed prose-measure">
+                                        <span aria-hidden className="text-callout flex-shrink-0">&rsaquo;</span>
                                         <span>{role}</span>
                                     </li>
                                 ))}
@@ -72,16 +71,16 @@ export const ProjectCard = ({ project }: { project: Project }) => {
 
                     <div className="flex flex-wrap items-center gap-3 mt-2">
                         {project.websiteLink && (
-                            <a href={project.websiteLink} target="_blank" rel="noopener noreferrer">
-                                <button className="text-foreground py-2 px-6 rounded-md border-2 border-callout-custom hover:bg-callout-custom hover:text-white transition-colors duration-300 flex items-center gap-2 font-bold cursor-pointer">
-                                    Try it out
-                                    <FaExternalLinkAlt className="w-3 h-3" />
-                                </button>
+                            <a href={project.websiteLink} target="_blank" rel="noopener noreferrer" className={btnPrimary}>
+                                Try It Out
+                                <FaExternalLinkAlt className="w-3 h-3" aria-hidden />
                             </a>
                         )}
                         {project.technologies && project.technologies.length > 0 && (
                             <button
-                                className="flex items-center gap-2 text-sm font-semibold text-foreground border border-foreground/40 rounded-md px-4 py-2 hover:border-foreground hover:bg-foreground/10 transition-all duration-200 cursor-pointer"
+                                type="button"
+                                className={btnSecondary}
+                                aria-expanded={showTechnologies}
                                 onClick={() => setShowTechnologies(!showTechnologies)}
                             >
                                 <span>Technical Details</span>
@@ -91,8 +90,8 @@ export const ProjectCard = ({ project }: { project: Project }) => {
                     </div>
 
                     {showTechnologies && project.technologies && (
-                        <div className="p-5 rounded-lg bg-foreground/5 border border-foreground/10 animate-fade-in">
-                            <h4 className="text-sm font-semibold uppercase tracking-widest text-foreground/80 mb-3">Stack</h4>
+                        <div className="p-5 rounded-2xl bg-panel border border-foreground/10 animate-fade-in">
+                            <h4 className="mb-3"><Eyebrow>stack</Eyebrow></h4>
                             <ul className="flex flex-col gap-2">
                                 {project.technologies.map((tech, index) => {
                                     const colonIndex = tech.indexOf(':');
@@ -102,7 +101,7 @@ export const ProjectCard = ({ project }: { project: Project }) => {
                                         <li key={index} className="text-sm">
                                             <span className="font-semibold text-foreground">{name}</span>
                                             {detail && (
-                                                <span className="text-foreground/80"> - {detail}</span>
+                                                <span className="text-muted"> - {detail}</span>
                                             )}
                                         </li>
                                     );
@@ -113,8 +112,8 @@ export const ProjectCard = ({ project }: { project: Project }) => {
                 </div>
 
                 {/* Right column - image, desktop only, sticky */}
-                <div className="hidden lg:block lg:w-[45%] sticky top-8">
-                    <div className="w-full border border-foreground/20 rounded-xl overflow-hidden bg-foreground/5 shadow-lg">
+                <div className="hidden lg:block lg:w-[45%] sticky top-28">
+                    <div className="w-full border border-foreground/15 rounded-2xl overflow-hidden bg-foreground/5">
                         <Image
                             src={project.images[0] || placeholderImage}
                             alt={`${project.name} preview`}
