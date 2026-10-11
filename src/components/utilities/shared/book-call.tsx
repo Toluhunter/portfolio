@@ -1,5 +1,7 @@
 'use client'
 
+import { BOOK_LABEL } from "./ui";
+
 export function BookCall() {
     return (
         <div className="my-8 rounded-2xl border border-foreground/10 bg-panel p-6 flex flex-col gap-3">
@@ -13,7 +15,7 @@ export function BookCall() {
                 href="/book"
                 className="self-start rounded-md bg-callout-fill text-on-callout font-semibold px-5 py-2.5 hover:opacity-90 transition-opacity"
             >
-                Let&apos;s talk
+                {BOOK_LABEL}
             </a>
         </div>
     )

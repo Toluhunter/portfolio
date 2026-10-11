@@ -72,7 +72,7 @@ export const ProjectCard = ({ project }: { project: Project }) => {
                     <div className="flex flex-wrap items-center gap-3 mt-2">
                         {project.websiteLink && (
                             <a href={project.websiteLink} target="_blank" rel="noopener noreferrer" className={btnPrimary}>
-                                Try It Out
+                                Try it out
                                 <FaExternalLinkAlt className="w-3 h-3" aria-hidden />
                             </a>
                         )}
@@ -83,7 +83,7 @@ export const ProjectCard = ({ project }: { project: Project }) => {
                                 aria-expanded={showTechnologies}
                                 onClick={() => setShowTechnologies(!showTechnologies)}
                             >
-                                <span>Technical Details</span>
+                                <span>Technical details</span>
                                 <Icon color="currentColor" name={showTechnologies ? "uparrow" : "downarrow"} classes="w-4 h-4" />
                             </button>
                         )}

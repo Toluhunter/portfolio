@@ -33,7 +33,7 @@ export const FeaturedArticleCard = ({ title, link, coverImage, description }: Fe
                         {description}
                     </p>
                     <span className="mt-2 font-semibold text-callout w-fit">
-                        Read Article &rarr;
+                        Read article &rarr;
                     </span>
                 </div>
             </article>

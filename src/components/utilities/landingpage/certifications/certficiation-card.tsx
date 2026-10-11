@@ -45,7 +45,7 @@ export const CertificationCard: React.FC<{ cert: Certification }> = ({ cert }) =
                 rel="noopener noreferrer"
                 className="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-callout hover:underline"
             >
-                Verify Credential
+                Verify credential
                 <MdOutlineOpenInNew size={14} aria-hidden />
             </a>
         </div>

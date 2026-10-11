@@ -54,20 +54,16 @@ export const NavBar = () => {
     }
 
     useEffect(() => {
-        const handleScroll = () => {
-            if (window.scrollY > 0) {
-                setScrolled(true);
-            } else {
-                setScrolled(false);
-            }
-        };
-
-        handleScroll(); // Check scroll position on initial load
-
-        window.addEventListener('scroll', handleScroll);
-
+        // A 1px sentinel at the top of the page: once it leaves the viewport, the page has scrolled.
+        const sentinel = document.createElement('div');
+        sentinel.setAttribute('aria-hidden', 'true');
+        sentinel.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:1px;pointer-events:none;';
+        document.body.prepend(sentinel);
+        const observer = new IntersectionObserver(([entry]) => setScrolled(!entry.isIntersecting));
+        observer.observe(sentinel);
         return () => {
-            window.removeEventListener('scroll', handleScroll);
+            observer.disconnect();
+            sentinel.remove();
         };
     }, []);
 
@@ -120,7 +116,8 @@ export const NavBar = () => {
                 </div>
 
             </nav>
-
+            {/* Skip-link target: the first thing after the navigation */}
+            <span id="main" tabIndex={-1} className="block outline-none" />
         </>
     )
 }

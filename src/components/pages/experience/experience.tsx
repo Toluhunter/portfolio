@@ -1,13 +1,13 @@
 "use client";
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { PageHeader, textLink } from '@/components/utilities/shared/ui';
+import { PageHeader, btnPrimary, btnSecondary } from '@/components/utilities/shared/ui';
 import WorkHistorySection from "./work-history";
 import EducationSection from "./education";
 import CertificationsSection from "./certifications";
 
 const navSections = [
-    { id: 'experience', label: 'Work History' },
+    { id: 'experience', label: 'Work history' },
     { id: 'education', label: 'Education' },
     { id: 'certifications', label: 'Certifications' },
 ];
@@ -16,21 +16,20 @@ export const ExperiencePageSection = () => {
     const [activeSection, setActiveSection] = useState('experience');
 
     useEffect(() => {
-        const handleScroll = () => {
-            const scrollPos = window.scrollY + window.innerHeight * 0.35;
-            let current = navSections[0].id;
-            for (const { id } of navSections) {
-                const el = document.getElementById(id);
-                if (el && el.offsetTop <= scrollPos) {
-                    current = id;
-                }
-            }
-            setActiveSection(current);
-        };
-
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        handleScroll();
-        return () => window.removeEventListener('scroll', handleScroll);
+        // A section becomes active as it crosses a line 35% down the viewport.
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) setActiveSection(entry.target.id);
+                });
+            },
+            { rootMargin: '-35% 0px -64% 0px' }
+        );
+        navSections.forEach(({ id }) => {
+            const el = document.getElementById(id);
+            if (el) observer.observe(el);
+        });
+        return () => observer.disconnect();
     }, []);
 
     const scrollTo = (id: string) => {
@@ -48,11 +47,15 @@ export const ExperiencePageSection = () => {
                 eyebrow="background"
                 title="Experience"
                 lede="5+ years across cloud architecture, DevOps, and systems administration. Now researching TinyML security at Ontario Tech."
-            >
-                <Link href="/cv" className={textLink}>
-                    Download CV &rarr;
-                </Link>
-            </PageHeader>
+                aside={
+                    <div className="flex flex-wrap gap-3 lg:justify-end">
+                        <Link href="/cv" className={btnPrimary}>View CV</Link>
+                        <a href="https://www.linkedin.com/in/tolulope-fakoya/" target="_blank" rel="noopener noreferrer" className={btnSecondary}>
+                            LinkedIn
+                        </a>
+                    </div>
+                }
+            />
 
             {/* Body: sticky sidebar + scrollable sections */}
             <div className="flex flex-col lg:flex-row gap-12">
@@ -81,7 +84,7 @@ export const ExperiencePageSection = () => {
                 {/* Sections */}
                 <div className="flex-1 min-w-0 flex flex-col gap-24">
                     <div id="experience" className="scroll-mt-28">
-                        <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground mb-10">Work History</h2>
+                        <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground mb-10">Work history</h2>
                         <WorkHistorySection />
                     </div>
                     <div id="education" className="scroll-mt-28">

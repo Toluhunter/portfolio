@@ -1,4 +1,4 @@
-import { SectionHeading, card, cardHover } from "@/components/utilities/shared/ui";
+import { SectionHeading } from "@/components/utilities/shared/ui";
 import {
     DiNodejs,
     DiPython,
@@ -24,22 +24,36 @@ export const skillsData = [
     { id: 'skill16', name: 'Git', icon: DiGit },
 ];
 
+// Grouped by what the tools are for, so the section reads as a stack rather than a wall of logos.
+const skillGroups = [
+    { label: "Cloud and infrastructure", ids: ["skill1", "skill5", "skill2", "skill3", "skill6", "skill4"] },
+    { label: "Machine learning", ids: ["skill7", "skill8"] },
+    { label: "Languages and tools", ids: ["skill9", "skill10", "skill11", "skill12", "skill13", "skill16"] },
+];
+
 export const SkillSection = () => {
     return (
-        <section id="skills" className="py-20 md:py-28">
+        <section id="skills" className="py-24 md:py-32">
             <div className="container mx-auto px-5 md:px-8">
-                <SectionHeading eyebrow="toolbox" title="What I build with" />
-                <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-7 gap-3">
-                    {skillsData.map((skill) => (
-                        <li
-                            key={skill.id}
-                            className={`${card} ${cardHover} flex items-center gap-3 px-4 py-4`}
-                        >
-                            <skill.icon size={24} aria-hidden className="flex-shrink-0 text-foreground" />
-                            <span className="font-semibold text-foreground">{skill.name}</span>
-                        </li>
+                <SectionHeading title="What I build with" />
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-10">
+                    {skillGroups.map((group) => (
+                        <div key={group.label} className="flex flex-col gap-5 pt-6 border-t border-foreground/10">
+                            <h3 className="font-bold text-foreground">{group.label}</h3>
+                            <ul className="grid grid-cols-2 gap-x-6 gap-y-4">
+                                {group.ids.map((id) => {
+                                    const skill = skillsData.find((s) => s.id === id)!;
+                                    return (
+                                        <li key={id} className="flex items-center gap-3 text-muted">
+                                            <skill.icon size={22} aria-hidden className="flex-shrink-0 text-foreground" />
+                                            <span>{skill.name}</span>
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        </div>
                     ))}
-                </ul>
+                </div>
             </div>
         </section>
     )

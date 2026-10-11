@@ -35,7 +35,7 @@ export default function NotFound() {
                     href="/"
                     className={`${btnPrimary} mt-2`}
                 >
-                    Go Home
+                    Go home
                 </Link>
             </div>
         </main>

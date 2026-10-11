@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { Reveal } from "@/components/utilities/shared/reveal";
-import { CtaPanel, Eyebrow, btnPrimary, card, textLink } from "@/components/utilities/shared/ui";
+import { BOOK_LABEL, CtaPanel, Eyebrow, btnPrimary, textLink } from "@/components/utilities/shared/ui";
 
 const principles = [
     {
@@ -51,7 +51,7 @@ export const AboutSection = () => {
                             href="/book"
                             className={btnPrimary}
                         >
-                            Book a Free Meeting
+                            {BOOK_LABEL}
                         </Link>
                         <Link href="/experience" className={textLink}>
                             Full background &rarr;
@@ -114,15 +114,14 @@ export const AboutSection = () => {
             {/* How I work */}
             <div className="mt-24 md:mt-32 grid lg:grid-cols-[18rem_1fr] gap-10 lg:gap-16">
                 <Reveal className="lg:sticky lg:top-28 self-start flex flex-col gap-4">
-                    <Eyebrow>how I work</Eyebrow>
                     <h2 className="text-3xl md:text-4xl font-bold text-foreground leading-tight tracking-tight">
                         Four rules I don&apos;t bend.
                     </h2>
                 </Reveal>
-                <div className="grid sm:grid-cols-2 gap-5">
+                <div className="grid sm:grid-cols-2 gap-x-10 gap-y-12">
                     {principles.map((principle, i) => (
                         <Reveal key={principle.title} delay={i * 80}>
-                            <div className={`${card} h-full flex flex-col gap-3 p-7`}>
+                            <div className="h-full flex flex-col gap-3 pt-6 border-t border-foreground/15">
                                 <h3 className="text-xl md:text-2xl font-bold text-foreground leading-snug">{principle.title}</h3>
                                 <p className="text-muted leading-relaxed">{principle.detail}</p>
                             </div>

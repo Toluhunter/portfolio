@@ -53,7 +53,7 @@ export const ProjectListing = ({ project, reverse = false }: { project: Project;
 
     const visitButton = project.websiteLink && (
         <a href={project.websiteLink} target="_blank" rel="noopener noreferrer" className={btnPrimary}>
-            Try It Out
+            Try it out
             <FaExternalLinkAlt className="w-3 h-3" aria-hidden />
         </a>
     );
@@ -65,7 +65,7 @@ export const ProjectListing = ({ project, reverse = false }: { project: Project;
             aria-expanded={showDetails}
             onClick={() => setShowDetails(!showDetails)}
         >
-            <span>Technical Details</span>
+            <span>Technical details</span>
             {showDetails
                 ? <Icon color="currentColor" name="uparrow" classes="w-4 h-4" />
                 : <Icon color="currentColor" name="downarrow" classes="w-4 h-4" />}

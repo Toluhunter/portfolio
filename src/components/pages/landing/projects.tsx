@@ -38,11 +38,11 @@ export const ProjectSection = () => {
     }, []);
 
     return (
-        <section id="projects" className="relative bg-background bg-[url('https://assets.toluhunter.com/landing/backgrounds/project.webp')] bg-cover bg-center py-20 md:py-28">
+        <section id="projects" className="relative bg-background bg-[url('https://assets.toluhunter.com/landing/backgrounds/project.webp')] bg-cover bg-center py-24 md:py-32">
             <div className="absolute inset-x-0 top-0 h-24 md:h-32 bg-gradient-to-b from-background to-transparent pointer-events-none" />
             <div className="absolute inset-x-0 bottom-0 h-24 md:h-32 bg-gradient-to-t from-background to-transparent pointer-events-none" />
             <div className="relative container mx-auto px-5 md:px-8">
-                <SectionHeading eyebrow="case studies" title="Things I built and shipped" link="/products" linkLabel="All products" />
+                <SectionHeading title="Things I built and shipped" link="/products" linkLabel="All products" />
 
                 <div className="flex flex-col divide-y divide-foreground/10">
                     {loading && [0, 1].map((i) => (

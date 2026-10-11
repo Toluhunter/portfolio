@@ -96,47 +96,48 @@ export const ProjectCardSkeleton = () => (
 );
 
 export const EngagementCardSkeleton = () => (
-    <div aria-hidden="true" className="flex flex-col gap-6 p-6 md:p-8 bg-panel border border-foreground/10 rounded-2xl">
-        <div className="flex items-center gap-4">
-            <Bar className="w-14 h-14 flex-shrink-0 rounded-lg" />
+    <div aria-hidden="true" className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 py-12 border-t border-foreground/10">
+        <div className="lg:col-span-4 flex items-center gap-4">
+            <Bar className="w-12 h-12 flex-shrink-0 rounded-xl" />
             <div className="flex-1 space-y-2">
-                <Bar className="h-5 w-2/3" />
+                <Bar className="h-6 w-2/3" />
                 <Bar className="h-4 w-1/2" />
             </div>
         </div>
-        {[0, 1, 2].map((i) => (
-            <div key={i} className="space-y-2">
-                <Bar className="h-3 w-20" />
-                <Bar className="h-4 w-full" />
-                <Bar className="h-4 w-5/6" />
-            </div>
-        ))}
+        <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[0, 1, 2].map((b) => (
+                <div key={b} className="space-y-2">
+                    <Bar className="h-4 w-24" />
+                    <Bar className="h-4 w-full" />
+                    <Bar className="h-4 w-4/5" />
+                </div>
+            ))}
+        </div>
     </div>
 );
 
 export const ServiceTileSkeleton = () => (
-    <div aria-hidden="true" className="flex flex-col items-start gap-5 p-6 bg-panel border border-foreground/10 rounded-2xl">
-        <Bar className="w-14 h-14 rounded-lg" />
-        <Bar className="h-4 w-2/3" />
+    <div aria-hidden="true" className="flex gap-4 py-6 border-t border-foreground/10">
+        <Bar className="w-6 h-6 flex-shrink-0 rounded-md" />
+        <div className="flex-1 space-y-2">
+            <Bar className="h-5 w-1/2" />
+            <Bar className="h-4 w-5/6" />
+        </div>
     </div>
 );
 
 export const ServiceCardSkeleton = () => (
-    <div aria-hidden="true" className="flex flex-col gap-5 p-6 md:p-8 bg-panel border border-foreground/10 rounded-2xl">
+    <div aria-hidden="true" className="flex flex-col gap-5 py-10 border-t border-foreground/10">
         <div className="flex items-center gap-4">
-            <Bar className="w-12 h-12 flex-shrink-0 rounded-lg" />
-            <Bar className="h-6 w-1/2" />
+            <Bar className="w-12 h-12 flex-shrink-0 rounded-xl" />
+            <Bar className="h-7 w-1/2" />
         </div>
+        <Bar className="h-5 w-4/5" />
         <div className="space-y-2">
             <Bar className="h-4 w-full" />
-            <Bar className="h-4 w-4/5" />
-        </div>
-        <div className="space-y-2">
             <Bar className="h-4 w-11/12" />
             <Bar className="h-4 w-3/4" />
-            <Bar className="h-4 w-5/6" />
         </div>
-        <Bar className="h-11 w-32 rounded-lg" />
     </div>
 );
 

@@ -33,11 +33,11 @@ export const EngagementsSection = () => {
     if (!loading && engagements.length === 0) return null;
 
     return (
-        <section id="engagements" className="py-20 md:py-28">
+        <section id="engagements" className="py-24 md:py-32">
             <div className="container mx-auto px-5 md:px-8">
-                <SectionHeading eyebrow="client work" title="Client engagements" />
+                <SectionHeading title="Client engagements" />
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div className="flex flex-col border-b border-foreground/10">
                     {loading && [0, 1].map((i) => (
                         <EngagementCardSkeleton key={`skeleton-${i}`} />
                     ))}

@@ -201,7 +201,7 @@ export function AITerminal() {
 
     return (
         <>
-            {/* Floating trigger — app icon style: icon on top, label below */}
+            {/* Floating trigger, app icon style: icon on top, label below */}
             <div
                 className="fixed right-10 z-[9999] transition-all duration-300 ease-in-out flex flex-col items-center gap-1"
                 style={{ bottom: open ? `calc(${PANEL_HEIGHT} + 16px)` : '56px' }}
@@ -357,9 +357,9 @@ export function AITerminal() {
                                         : status === 'thinking'
                                             ? 'waiting for response...'
                                             : status === 'error'
-                                                ? 'connection failed — refresh to retry'
+                                                ? 'connection failed: refresh to retry'
                                                 : status === 'rate_limited'
-                                                    ? 'rate limit reached — close and reopen to continue'
+                                                    ? 'rate limit reached: close and reopen to continue'
                                                     : status === 'terminated'
                                                         ? 'this session has ended'
                                                         : ''}

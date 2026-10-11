@@ -36,9 +36,9 @@ export const CertificationsSection = () => {
     if (!loading && certifications.length === 0) return null;
 
     return (
-        <section className="relative overflow-hidden py-20 md:py-28">
+        <section className="relative overflow-hidden py-24 md:py-32">
             <div className="container mx-auto px-5 md:px-8">
-                <SectionHeading eyebrow="credentials" title="Certifications" link="/experience#certifications" linkLabel="All certifications" />
+                <SectionHeading title="Certifications" link="/experience#certifications" linkLabel="All certifications" />
                 {loading ? <LandingCertificationsSkeleton /> : <CertificationsCarousel certifications={certifications} />}
             </div>
         </section>

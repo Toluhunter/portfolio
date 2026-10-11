@@ -26,7 +26,7 @@ const faqs = [
 export const FAQSection = () => {
     return (
         <div className="w-full mt-24 md:mt-32">
-            <SectionHeading eyebrow="faq" title="Frequently Asked Questions" />
+            <SectionHeading title="Frequently asked questions" />
             <dl className="flex flex-col divide-y divide-foreground/10 border-y border-foreground/10">
                 {faqs.map((faq) => (
                     <div key={faq.question} className="grid md:grid-cols-[1fr_1.4fr] gap-2 md:gap-10 py-6">

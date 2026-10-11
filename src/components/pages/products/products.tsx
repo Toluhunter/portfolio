@@ -2,7 +2,9 @@
 import { useEffect, useState } from "react";
 import { ProjectCard, Project } from "./project-card";
 import { ProjectCardSkeleton } from "@/components/utilities/shared/skeletons";
-import { PageHeader } from "@/components/utilities/shared/ui";
+import Link from "next/link";
+import { FaGithub } from "react-icons/fa";
+import { BOOK_LABEL, PageHeader, btnPrimary, btnSecondary } from "@/components/utilities/shared/ui";
 
 export const ProductsPageSection = () => {
     const [projects, setProjects] = useState<Project[]>([]);
@@ -40,6 +42,18 @@ export const ProductsPageSection = () => {
                 eyebrow="products"
                 title="My Products"
                 lede="Independently built, architected, and taken to production."
+                aside={
+                    <div className="flex flex-col gap-4 lg:items-end">
+                        <p className="text-muted lg:text-right">Need something like this for your team?</p>
+                        <div className="flex flex-wrap gap-3">
+                            <Link href="/book" className={btnPrimary}>{BOOK_LABEL}</Link>
+                            <a href="https://github.com/Toluhunter" target="_blank" rel="noopener noreferrer" className={btnSecondary}>
+                                <FaGithub className="w-5 h-5" aria-hidden />
+                                GitHub
+                            </a>
+                        </div>
+                    </div>
+                }
             />
 
             <div className="flex flex-col divide-y divide-foreground/10">

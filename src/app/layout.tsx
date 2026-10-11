@@ -134,6 +134,7 @@ export default function RootLayout({
               <div className="lava-blob lava-blob-2" />
               <div className="lava-blob lava-blob-3" />
             </div>
+            <a href="#main" className="skip-link">Skip to content</a>
             <Toaster />
             <div className="relative z-[1]">
               {children}

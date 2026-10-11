@@ -1,11 +1,10 @@
 'use client'
-import Icon from "@/components/utilities/shared/icon";
 import Slider from "@/components/utilities/landingpage/hero/slider";
 import Type from "@/components/utilities/landingpage/hero/type";
 import { useState, useEffect, useRef } from "react";
 import { useAudio } from "@/components/utilities/shared/audio";
 import Link from "next/link";
-import { btnPrimary } from "@/components/utilities/shared/ui";
+import { BOOK_LABEL, btnPrimary } from "@/components/utilities/shared/ui";
 
 
 export const Herosection = () => {
@@ -47,7 +46,7 @@ export const Herosection = () => {
     return (
 
         <>
-            <section id="hero-section" className="relative w-full flex flex-col items-stretch justify-center pt-25 pb-20 overflow-hidden min-h-screen max-h-[1600px]">
+            <section id="hero-section" className="relative w-full flex flex-col items-stretch justify-center pt-25 pb-20 overflow-hidden min-h-[100dvh] max-h-[1600px]">
                 <Slider />
 
                 <div id="content-container" className="container mx-auto flex flex-col md:flex-row md:gap-10 xl:gap-20 md:items-center md:justify-center px-5 md:px-0 z-20">
@@ -72,12 +71,11 @@ export const Herosection = () => {
                             </p>
                             <p className="text-muted">
                                 I design, monitor, and secure yours so the platform you ship performs as well as the idea that started it.
-                                I work with small teams shipping an AI or cloud product who don&apos;t have a platform team in place yet.
                             </p>
                         </div>
 
                         <Link href="/book" className={btnPrimary}>
-                            Book a Free Meeting
+                            {BOOK_LABEL}
                         </Link>
 
                     </div>
@@ -101,8 +99,6 @@ export const Herosection = () => {
                     </div>
 
                 </div>
-                <Icon name="mouse-scroll" classes="hidden md:block absolute z-50 w-20 h-20 bottom-0 left-1/2 animate-bounce-scroll" color="var(--foreground)" />
-                <Icon name="scroll" classes="md:hidden absolute z-50 w-20 h-20 bottom-0 left-1/2 animate-bounce-scroll" color="var(--foreground)" />
             </section>
         </>
     )

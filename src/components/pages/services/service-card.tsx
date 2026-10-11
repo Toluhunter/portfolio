@@ -1,18 +1,17 @@
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 import { serviceIcons, Service } from "@/components/utilities/shared/service-icon";
-import { btnSecondary, card } from "@/components/utilities/shared/ui";
 
 export const ServiceCard = ({ service }: { service: Service }) => {
     const IconComponent = serviceIcons[service.icon];
 
     return (
-        <div id={service.id} className={`${card} flex flex-col gap-5 p-6 md:p-8 text-left scroll-mt-28`}>
+        <div id={service.id} className="flex flex-col gap-5 py-10 border-t border-foreground/10 text-left scroll-mt-28">
             <div className="flex items-center gap-4">
                 <div className="flex items-center justify-center w-12 h-12 flex-shrink-0 rounded-xl bg-callout/10 text-callout">
                     <IconComponent size={22} aria-hidden />
                 </div>
-                <h3 className="text-xl font-bold text-foreground">{service.name}</h3>
+                <h3 className="text-2xl font-bold tracking-tight text-foreground">{service.name}</h3>
             </div>
 
             <p className="text-foreground text-lg leading-relaxed">{service.hook}</p>
@@ -26,22 +25,14 @@ export const ServiceCard = ({ service }: { service: Service }) => {
                 ))}
             </ul>
 
-            <div className="flex flex-wrap items-center gap-4 mt-auto pt-2">
+            {service.caseStudyLink && (
                 <Link
-                    href="/book"
-                    className={btnSecondary}
+                    href={service.caseStudyLink}
+                    className="flex items-center gap-2 w-fit font-semibold text-foreground hover:text-callout transition-colors duration-200"
                 >
-                    Book a Call
+                    See it in a real case study <FaArrowRight className="w-3 h-3" aria-hidden />
                 </Link>
-                {service.caseStudyLink && (
-                    <Link
-                        href={service.caseStudyLink}
-                        className="flex items-center gap-2 text-sm text-muted hover:text-callout transition-colors duration-200"
-                    >
-                        See it in a real case study <FaArrowRight className="w-3 h-3" aria-hidden />
-                    </Link>
-                )}
-            </div>
+            )}
         </div>
     );
 };

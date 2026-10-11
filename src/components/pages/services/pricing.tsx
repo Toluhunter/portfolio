@@ -77,7 +77,7 @@ export const PricingSection = () => {
     if (loading) {
         return (
             <div>
-                <SectionHeading eyebrow="pricing" title="Pricing" />
+                <SectionHeading title="Pricing" />
                 <div className="flex flex-col gap-5">
                     {[0, 1, 2].map((i) => (
                         <PricingTierSkeleton key={i} />
@@ -91,7 +91,7 @@ export const PricingSection = () => {
 
     return (
         <div>
-            <SectionHeading eyebrow="pricing" title="Pricing" />
+            <SectionHeading title="Pricing" />
             <p className="text-lg text-muted leading-relaxed max-w-2xl -mt-4 mb-10">{pricingData.intro}</p>
 
             <div className="flex flex-col gap-5">
