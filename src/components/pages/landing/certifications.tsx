@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Title } from "@/components/utilities/shared/title";
+import { SectionHeading } from "@/components/utilities/shared/ui";
 import { CertificationsCarousel } from "@/components/utilities/landingpage/certifications/certifications-carousel";
 import { Certification } from "@/components/utilities/landingpage/certifications/certficiation-card";
 import { LandingCertificationsSkeleton } from "@/components/utilities/shared/skeletons";
@@ -36,10 +36,9 @@ export const CertificationsSection = () => {
     if (!loading && certifications.length === 0) return null;
 
     return (
-        <section className="relative flex flex-col overflow-hidden items-center py-12">
-            <div className="absolute inset-x-0 top-0 h-24 md:h-32 bg-gradient-to-b from-background to-transparent pointer-events-none" />
-            <div className="flex flex-col w-full container">
-                <Title text="Certifications" />
+        <section className="relative overflow-hidden py-24 md:py-32">
+            <div className="container mx-auto px-5 md:px-8">
+                <SectionHeading title="Certifications" link="/experience#certifications" linkLabel="All certifications" />
                 {loading ? <LandingCertificationsSkeleton /> : <CertificationsCarousel certifications={certifications} />}
             </div>
         </section>

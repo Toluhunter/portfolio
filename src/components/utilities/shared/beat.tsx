@@ -13,7 +13,7 @@ export interface CaseStudy {
 
 export const Beat = ({ label, text }: { label: string; text: string }) => (
     <div className="flex flex-col gap-2">
-        <p className="font-fira-code text-sm md:text-base text-callout">// {label}</p>
-        <p className="text-foreground/90 text-base md:text-lg">{text}</p>
+        <p className="font-fira-code text-sm text-callout"><span aria-hidden>// </span>{label}</p>
+        <p className="text-muted leading-relaxed">{text}</p>
     </div>
 );

@@ -1,6 +1,6 @@
 import "./globals.css";
 import type { Metadata } from 'next';
-import { Monda, Lobster, Gugi } from 'next/font/google';
+import { Monda, Lobster, Gugi, Fira_Code } from 'next/font/google';
 import ThemeWrapper from '@/components/utilities/shared/ThemeWrapper';
 import { AudioProvider } from "@/components/utilities/shared/audio";
 import { AITerminal } from "@/components/utilities/shared/ai-terminal";
@@ -25,6 +25,13 @@ const gugi = Gugi({
   subsets: ['latin'],
   weight: ['400'],
   variable: '--font-gugi',
+  display: 'swap',
+});
+
+const fira = Fira_Code({
+  subsets: ['latin'],
+  weight: ['400', '500', '700'],
+  variable: '--font-fira',
   display: 'swap',
 });
 
@@ -58,8 +65,16 @@ export default function RootLayout({
 }>) {
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Pre-paint theme: device preference by default, explicit choice wins.
+            Runs before first paint so a dark-first site never flashes light. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var r=document.documentElement;var s=null;try{s=localStorage.getItem('theme')}catch(e){}var d;if(s==='light'){d=false}else if(s==='dark'){d=true}else{var l=null;try{l=localStorage.getItem('isLightOn')}catch(e){}if(l!==null){d=!JSON.parse(l)}else{d=window.matchMedia('(prefers-color-scheme: dark)').matches}}r.classList.toggle('dark',d);r.style.colorScheme=d?'dark':'light'}catch(e){document.documentElement.classList.add('dark')}})();`,
+          }}
+        />
+        <meta name="theme-color" content="#121212" />
 
         <Script async src="https://www.googletagmanager.com/gtag/js?id=G-6WMS15MTQ9"></Script>
         <Script id="google-analytics">
@@ -109,7 +124,7 @@ export default function RootLayout({
 
       </head>
       <body
-        className={`${monda.variable} ${lobster.variable} ${gugi.variable} p-0 m-0 relative`}
+        className={`${monda.variable} ${lobster.variable} ${gugi.variable} ${fira.variable} p-0 m-0 relative`}
         style={{ fontFamily: 'var(--font-monda), sans-serif' }}
       >
         <AudioProvider>
@@ -119,6 +134,7 @@ export default function RootLayout({
               <div className="lava-blob lava-blob-2" />
               <div className="lava-blob lava-blob-3" />
             </div>
+            <a href="#main" className="skip-link">Skip to content</a>
             <Toaster />
             <div className="relative z-[1]">
               {children}

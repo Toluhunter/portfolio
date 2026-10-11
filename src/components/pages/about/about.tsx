@@ -2,80 +2,93 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { Reveal } from "@/components/utilities/shared/reveal";
+import { BOOK_LABEL, CtaPanel, Eyebrow, btnPrimary, textLink } from "@/components/utilities/shared/ui";
 
 const principles = [
-    "Your constraints are the design. Scale ambitions mean nothing without a budget to match - the best system is the one built for your reality, not someone else's.",
-    "An unmonitored system is an open vault. Without logs and alerts, anything can be stolen, modified, or broken in silence - and you will be the last to know.",
-    "Security is a live game between attacker and defender. Bolt it on at the end and you have already lost.",
-    "Systems fail - that is not the question. The question is whether your system recovers on its own or waits for a phone call at 3am.",
+    {
+        title: "Design for your constraints",
+        detail: "The best system is built for your budget and your reality, not someone else's scale.",
+    },
+    {
+        title: "Watch everything",
+        detail: "Without logs and alerts, things break or get stolen in silence, and you are the last to know.",
+    },
+    {
+        title: "Security from day one",
+        detail: "It is a live game between attacker and defender. Bolt it on at the end and you have already lost.",
+    },
+    {
+        title: "Build systems that heal",
+        detail: "Systems will fail. What matters is whether yours recovers on its own or waits for a 3am call.",
+    },
 ];
 
-const proofPoints = [
-    "5+ years",
-    "25+ cloud migrations",
-    "AI pipelines in production",
-    "AWS-certified",
+const stats = [
+    { value: "5+", label: "Years in cloud and infrastructure" },
+    { value: "25+", label: "Cloud migrations delivered" },
+    { value: "~25%", label: "Average cost reduction" },
+    { value: "AWS", label: "Certified" },
 ];
 
 export const AboutSection = () => {
     return (
-        <section className="min-h-screen pt-25 flex flex-col gap-24 px-5 md:px-8 pb-28 max-w-7xl mx-auto">
+        <section className="relative min-h-screen pt-32 flex flex-col px-5 md:px-8 pb-28 container mx-auto">
 
             {/* Hero: text + photo */}
-            <div className="flex flex-col-reverse lg:flex-row gap-12 lg:gap-16 items-start lg:items-center lg:justify-between">
-                <div className="flex flex-col gap-4 max-w-2xl">
-                    <span className="text-xs font-semibold uppercase tracking-widest text-foreground/80">Who I Am</span>
-                    <h1 className="text-5xl md:text-6xl font-bold font-fira-code text-foreground">About</h1>
-                    <p className="text-xl font-semibold text-foreground mt-2">
-                        I&apos;m Tolulope Fakoya, a Cloud and AI Engineer.
+            <div className="grid lg:grid-cols-[1fr_24rem] gap-14 lg:gap-20 items-center">
+                <div className="flex flex-col gap-6 order-2 lg:order-1">
+                    <Eyebrow>about</Eyebrow>
+                    <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold text-foreground leading-[1.08] tracking-tight">
+                        I design cloud systems that stay up, stay secure, and stay on budget.
+                    </h1>
+                    <p className="text-lg text-muted leading-relaxed max-w-xl">
+                        I&apos;m Tolulope Fakoya, a Cloud and AI Engineer. For 5+ years I have built, secured, and run
+                        cloud-native and AI systems, from startup migrations to ML pipelines on SageMaker and Vertex AI.
                     </p>
-                    <p className="text-lg text-foreground leading-relaxed">
-                        With 5+ years building, securing, and operating cloud-native and AI-powered systems, I have grown fond of the craft that is system architecture. A product does not truly exist until it is in the hands of its users - and architecture is what designs that journey. It can be smooth or jagged, fast or fragile. That is the beauty of it.
-                    </p>
-                    <p className="text-lg text-foreground leading-relaxed">
-                        Planning for capacity as user numbers grow, designing the guardrails and rate limits that hold up against malicious actors, making deliberate trade-offs between cost, reliability, and performance. I have fallen in love with the beauty of it.
-                    </p>
-                    <p className="text-lg text-foreground leading-relaxed">
-                        I have led teams deploying AI-powered workloads on platforms like AWS SageMaker and Google Vertex AI, building pipelines that move cleanly from experiment to production.
-                    </p>
-                    <p className="text-lg text-foreground leading-relaxed">
-                        Whatever your position, I will help you cover the bases - designing a system that fits your needs, budget, and operations. Nothing better than a dashboard full of green.
-                    </p>
-                    <div className="flex flex-wrap gap-5 items-center mt-2">
+                    <div className="flex flex-wrap gap-x-6 gap-y-4 items-center mt-2">
                         <Link
                             href="/book"
-                            className="px-5 py-2 text-base border-2 border-callout rounded-md hover:bg-callout hover:text-on-callout transition-colors duration-300 text-foreground"
+                            className={btnPrimary}
                         >
-                            Book a Free Meeting
+                            {BOOK_LABEL}
                         </Link>
-                        <div className="flex gap-5 items-center">
-                            <Link
-                                href="https://github.com/toluhunter"
-                                target="_blank"
-                                className="flex items-center gap-2 text-foreground hover:text-foreground transition-colors duration-200"
-                            >
-                                <FaGithub size={20} />
-                                <span>GitHub</span>
-                            </Link>
-                            <Link
-                                href="https://www.linkedin.com/in/tolulope-fakoya/"
-                                target="_blank"
-                                className="flex items-center gap-2 text-foreground hover:text-foreground transition-colors duration-200"
-                            >
-                                <FaLinkedin size={20} />
-                                <span>LinkedIn</span>
-                            </Link>
-                        </div>
+                        <Link href="/experience" className={textLink}>
+                            Full background &rarr;
+                        </Link>
+                        <Link href="/cv" className={textLink}>
+                            CV &rarr;
+                        </Link>
+                    </div>
+                    <div className="flex gap-5 items-center text-muted">
+                        <Link
+                            href="https://github.com/toluhunter"
+                            target="_blank"
+                            aria-label="GitHub"
+                            className="hover:text-foreground transition-colors duration-200"
+                        >
+                            <FaGithub size={22} />
+                        </Link>
+                        <Link
+                            href="https://www.linkedin.com/in/tolulope-fakoya/"
+                            target="_blank"
+                            aria-label="LinkedIn"
+                            className="hover:text-foreground transition-colors duration-200"
+                        >
+                            <FaLinkedin size={22} />
+                        </Link>
                     </div>
                 </div>
 
-                <div className="w-full lg:w-[26rem] lg:flex-shrink-0">
-                    <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden border border-foreground/15">
+                {/* Photo with offset accent frame */}
+                <div className="relative w-full max-w-sm mx-auto lg:max-w-none order-1 lg:order-2">
+                    <div aria-hidden className="absolute inset-0 translate-x-4 translate-y-4 rounded-2xl border-2 border-callout" />
+                    <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden bg-panel">
                         <Image
                             src="https://assets.toluhunter.com/about/profile-pic.webp"
                             alt="Tolulope Fakoya"
                             fill
-                            sizes="(max-width: 1024px) 100vw, 26rem"
+                            sizes="(max-width: 1024px) 24rem, 24rem"
                             priority
                             className="object-cover"
                         />
@@ -83,54 +96,47 @@ export const AboutSection = () => {
                 </div>
             </div>
 
-            {/* Proof strip */}
-            <div className="flex flex-col gap-4">
-                <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-lg text-foreground">
-                    {proofPoints.map((point, i) => (
-                        <span key={point} className="flex items-center gap-x-3">
-                            {i > 0 && <span className="text-foreground/80">·</span>}
-                            <span className="font-semibold">{point}</span>
-                        </span>
+            {/* Stats band */}
+            <Reveal className="mt-24 md:mt-32">
+                <dl className="grid grid-cols-2 md:grid-cols-4 gap-y-10 border-y border-foreground/10 py-10">
+                    {stats.map((stat, i) => (
+                        <div
+                            key={stat.label}
+                            className={`flex flex-col gap-2 px-2 md:px-6 ${i > 0 ? "md:border-l md:border-foreground/10" : ""}`}
+                        >
+                            <dt className="order-2 text-sm text-muted">{stat.label}</dt>
+                            <dd className="order-1 font-fira-code text-4xl md:text-5xl font-bold text-callout">{stat.value}</dd>
+                        </div>
                     ))}
-                </div>
-                <div className="flex flex-wrap gap-x-6 gap-y-2">
-                    <Link href="/experience" className="text-sm text-foreground hover:underline w-fit">
-                        See the full background &rarr;
-                    </Link>
-                    <Link href="/cv" className="text-sm text-foreground hover:underline w-fit">
-                        Download CV &rarr;
-                    </Link>
-                </div>
-            </div>
+                </dl>
+            </Reveal>
 
             {/* How I work */}
-            <div className="flex flex-col gap-8">
-                <span className="text-xs font-semibold uppercase tracking-widest text-foreground/80">How I Work</span>
-                <ul className="flex flex-col divide-y divide-foreground/10">
+            <div className="mt-24 md:mt-32 grid lg:grid-cols-[18rem_1fr] gap-10 lg:gap-16">
+                <Reveal className="lg:sticky lg:top-28 self-start flex flex-col gap-4">
+                    <h2 className="text-3xl md:text-4xl font-bold text-foreground leading-tight tracking-tight">
+                        Four rules I don&apos;t bend.
+                    </h2>
+                </Reveal>
+                <div className="grid sm:grid-cols-2 gap-x-10 gap-y-12">
                     {principles.map((principle, i) => (
-                        <li key={i} className="flex gap-6 py-6 first:pt-0 items-baseline">
-                            <span className="text-sm font-fira-code text-foreground/60 flex-shrink-0">
-                                {String(i + 1).padStart(2, "0")}
-                            </span>
-                            <span className="text-2xl md:text-3xl font-bold font-fira-code text-foreground leading-snug">
-                                {principle}
-                            </span>
-                        </li>
+                        <Reveal key={principle.title} delay={i * 80}>
+                            <div className="h-full flex flex-col gap-3 pt-6 border-t border-foreground/15">
+                                <h3 className="text-xl md:text-2xl font-bold text-foreground leading-snug">{principle.title}</h3>
+                                <p className="text-muted leading-relaxed">{principle.detail}</p>
+                            </div>
+                        </Reveal>
                     ))}
-                </ul>
+                </div>
             </div>
 
             {/* Closing CTA */}
-            <div className="flex flex-col gap-6 border-t border-foreground/10 pt-12">
-                <p className="text-sm italic text-foreground/80">Always adapting, like Mahoraga, the divine general.</p>
-                <h2 className="text-3xl md:text-4xl font-bold font-fira-code text-foreground">Have a project? Let&apos;s talk.</h2>
-                <Link
-                    href="/book"
-                    className="px-6 py-3 text-base border-2 border-callout rounded-md hover:bg-callout hover:text-on-callout transition-colors duration-300 text-foreground w-fit"
-                >
-                    Book a Free Meeting
-                </Link>
-            </div>
+            <Reveal className="mt-24 md:mt-32">
+                <CtaPanel
+                    note="Always adapting, like Mahoraga, the divine general."
+                    title="Have a project? Let's talk."
+                />
+            </Reveal>
 
         </section>
     );

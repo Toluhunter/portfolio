@@ -24,14 +24,14 @@ export const CertificationsCarousel: React.FC<{ certifications: Certification[] 
             }
         };
 
-        // passive: false required to call preventDefault on wheel
-        const handleWheel = (e: WheelEvent) => e.preventDefault();
-
         container.addEventListener("scroll", handleScroll, { passive: true });
-        container.addEventListener("wheel", handleWheel, { passive: false });
+
+        // Auto-scroll is decoration, so it stays off for people who prefer reduced motion.
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
         let raf: number;
         const tick = () => {
+            if (reduceMotion) return;
             if (!pausedRef.current) {
                 container.scrollLeft += SPEED;
             }
@@ -42,7 +42,6 @@ export const CertificationsCarousel: React.FC<{ certifications: Certification[] 
         return () => {
             cancelAnimationFrame(raf);
             container.removeEventListener("scroll", handleScroll);
-            container.removeEventListener("wheel", handleWheel);
         };
     }, []);
 
@@ -68,10 +67,11 @@ export const CertificationsCarousel: React.FC<{ certifications: Certification[] 
         <div className="flex flex-row flex-1 items-center w-full gap-4">
             <button
                 onClick={() => nudge("left")}
-                className="hidden lg:flex flex-shrink-0 text-foreground focus:outline-none cursor-pointer"
+                type="button"
+                className="hidden lg:flex flex-shrink-0 text-muted hover:text-callout transition-colors duration-200 cursor-pointer"
                 aria-label="Scroll left"
             >
-                <MdOutlineKeyboardArrowLeft size={48} className="animate-nudge-left" />
+                <MdOutlineKeyboardArrowLeft size={40} aria-hidden />
             </button>
 
             <div
@@ -81,6 +81,8 @@ export const CertificationsCarousel: React.FC<{ certifications: Certification[] 
                 onMouseLeave={() => resume()}
                 onTouchStart={pause}
                 onTouchEnd={() => resume(600)}
+                onFocus={pause}
+                onBlur={() => resume()}
             >
                 {doubled.map((cert, id) => (
                     <CertificationCard key={id} cert={cert} />
@@ -89,10 +91,11 @@ export const CertificationsCarousel: React.FC<{ certifications: Certification[] 
 
             <button
                 onClick={() => nudge("right")}
-                className="hidden lg:flex flex-shrink-0 text-foreground focus:outline-none cursor-pointer"
+                type="button"
+                className="hidden lg:flex flex-shrink-0 text-muted hover:text-callout transition-colors duration-200 cursor-pointer"
                 aria-label="Scroll right"
             >
-                <MdOutlineKeyboardArrowRight size={48} className="animate-nudge-right" />
+                <MdOutlineKeyboardArrowRight size={40} aria-hidden />
             </button>
         </div>
     );

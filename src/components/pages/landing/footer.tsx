@@ -1,30 +1,57 @@
 import { FaGithub as Github, FaTwitter as Twitter, FaLinkedin as Linkedin } from "react-icons/fa";
 import Link from "next/link";
 
+const pages = [
+    { href: "/services", label: "Services" },
+    { href: "/products", label: "Products" },
+    { href: "/articles", label: "Articles" },
+    { href: "/experience", label: "Experience" },
+    { href: "/cv", label: "CV" },
+];
+
+const legal = [
+    { href: "/privacy", label: "Privacy" },
+    { href: "/terms", label: "Terms" },
+];
+
+const socials = [
+    { href: "https://github.com/Toluhunter", label: "GitHub", Icon: Github },
+    { href: "https://x.com/tolu_hunter", label: "X (Twitter)", Icon: Twitter },
+    { href: "https://www.linkedin.com/in/tolulope-fakoya/", label: "LinkedIn", Icon: Linkedin },
+];
+
 export const Footer: React.FC = () => {
     return (
-        <footer className="w-full bg-background py-1 text-center text-foreground text-[10px] md:text-xs border-t border-gray-700 absolute bottom-0 left-0">
-            <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
-                <p>&copy; {new Date().getFullYear()} Tolulope Fakoya (Toluhunter). All rights reserved.</p>
-                <div className="flex items-center space-x-4">
-                    <Link href="/products" className="text-foreground hover:text-foreground transition-colors duration-300">
-                        Products
-                    </Link>
-                    <Link href="/articles" className="text-foreground hover:text-foreground transition-colors duration-300">
-                        Articles
-                    </Link>
-                    <Link href="/cv" className="text-foreground hover:text-foreground transition-colors duration-300">
-                        CV
-                    </Link>
-                    <a href="https://github.com/Toluhunter" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-foreground transition-colors duration-300">
-                        <Github size={15} />
-                    </a>
-                    <a href="https://x.com/tolu_hunter" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-foreground transition-colors duration-300">
-                        <Twitter size={15} />
-                    </a>
-                    <a href="https://www.linkedin.com/in/tolulope-fakoya/" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-foreground transition-colors duration-300">
-                        <Linkedin size={15} />
-                    </a>
+        <footer className="relative w-full border-t border-foreground/10 bg-background text-sm">
+            <div className="container mx-auto px-5 md:px-8 py-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-muted">
+                    <p>&copy; {new Date().getFullYear()} Tolulope Fakoya (Toluhunter)</p>
+                    {legal.map(({ href, label }) => (
+                        <Link key={href} href={href} className="hover:text-callout transition-colors duration-200">
+                            {label}
+                        </Link>
+                    ))}
+                </div>
+                <nav aria-label="Footer" className="flex flex-wrap items-center gap-x-5 gap-y-2">
+                    {pages.map(({ href, label }) => (
+                        <Link key={href} href={href} className="text-muted hover:text-callout transition-colors duration-200">
+                            {label}
+                        </Link>
+                    ))}
+                </nav>
+                <div className="flex items-center gap-4">
+                    {socials.map(({ href, label, Icon }) => (
+                        <a
+                            key={href}
+                            href={href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={label}
+                            className="text-muted hover:text-callout transition-colors duration-200"
+                        >
+                            <Icon size={18} />
+                        </a>
+                    ))}
                 </div>
             </div>
         </footer>

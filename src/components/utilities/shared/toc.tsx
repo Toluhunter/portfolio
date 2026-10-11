@@ -22,7 +22,7 @@ function TocLink({ item, activeId }: { item: TocItem; activeId: string }) {
                     block py-1 pr-2 text-sm leading-5 border-l-2 pl-3 transition-all duration-150
                     ${isActive
                         ? "border-[var(--callout)] text-[var(--callout)] font-medium"
-                        : "border-transparent text-[var(--foreground)]/50 hover:text-[var(--foreground)] hover:border-[var(--foreground)]/30"
+                        : "border-transparent text-[var(--foreground)]/70 hover:text-[var(--foreground)] hover:border-[var(--foreground)]/30"
                     }
                 `}
             >
@@ -67,10 +67,10 @@ export function TOC({ toc }: { toc?: TocItem[] }) {
     return (
         <nav
             aria-label="Table of contents"
-            className="sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto"
+            className="sticky top-24 max-h-[calc(100vh-20rem)] overflow-y-auto pr-1"
         >
-            <p className="text-xs font-semibold uppercase tracking-widest text-[var(--foreground)]/40 mb-4">
-                On this page
+            <p className="font-fira-code text-sm text-callout mb-4">
+                <span aria-hidden>// </span>on this page
             </p>
             <ul className="space-y-0.5">
                 {toc.map((item) => (

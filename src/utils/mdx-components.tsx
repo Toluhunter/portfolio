@@ -62,7 +62,7 @@ export function getArticleComponents(overrides: MDXComponents = {}): MDXComponen
             <li className="mt-2 text-[var(--foreground)]">{children}</li>
         ),
         blockquote: ({ children }) => (
-            <blockquote className="mt-6 border-l-2 border-slate-300 pl-6 italic text-slate-800 dark:border-slate-600 dark:text-slate-200">
+            <blockquote className="mt-6 border-l-2 border-foreground/15 pl-6 italic text-foreground/80">
                 {children}
             </blockquote>
         ),
@@ -113,7 +113,7 @@ export function getArticleComponents(overrides: MDXComponents = {}): MDXComponen
                 return <code className={className} {...props}>{children}</code>
             }
             return (
-                <code className="relative rounded bg-slate-200 py-[0.2rem] px-[0.3rem] font-mono text-sm font-semibold text-slate-900 dark:bg-slate-700 dark:text-slate-50">
+                <code className="relative rounded bg-raised py-[0.2rem] px-[0.3rem] font-mono text-sm font-semibold text-foreground">
                     {children}
                 </code>
             )

@@ -1,5 +1,4 @@
-import Icon from "@/components/utilities/shared/icon";
-import { Title } from "@/components/utilities/shared/title";
+import { SectionHeading } from "@/components/utilities/shared/ui";
 import {
     DiNodejs,
     DiPython,
@@ -25,34 +24,33 @@ export const skillsData = [
     { id: 'skill16', name: 'Git', icon: DiGit },
 ];
 
+// Grouped by what the tools are for, so the section reads as a stack rather than a wall of logos.
+const skillGroups = [
+    { label: "Cloud and infrastructure", ids: ["skill1", "skill5", "skill2", "skill3", "skill6", "skill4"] },
+    { label: "Machine learning", ids: ["skill7", "skill8"] },
+    { label: "Languages and tools", ids: ["skill9", "skill10", "skill11", "skill12", "skill13", "skill16"] },
+];
+
 export const SkillSection = () => {
-    // Skills Data (JSON structure)
-
     return (
-        <section
-            id="skills"
-            className="flex flex-col items-center min-h-[1080px] w-full overflow-hidden relative py-20"
-        >
-            <div className="relative w-full h-full container mx-auto px-4">
-                {/* Background pattern icon. If you want this to show over the gradient, ensure its opacity is low enough. */}
-                <Icon name="background-pattern" classes="absolute top-0 left-0 w-full h-full object-cover opacity-10 pointer-events-none"></Icon>
-                <Title text="Skills" link="#all-skills" />
-                <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-6xl mx-auto">
-
-                    {skillsData.map((skill) => (
-                        <div
-                            key={skill.id}
-                            className="flex flex-col items-center justify-center p-8 bg-background rounded-xl shadow-xl border border-gray-700 hover:border-foreground transition-all duration-300 transform hover:scale-105 group"
-                        >
-                            {skill.icon && (
-                                <div className="mb-4 text-foreground">
-
-                                    <skill.icon size={80} />
-
-
-                                </div>
-                            )}
-                            <span className="font-bold text-xl text-foreground">{skill.name}</span>
+        <section id="skills" className="py-24 md:py-32">
+            <div className="container mx-auto px-5 md:px-8">
+                <SectionHeading title="What I build with" />
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-10">
+                    {skillGroups.map((group) => (
+                        <div key={group.label} className="flex flex-col gap-5 pt-6 border-t border-foreground/10">
+                            <h3 className="font-bold text-foreground">{group.label}</h3>
+                            <ul className="grid grid-cols-2 gap-x-6 gap-y-4">
+                                {group.ids.map((id) => {
+                                    const skill = skillsData.find((s) => s.id === id)!;
+                                    return (
+                                        <li key={id} className="flex items-center gap-3 text-muted">
+                                            <skill.icon size={22} aria-hidden className="flex-shrink-0 text-foreground" />
+                                            <span>{skill.name}</span>
+                                        </li>
+                                    );
+                                })}
+                            </ul>
                         </div>
                     ))}
                 </div>

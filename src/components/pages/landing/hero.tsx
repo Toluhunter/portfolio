@@ -1,10 +1,10 @@
 'use client'
-import Icon from "@/components/utilities/shared/icon";
 import Slider from "@/components/utilities/landingpage/hero/slider";
 import Type from "@/components/utilities/landingpage/hero/type";
 import { useState, useEffect, useRef } from "react";
 import { useAudio } from "@/components/utilities/shared/audio";
 import Link from "next/link";
+import { BOOK_LABEL, btnPrimary } from "@/components/utilities/shared/ui";
 
 
 export const Herosection = () => {
@@ -46,48 +46,47 @@ export const Herosection = () => {
     return (
 
         <>
-            <section id="hero-section" className="relative w-full flex flex-col items-stretch justify-center pt-25 pb-20 overflow-hidden min-h-screen max-h-[1600px]">
+            <section id="hero-section" className="relative w-full flex flex-col items-stretch justify-center pt-25 pb-20 overflow-hidden min-h-[100dvh] max-h-[1600px]">
                 <Slider />
 
                 <div id="content-container" className="container mx-auto flex flex-col md:flex-row md:gap-10 xl:gap-20 md:items-center md:justify-center px-5 md:px-0 z-20">
-                    <div id="content-column" className="flex flex-col gap-8 items-start text-left md:max-w-[28rem] xl:max-w-[36rem] text-2xl lg:text-3xl xl:text-4xl">
+                    <div id="content-column" className="flex flex-col gap-8 items-start text-left md:max-w-[28rem] xl:max-w-[36rem]">
 
-                        <p id="whoami-line">
-                            <span className="text-callout">toluhunter</span><span className="text-foreground/60">@site</span><span className="text-foreground/60">:</span><span className="text-callout">~</span><span className="text-foreground">$</span> whoami <br />
-                            <span className="text-foreground" style={{ fontFamily: 'var(--font-gugi), sans-serif' }}>Tolulope Fakoya</span>
-                        </p>
-                        <div id="whatido-line" className="w-full">
-                            <span className="text-callout">toluhunter</span><span className="text-foreground/60">@site</span><span className="text-foreground/60">:</span><span className="text-callout">~</span><span className="text-foreground">$</span><span className="text-foreground"> ./</span>whatido <br />
-                            <div className="text-foreground">
-                                <Type />
+                        <div className="flex flex-col gap-6 font-fira-code text-xl lg:text-2xl xl:text-3xl">
+                            <p id="whoami-line">
+                                <span className="text-callout">toluhunter</span><span className="text-faint">@site:</span><span className="text-callout">~</span><span className="text-foreground">$</span> whoami <br />
+                                <span className="text-foreground text-3xl lg:text-4xl xl:text-5xl" style={{ fontFamily: 'var(--font-gugi), sans-serif' }}>Tolulope Fakoya</span>
+                            </p>
+                            <div id="whatido-line" className="w-full">
+                                <span className="text-callout">toluhunter</span><span className="text-faint">@site:</span><span className="text-callout">~</span><span className="text-foreground">$</span><span className="text-foreground"> ./</span>whatido <br />
+                                <div className="text-foreground">
+                                    <Type />
+                                </div>
                             </div>
                         </div>
-                        <div id="tagline" className="flex flex-col gap-3">
-                            <p className="text-base md:text-xl text-foreground font-fira-code">
-                                <i>The limit of what you can build is near your imagination. The limit of what survives production is infrastructure.</i>
+
+                        <div id="tagline" className="flex flex-col gap-3 text-base md:text-lg leading-relaxed">
+                            <p className="text-lg md:text-xl font-bold text-foreground">
+                                The limit of what you can build is near your imagination. The limit of what survives production is infrastructure.
                             </p>
-                            <p className="text-base md:text-lg text-foreground/80 font-fira-code">
-                                <i>I design, monitor, and secure yours so the platform you ship performs as well as the idea that started it.</i>
-                            </p>
-                            <p className="text-base md:text-lg text-foreground font-fira-code">
-                                I work with small teams shipping an AI or cloud product who don&apos;t have a platform team in place yet.
+                            <p className="text-muted">
+                                I design, monitor, and secure yours so the platform you ship performs as well as the idea that started it.
                             </p>
                         </div>
 
-                        <Link href="/book" className="px-5 py-2 text-base md:text-xl bg-callout text-on-callout border-2 border-callout rounded-md hover:opacity-90 transition-opacity duration-300">
-                            Book A Free Meeting
+                        <Link href="/book" className={btnPrimary}>
+                            {BOOK_LABEL}
                         </Link>
-
 
                     </div>
 
                     <div id="video-column" className="flex justify-center items-center py-8 md:py-0 md:w-[34.75rem] relative">
                         {!videoLoaded && (
-                            <div className="absolute inset-0 bg-gray-300 dark:bg-gray-700 animate-pulse rounded-lg" />
+                            <div className="absolute inset-0 bg-foreground/10 animate-pulse rounded-2xl" />
                         )}
                         <video
                             ref={videoRef}
-                            className="border border-foreground rounded-lg object-cover w-full aspect-video"
+                            className="border border-foreground/15 rounded-2xl object-cover w-full aspect-video"
                             poster="https://assets.toluhunter.com/landing/profilePic.png"
                             autoPlay
                             muted
@@ -100,8 +99,6 @@ export const Herosection = () => {
                     </div>
 
                 </div>
-                <Icon name="mouse-scroll" classes="hidden md:block absolute z-50 w-20 h-20 bottom-0 left-1/2 animate-bounce-scroll" color="var(--foreground)" />
-                <Icon name="scroll" classes="md:hidden absolute z-50 w-20 h-20 bottom-0 left-1/2 animate-bounce-scroll" color="var(--foreground)" />
             </section>
         </>
     )

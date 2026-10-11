@@ -17,13 +17,13 @@ const formatDate = (dateStr: string) => {
 
 export const CertificationCard: React.FC<{ cert: Certification }> = ({ cert }) => {
     return (
-        <div className="flex-shrink-0 w-64 md:w-72 p-6 mx-4 bg-background rounded-xl shadow-lg flex flex-col items-center gap-3 border border-foreground">
+        <div className="flex-shrink-0 w-64 md:w-72 p-6 mx-2 bg-panel rounded-2xl flex flex-col items-center gap-4 border border-foreground/10 hover:border-foreground/25 transition-colors duration-300">
             <Image
                 src={cert.picture}
-                alt={cert.title}
+                alt=""
                 width={112}
                 height={112}
-                className="w-28 h-28 object-contain"
+                className="w-24 h-24 object-contain"
                 onError={(e) => {
                     e.currentTarget.onerror = null;
                     e.currentTarget.src = "https://placehold.co/200x100/CCCCCC/333333.png?text=Cert";
@@ -32,24 +32,22 @@ export const CertificationCard: React.FC<{ cert: Certification }> = ({ cert }) =
 
             <div className="flex flex-col items-center gap-1 text-center">
                 <h3 className="text-base font-bold text-foreground leading-snug">{cert.title}</h3>
-                <p className="text-sm text-foreground opacity-60">{cert.institution}</p>
+                <p className="text-sm text-muted">{cert.institution}</p>
             </div>
 
-            <p className="text-xs text-foreground opacity-60">
-                {formatDate(cert.date)} - {formatDate(cert.expiring)}
+            <p className="font-fira-code text-xs text-faint">
+                {formatDate(cert.date)} to {formatDate(cert.expiring)}
             </p>
 
-            <div className="w-full border-t border-foreground/20 pt-3 mt-auto">
-                <a
-                    href={cert.verifyLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full inline-flex items-center gap-2 justify-center px-6 py-2 bg-foreground text-background font-semibold rounded-md shadow-md hover:opacity-80 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-foreground focus:ring-opacity-75"
-                >
-                    Verify Certificate
-                    <MdOutlineOpenInNew size={16} />
-                </a>
-            </div>
+            <a
+                href={cert.verifyLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-callout hover:underline"
+            >
+                Verify credential
+                <MdOutlineOpenInNew size={14} aria-hidden />
+            </a>
         </div>
     );
 };

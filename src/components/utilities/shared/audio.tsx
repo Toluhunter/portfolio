@@ -86,7 +86,7 @@ const AudioToggleButton = () => {
         <button
             onClick={toggleSound}
             className={`
-        fixed bottom-10 left-10 z-50
+        fixed bottom-6 left-5 z-40
         p-3 rounded-full
         text-white transition-colors duration-200
         ${isSoundOn ? 'bg-green-600 hover:bg-green-700' : 'bg-gray-700 hover:bg-gray-800'}

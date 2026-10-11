@@ -33,7 +33,7 @@ export const CodeBlockWrapper = ({ children }: CodeBlockWrapperProps) => {
     return (
         <div className="relative my-6">
             <div className="rounded-lg overflow-x-auto">
-                <div className="flex items-center px-4 py-2 bg-gray-800 text-gray-400 text-xs font-mono rounded-t-lg">
+                <div className="flex items-center px-4 py-2 bg-gray-800 text-gray-300 text-xs font-mono rounded-t-lg">
                     <span className="h-3 w-3 bg-red-500 rounded-full mr-1"></span>
                     <span className="h-3 w-3 bg-yellow-400 rounded-full mr-1"></span>
                     <span className="h-3 w-3 bg-green-500 rounded-full mr-3"></span>

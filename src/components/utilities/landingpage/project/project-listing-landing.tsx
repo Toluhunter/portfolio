@@ -4,6 +4,8 @@ import Image from "next/image"
 import { useEffect, useRef, useState } from "react"
 import { FaExternalLinkAlt } from "react-icons/fa"
 import type { CaseStudy } from "@/components/utilities/shared/beat"
+import { StatList, btnPrimary, btnSecondary } from "@/components/utilities/shared/ui"
+import { StatusBadge } from "@/components/pages/products/status-badge"
 
 export interface Project {
     name: string;
@@ -50,20 +52,20 @@ export const ProjectListing = ({ project, reverse = false }: { project: Project;
     }, [scrollLinked]);
 
     const visitButton = project.websiteLink && (
-        <a href={project.websiteLink} target="_blank" rel="noopener noreferrer">
-            <button className="text-foreground py-2 px-7 rounded-md w-fit border-2 border-callout hover:bg-callout hover:text-on-callout transition-colors duration-300 flex items-center gap-2 cursor-pointer">
-                Try it out
-                <FaExternalLinkAlt className="w-3 h-3" />
-            </button>
+        <a href={project.websiteLink} target="_blank" rel="noopener noreferrer" className={btnPrimary}>
+            Try it out
+            <FaExternalLinkAlt className="w-3 h-3" aria-hidden />
         </a>
     );
 
     const technicalDetailsToggle = project.technologies && project.technologies.length > 0 && (
         <button
-            className="flex items-center gap-3 text-sm font-semibold text-foreground border border-foreground/40 rounded-md px-4 py-2 hover:border-foreground hover:bg-foreground/10 transition-all duration-200 cursor-pointer"
+            type="button"
+            className={btnSecondary}
+            aria-expanded={showDetails}
             onClick={() => setShowDetails(!showDetails)}
         >
-            <span>Technical Details</span>
+            <span>Technical details</span>
             {showDetails
                 ? <Icon color="currentColor" name="uparrow" classes="w-4 h-4" />
                 : <Icon color="currentColor" name="downarrow" classes="w-4 h-4" />}
@@ -71,14 +73,7 @@ export const ProjectListing = ({ project, reverse = false }: { project: Project;
     );
 
     const statsRow = caseStudy.stats && caseStudy.stats.length > 0 && (
-        <div className="flex flex-wrap gap-4">
-            {caseStudy.stats.map((stat) => (
-                <div key={stat.label} className="flex flex-col gap-1 px-5 py-3 border border-foreground/20 rounded-lg">
-                    <span className="font-fira-code text-2xl font-bold text-callout">{stat.value}</span>
-                    <span className="text-xs text-foreground/60 uppercase tracking-wide">{stat.label}</span>
-                </div>
-            ))}
-        </div>
+        <StatList stats={caseStudy.stats} />
     );
 
     const activeRatio = project.imageAspectRatios?.[activeImage] ?? DEFAULT_ASPECT_RATIO;
@@ -86,7 +81,7 @@ export const ProjectListing = ({ project, reverse = false }: { project: Project;
     const imageBox = (wrapperClassName: string) => (
         <div className={wrapperClassName}>
             <div
-                className="relative w-full border border-foreground/30 rounded-xl overflow-hidden bg-black transition-[aspect-ratio] duration-500"
+                className="relative w-full border border-foreground/15 rounded-2xl overflow-hidden bg-black transition-[aspect-ratio] duration-500"
                 style={{ aspectRatio: activeRatio }}
             >
                 {images.map((src, i) => (
@@ -107,22 +102,18 @@ export const ProjectListing = ({ project, reverse = false }: { project: Project;
     const beats = [caseStudy.problem, caseStudy.built, caseStudy.result];
 
     return (
-        <div id="project-listing" className="flex flex-col gap-8 px-4 md:px-0">
-            <span id="project-status" className="flex gap-5 flex-row items-center text-foreground">
-                <Icon name="check-circle" classes="w-7 h-7 text-foreground" />
-                <div className="w-[1px] h-5 bg-foreground" />
-                {project.status}
-            </span>
+        <div id="project-listing" className="flex flex-col gap-8">
+            <StatusBadge status={project.status} />
 
             <div className={`flex flex-col lg:flex-row lg:gap-14 items-start ${reverse ? 'lg:flex-row-reverse' : ''}`}>
                 {/* Text column: full narrative */}
                 <div className="flex flex-col gap-6 text-left lg:w-[55%]">
                     <div className="flex flex-col gap-2">
-                        <h3 className="text-foreground text-3xl md:text-5xl">{project.name}</h3>
-                        <p className="text-lg md:text-2xl font-semibold text-gray-400">{project.subtitle}</p>
+                        <h3 className="text-foreground text-3xl md:text-5xl font-bold tracking-tight">{project.name}</h3>
+                        <p className="text-lg md:text-xl text-muted">{project.subtitle}</p>
                     </div>
 
-                    <p className="text-foreground text-lg md:text-xl italic">{caseStudy.hook}</p>
+                    <p className="text-foreground text-lg md:text-xl leading-relaxed prose-measure">{caseStudy.hook}</p>
 
                     {/* Image sits inline here on mobile, where there's no side column for it */}
                     {imageBox('lg:hidden w-full')}
@@ -135,8 +126,8 @@ export const ProjectListing = ({ project, reverse = false }: { project: Project;
                                 data-image-index={i}
                                 className="flex flex-col gap-2"
                             >
-                                <p className="font-fira-code text-sm md:text-base text-callout">// {label}</p>
-                                <p className="text-foreground/90 text-base md:text-lg">{beats[i]}</p>
+                                <p className="font-fira-code text-sm text-callout"><span aria-hidden>// </span>{label}</p>
+                                <p className="text-muted text-base md:text-lg leading-relaxed prose-measure">{beats[i]}</p>
                             </div>
                         ))}
                     </div>
@@ -149,9 +140,9 @@ export const ProjectListing = ({ project, reverse = false }: { project: Project;
                     </div>
 
                     {showDetails && project.technologies && (
-                        <div className="w-full p-5 bg-foreground/5 border border-foreground/10 rounded-lg animate-fade-in">
-                            <h4 className="font-bold text-sm uppercase tracking-widest text-foreground/80 mb-3">Stack</h4>
-                            <ul className="list-disc list-inside space-y-1 text-sm text-foreground/90">
+                        <div className="w-full p-5 bg-panel border border-foreground/10 rounded-2xl animate-fade-in">
+                            <h4 className="font-fira-code text-sm text-callout mb-3"><span aria-hidden>// </span>stack</h4>
+                            <ul className="list-disc list-inside space-y-1 text-sm text-muted">
                                 {project.technologies.map((tech) => (
                                     <li key={tech}>{tech}</li>
                                 ))}

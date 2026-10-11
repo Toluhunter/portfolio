@@ -15,6 +15,8 @@ function Slider() {
     // Autoplay effect
     useEffect(() => {
         // Set an interval to change the slide every 2500 milliseconds (2.5 seconds)
+        // Background artwork holds still for people who prefer reduced motion.
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
         const interval = setInterval(() => {
             // Increment the current slide index, looping back to 0 if it exceeds the number of images
             setCurrentSlide((prevSlide) => (prevSlide + 1) % images.length);
@@ -28,7 +30,9 @@ function Slider() {
         // Changed the main container to be absolute and cover the full width/height of its positioned parent.
         // This ensures it acts as a background that other elements can overlap.
         <div className="absolute inset-0 w-full h-full overflow-hidden">
-            <div className="absolute inset-0 bg-white opacity-80 dark:bg-black dark:opacity-80 z-10"></div>
+            {/* One even veil over the whole hero, in the page's own background color, fading into the next section */}
+            <div className="absolute inset-0 bg-background/85 z-10" />
+            <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-background z-10" />
 
             {/* Image container */}
             <div className="absolute inset-0 w-full h-full">
@@ -36,7 +40,7 @@ function Slider() {
                     <Image
                         key={image}
                         src={image}
-                        alt={`Slide ${index + 1}`}
+                        alt=""
                         fill
                         sizes="100vw"
                         className={`object-cover transition-opacity duration-1500 ease-in-out ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`}
