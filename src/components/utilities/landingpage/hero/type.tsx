@@ -1,6 +1,6 @@
 'use client'
 import React from "react";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 
 const Type = () => {
     const [text, setText] = useState(''); // The actual, correct text being built/deleted
@@ -35,6 +35,26 @@ const Type = () => {
         return glitched;
     }, []);
 
+    const glitchTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+
+    // Sets the correct text and what is displayed for it. With a 70% probability a glitched
+    // version shows first and reverts to the correct text after 80 milliseconds.
+    const showText = useCallback((nextText: string) => {
+        clearTimeout(glitchTimer.current);
+        setText(nextText);
+        if (nextText.length > 0 && Math.random() < 0.7) {
+            setDisplayContent(generateGlitchedString(nextText));
+            glitchTimer.current = setTimeout(() => setDisplayContent(nextText), 80);
+        } else {
+            // When text is empty, displayContent is empty too.
+            // The visibility will be handled by the className on the span.
+            setDisplayContent(nextText);
+        }
+    }, [generateGlitchedString]);
+
+    // Clear a pending glitch revert on unmount
+    useEffect(() => () => clearTimeout(glitchTimer.current), []);
+
     // Main logic for typing and deleting characters
     const tick = useCallback(() => {
         const i = loopNum % professions.length;
@@ -43,7 +63,7 @@ const Type = () => {
         if (isDeleting) {
             // If deleting, reduce the text length by one character
             const updatedText = fullText.substring(0, text.length - 1);
-            setText(updatedText);
+            showText(updatedText);
 
             if (updatedText === '') {
                 // If the word is fully deleted, switch to typing the next word
@@ -56,7 +76,7 @@ const Type = () => {
         } else {
             // If typing, increase the text length by one character
             const updatedText = fullText.substring(0, text.length + 1);
-            setText(updatedText);
+            showText(updatedText);
 
             if (updatedText === fullText) {
                 // If the word is fully typed, switch to deleting
@@ -66,7 +86,7 @@ const Type = () => {
                 setTypingSpeed(150); // Speed for typing characters
             }
         }
-    }, [text, isDeleting, loopNum, professions]);
+    }, [text, isDeleting, loopNum, professions, showText]);
 
     // Effect to manage the typing/deleting interval
     // This useEffect schedules the 'tick' function based on 'typingSpeed'
@@ -78,29 +98,6 @@ const Type = () => {
         return () => clearTimeout(ticker); // Cleanup function to clear timeout on unmount or re-render
     }, [tick, typingSpeed]); // Dependencies ensure it re-runs when tick or typingSpeed changes
 
-    // Effect for applying the visual glitch to the displayed content
-    // This runs whenever the 'text' state (the correct typed string) changes
-    useEffect(() => {
-        let glitchTimer: NodeJS.Timeout;
-        if (text.length > 0) {
-            // Apply glitch effect with a 70% probability when text updates
-            if (Math.random() < 0.7) {
-                const glitchedVersion = generateGlitchedString(text);
-                setDisplayContent(glitchedVersion); // Show the glitched version
-                glitchTimer = setTimeout(() => {
-                    setDisplayContent(text); // Revert to the correct text after a short delay
-                }, 80); // Glitch duration (80 milliseconds)
-            } else {
-                setDisplayContent(text); // If no glitch, just show the correct text
-            }
-        } else {
-            // When text is empty, set displayContent to an empty string.
-            // The visibility will be handled by the className on the span.
-            setDisplayContent('');
-        }
-
-        return () => clearTimeout(glitchTimer); // Cleanup function for the glitch timer
-    }, [text, generateGlitchedString]); // Re-run this effect whenever the 'text' state or generateGlitchedString changes
 
     return (
         // Conditionally apply 'invisible' class when text is empty.

@@ -9,6 +9,10 @@ import type { CaseStudyStat } from "./beat";
 // Every booking button on the site uses this one label, the same as the nav.
 export const BOOK_LABEL = "Book a Call";
 
+// Every email action uses this one label and this one address, subject included.
+export const EMAIL_LABEL = "Send an email";
+export const EMAIL_HREF = "mailto:toluhunterdev@gmail.com?subject=Project%20enquiry%20via%20toluhunter.com";
+
 export const btnPrimary =
     "inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md bg-callout-fill text-on-callout font-semibold hover:opacity-90 active:scale-[0.98] transition duration-200 cursor-pointer w-fit whitespace-nowrap";
 
@@ -23,7 +27,7 @@ export const cardHover = "hover:border-foreground/25 transition-colors duration-
 
 export const Eyebrow = ({ children, className = "" }: { children: ReactNode; className?: string }) => (
     <span className={`font-fira-code text-sm text-callout ${className}`}>
-        <span aria-hidden>// </span>
+        <span aria-hidden>{"// "}</span>
         {children}
     </span>
 );

@@ -4,6 +4,7 @@ import { ReactNode, useEffect, useState } from "react";
 import { FaCheck, FaPlus } from "react-icons/fa";
 import { PricingTierSkeleton } from "@/components/utilities/shared/skeletons";
 import { SectionHeading, card } from "@/components/utilities/shared/ui";
+import type { ApiPricingTier, PricingResponse } from "@/types/api";
 
 interface Tier {
     name: string;
@@ -50,10 +51,10 @@ export const PricingSection = () => {
         const fetchPricing = async () => {
             try {
                 const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/pricing`);
-                const data = await res.json();
+                const data: PricingResponse = await res.json();
                 setPricingData({
                     intro: data.intro,
-                    tiers: (data.tiers || []).map((t: any) => ({
+                    tiers: (data.tiers || []).map((t: ApiPricingTier) => ({
                         name: t.name,
                         description: t.description,
                         comparison: t.comparison,

@@ -70,7 +70,7 @@ export function TOC({ toc }: { toc?: TocItem[] }) {
             className="sticky top-24 max-h-[calc(100vh-20rem)] overflow-y-auto pr-1"
         >
             <p className="font-fira-code text-sm text-callout mb-4">
-                <span aria-hidden>// </span>on this page
+                <span aria-hidden>{"// "}</span>on this page
             </p>
             <ul className="space-y-0.5">
                 {toc.map((item) => (

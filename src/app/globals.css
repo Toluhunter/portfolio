@@ -235,6 +235,30 @@ body {
   color: var(--foreground);
 }
 
+/* The AI terminal trigger is pinned on every page. --ai-band is the room it takes
+   from the bottom edge. The footer grows by it so the end of every page clears the
+   trigger; routes without a footer get the layout spacer instead. */
+:root {
+  --ai-trigger-bottom: calc(16px + env(safe-area-inset-bottom));
+  --ai-trigger-right: calc(16px + env(safe-area-inset-right));
+  --ai-band: calc(var(--ai-trigger-bottom) + 80px);
+}
+
+@media (min-width: 640px) {
+  :root {
+    --ai-trigger-bottom: calc(56px + env(safe-area-inset-bottom));
+    --ai-trigger-right: calc(2.5rem + env(safe-area-inset-right));
+  }
+}
+
+.ai-band-spacer {
+  height: var(--ai-band);
+}
+
+body:has(footer) .ai-band-spacer {
+  display: none;
+}
+
 /* Headings wrap into balanced lines; body copy avoids orphaned last words. */
 h1, h2, h3 {
   text-wrap: balance;

@@ -4,7 +4,7 @@ import Type from "@/components/utilities/landingpage/hero/type";
 import { useState, useEffect, useRef } from "react";
 import { useAudio } from "@/components/utilities/shared/audio";
 import Link from "next/link";
-import { BOOK_LABEL, btnPrimary } from "@/components/utilities/shared/ui";
+import { BOOK_LABEL, EMAIL_HREF, EMAIL_LABEL, btnPrimary, btnSecondary } from "@/components/utilities/shared/ui";
 
 
 export const Herosection = () => {
@@ -74,9 +74,14 @@ export const Herosection = () => {
                             </p>
                         </div>
 
-                        <Link href="/book" className={btnPrimary}>
-                            {BOOK_LABEL}
-                        </Link>
+                        <div className="flex flex-wrap gap-3">
+                            <Link href="/book" className={btnPrimary}>
+                                {BOOK_LABEL}
+                            </Link>
+                            <a href={EMAIL_HREF} className={btnSecondary}>
+                                {EMAIL_LABEL}
+                            </a>
+                        </div>
 
                     </div>
 

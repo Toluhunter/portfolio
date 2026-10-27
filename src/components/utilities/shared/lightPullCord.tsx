@@ -253,7 +253,7 @@ export const LightPullCord = ({ onToggle, className = '' }: LightPullCordProps) 
                 <path
                     ref={pathRef}
                     stroke="var(--foreground)"
-                    strokeWidth={1.5}
+                    strokeWidth={2}
                     fill="none"
                     strokeLinecap="round"
                     strokeLinejoin="round"

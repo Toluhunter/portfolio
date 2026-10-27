@@ -1,7 +1,7 @@
 // src/components/AudioProvider.tsx
 'use client';
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useCallback, useContext, useState, useEffect } from 'react';
 import useSound from 'use-sound';
 import { HiOutlineSpeakerWave, HiOutlineSpeakerXMark } from "react-icons/hi2";
 
@@ -36,14 +36,14 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
     const [playSilent] = useSound(SILENT_SFX_PATH, { volume: 0 });
 
     // Function to be called on any initial click to unlock the context
-    const unlockAudioContext = () => {
+    const unlockAudioContext = useCallback(() => {
         if (!isAudioContextUnlocked) {
             // 🚀 The key step: attempt to play a silent sound on the first interaction
             playSilent();
             setIsAudioContextUnlocked(true);
             // Since we want the sound OFF by default, we don't change isSoundOn here
         }
-    };
+    }, [isAudioContextUnlocked, playSilent]);
 
     // Attach the global unlocker to the document on mount
     useEffect(() => {
@@ -57,7 +57,7 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
             document.removeEventListener('mousedown', unlockAudioContext);
             document.removeEventListener('touchstart', unlockAudioContext);
         };
-    }, [isAudioContextUnlocked]);
+    }, [isAudioContextUnlocked, unlockAudioContext]);
 
 
     const toggleSound = () => {
@@ -73,31 +73,27 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
     return (
         <AudioContext.Provider value={value}>
             {children}
-            <AudioToggleButton /> {/* Render the button inside the provider */}
         </AudioContext.Provider>
     );
 }
 
-// --- 4. The Toggle Button Component (Absolute Position) ---
-const AudioToggleButton = () => {
+// --- 4. The Toggle Button Component ---
+// Lives in the navbar: the desktop cluster, and next to the theme toggle below lg.
+export const SoundToggle = () => {
     const { isSoundOn, toggleSound } = useAudio();
 
     return (
         <button
+            type="button"
             onClick={toggleSound}
-            className={`
-        fixed bottom-6 left-5 z-40
-        p-3 rounded-full
-        text-white transition-colors duration-200
-        ${isSoundOn ? 'bg-green-600 hover:bg-green-700' : 'bg-gray-700 hover:bg-gray-800'}
-        focus:outline-none focus:ring-4 focus:ring-gray-300 cursor-pointer
-      `}
-            aria-label={isSoundOn ? "Turn sound off" : "Turn sound on"}
+            aria-pressed={isSoundOn}
+            className={`inline-flex items-center justify-center min-w-[44px] min-h-[44px] rounded-md transition-colors duration-200 cursor-pointer ${isSoundOn ? 'text-callout' : 'text-foreground hover:text-callout'}`}
+            aria-label="Sound"
         >
-            {/* Mute icon (VolumeX) by default */}
+            {/* aria-pressed carries on and off for assistive tech; the icon carries it visually. */}
             {isSoundOn ?
-                <HiOutlineSpeakerWave className="w-6 h-6" /> :
-                <HiOutlineSpeakerXMark className="w-6 h-6" />
+                <HiOutlineSpeakerWave className="w-6 h-6" aria-hidden /> :
+                <HiOutlineSpeakerXMark className="w-6 h-6" aria-hidden />
             }
         </button>
     );

@@ -1,4 +1,4 @@
-import { SectionHeading } from "@/components/utilities/shared/ui";
+import { EMAIL_HREF, SectionHeading, textLink } from "@/components/utilities/shared/ui";
 
 const faqs = [
     {
@@ -20,6 +20,10 @@ const faqs = [
     {
         question: "Do you only take on big projects?",
         answer: "No. Audits and smaller fixed scope fixes are just as common as full migrations. Not everything needs to be a big engagement.",
+    },
+    {
+        question: "Can I just email instead of booking a call?",
+        answer: <>Yes. If you would rather write it down first, <a href={EMAIL_HREF} className={`${textLink} font-semibold`}>email me</a> with what you are building, roughly what stage it is at, and any deadline. If a call would help after that, we can set one up.</>,
     },
 ];
 

@@ -126,7 +126,7 @@ export const ProjectListing = ({ project, reverse = false }: { project: Project;
                                 data-image-index={i}
                                 className="flex flex-col gap-2"
                             >
-                                <p className="font-fira-code text-sm text-callout"><span aria-hidden>// </span>{label}</p>
+                                <p className="font-fira-code text-sm text-callout"><span aria-hidden>{"// "}</span>{label}</p>
                                 <p className="text-muted text-base md:text-lg leading-relaxed prose-measure">{beats[i]}</p>
                             </div>
                         ))}
@@ -141,7 +141,7 @@ export const ProjectListing = ({ project, reverse = false }: { project: Project;
 
                     {showDetails && project.technologies && (
                         <div className="w-full p-5 bg-panel border border-foreground/10 rounded-2xl animate-fade-in">
-                            <h4 className="font-fira-code text-sm text-callout mb-3"><span aria-hidden>// </span>stack</h4>
+                            <h4 className="font-fira-code text-sm text-callout mb-3"><span aria-hidden>{"// "}</span>stack</h4>
                             <ul className="list-disc list-inside space-y-1 text-sm text-muted">
                                 {project.technologies.map((tech) => (
                                     <li key={tech}>{tech}</li>

@@ -1,4 +1,4 @@
-import { CtaPanel } from "@/components/utilities/shared/ui";
+import { CtaPanel, EMAIL_HREF, EMAIL_LABEL } from "@/components/utilities/shared/ui";
 
 export const ContactMeSection = () => {
     return (
@@ -8,8 +8,8 @@ export const ContactMeSection = () => {
                     title="Have a project? Let's talk."
                     body={<>Have a project in mind or not sure where to start? Book a free call and we&apos;ll talk through what you&apos;re building, what problems need solving, and whether I&apos;m the right fit.</>}
                     secondary={
-                        <a href="mailto:toluhunterdev@gmail.com" className="text-sm text-muted hover:text-callout transition-colors duration-200">
-                            or send me an email
+                        <a href={EMAIL_HREF} className="text-sm text-muted hover:text-callout transition-colors duration-200">
+                            {EMAIL_LABEL}
                         </a>
                     }
                 />

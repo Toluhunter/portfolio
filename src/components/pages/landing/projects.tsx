@@ -4,6 +4,7 @@ import { SectionHeading, btnSecondary } from "@/components/utilities/shared/ui"
 import { ProjectListing, Project } from "@/components/utilities/landingpage/project/project-listing-landing"
 import { FaGithub } from "react-icons/fa"
 import { ProjectListingSkeleton } from "@/components/utilities/shared/skeletons"
+import type { ApiProduct, ProductsResponse } from "@/types/api"
 
 export const ProjectSection = () => {
     const [projects, setProjects] = useState<Project[]>([]);
@@ -13,9 +14,9 @@ export const ProjectSection = () => {
         const fetchProducts = async () => {
             try {
                 const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/products`);
-                const data = await res.json();
+                const data: ProductsResponse = await res.json();
                 const fetched = data.products || [];
-                setProjects(fetched.map((p: any) => ({
+                setProjects(fetched.map((p: ApiProduct) => ({
                     name: p.name,
                     status: p.status,
                     description: p.description,

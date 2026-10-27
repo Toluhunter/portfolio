@@ -123,7 +123,7 @@ A product does not truly exist until it is in the hands of its users - and archi
 - [Articles](${BASE_URL}/articles): Technical writing on cloud architecture, engineering, and systems
 - [Products](${BASE_URL}/products): Products and tools built by Tolulope Fakoya
 - [CV](${BASE_URL}/cv): Full curriculum vitae
-- [Book a Call](${BASE_URL}/book): Free consultation booking
+- [Book a Call](${BASE_URL}/book): Book a free 30 minute call or send an email about the system you are building
 
 ## Skills
 

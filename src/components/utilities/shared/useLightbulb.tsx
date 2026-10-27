@@ -6,14 +6,12 @@ import {
     useContext,
     useEffect,
     useMemo,
-    useState,
+    useSyncExternalStore,
 } from 'react';
 
-export type ThemeChoice = 'system' | 'light' | 'dark';
 export type ResolvedTheme = 'light' | 'dark';
 
-const STORAGE_KEY = 'theme';
-const LEGACY_KEY = 'isLightOn';
+const COOKIE_NAME = 'theme';
 
 /** Reads <html class> that the pre-paint script in layout.tsx already set. */
 function readAppliedTheme(): ResolvedTheme {
@@ -21,23 +19,54 @@ function readAppliedTheme(): ResolvedTheme {
     return document.documentElement.classList.contains('dark') ? 'dark' : 'light';
 }
 
-function readStoredChoice(): ThemeChoice {
-    if (typeof window === 'undefined') return 'system';
-    try {
-        const stored = window.localStorage.getItem(STORAGE_KEY);
-        if (stored === 'light' || stored === 'dark' || stored === 'system') return stored;
-        const legacy = window.localStorage.getItem(LEGACY_KEY);
-        if (legacy !== null) return JSON.parse(legacy) ? 'light' : 'dark';
-    } catch {
-        /* storage blocked (private mode) - fall through to system */
-    }
-    return 'system';
+/** The visitor's explicit choice, or null when there is none and the device decides. */
+function readThemeCookie(): ResolvedTheme | null {
+    if (typeof document === 'undefined') return null;
+    const match = document.cookie.match(new RegExp(`(?:^|;\\s*)${COOKIE_NAME}=(light|dark)(?:;|$)`));
+    return match ? (match[1] as ResolvedTheme) : null;
+}
+
+function writeThemeCookie(theme: ResolvedTheme) {
+    // A choice lasts 24 hours from the last toggle, then the site follows the device again.
+    // Each toggle rewrites the cookie, so the 24 hours restart every time.
+    document.cookie = `${COOKIE_NAME}=${theme}; Path=/; Max-Age=86400; SameSite=Lax`;
 }
 
 function systemPrefersDark(): boolean {
     if (typeof window === 'undefined' || !window.matchMedia) return true;
     return window.matchMedia('(prefers-color-scheme: dark)').matches;
 }
+
+function subscribeToSystem(onChange: () => void) {
+    const query = window.matchMedia('(prefers-color-scheme: dark)');
+    query.addEventListener('change', onChange);
+    return () => query.removeEventListener('change', onChange);
+}
+
+// The explicit choice is read from the cookie once per page load and then held in memory, so a cookie
+// that lapses mid-visit does not flip the page. A toggle replaces it and tells the provider.
+let explicitChoice: ResolvedTheme | null | undefined;
+const explicitListeners = new Set<() => void>();
+
+function readExplicitChoice(): ResolvedTheme | null {
+    if (explicitChoice === undefined) explicitChoice = readThemeCookie();
+    return explicitChoice;
+}
+
+function chooseTheme(next: ResolvedTheme) {
+    explicitChoice = next;
+    writeThemeCookie(next);
+    explicitListeners.forEach((listener) => listener());
+}
+
+function subscribeToChoice(onChange: () => void) {
+    explicitListeners.add(onChange);
+    return () => {
+        explicitListeners.delete(onChange);
+    };
+}
+
+const subscribeToNothing = () => () => {};
 
 function applyTheme(resolved: ResolvedTheme) {
     const root = document.documentElement;
@@ -55,37 +84,23 @@ function applyTheme(resolved: ResolvedTheme) {
 }
 
 type ThemeContextValue = {
-    /** What the visitor picked. 'system' means "follow the device". */
-    choice: ThemeChoice;
     /** What is actually showing right now. */
     resolved: ResolvedTheme;
     isLightOn: boolean;
     toggleLight: () => void;
-    setChoice: (choice: ThemeChoice) => void;
 };
 
 const ThemeContext = createContext<ThemeContextValue | null>(null);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-    // Start from what the pre-paint script applied so the first render matches the paint.
-    const [choice, setChoiceState] = useState<ThemeChoice>('system');
-    const [systemDark, setSystemDark] = useState<boolean>(true);
-    const [hydrated, setHydrated] = useState(false);
+    // Resolved in the same order as the pre-paint script in layout.tsx: the cookie, then the device.
+    // The server cannot know either, so the hydration render sees the server values and hydrated stays
+    // false for it; until then the effect below keeps whatever that script already painted.
+    const explicit = useSyncExternalStore(subscribeToChoice, readExplicitChoice, () => null);
+    const systemDark = useSyncExternalStore(subscribeToSystem, systemPrefersDark, () => true);
+    const hydrated = useSyncExternalStore(subscribeToNothing, () => true, () => false);
 
-    useEffect(() => {
-        setChoiceState(readStoredChoice());
-        setSystemDark(systemPrefersDark());
-        setHydrated(true);
-
-        const query = window.matchMedia('(prefers-color-scheme: dark)');
-        const onChange = (event: MediaQueryListEvent) => setSystemDark(event.matches);
-        query.addEventListener('change', onChange);
-        return () => query.removeEventListener('change', onChange);
-    }, []);
-
-    const resolved: ResolvedTheme = choice === 'system'
-        ? (systemDark ? 'dark' : 'light')
-        : choice;
+    const resolved: ResolvedTheme = explicit ?? (systemDark ? 'dark' : 'light');
 
     useEffect(() => {
         if (!hydrated) {
@@ -95,26 +110,15 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         applyTheme(resolved);
     }, [resolved, hydrated]);
 
-    const setChoice = useCallback((next: ThemeChoice) => {
-        setChoiceState(next);
-        try {
-            window.localStorage.setItem(STORAGE_KEY, next);
-        } catch {
-            /* storage blocked - the choice still applies for this page view */
-        }
-    }, []);
-
     const toggleLight = useCallback(() => {
-        setChoice(resolved === 'light' ? 'dark' : 'light');
-    }, [resolved, setChoice]);
+        chooseTheme(resolved === 'light' ? 'dark' : 'light');
+    }, [resolved]);
 
     const value = useMemo<ThemeContextValue>(() => ({
-        choice,
         resolved,
         isLightOn: resolved === 'light',
         toggleLight,
-        setChoice,
-    }), [choice, resolved, toggleLight, setChoice]);
+    }), [resolved, toggleLight]);
 
     return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 }
@@ -129,6 +133,6 @@ export function useTheme() {
 
 /** Kept for the existing navbar and pull cord call sites. */
 export const useLightbulb = () => {
-    const { isLightOn, toggleLight, choice, setChoice } = useTheme();
-    return { isLightOn, toggleLight, choice, setChoice };
+    const { isLightOn, toggleLight } = useTheme();
+    return { isLightOn, toggleLight };
 };

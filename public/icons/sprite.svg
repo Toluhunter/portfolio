@@ -5,15 +5,15 @@
         <path d="M159.156 123.851V137.62" stroke="white" stroke-width="3.1411" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M149.751 137.62H168.561Z" fill="white"/>
         <path d="M149.751 137.62H168.561" stroke="white" stroke-width="3.1411" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M146.301 110.509C146.301 106.773 152.053 103.744 159.148 103.744C166.244 103.744 171.995 106.773 171.995 110.509H146.301Z" fill="white" stroke="white" stroke-width="2.66365" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M175.656 2.81404C175.656 6.55025 165.596 7.00014 158.5 7.00014C151.404 7.00014 143.25 6.55034 143.25 2.81412L175.656 2.81404Z" fill="white" stroke="white" stroke-width="2.66365" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M171.775 114.903L146.537 118.904Z" fill="white"/>
-        <path d="M171.775 114.903L146.537 118.904" stroke="white" stroke-width="3.08613" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M155.69 113.646L146.584 115.006Z" fill="white"/>
-        <path d="M155.69 113.646L146.584 115.006" stroke="white" stroke-width="3.1411" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M171.728 118.8L162.622 120.161Z" fill="white"/>
-        <path d="M171.728 118.8L162.622 120.161" stroke="white" stroke-width="3.1411" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M159.008 103.011L159.008 7.00003" stroke="#FFFCFC" stroke-width="1.01355"/>
+        <path d="M146.301 110.509C146.301 106.773 152.053 103.744 159.148 103.744C166.244 103.744 171.995 106.773 171.995 110.509H146.301Z" fill="currentColor" stroke="currentColor" stroke-width="2.66365" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M175.656 2.81404C175.656 6.55025 165.596 7.00014 158.5 7.00014C151.404 7.00014 143.25 6.55034 143.25 2.81412L175.656 2.81404Z" fill="currentColor" stroke="currentColor" stroke-width="2.66365" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M171.775 114.903L146.537 118.904Z" fill="currentColor"/>
+        <path d="M171.775 114.903L146.537 118.904" stroke="currentColor" stroke-width="3.08613" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M155.69 113.646L146.584 115.006Z" fill="currentColor"/>
+        <path d="M155.69 113.646L146.584 115.006" stroke="currentColor" stroke-width="3.1411" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M171.728 118.8L162.622 120.161Z" fill="currentColor"/>
+        <path d="M171.728 118.8L162.622 120.161" stroke="currentColor" stroke-width="3.1411" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M159.008 103.011L159.008 7.00003" stroke="currentColor" stroke-width="1.01355"/>
     </symbol>
     <symbol id="light-bulb-on" viewBox="0 0 317 298">
         <use href="#light-bulb" />

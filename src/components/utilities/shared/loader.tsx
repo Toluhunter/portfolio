@@ -1,6 +1,15 @@
 'use client';
 import { useState, useEffect } from "react";
 
+// The background's 100 binary digits, from a fixed seed so every render shows the same pattern.
+const BINARY_DIGITS = (() => {
+  let seed = 42;
+  return Array.from({ length: 100 }, () => {
+    seed = (seed * 1664525 + 1013904223) % 4294967296;
+    return seed / 4294967296 > 0.5 ? '0' : '1';
+  });
+})();
+
 export const NeonStylePreloader: React.FC = () => {
   // State to control the visibility of the preloader.
   // Initially true to show the preloader.
@@ -131,9 +140,9 @@ export const NeonStylePreloader: React.FC = () => {
 
       {/* Binary code background elements */}
       <div className="absolute inset-0 grid grid-cols-10 grid-rows-10 gap-2 p-8 opacity-5">
-        {Array.from({ length: 100 }).map((_, i) => (
+        {BINARY_DIGITS.map((digit, i) => (
           <span key={i} className="text-xs text-foreground animate-pulse" style={{ animationDelay: `1s` }}>
-            {Math.random() > 0.5 ? '0' : '1'}
+            {digit}
           </span>
         ))}
       </div>

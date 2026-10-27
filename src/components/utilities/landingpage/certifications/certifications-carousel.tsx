@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
-import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from "react-icons/md";
+import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight, MdOutlineSwipe } from "react-icons/md";
 import { CertificationCard, Certification } from "./certficiation-card";
 
 const SPEED = 1.2;
@@ -64,7 +64,8 @@ export const CertificationsCarousel: React.FC<{ certifications: Certification[] 
     };
 
     return (
-        <div className="flex flex-row flex-1 items-center w-full gap-4">
+        <div className="flex flex-col flex-1 w-full">
+        <div className="flex flex-row items-center w-full gap-4">
             <button
                 onClick={() => nudge("left")}
                 type="button"
@@ -97,6 +98,11 @@ export const CertificationsCarousel: React.FC<{ certifications: Certification[] 
             >
                 <MdOutlineKeyboardArrowRight size={40} aria-hidden />
             </button>
+        </div>
+        {/* The arrows only exist from lg up; below that, say the row scrolls sideways. */}
+        <p className="lg:hidden mt-4 flex items-center justify-center gap-2 text-sm text-muted">
+            <MdOutlineSwipe size={18} aria-hidden /> Swipe for more
+        </p>
         </div>
     );
 };
