@@ -4,6 +4,7 @@ import { SectionHeading } from "@/components/utilities/shared/ui";
 import { CertificationsCarousel } from "@/components/utilities/landingpage/certifications/certifications-carousel";
 import { Certification } from "@/components/utilities/landingpage/certifications/certficiation-card";
 import { LandingCertificationsSkeleton } from "@/components/utilities/shared/skeletons";
+import type { ApiCertification, CertificationsResponse } from "@/types/api";
 
 export const CertificationsSection = () => {
     const [certifications, setCertifications] = useState<Certification[]>([]);
@@ -13,9 +14,9 @@ export const CertificationsSection = () => {
         const fetchCertifications = async () => {
             try {
                 const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/certifications`);
-                const data = await res.json();
+                const data: CertificationsResponse = await res.json();
                 const fetched = data.certifications || [];
-                setCertifications(fetched.map((c: any) => ({
+                setCertifications(fetched.map((c: ApiCertification) => ({
                     picture: c.picture,
                     title: c.title,
                     date: c.date,

@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { Reveal } from "@/components/utilities/shared/reveal";
+import { BuyMeACoffee } from "@/components/utilities/shared/buymecoffee";
 import { BOOK_LABEL, CtaPanel, Eyebrow, btnPrimary, textLink } from "@/components/utilities/shared/ui";
 
 const principles = [
@@ -82,7 +83,7 @@ export const AboutSection = () => {
 
                 {/* Photo with offset accent frame */}
                 <div className="relative w-full max-w-sm mx-auto lg:max-w-none order-1 lg:order-2">
-                    <div aria-hidden className="absolute inset-0 translate-x-4 translate-y-4 rounded-2xl border-2 border-callout" />
+                    <div aria-hidden className="absolute inset-0 translate-x-2 translate-y-2 sm:translate-x-4 sm:translate-y-4 rounded-2xl border-2 border-callout" />
                     <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden bg-panel">
                         <Image
                             src="https://assets.toluhunter.com/about/profile-pic.webp"
@@ -136,6 +137,11 @@ export const AboutSection = () => {
                     note="Always adapting, like Mahoraga, the divine general."
                     title="Have a project? Let's talk."
                 />
+            </Reveal>
+
+            {/* A closing note under the CTA, part of the page rather than floating over it */}
+            <Reveal className="mt-16 md:mt-20">
+                <BuyMeACoffee />
             </Reveal>
 
         </section>

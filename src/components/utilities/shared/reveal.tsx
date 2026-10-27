@@ -1,5 +1,13 @@
 "use client";
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef, useState, useSyncExternalStore } from "react";
+
+const REDUCED_MOTION = "(prefers-reduced-motion: reduce)";
+
+const subscribeToReducedMotion = (onChange: () => void) => {
+    const query = window.matchMedia(REDUCED_MOTION);
+    query.addEventListener("change", onChange);
+    return () => query.removeEventListener("change", onChange);
+};
 
 // Fades content up once it scrolls into view. Skipped entirely for users who prefer reduced motion.
 export const Reveal = ({
@@ -12,19 +20,22 @@ export const Reveal = ({
     className?: string;
 }) => {
     const ref = useRef<HTMLDivElement>(null);
-    const [visible, setVisible] = useState(false);
+    const [seen, setSeen] = useState(false);
+    // The server renders hidden, the same as before the preference could be read on mount.
+    const reducedMotion = useSyncExternalStore(
+        subscribeToReducedMotion,
+        () => window.matchMedia(REDUCED_MOTION).matches,
+        () => false
+    );
+    const visible = seen || reducedMotion;
 
     useEffect(() => {
         const el = ref.current;
-        if (!el) return;
-        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-            setVisible(true);
-            return;
-        }
+        if (!el || reducedMotion) return;
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
-                    setVisible(true);
+                    setSeen(true);
                     observer.disconnect();
                 }
             },
@@ -32,7 +43,7 @@ export const Reveal = ({
         );
         observer.observe(el);
         return () => observer.disconnect();
-    }, []);
+    }, [reducedMotion]);
 
     return (
         <div

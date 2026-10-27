@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { ProjectCard, Project } from "./project-card";
 import { ProjectCardSkeleton } from "@/components/utilities/shared/skeletons";
+import type { ApiProduct, ProductsResponse } from "@/types/api";
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
 import { BOOK_LABEL, PageHeader, btnPrimary, btnSecondary } from "@/components/utilities/shared/ui";
@@ -14,9 +15,9 @@ export const ProductsPageSection = () => {
         const fetchProducts = async () => {
             try {
                 const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/products`);
-                const data = await res.json();
+                const data: ProductsResponse = await res.json();
                 const fetched = data.products || [];
-                setProjects(fetched.map((p: any) => ({
+                setProjects(fetched.map((p: ApiProduct) => ({
                     name: p.name,
                     status: p.status,
                     description: p.description,

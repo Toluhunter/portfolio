@@ -40,5 +40,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# local agent skills (kept on disk, not tracked)
+# Claude Code local agent config (kept on disk, never committed)
 .claude/
+.claude/settings.json
+.claude/settings.local.json
+.claude/skills/
+.mcp.json

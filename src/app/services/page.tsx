@@ -8,7 +8,7 @@ export default function Home() {
     return (
         <>
             <NavBar />
-            <div className="min-h-screen bg-background/50 backdrop-blur-sm">
+            <div className="min-h-screen bg-background/50 md:backdrop-blur-sm">
                 <ServicesPageSection />
             </div>
             <Footer />

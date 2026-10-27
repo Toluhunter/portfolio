@@ -4,10 +4,12 @@ import { useAuth } from "./AuthContext"
 import { getGoogleAuthURL } from "@/utils/googleAuth"
 import { CommentAuthorImage } from "./CommentAuthorImage";
 import { SafeImage } from "./SafeImage";
+import type { ApiComment, ApiCommentListItem, CommentsResponse } from "@/types/api";
 
+// The list endpoint sends neither a comment id nor a user id, so both are optional here.
 type Comment = {
-    id: string
-    author: { id: string; name: string; profile_picture: string }
+    id?: string
+    author: { id?: string; name: string; profile_picture?: string }
     text: string
     createdAt: string
 }
@@ -31,11 +33,9 @@ export default function CommentSection({ articleId, initialComments = [] }: Prop
             setCommentsLoading(true);
             try {
                 const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/articles/${articleId}/comments`);
-                const data = await res.json();
-                const formattedComments = (data.comments || []).map((backendComment: any) => ({
-                    id: backendComment.id,
+                const data: CommentsResponse = await res.json();
+                const formattedComments = (data.comments || []).map((backendComment: ApiCommentListItem) => ({
                     author: {
-                        id: backendComment.user_id,
                         name: backendComment.user_name,
                         profile_picture: backendComment.user_profile_picture,
                     },
@@ -65,7 +65,7 @@ export default function CommentSection({ articleId, initialComments = [] }: Prop
                 },
                 body: JSON.stringify({ content: text.trim() })
             });
-                            const created = await res.json();
+                            const created: ApiComment = await res.json();
                             if (res.ok) {
                                 const createdComment: Comment = {
                                     id: created.id,
@@ -144,7 +144,7 @@ export default function CommentSection({ articleId, initialComments = [] }: Prop
                     <div className="text-sm text-faint">No comments yet.</div>
                 ) : (
                     comments.map((c) => (
-                        <article key={c.id} className="border rounded p-3">
+                        <article key={`${c.createdAt}-${c.author.name}`} className="border rounded p-3">
                             <div className="flex items-center gap-3 mb-2">
                                 <CommentAuthorImage src={c.author?.profile_picture || ''} alt={c.author?.name || 'Anonymous'} />
                                 <div>

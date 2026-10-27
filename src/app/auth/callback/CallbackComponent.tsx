@@ -16,11 +16,12 @@ export default function CallbackComponent() {
     const code = searchParams?.get("code")
     const state = searchParams?.get("state") || "/" // Get the redirect URL from query params
     const redirectUrl = state ? decodeURIComponent(state) : '/'
-    const [status, setStatus] = useState<"loading" | "success" | "error">("loading")
+    const [fetchStatus, setStatus] = useState<"loading" | "success" | "error">("loading")
+    // Without a code there is nothing to exchange, so the page is an error from the first render.
+    const status = code ? fetchStatus : "error"
 
     useEffect(() => {
         if (!code) {
-            setStatus("error")
             router.push(redirectUrl) // Redirect to the specified URL or home on error
             return
         }

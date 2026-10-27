@@ -21,25 +21,26 @@ const socials = [
 ];
 
 export const Footer: React.FC = () => {
+    // pb-[var(--ai-band)]: the footer grows so the end of the page clears the pinned AI terminal trigger.
     return (
-        <footer className="relative w-full border-t border-foreground/10 bg-background text-sm">
+        <footer className="relative w-full border-t border-foreground/10 bg-background text-sm pb-[var(--ai-band)]">
             <div className="container mx-auto px-5 md:px-8 py-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-muted">
                     <p>&copy; {new Date().getFullYear()} Tolulope Fakoya (Toluhunter)</p>
                     {legal.map(({ href, label }) => (
-                        <Link key={href} href={href} className="hover:text-callout transition-colors duration-200">
+                        <Link key={href} href={href} className="inline-flex items-center justify-center min-w-[44px] min-h-[44px] md:min-w-0 md:min-h-0 hover:text-callout transition-colors duration-200">
                             {label}
                         </Link>
                     ))}
                 </div>
                 <nav aria-label="Footer" className="flex flex-wrap items-center gap-x-5 gap-y-2">
                     {pages.map(({ href, label }) => (
-                        <Link key={href} href={href} className="text-muted hover:text-callout transition-colors duration-200">
+                        <Link key={href} href={href} className="inline-flex items-center justify-center min-w-[44px] min-h-[44px] md:min-w-0 md:min-h-0 text-muted hover:text-callout transition-colors duration-200">
                             {label}
                         </Link>
                     ))}
                 </nav>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-1 md:gap-4">
                     {socials.map(({ href, label, Icon }) => (
                         <a
                             key={href}
@@ -47,7 +48,7 @@ export const Footer: React.FC = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label={label}
-                            className="text-muted hover:text-callout transition-colors duration-200"
+                            className="inline-flex items-center justify-center min-w-[44px] min-h-[44px] md:min-w-0 md:min-h-0 text-muted hover:text-callout transition-colors duration-200"
                         >
                             <Icon size={18} />
                         </a>

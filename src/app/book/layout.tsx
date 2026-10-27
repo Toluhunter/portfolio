@@ -1,11 +1,11 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: 'Book a Call',
-    description: "Let's design something that fits your needs, budget, and operations. Book a free consultation call.",
+    title: 'Contact',
+    description: "Book a free 30 minute call or send an email about the system you are building.",
     openGraph: {
-        title: 'Book a Call | Tolulope Fakoya',
-        description: "Let's design something that fits your needs, budget, and operations. Book a free consultation call.",
+        title: 'Contact | Tolulope Fakoya',
+        description: "Book a free 30 minute call or send an email about the system you are building.",
     },
 };
 

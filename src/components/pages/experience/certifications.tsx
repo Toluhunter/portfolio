@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { CertificationCardSkeleton } from "@/components/utilities/shared/skeletons";
+import type { ApiCertification, CertificationsResponse } from "@/types/api";
 
 interface Certification {
     picture: string;
@@ -51,9 +52,9 @@ const CertificationsSection = () => {
         const fetchCertifications = async () => {
             try {
                 const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/certifications`);
-                const data = await res.json();
+                const data: CertificationsResponse = await res.json();
                 const fetched = data.certifications || [];
-                setCertifications(fetched.map((c: any) => ({
+                setCertifications(fetched.map((c: ApiCertification) => ({
                     picture: c.picture,
                     title: c.title,
                     date: c.date,

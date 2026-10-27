@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { useAIChat, type ConnectionStatus } from './use-ai-chat'
 import { AIMarkdown } from './ai-markdown'
 
-const PANEL_HEIGHT = 'min(var(--terminal-height, 45vh), 520px)'
+const PANEL_HEIGHT = 'min(var(--terminal-height, 45dvh), 520px, calc(100dvh - 96px))'
 const BUBBLE_COOLDOWN_MS = 30 * 60 * 1000 // 30 minutes
 const SEEN_KEY = 'ai-bubble-seen-at'
 const THINKING_WORDS = [
@@ -147,10 +147,10 @@ export function AITerminal() {
         const now = Date.now()
         if (lastSeen && now - parseInt(lastSeen) < BUBBLE_COOLDOWN_MS) return
 
+        // The phrase only renders with the bubble, so it is picked when the bubble appears.
         const random = PHRASES[Math.floor(Math.random() * PHRASES.length)]
-        setPhrase(random)
 
-        const show = setTimeout(() => setShowBubble(true), 2500)
+        const show = setTimeout(() => { setPhrase(random); setShowBubble(true) }, 2500)
         const hide = setTimeout(() => { setShowBubble(false); setShowDot(true) }, 8000)
         return () => { clearTimeout(show); clearTimeout(hide) }
     }, [])
@@ -203,8 +203,8 @@ export function AITerminal() {
         <>
             {/* Floating trigger, app icon style: icon on top, label below */}
             <div
-                className="fixed right-10 z-[9999] transition-all duration-300 ease-in-out flex flex-col items-center gap-1"
-                style={{ bottom: open ? `calc(${PANEL_HEIGHT} + 16px)` : '56px' }}
+                className="fixed z-[9999] transition-all duration-300 ease-in-out flex flex-col items-center gap-1"
+                style={{ right: 'var(--ai-trigger-right)', bottom: open ? `calc(${PANEL_HEIGHT} + 16px)` : 'var(--ai-trigger-bottom)' }}
             >
                 {/* Speech bubble popup */}
                 {showBubble && phrase && !open && (
@@ -223,7 +223,7 @@ export function AITerminal() {
                 <button
                     onClick={handleOpen}
                     aria-label={open ? 'Close AI terminal' : 'Open AI terminal'}
-                    className="relative cursor-pointer flex items-center justify-center p-3 rounded-xl bg-background border-2 border-foreground/25 shadow-md transition-all duration-200 hover:border-[var(--callout)] hover:shadow-lg"
+                    className="relative cursor-pointer flex items-center justify-center min-w-[44px] min-h-[44px] p-3 rounded-xl bg-background border-2 border-foreground/25 shadow-md transition-all duration-200 hover:border-[var(--callout)] hover:shadow-lg"
                 >
                     {/* Pulse ring */}
                     {!open && (
@@ -253,19 +253,20 @@ export function AITerminal() {
                 </span>
             </div>
 
-            {/* Panel */}
+            {/* Panel. Closed, it is invisible and inert, so it can't take focus or taps. */}
             <div
-                className={`fixed bottom-0 left-0 right-0 z-[9998] flex flex-col bg-background border-t-2 border-x-2 border-foreground/25 shadow-[0_-4px_24px_rgba(0,0,0,0.15)] rounded-t-xl transition-transform duration-300 ease-in-out ${open ? 'translate-y-0' : 'translate-y-full'
+                className={`fixed bottom-0 left-0 right-0 z-[9998] flex flex-col bg-background border-t-2 border-x-2 border-foreground/25 shadow-[0_-4px_24px_rgba(0,0,0,0.15)] rounded-t-xl transition-[transform,visibility] duration-300 ease-in-out ${open ? 'visible translate-y-0' : 'invisible translate-y-full'
                     }`}
-                style={{ height: PANEL_HEIGHT }}
+                style={{ height: PANEL_HEIGHT, paddingBottom: 'env(safe-area-inset-bottom)' }}
                 aria-hidden={!open}
+                inert={!open}
             >
                 {/* Header */}
                 <div className="flex items-center gap-3 px-4 py-2 border-b border-foreground/10 bg-foreground/5 shrink-0 rounded-t-xl">
                     <div className="flex gap-1.5 items-center">
                         <button
                             onClick={() => setOpen(false)}
-                            className="w-3 h-3 rounded-full bg-[#ff5f57] hover:brightness-110 transition-all"
+                            className="relative w-3 h-3 rounded-full bg-[#ff5f57] hover:brightness-110 transition-all before:absolute before:-inset-[17px] before:content-['']"
                             aria-label="Close"
                         />
                         <div className="w-3 h-3 rounded-full bg-foreground/15" />
@@ -396,7 +397,7 @@ export function AITerminal() {
                     <button
                         type="submit"
                         disabled={!input.trim() || !canType}
-                        className="font-mono text-xs text-foreground/60 disabled:opacity-20 transition-colors shrink-0 hover:text-foreground/70 mt-1"
+                        className="font-mono text-xs text-foreground/60 disabled:opacity-20 transition-colors shrink-0 hover:text-foreground/70 min-h-[44px] min-w-[44px] -my-3 flex items-center justify-center"
                     >
                         [enter]
                     </button>
@@ -422,7 +423,7 @@ export function AITerminal() {
                 }
                 @media (max-width: 640px) {
                     :root {
-                        --terminal-height: 70vh;
+                        --terminal-height: 70dvh;
                     }
                 }
             `}</style>

@@ -1,11 +1,13 @@
 import "./globals.css";
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Monda, Lobster, Gugi, Fira_Code } from 'next/font/google';
 import ThemeWrapper from '@/components/utilities/shared/ThemeWrapper';
 import { AudioProvider } from "@/components/utilities/shared/audio";
 import { AITerminal } from "@/components/utilities/shared/ai-terminal";
-import { BuyMeACoffee } from "@/components/utilities/shared/buymecoffee";
 import Script from "next/script";
+
+// env(safe-area-inset-*) is only non-zero when the page opts into the full screen.
+export const viewport: Viewport = { viewportFit: 'cover' };
 
 const monda = Monda({
   subsets: ['latin'],
@@ -67,11 +69,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Pre-paint theme: device preference by default, explicit choice wins.
-            Runs before first paint so a dark-first site never flashes light. */}
+        {/* Pre-paint theme: a theme cookie from the last 24 hours wins, otherwise the device decides.
+            Runs before first paint so a dark-first site never flashes light. The old permanent
+            localStorage keys are deleted here and never read, so a past choice cannot come back. */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var r=document.documentElement;var s=null;try{s=localStorage.getItem('theme')}catch(e){}var d;if(s==='light'){d=false}else if(s==='dark'){d=true}else{var l=null;try{l=localStorage.getItem('isLightOn')}catch(e){}if(l!==null){d=!JSON.parse(l)}else{d=window.matchMedia('(prefers-color-scheme: dark)').matches}}r.classList.toggle('dark',d);r.style.colorScheme=d?'dark':'light'}catch(e){document.documentElement.classList.add('dark')}})();`,
+            __html: `(function(){try{var r=document.documentElement;try{localStorage.removeItem('theme');localStorage.removeItem('isLightOn')}catch(e){}var m=document.cookie.match(/(?:^|;\\s*)theme=(light|dark)(?:;|$)/);var d=m?m[1]==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;r.classList.toggle('dark',d);r.style.colorScheme=d?'dark':'light'}catch(e){document.documentElement.classList.add('dark')}})();`,
           }}
         />
         <meta name="theme-color" content="#121212" />
@@ -138,8 +141,9 @@ export default function RootLayout({
             <Toaster />
             <div className="relative z-[1]">
               {children}
+              {/* Keeps the end of footer-less routes clear of the AI terminal trigger */}
+              <div aria-hidden className="ai-band-spacer" />
             </div>
-            <BuyMeACoffee />
             <AITerminal />
           </ThemeWrapper>
         </AudioProvider>

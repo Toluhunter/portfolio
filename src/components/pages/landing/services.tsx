@@ -4,6 +4,7 @@ import { BOOK_LABEL, btnPrimary, textLink } from "@/components/utilities/shared/
 import Link from "next/link";
 import { serviceIcons, Service } from "@/components/utilities/shared/service-icon";
 import { ServiceTileSkeleton } from "@/components/utilities/shared/skeletons";
+import type { ApiService, ServicesResponse } from "@/types/api";
 
 const ServiceRow = ({ service }: { service: Service }) => {
     const IconComponent = serviceIcons[service.icon];
@@ -32,12 +33,13 @@ export const ServicesSection = () => {
         const fetchServices = async () => {
             try {
                 const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/services`);
-                const data = await res.json();
+                const data: ServicesResponse = await res.json();
                 const fetched = data.services || [];
-                setServices(fetched.map((s: any) => ({
+                setServices(fetched.map((s: ApiService) => ({
                     id: s.id,
                     name: s.name,
-                    icon: s.icon,
+                    // The API sends a plain string; the seed data only uses names the icon map knows.
+                    icon: s.icon as Service["icon"],
                     hook: s.hook,
                     includes: s.includes,
                     caseStudyLink: s.case_study_link,

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { SectionHeading } from "@/components/utilities/shared/ui"
 import { EngagementCard, Engagement } from "@/components/utilities/landingpage/engagement/engagement-card"
 import { EngagementCardSkeleton } from "@/components/utilities/shared/skeletons"
+import type { ApiEngagement, EngagementsResponse } from "@/types/api"
 
 export const EngagementsSection = () => {
     const [engagements, setEngagements] = useState<Engagement[]>([]);
@@ -12,12 +13,13 @@ export const EngagementsSection = () => {
         const fetchEngagements = async () => {
             try {
                 const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/engagements`);
-                const data = await res.json();
+                const data: EngagementsResponse = await res.json();
                 const fetched = data.engagements || [];
-                setEngagements(fetched.map((e: any) => ({
+                setEngagements(fetched.map((e: ApiEngagement) => ({
                     title: e.title,
                     subtitle: e.subtitle,
-                    icon: e.icon,
+                    // The API sends a plain string; the seed data only uses names the card knows.
+                    icon: e.icon as Engagement["icon"],
                     caseStudy: e.case_study,
                 })));
             } catch (error) {

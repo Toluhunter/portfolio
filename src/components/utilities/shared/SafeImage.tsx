@@ -1,25 +1,32 @@
 'use client';
 
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
-interface SafeImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
+interface SafeImageProps extends Omit<React.ImgHTMLAttributes<HTMLImageElement>, 'width' | 'height' | 'srcSet'> {
     fallbackSrc?: string;
+    // next/image needs a size. The className still sets the rendered size, as it did for <img>.
+    width?: number;
+    height?: number;
 }
 
-export const SafeImage: React.FC<SafeImageProps> = ({ src, fallbackSrc = "/favicon.ico", alt, ...props }) => {
-    const [objectUrl, setObjectUrl] = useState<string | null>(null);
-    const [error, setError] = useState(false);
-    const [loading, setLoading] = useState(true);
+// The outcome of loading one src, kept with that src so a new src reads as loading straight away.
+interface Loaded {
+    src: SafeImageProps['src'];
+    objectUrl: string | null;
+    error: boolean;
+}
+
+export const SafeImage: React.FC<SafeImageProps> = ({ src, fallbackSrc = "/favicon.ico", alt, width = 40, height = 40, loading: imgLoading = "eager", ...props }) => {
+    const [loaded, setLoaded] = useState<Loaded | null>(null);
+    const current = loaded && loaded.src === src ? loaded : null;
+    const objectUrl = current?.objectUrl ?? null;
+    const error = !src || (current?.error ?? false);
+    const loading = Boolean(src) && !current;
 
     useEffect(() => {
-        if (!src) {
-            setError(true);
-            setLoading(false);
-            return;
-        }
+        if (!src) return;
 
-        setLoading(true);
-        setError(false);
         let isMounted = true;
         const controller = new AbortController();
         const signal = controller.signal;
@@ -35,23 +42,19 @@ export const SafeImage: React.FC<SafeImageProps> = ({ src, fallbackSrc = "/favic
                     const blob = await response.blob();
                     if (isMounted) {
                         createdUrl = URL.createObjectURL(blob);
-                        setObjectUrl(createdUrl);
+                        setLoaded({ src, objectUrl: createdUrl, error: false });
                     }
                 } else {
                     // Assuming src is a Blob
                     createdUrl = URL.createObjectURL(src);
-                    setObjectUrl(createdUrl);
+                    setLoaded({ src, objectUrl: createdUrl, error: false });
                 }
             } catch (err) {
                 if ((err as Error).name !== 'AbortError') {
                     console.error("Failed to fetch image:", err);
                     if (isMounted) {
-                        setError(true);
+                        setLoaded({ src, objectUrl: null, error: true });
                     }
-                }
-            } finally {
-                if (isMounted) {
-                    setLoading(false);
                 }
             }
         };
@@ -74,9 +77,16 @@ export const SafeImage: React.FC<SafeImageProps> = ({ src, fallbackSrc = "/favic
         return <div className="w-10 h-10 bg-gray-200 rounded-full animate-pulse" />;
     }
 
-    if (!finalSrc) {
-        return <img src={fallbackSrc} alt={alt} {...props} />;
-    }
-
-    return <img src={finalSrc} alt={alt} {...props} />;
+    // unoptimized: the src is a blob: URL or an arbitrary external address, so it is used as is.
+    return (
+        <Image
+            src={finalSrc || fallbackSrc}
+            alt={alt ?? ""}
+            width={width}
+            height={height}
+            loading={imgLoading}
+            unoptimized
+            {...props}
+        />
+    );
 };

@@ -28,7 +28,7 @@ export const LegalLayout = ({
 }) => (
     <>
         <NavBar />
-        <main className="min-h-screen bg-background/50 backdrop-blur-sm">
+        <main className="min-h-screen bg-background/50 md:backdrop-blur-sm">
             <div className="container mx-auto px-5 md:px-8 pt-32 pb-28">
                 <PageHeader eyebrow={eyebrow} title={title} lede={lede}>
                     {updated && <p className="font-fira-code text-sm text-faint">Last updated: {updated}</p>}

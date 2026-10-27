@@ -5,6 +5,7 @@ import React, {
     useEffect,
     useState,
     useCallback,
+    useSyncExternalStore,
 } from "react"
 import Cookies from "js-cookie"
 
@@ -30,10 +31,32 @@ const COOKIE_OPTIONS: Cookies.CookieAttributes = {
     sameSite: "strict",
 }
 
+const subscribeToNothing = () => () => {}
+
+// The signed-in user for a token, or null when the request fails.
+async function requestUser(accessToken: string): Promise<User | null> {
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/details`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        })
+        if (!res.ok) return null
+        const data = await res.json()
+        return data?.user ?? data ?? null
+    } catch {
+        return null
+    }
+}
+
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [user, setUser] = useState<User | null>(null)
     const accessToken = Cookies.get("accessToken") || null
-    const [loading, setLoading] = useState(true)
+    const [loadingUser, setLoading] = useState(true)
+    // Without a token there is no user to load. The server cannot read the cookie and renders loading,
+    // as it always has; the client then knows straight away.
+    const hasToken = useSyncExternalStore(subscribeToNothing, () => Boolean(Cookies.get("accessToken")), () => true)
+    const loading = hasToken && loadingUser
 
     const fetchUser = useCallback(async () => {
         const accessToken = Cookies.get("accessToken")
@@ -42,25 +65,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             setUser(null)
             return
         }
-
-        try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/details`, {
-                headers: {
-                    Authorization: `Bearer ${accessToken}`,
-                },
-            })
-
-            if (res.ok) {
-                const data = await res.json()
-                setUser(data?.user ?? data ?? null)
-            } else {
-                setUser(null)
-            }
-        } catch (e) {
-            setUser(null)
-        } finally {
-            setLoading(false)
-        }
+        setUser(await requestUser(accessToken))
+        setLoading(false)
     }, [])
 
     const setAuthTokens = useCallback((accessToken: string, refreshToken: string) => {
@@ -103,15 +109,21 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                 logout()
                 return null
             }
-        } catch (error) {
+        } catch {
             logout()
             return null
         }
     }, [logout, setAuthTokens])
 
+    // With no token there is nothing to load: user starts null and loading is false.
     useEffect(() => {
-        fetchUser()
-    }, [fetchUser])
+        const accessToken = Cookies.get("accessToken")
+        if (!accessToken) return
+        requestUser(accessToken).then((loaded) => {
+            setUser(loaded)
+            setLoading(false)
+        })
+    }, [])
 
     return (
         <AuthContext.Provider
