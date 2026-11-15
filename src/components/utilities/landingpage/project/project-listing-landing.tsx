@@ -6,6 +6,7 @@ import { FaExternalLinkAlt } from "react-icons/fa"
 import type { CaseStudy } from "@/components/utilities/shared/beat"
 import { StatList, btnPrimary, btnSecondary } from "@/components/utilities/shared/ui"
 import { StatusBadge } from "@/components/pages/products/status-badge"
+import { ProjectVideo } from "@/components/utilities/shared/project-video"
 
 export interface Project {
     name: string;
@@ -13,6 +14,9 @@ export interface Project {
     description: string[];
     images: string[];
     imageAspectRatios?: number[];
+    video?: string;
+    videoPoster?: string;
+    videoPosterLight?: string;
     websiteLink?: string;
     technologies?: string[];
     subtitle: string;
@@ -32,7 +36,8 @@ export const ProjectListing = ({ project, reverse = false }: { project: Project;
 
     const placeholderImage = 'https://placehold.co/800x500/CCCCCC/333333.png?text=Image+Not+Available';
     const images = project.images.length > 0 ? project.images : [placeholderImage];
-    const scrollLinked = images.length > 1;
+    // A showcase video replaces the whole image set, so nothing follows the scroll.
+    const scrollLinked = !project.video && images.length > 1;
 
     useEffect(() => {
         if (!scrollLinked) return;
@@ -78,7 +83,18 @@ export const ProjectListing = ({ project, reverse = false }: { project: Project;
 
     const activeRatio = project.imageAspectRatios?.[activeImage] ?? DEFAULT_ASPECT_RATIO;
 
-    const imageBox = (wrapperClassName: string) => (
+    const imageBox = (wrapperClassName: string) => project.video ? (
+        <div className={wrapperClassName}>
+            <div className="relative w-full aspect-video border border-foreground/15 rounded-2xl overflow-hidden bg-black">
+                <ProjectVideo
+                    name={project.name}
+                    video={project.video}
+                    poster={project.videoPoster}
+                    posterLight={project.videoPosterLight}
+                />
+            </div>
+        </div>
+    ) : (
         <div className={wrapperClassName}>
             <div
                 className="relative w-full border border-foreground/15 rounded-2xl overflow-hidden bg-black transition-[aspect-ratio] duration-500"

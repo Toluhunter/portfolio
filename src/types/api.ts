@@ -94,6 +94,9 @@ export interface ApiProduct {
     status: string;
     images: string[];
     image_aspect_ratios: number[];
+    video?: string;
+    video_poster?: string;
+    video_poster_light?: string;
     website_link?: string;
     technologies: string[];
     roles: string[];
