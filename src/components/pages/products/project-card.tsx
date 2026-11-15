@@ -5,12 +5,16 @@ import { FaExternalLinkAlt } from "react-icons/fa";
 import Icon from "@/components/utilities/shared/icon";
 import { StatusBadge } from "./status-badge";
 import { Eyebrow, btnPrimary, btnSecondary } from "@/components/utilities/shared/ui";
+import { ProjectVideo } from "@/components/utilities/shared/project-video";
 
 export interface Project {
     name: string;
     status: string;
     description: string[];
     images: string[];
+    video?: string;
+    videoPoster?: string;
+    videoPosterLight?: string;
     websiteLink?: string;
     technologies?: string[];
     subtitle: string;
@@ -21,6 +25,27 @@ export const ProjectCard = ({ project }: { project: Project }) => {
     const [showTechnologies, setShowTechnologies] = useState(false);
 
     const placeholderImage = 'https://placehold.co/800x500/CCCCCC/333333.png?text=Image+Not+Available';
+
+    // The showcase video replaces the image when the product has one.
+    const media = project.video ? (
+        <div className="aspect-video">
+            <ProjectVideo
+                name={project.name}
+                video={project.video}
+                poster={project.videoPoster}
+                posterLight={project.videoPosterLight}
+            />
+        </div>
+    ) : (
+        <Image
+            src={project.images[0] || placeholderImage}
+            alt={`${project.name} preview`}
+            width={800}
+            height={500}
+            className="w-full h-auto object-contain"
+            onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = placeholderImage; }}
+        />
+    );
 
     return (
         <div className="flex flex-col gap-8">
@@ -37,14 +62,7 @@ export const ProjectCard = ({ project }: { project: Project }) => {
 
                     {/* Image shown between subtitle and description on mobile */}
                     <div className="lg:hidden w-full border border-foreground/15 rounded-2xl overflow-hidden bg-foreground/5">
-                        <Image
-                            src={project.images[0] || placeholderImage}
-                            alt={`${project.name} preview`}
-                            width={800}
-                            height={500}
-                            className="w-full h-auto object-contain"
-                            onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = placeholderImage; }}
-                        />
+                        {media}
                     </div>
 
                     <div className="flex flex-col gap-3 prose-measure leading-relaxed">
@@ -114,14 +132,7 @@ export const ProjectCard = ({ project }: { project: Project }) => {
                 {/* Right column - image, desktop only, sticky */}
                 <div className="hidden lg:block lg:w-[45%] sticky top-28">
                     <div className="w-full border border-foreground/15 rounded-2xl overflow-hidden bg-foreground/5">
-                        <Image
-                            src={project.images[0] || placeholderImage}
-                            alt={`${project.name} preview`}
-                            width={800}
-                            height={500}
-                            className="w-full h-auto object-contain"
-                            onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = placeholderImage; }}
-                        />
+                        {media}
                     </div>
                 </div>
             </div>
