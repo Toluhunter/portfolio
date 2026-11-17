@@ -204,6 +204,8 @@ export function AITerminal() {
     const [menuOpen, setMenuOpen] = useState(false)
     const [renamingId, setRenamingId] = useState<string | null>(null)
     const [renameDraft, setRenameDraft] = useState('')
+    const [renameError, setRenameError] = useState<string | null>(null)
+    const [renameSaving, setRenameSaving] = useState(false)
     const messagesEndRef = useRef<HTMLDivElement>(null)
     const inputRef = useRef<HTMLTextAreaElement>(null)
     const iconRef = useRef<HTMLButtonElement>(null)
@@ -312,17 +314,36 @@ export function AITerminal() {
         if (id !== sessionId) switchSession(id)
     }
 
-    const startRename = (id: string, current: string) => {
+    // An unnamed session starts from an empty field (its date-time label is the placeholder),
+    // since the slashes and colon in that label are not allowed in a name.
+    const startRename = (id: string, serverName: string | undefined) => {
         renameCancelled.current = false
+        renameOriginal.current = serverName ?? ''
+        setRenameError(null)
         setRenamingId(id)
-        setRenameDraft(current)
+        setRenameDraft(serverName ?? '')
     }
 
     // Escape cancels; the field then unmounts, and its blur must not save the draft after all.
     const renameCancelled = useRef(false)
-    const finishRename = (save: boolean) => {
+    const renameOriginal = useRef('')
+    const finishRename = async (save: boolean) => {
         if (!save) renameCancelled.current = true
-        if (save && renamingId && !renameCancelled.current) renameSession(renamingId, renameDraft)
+        const id = renamingId
+        const unchanged = renameDraft.trim() === renameOriginal.current.trim()
+        if (!save || !id || renameCancelled.current || unchanged) {
+            setRenamingId(null)
+            setRenameError(null)
+            return
+        }
+        setRenameSaving(true)
+        const error = await renameSession(id, renameDraft)
+        setRenameSaving(false)
+        if (error && !error.startsWith('This conversation has expired')) {
+            setRenameError(error) // stay in the field so the visitor can fix it
+            return
+        }
+        setRenameError(null)
         setRenamingId(null)
     }
 
@@ -491,7 +512,7 @@ export function AITerminal() {
 
                     {/* Sessions: only the ones this browser started, from the last 24 hours */}
                     {menuOpen && (
-                        <div className="absolute top-full right-2 mt-1 z-10 w-[min(320px,calc(100vw-16px))] rounded-lg border-2 border-foreground/20 bg-background shadow-lg font-mono text-xs overflow-hidden">
+                        <div className="absolute top-full right-2 mt-1 z-10 w-[min(380px,calc(100vw-16px))] rounded-lg border-2 border-foreground/20 bg-background shadow-lg font-mono text-xs overflow-hidden">
                             <button
                                 type="button"
                                 onClick={() => pickSession(null)}
@@ -510,20 +531,29 @@ export function AITerminal() {
                                     const label = sessionLabel(s)
                                     if (renamingId === s.id) {
                                         return (
-                                            <li key={s.id} className="px-3 py-2 flex items-center gap-2">
+                                            <li key={s.id} className="px-3 py-2">
                                                 <input
                                                     autoFocus
                                                     value={renameDraft}
+                                                    placeholder={label}
                                                     maxLength={MAX_NAME_LENGTH}
-                                                    onChange={(e) => setRenameDraft(e.target.value)}
+                                                    disabled={renameSaving}
+                                                    onChange={(e) => { setRenameDraft(e.target.value); setRenameError(null) }}
                                                     onKeyDown={(e) => {
                                                         if (e.key === 'Enter') finishRename(true)
                                                         if (e.key === 'Escape') { e.stopPropagation(); finishRename(false) }
                                                     }}
-                                                    onBlur={() => finishRename(true)}
+                                                    onBlur={() => { if (!renameError) finishRename(true) }}
                                                     aria-label="Session name"
-                                                    className="flex-1 min-w-0 bg-transparent border-b border-foreground/30 outline-none text-foreground py-1"
+                                                    aria-invalid={!!renameError}
+                                                    aria-describedby={renameError ? 'rename-error' : undefined}
+                                                    className={`w-full bg-transparent border-b outline-none text-foreground py-1 placeholder:text-foreground/40 disabled:opacity-60 ${renameError ? 'border-[#ff3b30]' : 'border-foreground/30'}`}
                                                 />
+                                                {renameError && (
+                                                    <p id="rename-error" role="alert" className="mt-1 text-[10px] text-[#ff3b30]">
+                                                        {renameError}
+                                                    </p>
+                                                )}
                                             </li>
                                         )
                                     }
@@ -542,7 +572,7 @@ export function AITerminal() {
                                             </button>
                                             <button
                                                 type="button"
-                                                onClick={() => startRename(s.id, label)}
+                                                onClick={() => startRename(s.id, s.name)}
                                                 aria-label={`Rename ${label}`}
                                                 title="Rename"
                                                 className="shrink-0 w-9 min-h-[44px] flex items-center justify-center text-foreground/50 hover:text-[#b8962e] focus-visible:text-[#b8962e] transition-colors"

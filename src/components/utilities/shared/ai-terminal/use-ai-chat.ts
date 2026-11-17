@@ -7,16 +7,20 @@ import {
     getActiveSessionId,
     loadSessions,
     migrateLegacyCookie,
+    NAME_RULES,
+    cleanName,
     removeSession,
-    renameSession as renameStoredSession,
     saveTranscript,
     setActiveSessionId,
+    setServerName,
     touchSession,
 } from './sessions'
 
 export type { ChatMessage, MessageRole } from './sessions'
 
 const WS_URL = `${process.env.NEXT_PUBLIC_AI_WS_URL}`
+// The same server over HTTP: ws://host/ws/chat -> http://host, wss:// -> https://.
+const API_URL = WS_URL.replace(/^ws/, 'http').replace(/\/ws\/chat\/?$/, '')
 
 export type ConnectionStatus = 'idle' | 'connecting' | 'connected' | 'thinking' | 'error' | 'rate_limited' | 'terminated'
 
@@ -60,7 +64,11 @@ export function useAIChat(enabled: boolean) {
                 liveId = sid
                 // The server only starts a fresh session when it no longer knows the old one.
                 if (requestedId && requestedId !== sid) removeSession(requestedId)
-                const list = touchSession(sid)
+                touchSession(sid)
+                // A resumed session brings the name the server gave it from its first question.
+                const list = typeof data.title === 'string' && data.title
+                    ? setServerName(sid, data.title)
+                    : touchSession(sid)
                 setActiveSessionId(sid)
                 setSessions(list)
                 const stored = list.find((s) => s.id === sid)?.messages ?? []
@@ -83,6 +91,11 @@ export function useAIChat(enabled: boolean) {
                 setAnswerCount((n) => n + 1)
             } else if (data.type === 'done') {
                 setStatus('connected')
+            } else if (data.type === 'session_title') {
+                // Sent once, after the first answer of a new session.
+                if (liveId && typeof data.title === 'string' && data.title) {
+                    setSessions(setServerName(liveId, data.title))
+                }
             } else if (data.type === 'error') {
                 pendingRef.current = false
                 setStatus('connected')
@@ -150,8 +163,35 @@ export function useAIChat(enabled: boolean) {
         connect(id)
     }, [connect])
 
-    const renameSession = useCallback((id: string, name: string) => {
-        setSessions(renameStoredSession(id, name))
+    /**
+     * Rename a conversation on the server, which keeps the name and stops naming it itself.
+     * Resolves to null when it worked, or to a message to show under the field when it didn't.
+     */
+    const renameSession = useCallback(async (id: string, raw: string): Promise<string | null> => {
+        const name = cleanName(raw)
+        if (name === null) return NAME_RULES
+        try {
+            const response = await fetch(`${API_URL}/sessions/${encodeURIComponent(id)}/title`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ title: name }),
+            })
+            if (response.ok) {
+                const { title } = await response.json() as { title: string }
+                setSessions(setServerName(id, title))
+                return null
+            }
+            if (response.status === 404) {
+                // The server has already let this conversation go; so does the list.
+                setSessions(removeSession(id))
+                return 'This conversation has expired.'
+            }
+            if (response.status === 422) return NAME_RULES
+            if (response.status === 429) return 'Too many renames, try again in a minute.'
+        } catch {
+            // fall through to the generic message
+        }
+        return "Couldn't rename it just now, try again."
     }, [])
 
     /** Forget a session in this browser. Deleting the one in use starts a fresh session. */

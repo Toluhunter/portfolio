@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { LegalLayout, LegalSection, LegalList, LegalItem, legalLink } from "@/components/pages/legal/legal-layout";
 
 export const metadata = {
@@ -11,17 +10,9 @@ export default function PrivacyPage() {
     return (
         <LegalLayout
             title="Privacy Policy"
-            lede={
-                <>
-                    How toluhunter.com and my client work handle your information. Spiral, my personal
-                    automation assistant, has <Link href="/spiral/privacy" className={legalLink}>its own privacy policy</Link>.
-                </>
-            }
-            updated="11 October 2026"
-            related={[
-                { href: "/terms", label: "Terms of Use" },
-                { href: "/spiral/privacy", label: "Spiral Privacy Policy" },
-            ]}
+            lede="How toluhunter.com and my client work handle your information."
+            updated="16 November 2026"
+            related={[{ href: "/terms", label: "Terms of Use" }]}
             sections={[
                 "Who I am",
                 "What this site collects",
@@ -30,7 +21,6 @@ export default function PrivacyPage() {
                 "Who I share it with",
                 "How long I keep it",
                 "Your choices",
-                "Spiral",
                 "Changes",
                 "Contact",
             ]}
@@ -62,8 +52,21 @@ export default function PrivacyPage() {
                     </LegalItem>
                     <LegalItem>
                         <span className="text-foreground font-semibold">The AI terminal.</span> Messages you type
-                        into the on-site assistant are sent to my server to generate a reply, and a session cookie
-                        lets a conversation resume. Please don&apos;t share sensitive information there.
+                        into the on-site assistant are sent to my server, and to the AI service that powers it, to
+                        generate a reply. Each conversation is saved on my server under a random session ID, with
+                        a short name taken from your first question or one you choose, so it can resume. Your
+                        browser keeps those session IDs and a copy of your recent conversations in its local
+                        storage. Your IP address is used briefly to limit how many messages can be sent per minute.
+                    </LegalItem>
+                    <LegalItem>
+                        <span className="text-foreground font-semibold">
+                            Don&apos;t share sensitive information with the AI terminal.
+                        </span>{" "}
+                        Conversations are not tied to an account or password: anyone who has a conversation&apos;s
+                        session ID, for example someone using the same browser, can read and continue it. Treat
+                        anything you type there as something another person could see. Don&apos;t enter personal,
+                        financial, health or confidential business information, passwords or access keys. If you
+                        need to share something private, email me instead.
                     </LegalItem>
                     <LegalItem>
                         <span className="text-foreground font-semibold">Email.</span> If you email me, I receive
@@ -107,6 +110,26 @@ export default function PrivacyPage() {
                     For as long as it&apos;s needed for the reason it was collected. Comments stay up until you
                     ask me to remove them, and client material is kept or deleted as our agreement sets out.
                 </p>
+                <LegalList>
+                    <LegalItem>
+                        <span className="text-foreground font-semibold">AI terminal conversations</span> are kept
+                        on my server for 24 hours after the last message in them, then deleted automatically.
+                    </LegalItem>
+                    <LegalItem>
+                        <span className="text-foreground font-semibold">Monitoring records</span> of the
+                        assistant&apos;s replies, which include the messages, are kept for up to 30 days so I can
+                        check its quality and fix problems. Only I can see them.
+                    </LegalItem>
+                    <LegalItem>
+                        <span className="text-foreground font-semibold">The message limit</span> holds your IP
+                        address for about a minute.
+                    </LegalItem>
+                    <LegalItem>
+                        <span className="text-foreground font-semibold">Your browser&apos;s copy</span> of your
+                        conversations drops off after 24 hours. Deleting a conversation in the terminal removes it
+                        from your browser straight away; the copy on my server still expires on its own schedule.
+                    </LegalItem>
+                </LegalList>
             </LegalSection>
 
             <LegalSection title="Your choices">
@@ -118,15 +141,6 @@ export default function PrivacyPage() {
                     , sign out at any time, and email me to see, correct or delete the information I hold about
                     you. Depending on where you live, privacy law may give you further rights, and I&apos;ll
                     honour them.
-                </p>
-            </LegalSection>
-
-            <LegalSection title="Spiral">
-                <p>
-                    Spiral is a separate, personal tool that I use with my own Google account. Its handling of
-                    Google user data is covered only by the{" "}
-                    <Link href="/spiral/privacy" className={legalLink}>Spiral Privacy Policy</Link>, and nothing
-                    in this policy applies to that data.
                 </p>
             </LegalSection>
 
