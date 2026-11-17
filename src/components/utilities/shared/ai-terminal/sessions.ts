@@ -13,8 +13,9 @@ export interface ChatMessage {
 
 export interface StoredSession {
     id: string
-    name?: string // from the server (SITE-34), once it names the session
-    customName?: string // the visitor's own rename; local only and wins over name
+    // The server's name for it: from the model, or the visitor's own rename, which the server
+    // stores and which always wins. Missing until one exists.
+    name?: string
     createdAt: number
     lastUsed: number
     messages: ChatMessage[]
@@ -99,13 +100,24 @@ export function saveTranscript(id: string, messages: ChatMessage[]): void {
     write(sessions.map((s) => (s.id === id ? { ...s, messages: kept } : s)))
 }
 
-export function renameSession(id: string, name: string): StoredSession[] {
-    const trimmed = name.trim().slice(0, MAX_NAME_LENGTH)
-    const sessions = loadSessions().map((s) =>
-        s.id === id ? { ...s, customName: trimmed || undefined } : s
-    )
+/** Store the name the server holds for the session (from the model or a rename). */
+export function setServerName(id: string, name: string): StoredSession[] {
+    const sessions = loadSessions().map((s) => (s.id === id ? { ...s, name } : s))
     write(sessions)
     return sessions
+}
+
+// The same rule the server enforces (app/routers/chat.py clean_rename). The server's check is the
+// one that counts; this one just saves a round trip for the obvious mistakes.
+const NAME_ALLOWED = /^[\p{L}\p{N}_ '&+\-.?!]+$/u
+export const NAME_RULES = `Use 1 to ${MAX_NAME_LENGTH} letters, numbers, spaces and ' & + - . ? !`
+
+/** The tidied name, or null when the server would reject it. */
+export function cleanName(raw: string): string | null {
+    const name = raw.split(/\s+/).filter(Boolean).join(' ')
+    if (name.length < 1 || name.length > MAX_NAME_LENGTH) return null
+    if (!NAME_ALLOWED.test(name) || !/[\p{L}\p{N}]/u.test(name)) return null
+    return name
 }
 
 export function removeSession(id: string): StoredSession[] {
@@ -115,12 +127,21 @@ export function removeSession(id: string): StoredSession[] {
     return sessions
 }
 
-/** The name shown in the selector: the visitor's rename, then the server's, then the start time. */
+/** "16/11/2026 4:53pm Chat": the start date and time, in the visitor's own time zone. */
+export function fallbackName(createdAt: number): string {
+    const d = new Date(createdAt)
+    const pad = (n: number) => String(n).padStart(2, '0')
+    const hour = d.getHours() % 12 || 12
+    const meridiem = d.getHours() < 12 ? 'am' : 'pm'
+    return `${pad(d.getDate())}/${pad(d.getMonth() + 1)}/${d.getFullYear()} ${hour}:${pad(d.getMinutes())}${meridiem} Chat`
+}
+
+/**
+ * The name shown in the selector: the server's name (the visitor's rename, or the model's from
+ * the first valid question), then the start date and time until one exists.
+ */
 export function sessionLabel(session: StoredSession): string {
-    if (session.customName) return session.customName
-    if (session.name) return session.name
-    const started = new Date(session.createdAt)
-    return `Chat from ${started.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`
+    return session.name || fallbackName(session.createdAt)
 }
 
 export function lastUsedLabel(session: StoredSession, now = Date.now()): string {

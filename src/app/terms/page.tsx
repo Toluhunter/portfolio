@@ -10,17 +10,9 @@ export default function TermsPage() {
     return (
         <LegalLayout
             title="Terms of Use"
-            lede={
-                <>
-                    The terms for using toluhunter.com and how client work is agreed. Spiral, my personal
-                    automation assistant, has <Link href="/spiral/terms" className={legalLink}>its own terms</Link>.
-                </>
-            }
-            updated="11 October 2026"
-            related={[
-                { href: "/privacy", label: "Privacy Policy" },
-                { href: "/spiral/terms", label: "Spiral Terms of Service" },
-            ]}
+            lede="The terms for using toluhunter.com and how client work is agreed."
+            updated="16 November 2026"
+            related={[{ href: "/privacy", label: "Privacy Policy" }]}
             sections={[
                 "Using this site",
                 "Content",
@@ -62,6 +54,23 @@ export default function TermsPage() {
                     Answers from the on-site assistant are generated automatically and can be wrong. They are
                     general information, not professional advice for your situation.
                 </p>
+                <LegalList>
+                    <LegalItem>
+                        It is not a private channel. Conversations are not protected by an account or password,
+                        and anyone with a conversation&apos;s session ID can read and continue it. Don&apos;t
+                        enter personal, financial, health or confidential information, passwords or access keys.
+                        You are responsible for what you choose to type, and I&apos;m not responsible for
+                        information you share there.
+                    </LegalItem>
+                    <LegalItem>
+                        Conversations are kept for 24 hours after the last message, as the{" "}
+                        <Link href="/privacy" className={legalLink}>Privacy Policy</Link> explains.
+                    </LegalItem>
+                    <LegalItem>
+                        Don&apos;t try to make it misbehave, reveal its instructions or attack the service. A
+                        conversation that keeps trying is ended.
+                    </LegalItem>
+                </LegalList>
             </LegalSection>
 
             <LegalSection title="Client work">
